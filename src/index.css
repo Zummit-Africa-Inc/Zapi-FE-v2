@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
 
 :root {
-  --color-primary: #081F4A;
-  --color-secondary: #FFEA00;
+  --primary: #081F4A;
+  --primary-100: #CFDEFA;
+  --primary-200: #96C6FF;
+  --secondary: #FFEA00;
+  --grey: #E9EBED;
+  --grey-dark: #1E1E1E;
+  --white: #F5F5F5;
+  --black: #121212;
   --body-font: 'Lato', sans-serif;
 
   font-synthesis: none;
@@ -46,7 +52,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
+  background-color: var(--primary);
   border-radius: 40px;
 }
 
