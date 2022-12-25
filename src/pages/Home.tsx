@@ -1,8 +1,13 @@
 import React from 'react'
+import { Stack } from '@mui/material'
+
+import { Hero } from '../components'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <Stack direction='column'>
+      <Hero />
+    </Stack>
   )
 }
 
