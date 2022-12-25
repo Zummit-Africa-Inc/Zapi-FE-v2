@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+
+:root {
+  --primary: #081F4A;
+  --primary-100: #CFDEFA;
+  --primary-200: #96C6FF;
+  --secondary: #FFEA00;
+  --grey: #E9EBED;
+  --grey-dark: #1E1E1E;
+  --white: #F5F5F5;
+  --black: #121212;
+  --body-font: 'Lato', sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: "#fff";
+  font-family: var(--body-font);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+button {
+  font-family: var(--body-font);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 40px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
