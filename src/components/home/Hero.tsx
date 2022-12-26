@@ -11,7 +11,7 @@ const Hero:React.FC = () => {
   
   return (
     <Stack direction='column' className={classes.root}>
-      <Stack width='100%' direction='row' alignItems='center' spacing='135px'>
+      <Box className={classes.container}>
         <Box className={classes.heroText}>
           <h1>
             We provide AI models that literally changes your life
@@ -24,7 +24,7 @@ const Hero:React.FC = () => {
         <Box className={classes.heroImage}>
           <img src={heroIllustration} alt="" width='100%' height='100%' />
         </Box>
-      </Stack>
+      </Box>
     </Stack>
   )
 }
@@ -48,6 +48,20 @@ const useStyles = makeStyles((theme: Theme) => ({
       height: 'fit-content',
       padding: '24px 16px',
       backgroundImage: `url(${heroSmall})`,
+    },
+  },
+  container: {
+    width:'100%',
+    display: 'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent: 'space-between',
+    marginTop:'80px',
+    [theme.breakpoints.down('laptop')]: {
+      marginTop:'54px',
+    },
+    [theme.breakpoints.down('tablet')]: {
+      marginTop:'64px',
     },
   },
   heroText: {
