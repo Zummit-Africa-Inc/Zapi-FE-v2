@@ -17,7 +17,7 @@ const LINKS = [
 ]
 
 const Navbar:React.FC = () => {
-  const { handleClicked, currentMode, setMode } = useAppContext()
+  const { handleClicked, currentMode, setMode, setActiveMenu, activeMenu, screenSize, setScreenSize } = useAppContext()
   const { isLoggedIn } = useAppSelector(store => store.auth)
   const [scrolled, setScrolled] = useState<boolean>(false)
   const classes = useStyles()
@@ -26,6 +26,13 @@ const Navbar:React.FC = () => {
     const offset = window.scrollY
     offset > 700 ? setScrolled(true) : setScrolled(false)
   }
+
+  useEffect(() => {
+    const handleScreenResize = () => setScreenSize(window.innerWidth)
+    window.addEventListener('resize', handleScreenResize)
+    handleScreenResize()
+    return () => window.removeEventListener('resize', handleScreenResize)
+  },[])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -59,7 +66,7 @@ const Navbar:React.FC = () => {
         ):(
           <Stack direction='row' alignItems='center' spacing='24px'>
             <Button label='Dashboard' background='white' size='small' to='/developer/dashboard' />
-            <Button label='Logout' background='secondary' size='small' />
+            <Button label='Logout' background='secondary' size='small' onClick={() => handleClicked('logout')} />
             {currentMode === 'light' ? (
               <Moon onClick={() => setMode('dark')} />
               ):(
@@ -69,7 +76,7 @@ const Navbar:React.FC = () => {
         )}
       </Box>
       <Box className={classes.menuToggle}>
-        <Hamburger />
+        <Hamburger onClick={() => setActiveMenu(true)} />
       </Box>
     </Box>
   )

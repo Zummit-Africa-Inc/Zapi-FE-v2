@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     title: {
         fontWeight: 0,
         fontSize: '',
-        color: theme.palette.grey[100],
+        color: theme.palette.primary.contrastText,
         margin: '70px 0 64px',
     },
     brands: {

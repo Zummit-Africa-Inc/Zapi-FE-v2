@@ -1,8 +1,7 @@
 import React from 'react'
 import { Stack } from '@mui/material'
 
-import { Hero, Navbar } from '../components'
-import Brands from '../components/home/Brands'
+import { Brands, Hero, Navbar } from '../components'
 
 const Home = () => {
   return (

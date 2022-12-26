@@ -30,12 +30,14 @@ export const darkTheme = createTheme({
         mode: 'dark',
         primary: {
             main: '#081F4A',
+            contrastText: '#E9EBED',
         },
         secondary: {
             main: '#FFEA00'
         },
         background: {
             default: '#121212',
+            paper: '#E9EBED',
         },
         grey: {
             "100": '#F5F5F5',
@@ -74,12 +76,14 @@ export const lightTheme = createTheme({
     palette: {
         primary: {
             main: '#081F4A',
+            contrastText: '#121212'
         },
         secondary: {
             main: '#FFEA00'
         },
         background: {
             default: '#F5F5F5',
+            paper: '#E9EBED',
         },
         grey: {
             "100": '#F5F5F5',
