@@ -128,13 +128,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '16px',
     lineHeight: '24px',
     color: theme.palette.secondary.main,
-    borderBottom: `2px solid ${theme.palette.secondary.main}`,
   },
   inactiveLink: {
     fontWeight: 500,
     fontSize: '16px',
     lineHeight: '24px',
     color: '#FFF',
+    '&:hover': {
+      color: theme.palette.grey[300],
+    }
   },
   icon: {
     width: '48px',

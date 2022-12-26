@@ -40,6 +40,7 @@ export const darkTheme = createTheme({
         grey: {
             "100": '#F5F5F5',
             "200": '#1E1E1E',
+            "300": '#A8AEB5',
         },
     },
     components: {
@@ -81,8 +82,9 @@ export const lightTheme = createTheme({
             default: '#F5F5F5',
         },
         grey: {
-            "100": '#121212',
-            "200": '#E9EBED'
+            "100": '#F5F5F5',
+            "200": '#E9EBED',
+            "300": '#A8AEB5',
         },
     },
     components: {
