@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import { Link, NavLink } from 'react-router-dom'
 import { Box, Stack, Theme } from '@mui/material'
@@ -19,10 +19,21 @@ const LINKS = [
 const Navbar:React.FC = () => {
   const { handleClicked, currentMode, setMode } = useAppContext()
   const { isLoggedIn } = useAppSelector(store => store.auth)
+  const [scrolled, setScrolled] = useState<boolean>(false)
   const classes = useStyles()
 
+  const handleScroll = () => {
+    const offset = window.scrollY
+    offset > 700 ? setScrolled(true) : setScrolled(false)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
+
   return (
-    <Box className={classes.root}>
+    <Box className={classes.root} style={{position: scrolled ? 'fixed' : 'static'}}>
       <Link to='/' className={classes.logo}>
         <img src={zapi} alt="zapi logo" />
         <p>ZAPI</p>
@@ -74,7 +85,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     background: theme.palette.primary.main,
     padding: '24px 108px',
-    position: 'static',
     top: 0,
     left: 0,
     [theme.breakpoints.down('laptop')]: {
