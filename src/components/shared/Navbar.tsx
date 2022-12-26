@@ -62,9 +62,9 @@ const Navbar:React.FC = () => {
             <Button label='Log In' background='transparent' size='small' onClick={() => handleClicked('login')} />
             <Button label='Sign Up' to='/signup' background='secondary' size='small' />
             {currentMode === 'light' ? (
-              <Moon onClick={() => setMode('dark')} />
+              <Moon fill='#E9EBED' onClick={() => setMode('dark')} />
               ):(
-              <Sun onClick={() => setMode('light')}/>
+              <Sun fill='#E9EBED' onClick={() => setMode('light')}/>
             )}
           </Stack>
         ):(
