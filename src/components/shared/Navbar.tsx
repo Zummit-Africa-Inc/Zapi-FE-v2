@@ -59,7 +59,7 @@ const Navbar:React.FC = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction='row' alignItems='center' spacing='24px'>
-            <Button label='Log In' background='transparent' size='small' onClick={() => handleClicked('login')} />
+            <Button label='Log In' to='/login' background='transparent' size='small' />
             <Button label='Sign Up' to='/signup' background='secondary' size='small' />
             {currentMode === 'light' ? (
               <Moon fill='#E9EBED' onClick={() => setMode('dark')} />

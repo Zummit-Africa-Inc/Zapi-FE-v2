@@ -2,13 +2,14 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { API, ComingSoon, Dashboard, Discussions, Documentation, Error, Feedback, ForgotPassword, FreeTrial, Home,
-    Hub, LoginHistory, Notifications, OTP, Pricing, ResetPassword, Signup, Success, Terms, User } from './pages'
+    Hub, Login, LoginHistory, Notifications, OTP, Pricing, ResetPassword, Signup, Success, Terms, User } from './pages'
 import AuthRoutes from './components/AuthRoutes'
 
 export const Router:React.FC = () => {
     return (
         <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Signup />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/coming-soon' element={<ComingSoon />} />
             <Route path='/error' element={<Error />} />

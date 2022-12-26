@@ -35,7 +35,7 @@ const HamburgerMenu:React.FC = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Log In' background='transparent' size='small' onClick={() => {setActiveMenu(false); handleClicked('login')}} />
+                <Button label='Log In' to='/login' background='transparent' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
                 <Button label='Sign Up' to='/signup' background='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(
