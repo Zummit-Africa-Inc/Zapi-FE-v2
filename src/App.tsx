@@ -7,10 +7,11 @@ import { Loader } from './components'
 import Router from './Router'
 
 const App:React.FC = () => {
-  const { mode } = useAppContext()
+  const { currentMode } = useAppContext()
+  
   return (
-    <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
-      <div>
+    <ThemeProvider theme={currentMode === 'dark' ? darkTheme : lightTheme}>
+      <div style={{background: currentMode === 'dark' ? '#121212':'#FFF'}}>
         <Suspense fallback={<Loader />}>
           <Router />
         </Suspense>

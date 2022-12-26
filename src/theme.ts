@@ -30,7 +30,6 @@ export const darkTheme = createTheme({
         mode: 'dark',
         primary: {
             main: '#081F4A',
-            "100": '#E9EBED'
         },
         secondary: {
             main: '#FFEA00'
@@ -38,15 +37,19 @@ export const darkTheme = createTheme({
         background: {
             default: '#121212',
         },
+        grey: {
+            "100": '#F5F5F5',
+            "200": '#1E1E1E',
+        },
     },
     components: {
         MuiFormLabel: {
             styleOverrides: {
                 asterisk: {
-                    color: "#db3131",
+                    color: "#DB3131",
                     fontSize: '12px',
                     "&$error": {
-                        color: "#db3131"
+                        color: "#DB3131"
                     }
                 }
             }
@@ -70,7 +73,6 @@ export const lightTheme = createTheme({
     palette: {
         primary: {
             main: '#081F4A',
-            "100": '#E9EBED'
         },
         secondary: {
             main: '#FFEA00'
@@ -78,15 +80,19 @@ export const lightTheme = createTheme({
         background: {
             default: '#F5F5F5',
         },
+        grey: {
+            "100": '#121212',
+            "200": '#E9EBED'
+        },
     },
     components: {
         MuiFormLabel: {
             styleOverrides: {
                 asterisk: {
-                    color: "#db3131",
+                    color: "#DB3131",
                     fontSize: '12px',
                     "&$error": {
-                        color: "#db3131"
+                        color: "#DB3131"
                     }
                 }
             }

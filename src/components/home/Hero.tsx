@@ -1,22 +1,96 @@
 import React from 'react'
-import { Stack, Theme, Typography } from '@mui/material'
-import { makeStyles, createStyles } from '@mui/styles'
+import { makeStyles } from '@mui/styles'
+import { FiArrowRight } from 'react-icons/fi'
+import { Box, Stack, Theme, Typography } from '@mui/material'
 
-import { Navbar } from '../'
+import { Button } from '../'
+import { heroBig, heroIllustration, heroMedium, heroSmall } from '../../assets/svg'
 
 const Hero:React.FC = () => {
+  const classes = useStyles()
+  
   return (
-    <Stack direction='column' >
-        <Navbar />
+    <Stack direction='column' className={classes.root}>
+      <Stack width='100%' direction='row' alignItems='center' spacing='135px'>
+        <Box className={classes.heroText}>
+          <h1>
+            We provide AI models that literally changes your life
+          </h1>
+          <p>
+            Z-API allows you to harness the power of AI on your applications without stress. Use powerful AI APIs developed by machine learning engineers all over the world
+          </p>
+          <Button label='Get Started' size='large' background='secondary' to='/free-trial' icon={<FiArrowRight />} />
+        </Box>
+        <Box className={classes.heroImage}>
+          <img src={heroIllustration} alt="" width='100%' height='100%' />
+        </Box>
+      </Stack>
     </Stack>
   )
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        width: '100%',
-        background: theme.palette.primary.main,
+  root: {
+    width: '100%',
+    height: '693px',
+    background: theme.palette.primary.main,
+    backgroundImage: `url(${heroBig})`,
+    backgroundPosition: 'center',
+    backgroundSize: '100% 100%',
+    backgroundRepeat: 'no-repeat',
+    padding: '24px 108px',
+    [theme.breakpoints.down('laptop')]: {
+      height: '475px',
+      padding: '24px 32px',
+      backgroundImage: `url(${heroMedium})`,
+    },
+    [theme.breakpoints.down('tablet')]: {
+      height: 'fit-content',
+      padding: '24px 16px',
+      backgroundImage: `url(${heroSmall})`,
+    },
+  },
+  heroText: {
+    width: '656px',
+    maxWidth: '',
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.down('laptop')]: {
+      width: '100%',
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+    '& h1': {
+      fontWeight: 600,
+      fontSize: '72px',
+      lineHeight: '80px',
+      letterSpacing: '-0.04em',
+      color: '#FFF',
+      marginBottom: '24px',
+      [theme.breakpoints.down('laptop')]: {
+        fontSize: '48px',
+        lineHeight: '56px',
+      },
+    },
+    '& p': {
+      fontWeight: 600,
+      fontSize: '28px',
+      lineHeight: '28px',
+      color: 'var(--grey-100)',
+      marginBottom: '40px',
+      [theme.breakpoints.down('laptop')]: {
+        fontSize: '18px',
+        lineHeight: '22px',
+      },
+    },
+  },
+  heroImage: {
+    width: '432.64px',
+    display: 'block',
+    [theme.breakpoints.down('laptop')]: {
+      display: 'none',
     }
+  },
 }))
 
 export default Hero

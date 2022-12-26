@@ -6,6 +6,7 @@
   --primary-200: #96C6FF;
   --secondary: #FFEA00;
   --grey: #E9EBED;
+  --grey-100: #D3D7DA;
   --grey-dark: #1E1E1E;
   --white: #F5F5F5;
   --black: #121212;
@@ -23,6 +24,7 @@
   margin: 0;
   padding: 0;
   font-family: var(--body-font);
+  transition: all 500ms ease-in-out;
 }
 
 html {
