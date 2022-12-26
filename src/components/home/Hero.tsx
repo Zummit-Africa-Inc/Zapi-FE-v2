@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
     '& p': {
-      fontWeight: 600,
+      fontWeight: 400,
       fontSize: '28px',
       lineHeight: '28px',
       color: 'var(--grey-100)',

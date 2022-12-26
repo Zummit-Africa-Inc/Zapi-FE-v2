@@ -17,7 +17,7 @@ const LINKS = [
 ]
 
 const Navbar:React.FC = () => {
-  const { handleClicked, currentMode, setMode, setActiveMenu, activeMenu, screenSize, setScreenSize } = useAppContext()
+  const { handleClicked, currentMode, setMode, setActiveMenu, screenSize, setScreenSize } = useAppContext()
   const { isLoggedIn } = useAppSelector(store => store.auth)
   const [scrolled, setScrolled] = useState<boolean>(false)
   const classes = useStyles()
@@ -33,6 +33,10 @@ const Navbar:React.FC = () => {
     handleScreenResize()
     return () => window.removeEventListener('resize', handleScreenResize)
   },[])
+
+  useEffect(() => {
+    screenSize > 1260 && setActiveMenu(false)
+  },[screenSize])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -94,6 +98,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '24px 108px',
     top: 0,
     left: 0,
+    zIndex: '10 !important',
     [theme.breakpoints.down('laptop')]: {
       padding: '24px 32px',
     },

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
@@ -6,13 +6,15 @@ interface Props {
     children: React.ReactNode
     onClose: () => void
     className?: string
+    hidden?: boolean
+    style?: CSSProperties
 }
 
-const Backdrop:React.FC<Props> = ({children, onClose, className}) => {
+const Backdrop:React.FC<Props> = ({children, onClose, className, hidden, style}) => {
     const classes = useStyles()
 
   return (
-    <Box className={`${classes.root} ${className}`} onClick={onClose}>
+    <Box className={`${classes.root} ${className}`} style={style} hidden={hidden} onClick={onClose}>
         {children}
     </Box>
   )

@@ -1,21 +1,19 @@
 import React, { Suspense } from 'react'
 import { ThemeProvider } from '@mui/material'
+import { ToastContainer } from 'react-toastify'
 
 import { useAppContext } from './contexts/AppProvider'
+import { HamburgerMenu, Loader } from './components'
 import { darkTheme, lightTheme } from './theme'
-import { Backdrop, HamburgerMenu, Loader } from './components'
 import Router from './Router'
 
 const App:React.FC = () => {
-  const { currentMode, isClicked, activeMenu, setActiveMenu, screenSize } = useAppContext()
+  const { currentMode, isClicked } = useAppContext()
 
   return (
     <ThemeProvider theme={currentMode === 'dark' ? darkTheme : lightTheme}>
-      {(activeMenu && screenSize < 1260) && (
-        <Backdrop onClose={() => setActiveMenu(false)}>
-          <HamburgerMenu />
-        </Backdrop>
-      )}
+      <ToastContainer />
+      <HamburgerMenu />
       <div style={{background: currentMode === 'dark' ? '#121212':'#FFF'}}>
         <Suspense fallback={<Loader />}>
           <Router />

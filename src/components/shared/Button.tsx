@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Button, Theme } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { createStyles, makeStyles } from '@mui/styles'
@@ -10,11 +10,12 @@ interface Props {
   type?: 'submit' | 'reset' | 'button'
   onClick?: () => void
   className?: string
-  to?: string
   icon?: JSX.Element
+  style?: CSSProperties
+  to?: string
 }
 
-const ButtonBase:React.FC<Props> = ({label, background, size, icon, onClick, to, type}) => {
+const ButtonBase:React.FC<Props> = ({label, background, size, icon, onClick, to, type, className, style}) => {
   const classes = useStyles()
 
   const bgColors = {
@@ -38,14 +39,14 @@ const ButtonBase:React.FC<Props> = ({label, background, size, icon, onClick, to,
 
   if(to) {
     return (
-      <Link to={to} className={classes.root} style={{background: bgColors[background], color: textColors[background], padding: paddings[size], maxWidth: size === 'small' ? '99px' : '176px'}}>
+      <Link to={to} className={`${classes.root} ${className}`} style={{background: bgColors[background], color: textColors[background], padding: paddings[size], width: size === 'small' ? '99px' : '176px', ...style}}>
         {label} {icon}
       </Link>
     )
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes.root} style={{background: bgColors[background], color: textColors[background], padding: paddings[size], maxWidth: size === 'small' ? '99px' : '176px'}}>
+    <button type={type} onClick={onClick} className={`${classes.root} ${className}`} style={{background: bgColors[background], color: textColors[background], padding: paddings[size], width: size === 'small' ? '99px' : '176px', ...style}}>
       {label} {icon}
     </button>
   )
