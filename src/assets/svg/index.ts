@@ -8,5 +8,16 @@ import heroIllustration from './hero-illustration.svg'
 import ibm from './ibm.svg'
 import microsoft from './microsoft.svg'
 import zapi from './zapi.svg'
+import cmLearningAPI from './cmLearningAPI.svg'
+import compVisionAPI from './compVisionAPI.svg'
+import natLangAPI from './natLangAPI.svg'
+import chevron from './chevron.svg'
+import dollars from './dollars.svg'
+import pencil from './pencil.svg'
+import secure from './secure.svg'
+import stacks from './stacks.svg'
+import zoom from './zoom.svg'
+import marketIllustration from './marketIllustration.svg'
 
-export { facebook, figma, google, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi }
+export { facebook, figma, google, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, 
+    zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration }

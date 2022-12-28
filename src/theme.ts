@@ -43,6 +43,10 @@ export const darkTheme = createTheme({
             "100": '#F5F5F5',
             "200": '#1E1E1E',
             "300": '#A8AEB5',
+            "400": '#BEC2C8',
+            "500": '#1E1E1E',
+            "600": '#BEC2C8',
+            "700": '#E9EBED',
         },
     },
     components: {
@@ -86,9 +90,13 @@ export const lightTheme = createTheme({
             paper: '#E9EBED',
         },
         grey: {
-            "100": '#F5F5F5',
+            "100": '#060607',
             "200": '#E9EBED',
             "300": '#A8AEB5',
+            "400": '#5A5F65',
+            "500": '#FFFFFF',
+            "600": '#3E4245',
+            "700": '#3E4245'
         },
     },
     components: {
