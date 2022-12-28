@@ -8,7 +8,7 @@ interface IChildren {
 
 const AppContext = createContext<any | null>(null);
 
-const initialState = {login: false, addapi: false}
+const initialState = { login: false, addapi: false, logout: false }
 const initialLocation = { lat: 0, lon: 0, time: 0 } as Location
 const initialDeviceInfo = {
     browserFullVersion: "",
@@ -27,7 +27,7 @@ export const AppProvider: React.FC<IChildren> = ({children}) => {
     const [activeMenu, setActiveMenu] = useState<boolean>(false)
     const [isLoggedIn, setisLoggedIn] = useState<boolean>(false)
     const [screenSize, setScreenSize] = useState<any>(undefined)
-    const [isClicked, setIsClicked] = useState<{}>(initialState)
+    const [isClicked, setIsClicked] = useState<typeof initialState>(initialState)
     const [deviceLocation, setDeviceLocation] = useState<Location>(initialLocation)
     const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>(initialDeviceInfo)
     const [deviceIP, setDeviceIP] = useState<string>("")

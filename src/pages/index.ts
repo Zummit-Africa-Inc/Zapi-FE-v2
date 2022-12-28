@@ -13,6 +13,7 @@ const ForgotPassword = React.lazy(() => import('./ForgotPassword'))
 const FreeTrial = React.lazy(() => import('./FreeTrial'))
 const Home = React.lazy(() => import('./Home'))
 const Hub = React.lazy(() => import('./Hub'))
+const Login = React.lazy(() => import('./Login'))
 const LoginHistory = React.lazy(() => import('./LoginHistory'))
 const Notifications = React.lazy(() => import('./Notifications'))
 const OTP = React.lazy(() => import('./OTP'))
@@ -25,6 +26,6 @@ const User = React.lazy(() => import('./User'))
 
 export {
     API, ComingSoon, Configuration, Dashboard, DashboardAPI, Discussions, Documentation, Error, Feedback,
-    ForgotPassword, FreeTrial, Home, Hub, LoginHistory, Notifications, OTP, Pricing, ResetPassword,
+    ForgotPassword, FreeTrial, Home, Hub, Login, LoginHistory, Notifications, OTP, Pricing, ResetPassword,
     Signup, Success, Terms, User
 }

@@ -1,12 +1,14 @@
 import React from 'react'
 import { Stack } from '@mui/material'
 
-import { Hero } from '../components'
+import { Brands, Hero, Navbar } from '../components'
 
 const Home = () => {
   return (
     <Stack direction='column'>
+      <Navbar />
       <Hero />
+      <Brands />
     </Stack>
   )
 }
