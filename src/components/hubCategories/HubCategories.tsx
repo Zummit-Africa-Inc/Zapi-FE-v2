@@ -47,6 +47,19 @@ const HubCategories = () => {
     contrastText: "#FFEA00",
   };
 
+  function handleColor(id: string) {
+    if (selectedCategory === id) {
+      return currentMode === "dark" ? dark.main : light.contrastText;
+    }
+    return currentMode === "dark" ? dark.contrastText : light.main;
+  }
+  function handleBg(id: string) {
+    if (selectedCategory === id) {
+      return currentMode === "dark" ? dark.contrastText : light.main;
+    }
+    return currentMode === "dark" ? dark.main : light.contrastText;
+  }
+
   return (
     <Stack className={classes.catContainer}>
       <Box className={classes.catButtonContainer}>
@@ -56,8 +69,8 @@ const HubCategories = () => {
             label={category.name}
             type="button"
             onClick={() => setSelectedCategory(category.id)}
-            background={currentMode === "dark" ? dark.main : light.contrastText}
-            color={currentMode === "dark" ? dark.contrastText : light.main}
+            background={handleBg(category.id)}
+            color={handleColor(category.id)}
             size="large"
           />
         ))}
@@ -67,7 +80,6 @@ const HubCategories = () => {
           variant="h2"
           component="h3"
           mb={2}
-          sx={{ fontWeight: "700" }}
           className={classes.title_typography}>
           Discover and connect to hundreds of APIs from our Z-API Hub
         </Typography>
