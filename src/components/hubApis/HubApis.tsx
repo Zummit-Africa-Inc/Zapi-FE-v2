@@ -14,10 +14,12 @@ import ButtonBase from "../shared/Button";
 import { useAppContext } from "../../contexts/AppProvider";
 import NotFoundLight from ".././../assets/svg/api-not-found-light.svg";
 import NotFoundDark from ".././../assets/svg/api-not-found-dark.svg";
+import { useNavigate } from "react-router-dom";
 
 const HubApis = () => {
   const classes = useStyles({});
   const { currentMode } = useAppContext();
+  const navigate = useNavigate();
   const apis = [];
 
   return (
@@ -45,6 +47,7 @@ const HubApis = () => {
               size="large"
               type="button"
               className={classes.home_button}
+              onClick={() => navigate("/")}
             />
           </Stack>
           <Box>
