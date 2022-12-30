@@ -45,9 +45,8 @@ const Market: React.FC = () => {
         <h1>List your API in just three steps</h1>
         <Stack className={classes.steps}>
           {marketSteps.map((step, i) => (
-            <>
+            <React.Fragment key={i}>
               <Stack
-                key={i}
                 direction="row"
                 alignItems="center"
                 sx={{ width: "100%" }}
@@ -61,7 +60,7 @@ const Market: React.FC = () => {
                 </Stack>
               </Stack>
               <Stack className={classes.border}></Stack>
-            </>
+            </React.Fragment>
           ))}
         </Stack>
       </Stack>

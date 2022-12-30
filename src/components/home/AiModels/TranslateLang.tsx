@@ -3,10 +3,24 @@ import { Button, Paper, TabPanel } from "../..";
 import { ButtonArrow } from "../../../assets/icons";
 import React, { useState } from "react";
 import { makeStyles, styled } from "@mui/styles";
+import { useAppContext } from "../../../contexts/AppProvider";
+
+const TabLabel = [
+  {
+    label: "Text to SQL Translation",
+  },
+  {
+    label: "Calling an API via Language",
+  },
+  {
+    label: "Code Continuation",
+  },
+];
 
 const TranslateLang: React.FC = () => {
   const classes = useStyles();
   const [tab, setTab] = useState<number>(0);
+  const { currentMode } = useAppContext();
   return (
     <Box className={classes.container}>
       <Stack className={classes.content}>
@@ -16,25 +30,35 @@ const TranslateLang: React.FC = () => {
         <Stack direction="row">
           <Button
             label="Get Started"
-            background="primary"
+            background={currentMode === "dark" ? "secondary" : "primary"}
             type="button"
-            size="large"
-            icon={<ButtonArrow color="#FFF" />}
+            size="medium"
+            icon={
+              <ButtonArrow color={currentMode === "dark" ? "#000" : "#FFF"} />
+            }
           />
           <Button
             to="#"
-            label="See More Examples"
-            size="large"
-            background="inherit"
+            label="Try it Out"
+            size="medium"
+            background={currentMode === "dark" ? "tertiary" : "inherit"}
           />
         </Stack>
       </Stack>
-      <Stack className={classes.left} style={{ width: "669px" }}>
+      <Stack className={classes.left}>
         <Stack>
           <CustomTabs value={tab} onChange={(e, newValue) => setTab(newValue)}>
-            <CustomTab label="Text to SQL Translation" />
-            <CustomTab label="Calling an API via Language" />
-            <CustomTab label="Code Continuation" />
+            {TabLabel.map((label, i) => (
+              <Tab
+                key={i}
+                className={
+                  currentMode === "dark"
+                    ? classes.darkCustomTab
+                    : classes.customTab
+                }
+                label={label.label}
+              />
+            ))}
           </CustomTabs>
         </Stack>
         <Stack>
@@ -81,11 +105,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: "64px",
     padding: "4rem 6.7rem",
     background: theme.palette.background.default,
+    [theme.breakpoints.down("laptop")]: {
+      flexDirection: "column",
+      padding: "4rem 1rem",
+    },
   },
   left: {
+    width: "669px",
     display: "flex",
     flexDirection: "column",
     gap: "20px",
+    [theme.breakpoints.down("laptop")]: {
+      width: "100%",
+    },
   },
   paper: {
     background: "#1E1E1E",
@@ -115,26 +147,66 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: "40px",
+    [theme.breakpoints.down("laptop")]: {
+      width: "100%",
+    },
     "& h1": {
       fontSize: "48px",
       fontWeight: 600,
       letterSpacing: "-0.04em",
+      color: theme.palette.grey[100],
+      [theme.breakpoints.down("laptop")]: {
+        textAlign: "end",
+        fontSize: "34px",
+        "& br": {
+          display: "none",
+        },
+      },
+      [theme.breakpoints.down("mobile")]: {
+        textAlign: "start",
+        fontSize: "34px",
+      },
+    },
+  },
+  customTab: {
+    "&.MuiTab-root": {
+      textTransform: "none",
+      fontWeight: 400,
+      fontSize: "18px",
+    },
+    "&.Mui-selected": {
+      backgroundColor: "#E9EBED",
+      color: "#3E4245",
+      borderBottom: "none",
+    },
+  },
+  darkCustomTab: {
+    "&.MuiTab-root": {
+      textTransform: "none",
+      fontWeight: 400,
+      fontSize: "18px",
+      color: "#A8AEB5 !important",
+    },
+    "&.Mui-selected": {
+      backgroundColor: "#333333",
+      color: "#E9EBED !important",
+      borderBottom: "none",
     },
   },
 }));
 
-const CustomTab = styled(Tab)({
-  "&.MuiTab-root": {
-    textTransform: "none",
-    fontWeight: 400,
-    fontSize: "18px",
-  },
-  "&.Mui-selected": {
-    backgroundColor: "#E9EBED",
-    color: "#3E4245",
-    borderBottom: "none",
-  },
-});
+// const CustomTab = styled(Tab)({
+//   "&.MuiTab-root": {
+//     textTransform: "none",
+//     fontWeight: 400,
+//     fontSize: "18px",
+//   },
+//   "&.Mui-selected": {
+//     backgroundColor: "#E9EBED",
+//     color: "#3E4245",
+//     borderBottom: "none",
+//   },
+// });
 
 const CustomTabs = styled(Tabs)({
   "&.MuiTabs-root": {

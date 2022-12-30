@@ -5,7 +5,13 @@ import { createStyles, makeStyles } from "@mui/styles";
 
 interface Props {
   label: string;
-  background: "primary" | "secondary" | "transparent" | "white" | "inherit";
+  background:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "transparent"
+    | "white"
+    | "inherit";
   size: "small" | "medium" | "large";
   type?: "submit" | "reset" | "button";
   onClick?: () => void;
@@ -31,6 +37,7 @@ const ButtonBase: React.FC<Props> = ({
   const bgColors = {
     primary: "#081F4A",
     secondary: "#FFEA00",
+    tertiary: "inherit",
     white: "#FFF",
     transparent: "transparent",
     inherit: "inherit",
@@ -39,6 +46,7 @@ const ButtonBase: React.FC<Props> = ({
   const textColors = {
     primary: "#FFF",
     secondary: "#000",
+    tertiary: "#FFEA00",
     white: "#081F4A",
     transparent: "#FFF",
     inherit: "#081F4A",

@@ -4,6 +4,8 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button } from "..";
 import { ButtonArrow } from "../../assets/icons";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Collections = [
   {
@@ -41,6 +43,29 @@ const Collections = [
   },
 ];
 
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1260 },
+    items: 3,
+    // slidesToSlide: 3,
+  },
+  laptop: {
+    breakpoint: { max: 1260, min: 834 },
+    items: 2,
+    slidesToSlide: 1,
+  },
+  tablet: {
+    breakpoint: { max: 834, min: 428 },
+    items: 2,
+    slidesToSlide: 1,
+  },
+  mobile: {
+    breakpoint: { max: 428, min: 0 },
+    items: 1,
+    slidesToSlide: 1,
+  },
+};
+
 const Discover: React.FC = () => {
   const classes = useStyles();
   return (
@@ -52,7 +77,19 @@ const Discover: React.FC = () => {
           ready, fast, scalable, and reliable.
         </p>
       </Stack>
-      <Box className={classes.collections}>
+      <Carousel
+        swipeable={true}
+        draggable={true}
+        arrows={false}
+        showDots={true}
+        centerMode={false}
+        responsive={responsive}
+        infinite={false}
+        keyBoardControl={false}
+        customTransition="all .5"
+        itemClass={classes.carouselItem}
+        containerClass={classes.carouselContainer}
+        transitionDuration={500}>
         {Collections.map((items, i) => (
           <Stack className={classes.collection} key={i}>
             <Stack style={{ width: "160px", height: "160px" }}>
@@ -66,7 +103,7 @@ const Discover: React.FC = () => {
             </Stack>
           </Stack>
         ))}
-      </Box>
+      </Carousel>
       <div style={{ paddingTop: "4rem" }}>
         <Button
           label="Explore API Hub"
@@ -115,15 +152,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
-  collections: {
-    display: "flex",
-    gap: "4.8rem",
-    alignItems: "center",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("tablet")]: {
-      gap: "20px",
-    },
-  },
   collection: {
     width: "22rem",
     display: "flex",
@@ -161,4 +189,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  carouselContainer: {
+    width: "100%",
+    paddingBottom: "4rem",
+  },
+  carouselItem: {},
 }));
