@@ -16,7 +16,7 @@ const LINKS = [
   { name: 'Documentation', to: '/documentation' },
 ]
 
-const Navbar:React.FC = () => {
+const Navbar = () => {
   const { handleClicked, currentMode, setMode, setActiveMenu, screenSize, setScreenSize } = useAppContext()
   const { isLoggedIn } = useAppSelector(store => store.auth)
   const [scrolled, setScrolled] = useState<boolean>(false)
@@ -59,8 +59,8 @@ const Navbar:React.FC = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction='row' alignItems='center' spacing='24px'>
-            <Button label='Log In' to='/login' background='transparent' size='small' />
-            <Button label='Sign Up' to='/signup' background='secondary' size='small' />
+            <Button label='Log In' to='/login' variant='text' size='small' />
+            <Button label='Sign Up' to='/signup' variant='secondary' size='small' />
             {currentMode === 'light' ? (
               <Moon fill='#E9EBED' onClick={() => setMode('dark')} />
               ):(
@@ -69,8 +69,8 @@ const Navbar:React.FC = () => {
           </Stack>
         ):(
           <Stack direction='row' alignItems='center' spacing='24px'>
-            <Button label='Dashboard' background='white' size='small' to='/developer/dashboard' />
-            <Button label='Logout' background='secondary' size='small' onClick={() => handleClicked('logout')} />
+            <Button label='Dashboard' variant='text' size='small' to='/developer/dashboard' />
+            <Button label='Logout' variant='secondary' size='small' onClick={() => handleClicked('logout')} />
             {currentMode === 'light' ? (
               <Moon onClick={() => setMode('dark')} />
               ):(

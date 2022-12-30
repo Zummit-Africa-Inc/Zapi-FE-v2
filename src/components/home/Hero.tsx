@@ -19,7 +19,7 @@ const Hero:React.FC = () => {
           <p>
             Z-API allows you to harness the power of AI on your applications without stress. Use powerful AI APIs developed by machine learning engineers all over the world
           </p>
-          <Button label='Get Started' size='large' background='secondary' to='/free-trial' icon={<FiArrowRight />} />
+          <Button label='Get Started' size='large' variant='secondary' to='/documentation' icon={<FiArrowRight />} />
         </Box>
         <Box className={classes.heroImage}>
           <img src={heroIllustration} alt="" width='100%' height='100%' />

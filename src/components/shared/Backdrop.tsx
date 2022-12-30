@@ -10,7 +10,7 @@ interface Props {
     style?: CSSProperties
 }
 
-const Backdrop:React.FC<Props> = ({children, onClose, className, hidden, style}) => {
+const Backdrop = ({children, onClose, className, hidden, style}: Props) => {
     const classes = useStyles()
 
   return (

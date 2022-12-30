@@ -7,6 +7,7 @@ interface IChildren {
 }
 
 const AppContext = createContext<any | null>(null);
+AppContext.displayName = "ZAPIContext"
 
 const initialState = { login: false, addapi: false, logout: false }
 const initialLocation = { lat: 0, lon: 0, time: 0 } as Location
