@@ -12,3 +12,6 @@ export { default as TabPanel } from './shared/TabPanel'
 // home
 export { default as Brands } from './home/Brands'
 export { default as Hero } from './home/Hero'
+
+// sections
+export { default as PricingSection } from './sections/PricingSection'
