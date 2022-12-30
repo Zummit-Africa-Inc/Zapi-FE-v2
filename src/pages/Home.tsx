@@ -1,7 +1,7 @@
 import React from 'react'
 import { Stack } from '@mui/material'
 
-import { Brands, Hero, Navbar } from '../components'
+import { Brands, Hero, Navbar, PricingSection } from '../components'
 
 const Home = () => {
   return (
@@ -9,6 +9,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Brands />
+      <PricingSection />
     </Stack>
   )
 }
