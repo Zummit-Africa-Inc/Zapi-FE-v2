@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useStyles } from './styles/button'
 import { ButtonProps } from '../../interfaces/components'
 
-const ButtonBase = ({label, variant, size, type, onClick, icon, to}: ButtonProps) => {
+const ButtonBase = ({label, variant, size, type, onClick, icon, to, style}: ButtonProps) => {
   const classes = useStyles()
 
   const sizes = {
@@ -26,7 +26,7 @@ const ButtonBase = ({label, variant, size, type, onClick, icon, to}: ButtonProps
   if(to) {
     return (
       <Link to={to}>
-        <Button type={type} onClick={onClick} className={`${classes.button} ${variants[variant]} ${sizes[size]}`} endIcon={icon}>
+        <Button type={type} onClick={onClick} className={`${classes.button} ${variants[variant]} ${sizes[size]}`} style={style} endIcon={icon}>
           {label}
         </Button>
       </Link>
@@ -34,7 +34,7 @@ const ButtonBase = ({label, variant, size, type, onClick, icon, to}: ButtonProps
   }
 
   return (
-    <Button type={type} onClick={onClick} className={`${classes.button} ${variants[variant]} ${sizes[size]}`} endIcon={icon}>
+    <Button type={type} onClick={onClick} className={`${classes.button} ${variants[variant]} ${sizes[size]}`} style={style} endIcon={icon}>
       {label}
     </Button>
   )

@@ -1,4 +1,4 @@
-
+import { CSSProperties } from 'react'
 export interface ButtonProps {
     label: string
     variant: 'primary' | 'secondary' | 'outline' | 'text' | 'rounded' | 'square'
@@ -7,4 +7,5 @@ export interface ButtonProps {
     onClick?: () => void
     icon?: JSX.Element
     to?: string
+    style?: CSSProperties
 }
