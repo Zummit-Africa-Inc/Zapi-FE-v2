@@ -26,6 +26,7 @@ export const darkTheme = createTheme({
       desktop: 1440,
     },
   },
+
   palette: {
     mode: "dark",
     primary: {
@@ -44,11 +45,16 @@ export const darkTheme = createTheme({
       "200": "#1E1E1E",
       "300": "#A8AEB5",
     },
+    text: {
+      primary: "#081F4A",
+      secondary: "#FFF",
+    },
     info: {
       main: "#1E1E1E",
       contrastText: "#BEC2C8",
     },
   },
+
   components: {
     MuiFormLabel: {
       styleOverrides: {

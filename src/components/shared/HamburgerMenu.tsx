@@ -16,7 +16,7 @@ const LINKS = [
     { name: 'Documentation', to: '/documentation' },
 ]
 
-const HamburgerMenu:React.FC = () => {
+const HamburgerMenu = () => {
     const { setActiveMenu, handleClicked, currentMode, setMode, activeMenu } = useAppContext()
     const { isLoggedIn } = useAppSelector(store => store.auth)
     const classes = useStyles()

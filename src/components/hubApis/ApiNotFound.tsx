@@ -1,15 +1,15 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../contexts/AppProvider";
-import ButtonBase from "../shared/Button";
+import ButtonBase from "../shared/Buttons/Button";
 import { useStyles } from "./HubApis.styles";
 import NotFoundLight from ".././../assets/svg/api-not-found-light.svg";
 import NotFoundDark from ".././../assets/svg/api-not-found-dark.svg";
 
 const ApiNotFound = () => {
-  const { currentMode } = useAppContext();
   const navigate = useNavigate();
   const classes = useStyles({});
+  const { currentMode } = useAppContext();
 
   return (
     <Box className={classes.notFoundContainer}>
@@ -30,10 +30,13 @@ const ApiNotFound = () => {
         </Typography>
         <ButtonBase
           label="Return to Home page"
-          background={currentMode === "dark" ? "secondary" : "primary"}
           size="large"
           type="button"
-          className={classes.homeButton}
+          style={{
+            width: "250px",
+            color: `${currentMode === "dark" ? "#121212" : "#FFFFFF"}`,
+          }}
+          variant={currentMode === "dark" ? "secondary" : "primary"}
           onClick={() => navigate("/")}
         />
       </Stack>

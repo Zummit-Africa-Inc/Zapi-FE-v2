@@ -16,7 +16,7 @@ const LINKS = [
   { name: "Documentation", to: "/documentation" },
 ];
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const {
     handleClicked,
     currentMode,
@@ -73,16 +73,11 @@ const Navbar: React.FC = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction="row" alignItems="center" spacing="24px">
-            <Button
-              label="Log In"
-              to="/login"
-              background="transparent"
-              size="small"
-            />
+            <Button label="Log In" to="/login" variant="text" size="small" />
             <Button
               label="Sign Up"
               to="/signup"
-              background="secondary"
+              variant="secondary"
               size="small"
             />
             {currentMode === "light" ? (
@@ -95,13 +90,13 @@ const Navbar: React.FC = () => {
           <Stack direction="row" alignItems="center" spacing="24px">
             <Button
               label="Dashboard"
-              background="white"
+              variant="text"
               size="small"
               to="/developer/dashboard"
             />
             <Button
               label="Logout"
-              background="secondary"
+              variant="secondary"
               size="small"
               onClick={() => handleClicked("logout")}
             />

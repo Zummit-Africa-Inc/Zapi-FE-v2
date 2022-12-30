@@ -17,6 +17,7 @@ const HubCategories: React.FC<IHubCategories> = ({
   setSelectedCategoryId,
 }) => {
   const { categories } = useAppSelector((store) => store.apis);
+
   const classes = useStyles({});
   const { currentMode } = useAppContext();
 

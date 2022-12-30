@@ -8,9 +8,11 @@ import { darkTheme, lightTheme } from "./theme";
 import Router from "./Router";
 import { useAppDispatch } from "./hooks";
 import { getApiCategories, getApis } from "./store/slices/apiSlice";
+import { login } from "./store/slices/auth";
+import Helmet from "./Helmet";
 
 const App: React.FC = () => {
-  const { currentMode, isClicked } = useAppContext();
+  const { currentMode, setMode } = useAppContext();
   const dispatch = useAppDispatch();
 
   const fetchApis = useMemo(() => dispatch(getApis()), []);
@@ -24,8 +26,22 @@ const App: React.FC = () => {
     fetchCategories;
   }, []);
 
+  useEffect(() => {
+    const mode = localStorage.getItem("mode");
+    if (!mode) return;
+    setMode(mode);
+  }, []);
+
+  useEffect(() => {
+    const json = localStorage.getItem("zapi-user");
+    if (!json) return;
+    const user = JSON.parse(json);
+    dispatch(login(user));
+  }, []);
+
   return (
     <ThemeProvider theme={currentMode === "dark" ? darkTheme : lightTheme}>
+      <Helmet />
       <ToastContainer />
       <HamburgerMenu />
       <div style={{ background: currentMode === "dark" ? "#121212" : "#FFF" }}>
@@ -33,8 +49,6 @@ const App: React.FC = () => {
           <Router />
         </Suspense>
       </div>
-
-      {/* {isClicked.login && } */}
     </ThemeProvider>
   );
 };

@@ -1,7 +1,8 @@
 import React from 'react'
+import { Amplify } from 'aws-amplify'
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client'
-import { Amplify } from 'aws-amplify'
+import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
@@ -12,6 +13,7 @@ import App from './App'
 import './index.css'
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string
+const helmetContext = {}
 
 Amplify.configure({ API: endpoints })
 
@@ -20,9 +22,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
       <Provider store={store}>
         <GoogleOAuthProvider clientId={clientId}>
-          <AppProvider>
-            <App />
-          </AppProvider>
+          <HelmetProvider context={helmetContext}>
+            <AppProvider>
+              <App />
+            </AppProvider>
+          </HelmetProvider>
         </GoogleOAuthProvider>
       </Provider>
     </BrowserRouter>

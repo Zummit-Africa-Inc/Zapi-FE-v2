@@ -27,8 +27,8 @@ const Hero: React.FC = () => {
           <Button
             label="Get Started"
             size="large"
-            background="secondary"
-            to="/free-trial"
+            variant="secondary"
+            to="/documentation"
             icon={<FiArrowRight />}
           />
         </Box>
