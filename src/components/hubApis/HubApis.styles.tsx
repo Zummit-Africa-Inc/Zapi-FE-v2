@@ -50,7 +50,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
-  not_found_typography: {
+  notFoundTypography: {
     color: theme.palette.primary.contrastText,
 
     [theme.breakpoints.down("tablet")]: {
@@ -61,7 +61,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       textAlign: "center",
     },
   },
-  not_found_subtypography: {
+  notFoundSubtypography: {
     color: theme.palette.primary.contrastText,
 
     [theme.breakpoints.down("tablet")]: {
@@ -84,7 +84,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       gridTemplateColumns: "repeat(1, 1fr)",
     },
   },
-  not_found_container: {
+  notFoundContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -97,7 +97,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "3rem",
     },
   },
-  home_button: {
+  homeButton: {
     width: "200px!important",
 
     [theme.breakpoints.down("mobile")]: {

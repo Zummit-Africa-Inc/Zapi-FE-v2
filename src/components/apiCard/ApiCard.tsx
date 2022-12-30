@@ -3,14 +3,14 @@ import { useStyles } from "./ApiCard.styles";
 import { BsPeopleFill } from "react-icons/bs";
 import { MdOutlineTimer } from "react-icons/md";
 import { AiOutlineStar } from "react-icons/ai";
+import { ApiProps } from "../../interfaces";
 
-const ApiCard = () => {
+interface IApiCard {
+  api: ApiProps;
+}
+
+const ApiCard: React.FC<IApiCard> = ({ api }) => {
   const classes = useStyles({});
-
-  const title =
-    "sentiment analysis API gjgklkgkg gmgkglkgjgjg mgkgjgkjgkhjldhfjgdjfdkfkldhjfddffhjkl ngjgk";
-  const description =
-    " Lorem ipsum dolor sit amet consectetur. Mattis magna in diam donec volutpat turpis. Non orci neque a id varius etiam venenatis. Amet pharetra sollicitudin ligula nunc. Gravida.";
 
   return (
     <Card className={classes.card} variant="outlined">
@@ -19,15 +19,15 @@ const ApiCard = () => {
         variant="subtitle1"
         sx={{ fontWeight: "700", fontSize: "18px" }}
         className={classes.apiTitle}>
-        {title.length < 60 ? title : title.slice(0, 60) + "..."}
+        {api.name.length < 60 ? api.name : api.name.slice(0, 60) + "..."}
       </Typography>
       <Typography
         mb={1}
         className={classes.apiDescription}
         sx={{ fontSize: "16px" }}>
-        {description.length < 150
-          ? description
-          : description.slice(0, 150) + "..."}
+        {api.description.length < 150
+          ? api.description
+          : api.description.slice(0, 150) + "..."}
       </Typography>
       <Stack direction="row" spacing={1} className={classes.chipContainer}>
         <Chip

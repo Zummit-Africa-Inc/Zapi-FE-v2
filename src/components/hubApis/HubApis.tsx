@@ -1,73 +1,31 @@
-import {
-  Box,
-  FormControl,
-  InputAdornment,
-  OutlinedInput,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, FormControl, InputAdornment, OutlinedInput } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ApiCard from "../apiCard/ApiCard";
 import { RiSearch2Line } from "react-icons/ri";
 import { useStyles } from "./HubApis.styles";
-import ButtonBase from "../shared/Button";
-import { useAppContext } from "../../contexts/AppProvider";
-import NotFoundLight from ".././../assets/svg/api-not-found-light.svg";
-import NotFoundDark from ".././../assets/svg/api-not-found-dark.svg";
-import { useNavigate } from "react-router-dom";
+import ApiNotFound from "./ApiNotFound";
+import CustomTypography from "../shared/CustomTypography";
+import { ApiProps } from "../../interfaces";
 
-const HubApis = () => {
+interface IHubApis {
+  apis: ApiProps[];
+}
+
+const HubApis: React.FC<IHubApis> = ({ apis }) => {
   const classes = useStyles({});
-  const { currentMode } = useAppContext();
-  const navigate = useNavigate();
-  const apis = [];
 
   return (
     <Box className={classes.hubApiContainer}>
       {apis.length < 1 ? (
-        <Box className={classes.not_found_container}>
-          <Stack sx={{ alignItems: "left", gap: "2em" }}>
-            <Typography
-              className={classes.not_found_typography}
-              variant="h4"
-              component="h4"
-              sx={{ fontWeight: 600 }}>
-              OOPS! There are no available APIs in this category
-            </Typography>
-            <Typography
-              className={classes.not_found_subtypography}
-              variant="h5"
-              component="h5">
-              Navigate through other categories to discover an API or return to
-              homepage.
-            </Typography>
-            <ButtonBase
-              label="Return to Home page"
-              background={currentMode === "dark" ? "secondary" : "primary"}
-              size="large"
-              type="button"
-              className={classes.home_button}
-              onClick={() => navigate("/")}
-            />
-          </Stack>
-          <Box>
-            <Box
-              component="img"
-              sx={{ width: "100%" }}
-              alt="Api not found"
-              src={currentMode === "dark" ? NotFoundDark : NotFoundLight}
-            />
-          </Box>
-        </Box>
+        <ApiNotFound />
       ) : (
         <>
           <Box className={classes.titleBarContainer}>
-            <Typography
+            <CustomTypography
               variant="h5"
-              component="h4"
-              className={classes.typography}>
-              Select from the available APIs below
-            </Typography>
+              className={classes.typography}
+              text="Select from the available APIs below"
+            />
             <FormControl
               className={classes.searchInput}
               variant="outlined"
@@ -86,13 +44,9 @@ const HubApis = () => {
             </FormControl>
           </Box>
           <Box className={classes.cardContainer}>
-            <ApiCard />
-            <ApiCard />
-            <ApiCard />
-            <ApiCard />
-            <ApiCard />
-            <ApiCard />
-            <ApiCard />
+            {apis?.map((api) => (
+              <ApiCard key={api.id} api={api} />
+            ))}
           </Box>
         </>
       )}

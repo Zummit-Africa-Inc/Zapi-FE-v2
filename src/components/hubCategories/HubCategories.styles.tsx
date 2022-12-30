@@ -26,14 +26,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     gap: "1em",
   },
 
-  cattypoContainer: {
+  catTypoContainer: {
     width: "50%",
     [theme.breakpoints.down("tablet")]: {
       width: "80%!important",
     },
   },
 
-  title_typography: {
+  titleTypography: {
     textAlign: "center",
     color: theme.palette.primary.contrastText,
 
@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 
-  subtitle_typography: {
+  subtitleTypography: {
     textAlign: "center",
     color: theme.palette.primary.contrastText,
 
