@@ -107,7 +107,7 @@ const Discover: React.FC = () => {
       <div style={{ paddingTop: "4rem" }}>
         <Button
           label="Explore API Hub"
-          background="primary"
+          variant="primary"
           type="button"
           size="large"
           icon={<ButtonArrow color="#FFF" />}

@@ -75,10 +75,10 @@ const TaskLang: React.FC = () => {
           Perform a wide variety <br /> of natural language
           <br /> tasks.
         </h1>
-        <Stack direction="row">
+        <Stack direction="row" spacing={2}>
           <Button
             label="Get Started"
-            background={currentMode === "dark" ? "secondary" : "primary"}
+            variant={currentMode === "dark" ? "secondary" : "primary"}
             type="button"
             size="medium"
             icon={
@@ -89,7 +89,7 @@ const TaskLang: React.FC = () => {
             to="#"
             label="Try it out"
             size="medium"
-            background={currentMode === "dark" ? "tertiary" : "inherit"}
+            variant={currentMode === "dark" ? "tertiary" : "outline"}
           />
         </Stack>
       </Stack>

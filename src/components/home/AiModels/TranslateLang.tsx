@@ -27,10 +27,10 @@ const TranslateLang: React.FC = () => {
         <h1>
           Translate natural <br /> language to code.
         </h1>
-        <Stack direction="row">
+        <Stack direction="row" spacing={2}>
           <Button
             label="Get Started"
-            background={currentMode === "dark" ? "secondary" : "primary"}
+            variant={currentMode === "dark" ? "secondary" : "primary"}
             type="button"
             size="medium"
             icon={
@@ -41,7 +41,7 @@ const TranslateLang: React.FC = () => {
             to="#"
             label="Try it Out"
             size="medium"
-            background={currentMode === "dark" ? "tertiary" : "inherit"}
+            variant={currentMode === "dark" ? "tertiary" : "text"}
           />
         </Stack>
       </Stack>

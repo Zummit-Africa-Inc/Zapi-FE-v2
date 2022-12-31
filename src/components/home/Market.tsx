@@ -36,7 +36,7 @@ const Market: React.FC = () => {
         <Button
           type="button"
           label="List Your API"
-          background="secondary"
+          variant="secondary"
           size="large"
           icon={<ButtonArrow color="#000" />}
         />
