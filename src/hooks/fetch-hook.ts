@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie'
 import { API } from "aws-amplify";
 
 type MethodTypes = "get" | "post" | "patch" | "del" | "put";
-// type MethodTypes = "GET" | "POST" | "PATCH" | "DEL" | "PUT";
+
 export const useHttpRequest = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<any>(null)

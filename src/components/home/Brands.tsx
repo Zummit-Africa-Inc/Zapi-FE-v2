@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontSize: '',
         color: theme.palette.primary.contrastText,
         margin: '70px 0 64px',
+        textAlign: 'center',
     },
     brands: {
         width: '100%',

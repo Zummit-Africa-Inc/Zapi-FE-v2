@@ -47,7 +47,7 @@ export const darkTheme = createTheme({
         text: {
             primary: '#081F4A',
             secondary: '#FFF'
-        }
+        },
     },
     components: {
         MuiFormLabel: {
@@ -93,6 +93,10 @@ export const lightTheme = createTheme({
             "100": '#F5F5F5',
             "200": '#E9EBED',
             "300": '#A8AEB5',
+        },
+        text: {
+            primary: '#081F4A',
+            secondary: '#FFF'
         },
     },
     components: {
