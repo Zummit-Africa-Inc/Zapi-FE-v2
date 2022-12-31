@@ -25,6 +25,7 @@ const ButtonBase = ({
   const variants = {
     primary: classes.primary,
     secondary: classes.secondary,
+    tertiary: classes.tertiary,
     outline: classes.outline,
     text: classes.text,
     rounded: classes.rounded,
