@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo, useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
 import { ToastContainer } from "react-toastify";
-
+import "react-toastify/dist/ReactToastify.min.css";
 import { useAppContext } from "./contexts/AppProvider";
 import { HamburgerMenu, Loader } from "./components";
 import { darkTheme, lightTheme } from "./theme";
@@ -9,14 +9,46 @@ import Router from "./Router";
 import { useAppDispatch } from "./hooks";
 import { getApiCategories, getApis } from "./store/slices/apiSlice";
 import { login } from "./store/slices/auth";
+import { deviceDetect } from "react-device-detect";
 import Helmet from "./Helmet";
+import { getDeviceIP } from "./utils";
 
 const App: React.FC = () => {
-  const { currentMode, setMode } = useAppContext();
+  const {
+    currentMode,
+    setMode,
+    isClicked,
+    setDeviceLocation,
+    setDeviceInfo,
+    setDeviceIP,
+  } = useAppContext();
   const dispatch = useAppDispatch();
 
   const fetchApis = useMemo(() => dispatch(getApis()), []);
   const fetchCategories = useMemo(() => dispatch(getApiCategories()), []);
+
+  useEffect(() => {
+    const device = deviceDetect(navigator.userAgent);
+    setDeviceInfo(device);
+  }, []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setDeviceLocation({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        time: position.timestamp,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    const getIPAddress = async () => {
+      const data = await getDeviceIP();
+      setDeviceIP(data);
+    };
+    getIPAddress();
+  }, []);
 
   useEffect(() => {
     fetchApis;

@@ -130,6 +130,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     background: "#FFFFFF",
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.08)",
+    padding: "40px",
     display: "flex",
     flexDirection: "column",
     gap: "64px",

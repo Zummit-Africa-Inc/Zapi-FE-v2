@@ -124,6 +124,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: "64px",
+    padding: "40px",
     "& p": {
       fontFamily: "var(--code-font)",
       fontSize: "16px",

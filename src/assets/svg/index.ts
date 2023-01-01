@@ -18,6 +18,9 @@ import secure from './secure.svg'
 import stacks from './stacks.svg'
 import zoom from './zoom.svg'
 import marketIllustration from './marketIllustration.svg'
+import LooperGroup from './LooperGroup.svg'
+import shine from './shine.svg'
 
 export { facebook, figma, google, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, 
-    zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration }
+    zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars,
+     marketIllustration, LooperGroup, shine }

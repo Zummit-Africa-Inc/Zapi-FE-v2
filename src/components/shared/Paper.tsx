@@ -16,11 +16,12 @@ export default Paper;
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    padding: "40px",
-    alignItems: "center",
+    // display: "flex",
+    // flexDirection: "column",
+    // padding: "40px",
+    // alignItems: "center",
     // justifyContent: "center",
-    gap: "64px",
+    // gap: "64px",
     borderRadius: "8px",
   },
 });

@@ -11,6 +11,7 @@ const ButtonBase = ({
   type,
   onClick,
   icon,
+  startIcon,
   to,
   style,
 }: ButtonProps) => {
@@ -30,6 +31,7 @@ const ButtonBase = ({
     text: classes.text,
     rounded: classes.rounded,
     square: classes.square,
+    socialLogin: classes.socialLogin,
   };
 
   if (to) {
@@ -40,6 +42,7 @@ const ButtonBase = ({
           onClick={onClick}
           className={`${classes.button} ${variants[variant]} ${sizes[size]}`}
           style={style}
+          startIcon={startIcon}
           endIcon={icon}>
           {label}
         </Button>
@@ -53,6 +56,7 @@ const ButtonBase = ({
       onClick={onClick}
       className={`${classes.button} ${variants[variant]} ${sizes[size]}`}
       style={style}
+      startIcon={startIcon}
       endIcon={icon}>
       {label}
     </Button>
