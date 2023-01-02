@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react'
 import { FiX } from 'react-icons/fi'
 import { makeStyles } from '@mui/styles'
 import { Box, Stack, Theme } from '@mui/material'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { useAppContext } from '../../contexts/AppProvider'
 import { Moon, Sun } from '../../assets/icons'
@@ -35,7 +35,7 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Log In' to='/login' variant='text' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
+                <Link to="/login" style={{width: "100%",color: "#FFF",padding: "8px 12px 8px 16px"}}>Login</Link>
                 <Button label='Sign Up' to='/signup' variant='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(

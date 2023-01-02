@@ -1,15 +1,16 @@
 import { Card, Chip, Stack, Typography } from "@mui/material";
-import { useStyles } from "./ApiCard.styles";
 import { BsPeopleFill } from "react-icons/bs";
 import { MdOutlineTimer } from "react-icons/md";
 import { AiOutlineStar } from "react-icons/ai";
+
+import { useStyles } from "./ApiCard.styles";
 import { ApiProps } from "../../interfaces";
 
 interface IApiCard {
   api: ApiProps;
 }
 
-const ApiCard: React.FC<IApiCard> = ({ api }) => {
+const ApiCard = ({ api }: IApiCard) => {
   const classes = useStyles({});
 
   return (

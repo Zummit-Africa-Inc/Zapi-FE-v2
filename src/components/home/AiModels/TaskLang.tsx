@@ -1,8 +1,9 @@
-import { Box, Stack, Tabs, Tab, Theme } from "@mui/material";
-import { Button, TabPanel, Paper } from "../..";
-import { ButtonArrow } from "../../../assets/icons";
 import React, { useState } from "react";
+import { FiArrowRight } from "react-icons/fi";
 import { makeStyles, styled } from "@mui/styles";
+import { Box, Stack, Tabs, Tab, Theme } from "@mui/material";
+
+import { Button, TabPanel, Paper } from "../..";
 import { useAppContext } from "../../../contexts/AppProvider";
 
 const TabContent = [
@@ -82,7 +83,7 @@ const TaskLang: React.FC = () => {
             type="button"
             size="medium"
             icon={
-              <ButtonArrow color={currentMode === "dark" ? "#000" : "#FFF"} />
+              <FiArrowRight />
             }
           />
           <Button

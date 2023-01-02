@@ -1,8 +1,9 @@
-import { Box, Stack, Theme, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React from "react";
+import { makeStyles } from "@mui/styles";
+import { FiArrowRight } from "react-icons/fi";
+import { Box, Stack, Theme, Typography } from "@mui/material";
+
 import { Button } from "..";
-import { ButtonArrow } from "../../assets/icons";
 import { marketIllustration } from "../../assets/svg";
 
 const marketSteps = [
@@ -38,7 +39,7 @@ const Market: React.FC = () => {
           label="List Your API"
           variant="secondary"
           size="large"
-          icon={<ButtonArrow color="#000" />}
+          icon={<FiArrowRight />}
         />
       </Stack>
       <Stack className={classes.right}>

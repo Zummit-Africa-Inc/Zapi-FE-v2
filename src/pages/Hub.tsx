@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Stack, Theme } from "@mui/material";
-import { Footer, Navbar } from "../components";
-import HubApis from "../components/hubApis/HubApis";
-import HubCategories from "../components/hubCategories/HubCategories";
 import { createStyles, makeStyles } from "@mui/styles";
-import { useAppSelector, useHttpRequest } from "../hooks";
+
 import { ApiProps } from "../interfaces";
+import { Footer, Navbar } from "../components";
+import HubApis from "../components/hub/HubApis";
+import { useAppSelector, useHttpRequest } from "../hooks";
+import HubCategories from "../components/hub/HubCategories";
 
 const Hub = () => {
   const classes = useStyles();

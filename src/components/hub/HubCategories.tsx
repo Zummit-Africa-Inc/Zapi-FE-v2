@@ -1,9 +1,10 @@
 import { Box, Stack } from "@mui/material";
-import { useAppContext } from "../../contexts/AppProvider";
+
 import { useAppSelector } from "../../hooks";
-import CustomTypography from "../shared/CustomTypography";
-import CategoryButton from "../shared/Buttons/CategoriesButton";
 import { useStyles } from "./HubCategories.styles";
+import CustomTypography from "../shared/CustomTypography";
+import { useAppContext } from "../../contexts/AppProvider";
+import CategoryButton from "../shared/Buttons/CategoriesButton";
 
 interface IHubCategories {
   selectedCategoryId?: string;
@@ -12,10 +13,10 @@ interface IHubCategories {
   >;
 }
 
-const HubCategories: React.FC<IHubCategories> = ({
+const HubCategories = ({
   selectedCategoryId,
   setSelectedCategoryId,
-}) => {
+}: IHubCategories) => {
   const { categories } = useAppSelector((store) => store.apis);
 
   const classes = useStyles({});

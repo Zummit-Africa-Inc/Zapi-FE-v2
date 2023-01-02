@@ -1,17 +1,18 @@
 import { Box, FormControl, InputAdornment, OutlinedInput } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import ApiCard from "../apiCard/ApiCard";
 import { RiSearch2Line } from "react-icons/ri";
-import { useStyles } from "./HubApis.styles";
+
+import ApiCard from "./ApiCard";
 import ApiNotFound from "./ApiNotFound";
-import CustomTypography from "../shared/CustomTypography";
 import { ApiProps } from "../../interfaces";
+import { useStyles } from "./HubApis.styles";
+import CustomTypography from "../shared/CustomTypography";
 
 interface IHubApis {
   apis: ApiProps[];
 }
 
-const HubApis: React.FC<IHubApis> = ({ apis }) => {
+const HubApis = ({ apis }:IHubApis) => {
   const classes = useStyles({});
 
   return (
