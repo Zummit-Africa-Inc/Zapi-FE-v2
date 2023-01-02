@@ -1,16 +1,16 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import OtpInput from "react-otp-input";
 import { toast } from "react-toastify";
-import { useAppDispatch, useAppSelector } from "../hooks/redux-hook";
+import { useAppDispatch } from "../hooks/redux-hook";
 import { useHttpRequest } from "../hooks";
 import { AuthLayout, Button, Paper } from "../components";
 
 const url = "VITE_IDENTITY_URL";
 
-const OTP = () => {
+const OTP: React.FC = () => {
   const { loading, error, sendRequest } = useHttpRequest();
   const [code, setCode] = useState("");
   const navigate = useNavigate();
@@ -66,8 +66,8 @@ const OTP = () => {
                 shouldAutoFocus={true}
                 inputStyle={{
                   border: "1px solid #081F4A",
-                  width: "54px",
-                  height: "54px",
+                  width: "32px",
+                  height: "32px",
                   fontSize: "12px",
                   color: "#000",
                   fontWeight: "400",
@@ -93,12 +93,13 @@ const OTP = () => {
 
 export default OTP;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
-    width: "680px",
-    margin: "0 auto",
     background: "#FFFFFF",
     padding: "64px 64px",
+    [theme.breakpoints.down("mobile")]: {
+      padding: "64px 16px",
+    },
   },
   heading: {
     fontSize: "23px",
@@ -111,6 +112,9 @@ const useStyles = makeStyles({
     fontWeight: 400,
     textAlign: "center",
     color: "#3E4245",
+    [theme.breakpoints.down("mobile")]: {
+      fontSize: "18px",
+    },
   },
   form: {
     "& input": {
@@ -120,4 +124,4 @@ const useStyles = makeStyles({
       borderRadius: "3px",
     },
   },
-});
+}));

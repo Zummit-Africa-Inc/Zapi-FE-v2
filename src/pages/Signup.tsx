@@ -11,7 +11,14 @@ import { login } from "../store/slices/auth";
 import { makeStyles } from "@mui/styles";
 import { toast } from "react-toastify";
 import { EMAIL_REGEX, MATCH_CHECKER, PASSWORD_REGEX } from "../utils";
-import { LooperGroup, shine } from "../assets/svg";
+import {
+  LooperGroup,
+  LooperGroupMobile,
+  LooperGroupTab,
+  shine,
+  shineTab,
+  shineMobile,
+} from "../assets/svg";
 
 const initialState = {
   fullName: "",
@@ -22,7 +29,7 @@ const initialState = {
 const url = "VITE_IDENTITY_URL";
 const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const { inputs, bind, toggle } = useFormInputs(initialState);
   const classes = useStyles();
   const { error, loading, sendRequest } = useHttpRequest();
@@ -92,7 +99,7 @@ const Signup = () => {
           headers
         );
         if (!token) return;
-        // toast.success("Login Successful!");
+        toast.success("Login Successful!");
         const {
           access,
           email,
@@ -114,7 +121,7 @@ const Signup = () => {
     },
     onError: (errorResponse) => {
       console.log(errorResponse);
-      // toast.error("Login Failed, try to login with your email.");
+      toast.error("Login Failed, try to login with your email.");
     },
   });
 
@@ -147,7 +154,7 @@ const Signup = () => {
             headers
           );
           if (!data) return;
-          // toast.success("Login Successful!");
+          toast.success("Login Successful!");
           const {
             access,
             email,
@@ -175,90 +182,92 @@ const Signup = () => {
     <>
       <div className={classes.container}>
         <AuthNavbar />
-        <Paper className={classes.paper}>
-          <Stack
-            className={classes.signup}
-            onClick={(e) => e.stopPropagation()}>
-            <h5>Sign Up</h5>
-            <form onSubmit={handleSubmit}>
-              <Stack spacing="20px">
-                <InputField
-                  label="Name"
-                  type="text"
-                  name="fullName"
-                  {...bind}
-                  placeholder="Name"
-                />
-                <InputField
-                  label="Email"
-                  type="text"
-                  name="email"
-                  {...bind}
-                  placeholder="Email"
-                />
-                <InputField
-                  label="Password"
-                  type="password"
-                  name="password"
-                  {...bind}
-                  placeholder="Password"
-                />
-                <InputField
-                  label="Confirm Password"
-                  type="password"
-                  name="confirm_password"
-                  {...bind}
-                  placeholder="Confirm Password"
-                />
-                <div className={classes.check_input}>
-                  <input type="checkbox" name="terms" {...toggle} />
-                  <label htmlFor="terms" className={classes.link}>
-                    By checking this box, I agree to the{" "}
-                    <span>terms and conditions</span> and <span>privacy</span>{" "}
-                    policy
-                  </label>
-                </div>
-              </Stack>
-              <Stack mt="20px">
-                <Button
-                  type="submit"
-                  label="Sign Up"
-                  variant="secondary"
-                  size="large"
-                />
-              </Stack>
-            </form>
-            <span className={classes.Or}>Or</span>
-            <Stack spacing="20px">
-              <Button
-                label="Sign In Google"
-                variant="socialLogin"
-                onClick={() => googleAuth()}
-                size="large"
-                startIcon={<GoogleIcon />}
-              />
-              <Button
-                label="Sign In Github"
-                variant="socialLogin"
-                size="large"
-                onClick={githubAuth}
-                startIcon={<GithubIcon />}
-              />
-            </Stack>
+        <div className={classes.children}>
+          <Paper className={classes.paper}>
             <Stack
-              direction="row"
-              mt="1rem"
-              spacing=".5rem"
-              alignItems="center">
-              <Typography variant="subtitle1" className={classes.account}>
-                Do you have an account?
-              </Typography>
-              <Link to="/login" className={classes.signin}>
-                Sign In
-              </Link>
+              className={classes.signup}
+              onClick={(e) => e.stopPropagation()}>
+              <h5>Sign Up</h5>
+              <form onSubmit={handleSubmit}>
+                <Stack spacing="20px">
+                  <InputField
+                    label="Name"
+                    type="text"
+                    name="fullName"
+                    {...bind}
+                    placeholder="Name"
+                  />
+                  <InputField
+                    label="Email"
+                    type="text"
+                    name="email"
+                    {...bind}
+                    placeholder="Email"
+                  />
+                  <InputField
+                    label="Password"
+                    type="password"
+                    name="password"
+                    {...bind}
+                    placeholder="Password"
+                  />
+                  <InputField
+                    label="Confirm Password"
+                    type="password"
+                    name="confirm_password"
+                    {...bind}
+                    placeholder="Confirm Password"
+                  />
+                  <div className={classes.check_input}>
+                    <input type="checkbox" name="terms" {...toggle} />
+                    <label htmlFor="terms" className={classes.link}>
+                      By checking this box, I agree to the{" "}
+                      <span>terms and conditions</span> and <span>privacy</span>{" "}
+                      policy
+                    </label>
+                  </div>
+                </Stack>
+                <Stack mt="20px">
+                  <Button
+                    type="submit"
+                    label="Sign Up"
+                    variant="secondary"
+                    size="large"
+                  />
+                </Stack>
+              </form>
+              <span className={classes.Or}>Or</span>
+              <Stack spacing="20px">
+                <Button
+                  label="Sign In Google"
+                  variant="socialLogin"
+                  onClick={() => googleAuth()}
+                  size="large"
+                  startIcon={<GoogleIcon />}
+                />
+                <Button
+                  label="Sign In Github"
+                  variant="socialLogin"
+                  size="large"
+                  onClick={githubAuth}
+                  startIcon={<GithubIcon />}
+                />
+              </Stack>
+              <Stack
+                direction="row"
+                mt="1rem"
+                spacing=".5rem"
+                alignItems="center">
+                <Typography variant="subtitle1" className={classes.account}>
+                  Do you have an account?
+                </Typography>
+                <Link to="/login" className={classes.signin}>
+                  Sign In
+                </Link>
+              </Stack>
             </Stack>
-          </Stack>
-        </Paper>
+          </Paper>
+        </div>
       </div>
     </>
   );
@@ -278,14 +287,40 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     paddingBottom: "30px",
-    // justifyContent: "center",
-    // alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.down("tablet")]: {
+      backgroundImage: `url(${LooperGroupTab}), url(${shineTab})`,
+      backgroundRepeat: "no-repeat, no-repeat",
+      backgroundPosition: "center top, right top",
+      backgroundSize: "auto, auto",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      backgroundImage: `url(${LooperGroupMobile}), url(${shineMobile})`,
+      backgroundRepeat: "no-repeat, no-repeat",
+      backgroundPosition: "right bottom, right top",
+      backgroundSize: "auto 700px, auto",
+    },
+  },
+  children: {
+    width: "100%",
+    height: "100%",
+    padding: "0 380px",
+    [theme.breakpoints.down("laptop")]: {
+      padding: "0 77px",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      padding: "0 16px",
+    },
   },
   paper: {
-    width: "680px",
-    margin: "0 auto",
+    // width: "680px",
+    // margin: "0 auto",
     background: "#FFFFFF",
     padding: "25px 64px",
+    [theme.breakpoints.down("mobile")]: {
+      padding: "25px 16px",
+    },
   },
   signup: {
     "& h5": {

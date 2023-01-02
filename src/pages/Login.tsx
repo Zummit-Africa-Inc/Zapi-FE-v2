@@ -1,13 +1,7 @@
 import { Stack, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { FormEvent, useEffect } from "react";
-import {
-  AuthLayout,
-  AuthNavbar,
-  Button,
-  InputField,
-  Paper,
-} from "../components";
+import { AuthLayout, Button, InputField, Paper } from "../components";
 import { LooperGroup, shine } from "../assets/svg";
 import { GithubIcon, GoogleIcon } from "../assets/icons";
 import { useAppDispatch, useFormInputs, useHttpRequest } from "../hooks";
@@ -17,12 +11,13 @@ import { EMAIL_REGEX, PASSWORD_REGEX } from "../utils";
 import { login } from "../store/slices/auth";
 import Cookies from "universal-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
+import { toast } from "react-toastify";
 
 const initialState = { email: "", password: "" };
 const url = "VITE_IDENTITY_URL";
 const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
-const Login = () => {
+const Login: React.FC = () => {
   const classes = useStyles();
   const { inputs, bind } = useFormInputs(initialState);
   const { deviceInfo, deviceLocation, deviceIP, handleUnclicked } =
@@ -60,8 +55,8 @@ const Login = () => {
         payload,
         headers
       );
-      console.log(data);
       if (!data || data === undefined) return;
+      toast.success("Login Successful!");
       const { access, email, fullName, profileId, refresh, userId, secretKey } =
         data.data;
       const user = { email, fullName, profileId, secretKey };
@@ -96,7 +91,7 @@ const Login = () => {
           headers
         );
         if (!token) return;
-        // toast.success("Login Successful!");
+        toast.success("Login Successful!");
         const {
           access,
           email,
@@ -118,7 +113,7 @@ const Login = () => {
     },
     onError: (errorResponse) => {
       console.log(errorResponse);
-      // toast.error("Login Failed, try to login with your email.");
+      toast.error("Login Failed, try to login with your email.");
     },
   });
 
@@ -151,7 +146,7 @@ const Login = () => {
             headers
           );
           if (!data) return;
-          // toast.success("Login Successful!");
+          toast.success("Login Successful!");
           const {
             access,
             email,
@@ -246,24 +241,17 @@ const Login = () => {
 export default Login;
 
 const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    background: theme.palette.primary.main,
-    width: "100vw",
-    height: "100vh",
-    backgroundImage: `url(${LooperGroup}), url(${shine})`,
-    backgroundRepeat: "no-repeat, no-repeat",
-    backgroundPosition: "left bottom, right top",
-    backgroundSize: "auto 700px, auto",
-    display: "flex",
-    flexDirection: "column",
-    // justifyContent: "center",
-    // alignItems: "center",
-  },
   paper: {
-    width: "680px",
+    width: "100%",
     margin: "0 auto",
     background: "#FFFFFF",
     padding: "25px 64px",
+    [theme.breakpoints.down("tablet")]: {
+      padding: "25px 64px",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      padding: "25px 16px",
+    },
   },
   signIn: {
     "& h5": {

@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { AuthLayout, Button, InputField, Paper } from "../components";
@@ -48,12 +48,13 @@ const ResetPassword = () => {
 
 export default ResetPassword;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
-    width: "680px",
-    margin: "0 auto",
     background: "#FFFFFF",
     padding: "64px 64px",
+    [theme.breakpoints.down("mobile")]: {
+      padding: "16px 16px",
+    },
   },
   heading: {
     fontSize: "23px",
@@ -62,4 +63,4 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   form: {},
-});
+}));

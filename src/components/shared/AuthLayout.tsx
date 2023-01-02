@@ -1,11 +1,18 @@
-import { Stack, Theme, Typography } from "@mui/material";
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { AuthNavbar } from "..";
-import { LooperGroup, shine } from "../../assets/svg";
+import {
+  LooperGroup,
+  LooperGroupMobile,
+  LooperGroupTab,
+  shine,
+  shineTab,
+  shineMobile,
+} from "../../assets/svg";
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
 }
 
 const AuthLayout: React.FC<Props> = ({ children }) => {
@@ -15,7 +22,7 @@ const AuthLayout: React.FC<Props> = ({ children }) => {
     <>
       <div className={classes.container}>
         <AuthNavbar />
-        {children}
+        <div className={classes.children}>{children}</div>
       </div>
     </>
   );
@@ -34,7 +41,30 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: "auto 700px, auto",
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "center",
-    // alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.down("tablet")]: {
+      backgroundImage: `url(${LooperGroupTab}), url(${shineTab})`,
+      backgroundRepeat: "no-repeat, no-repeat",
+      backgroundPosition: "center top, right top",
+      backgroundSize: "auto, auto",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      backgroundImage: `url(${LooperGroupMobile}), url(${shineMobile})`,
+      backgroundRepeat: "no-repeat, no-repeat",
+      backgroundPosition: "right bottom, right top",
+      backgroundSize: "auto 700px, auto",
+    },
+  },
+  children: {
+    width: "100%",
+    height: "100%",
+    padding: "0 380px",
+    [theme.breakpoints.down("laptop")]: {
+      padding: "0 77px",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      padding: "0 16px",
+    },
   },
 }));
