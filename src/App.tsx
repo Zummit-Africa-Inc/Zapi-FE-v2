@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={currentMode === "dark" ? darkTheme : lightTheme}>
-      {/* <Helmet /> */}
+      <Helmet />
       <ToastContainer />
       <HamburgerMenu />
       <div style={{ background: currentMode === "dark" ? "#121212" : "#FFF" }}>
