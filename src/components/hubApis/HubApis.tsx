@@ -1,4 +1,10 @@
-import { Box, FormControl, InputAdornment, OutlinedInput } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  Grid,
+  InputAdornment,
+  OutlinedInput,
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ApiCard from "../apiCard/ApiCard";
 import { RiSearch2Line } from "react-icons/ri";
@@ -43,10 +49,21 @@ const HubApis: React.FC<IHubApis> = ({ apis }) => {
               />
             </FormControl>
           </Box>
-          <Box className={classes.cardContainer}>
-            {apis?.map((api) => (
-              <ApiCard key={api.id} api={api} />
-            ))}
+          <Box>
+            <Grid container spacing={3}>
+              {apis?.map((api) => (
+                <Grid
+                  item
+                  key={api.id}
+                  sx={{ flexGrow: 3 }}
+                  mobile={6}
+                  tablet={4}
+                  laptop={3}
+                  desktop={3}>
+                  <ApiCard api={api} />
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </>
       )}

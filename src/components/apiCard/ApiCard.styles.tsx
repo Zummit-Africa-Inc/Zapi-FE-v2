@@ -4,8 +4,9 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   card: {
     padding: "1em",
-    minWidth: "20em",
+    minWidth: "15em",
     minHeight: "15em",
+    width: "19em",
     cursor: "pointer",
     borderRadius: "8px!important",
     display: "flex",
@@ -29,9 +30,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: "0.7em",
+    gap: "5px",
   },
   chip: {
+    display: "flex",
+    alignItems: "center",
     borderRadius: "6px!important",
     height: "30px!important",
     backgroundColor: "#B8CEF7!important",

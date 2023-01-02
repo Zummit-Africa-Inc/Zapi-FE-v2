@@ -71,19 +71,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       textAlign: "center",
     },
   },
-  cardContainer: {
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "2em",
-    width: "100%",
 
-    [theme.breakpoints.down("tablet")]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      gridTemplateColumns: "repeat(1, 1fr)",
-    },
-  },
   notFoundContainer: {
     display: "flex",
     alignItems: "center",
@@ -98,10 +86,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   homeButton: {
-    width: "200px!important",
-
     [theme.breakpoints.down("mobile")]: {
-      alignSelf: "center",
+      width: "100%!important",
     },
   },
 }));
