@@ -47,7 +47,11 @@ const TranslateLang: React.FC = () => {
       </Stack>
       <Stack className={classes.left}>
         <Stack>
-          <CustomTabs value={tab} onChange={(e, newValue) => setTab(newValue)}>
+          <CustomTabs
+            value={tab}
+            variant="scrollable"
+            scrollButtons="auto"
+            onChange={(e, newValue) => setTab(newValue)}>
             {TabLabel.map((label, i) => (
               <Tab
                 key={i}
