@@ -1,8 +1,11 @@
-import { Box, Stack, Theme, Typography, Link } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React from "react";
-import { Button } from "..";
-import { ButtonArrow } from "../../assets/icons";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import { FiChevronRight} from "react-icons/fi";
+import { Box, Stack, Theme, Typography } from "@mui/material";
+
+import Button from "../shared/Buttons/CategoriesButton";
+import { useAppContext } from "../../contexts/AppProvider";
 import {blogIllustration, blogPost1,  blogPost2} from "../../assets/svg";
 
 const blogPosts = [
@@ -19,52 +22,40 @@ const blogPosts = [
 ];
 
 const Blog: React.FC = () => {
+  const { currentMode } = useAppContext();
   const classes = useStyles();
+
   return (
     <Box className={classes.container}>
-        <Stack>
-            <Stack className={classes.linkTag}>
-                <Box className={classes.left}>
-                    {blogPosts.map((post, i) => (
-                        <Stack key={i}>
-                        <Stack
-                            direction="row"
-                            alignItems="center"
-                            sx={{ width: "100%" }}
-                            spacing={2.4}>
-                            <Stack>
-                            <img src={post.image} alt="" width="100%" height="100%" />
-                            <Stack 
-                                direction="column"
-                                alignItems="space-between"
-                                sx={{ width: "100%" }}
-                                spacing={2.4}>
-                                <Typography sx={{fontWeight: "700", fontSize: "23px", paddingTop:"10px"}}>
-                                    {post.title}
-                                </Typography>
-                                <Typography className={classes.blogBase}>
-                                    <div className={classes.blogButton}>
-                                        Read More
-                                    </div>
-                                    <Typography sx={{fontWeight: "400", fontSize: "14px",          
-                                      paddingTop:"17px", paddingBottom:"20.5px"}}>
-                                        {post.date}
-                                    </Typography>
-                                </Typography>
-                            </Stack>
-                            </Stack>
+      <Stack>
+        <Stack className={classes.linkTag}>
+          <Box className={classes.left}>
+            {blogPosts.map((post, i) => (
+              <Stack key={i} mb="38px">
+                <Stack direction="row" alignItems="center" sx={{ width: "100%" }} spacing={2.4}>
+                    <Stack>
+                      <img src={post.image} alt="" width="100%" height="100%" />
+                      <Stack direction="column" alignItems="space-between" sx={{ width: "100%" }} spacing={2.4}>
+                        <Typography color="primary.contrastText" sx={{fontWeight: "700", fontSize: "23px", paddingTop:"10px"}}>
+                          {post.title}
+                        </Typography>
+                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                          <Typography color="primary.contrastText">Read More</Typography>
+                          <Typography sx={{color: "#929AA3"}}>{post.date}</Typography>
                         </Stack>
-                        </Stack>
-                    ))}
-                </Box>
-            </Stack>
-            <div className={classes.viewAllBtn}>
-                <p>View all Zapi Blog Posts &nbsp; <ButtonArrow color="#000" /></p>
-            </div>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Stack>
+              ))}
+            </Box>
+          </Stack>
+          <Link to="/" className={classes.viewAllBtn} style={{borderColor: currentMode === "dark" ? "#FFEA00" : "#081F4A",color: currentMode === "dark" ? "#FFEA00" : "#081F4A"}}>
+            View All<FiChevronRight />
+          </Link>
         </Stack>
-
-      <Stack className={classes.right}>
-        <h1>AI Education</h1>
+        <Stack className={classes.right}>
+        <Typography color="primary.contrastText" variant="h1">AI Education</Typography>
         {/* <Typography sx={{fontWeight: 400, fontSize: "20px", lineHeight: "28px", marginTop: "0px"}} >
             Explore our blog posts to get more insight on AI.
         </Typography> */}
@@ -119,57 +110,38 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontWeight: 600,
       letterSpacing: "-0.02em",
       paddingBottom: "3rem",
-      color: "#060607",
       [theme.breakpoints.down("tablet")]: {
         fontSize: "28px",
         fontWeight: 700,
       },
     },
   },
-
- blogButton: {
-    fontWeight: 600,
-    fontSize: "18px",
-    lineHeight: "22px",
-    color: "#5A5F65",
- },
- viewAllBtn: {
-    display: "flex",
-    marginLeft: "180px",
-    flexDirection: "row",
-    justifyContent: "right",
-    alignItems: "right",
-    padding: "16px 18px 30px 9px",
-    gap: "8px",
+  viewAllBtn: {
     width: "330px",
     height: "54px",
-    border: "1px solid #081F4A",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: "center",
+    margin: "0 0 0 180px",
+    padding: "16px 18px",
+    gap: "8px",
+    border: "1px solid",
     borderRadius: "4px",
-        "& p": {
-        width: "255px",
-        height: "22px",
-        fontFamily: "Lato",
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "18px",
-        lineHeight: "22px",    
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
-        }
- },
-
- linkTag: {
+    fontWeight: "600",
+    fontSize: "18px",
+    lineHeight: "22px",
+    cursor: "pointer",
+  },
+  linkTag: {
     cursor: "pointer", 
- },
-
+  },
   blogBase: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
- },
-  
+  },
   heroImage: {
     width: "432.64px",
     display: "block",

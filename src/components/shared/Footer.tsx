@@ -1,129 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { linkedinIcon, twitterIcon, youtubeIcon} from "../../assets/svg";
+import { FOOTERLINKS } from "./FOOTERLINKS";
 
-export const footerLinks = [
-  {
-      title: 'Explore',
-      links: [
-          {
-              name: 'Our APIs',
-              link: './coming-soon'
-          },
-          {
-              name: 'ZAPI Tools',
-              link: './coming-soon'
-          },
-          {
-              name: 'Zummit Africa',
-              link: '/zummitafrica.com'
-          },
-          {
-              name: 'Zummit Africa Articles',
-              link: './coming-soon'
-          },
-      ]
-  },
-  {
-      title: 'Company',
-      links: [
-          {
-              name: 'About',
-              link: './coming-soon'
-          },
-          {
-              name: 'Help',
-              link: './coming-soon'
-          },
-          {
-              name: 'Status',
-              link: './coming-soon'
-          },
-          {
-              name: 'Terms & Privacy',
-              link: './terms'
-          },
-          {
-              name: 'Cookies Policy',
-              link: './coming-soon'
-          },
-      ]
-  },
-  {
-      title: 'Popular APIs',
-      links: [
-          {
-              name: 'Drowsiness Detection',
-              link: './coming-soon'
-          },
-          {
-              name: 'Emotion Detection',
-              link: './coming-soon'
-          },
-          {
-              name: 'Text Summarizer',
-              link: './coming-soon'
-          },
-          {
-              name: 'Chat Bots',
-              link: './coming-soon'
-          },
-          {
-              name: 'Sentiment Analyzer',
-              link: './coming-soon'
-          },
-      ]
-  }
-]
 const Footer: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <footer className={classes.footer}>
-      <Stack direction="row" width="100%" flexWrap="wrap">
-        {footerLinks.map((item, index) => (
-          <div key={index} className={classes.container}>
+    <Box className={classes.footer}>
+      <Stack direction="row" width="100%" flexWrap="wrap" mb="32px">
+        {FOOTERLINKS.map((item, index) => (
+          <Box key={index} className={classes.container}>
             <>
-              <Typography
-                fontSize="18px"
-                fontWeight={600}
-                lineHeight="22px"
-                color="#F5F5F5"
-                mb={2} mt={4}>
-                {item.title}
-              </Typography>
+            <Typography sx={{fontSize: "18px",fontWeight: 600,lineHeight: "22px",color: "#F5F5F5",mb: "40px",textTransform: "uppercase"}}>
+              {item.title}
+            </Typography>
+            <Stack direction="column" spacing="24px">
               {item.links.map((link, index) => (
                 <Link key={index} to={`/${link.link}`}>
-                  <Typography
-                    fontSize="16px"
-                    fontWeight={300}
-                    lineHeight="24px"
-                    color="#ffffff"
-                    my={2}>
+                  <Typography fontSize="16px" fontWeight={400} lineHeight="24px" color="#FFF">
                     {link.name}
                   </Typography>
                 </Link>
               ))}
+            </Stack>
             </>
-          </div>
+          </Box>
         ))}
       </Stack>
       {/* Divider */}
-      <div className={classes.divider} />
-
-      <Stack
-        direction="row"
-        width="100%"
-        alignItems="center"
-        justifyContent="space-between">
-        <Typography
-          fontSize="14px"
-          fontWeight={900}
-          lineHeight="30px"
-          color="white">
+      <hr className={classes.divider} />
+      <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between">
+        <Typography fontSize="14px" fontWeight={900} lineHeight="30px" color="white">
           &copy; {new Date().getFullYear()} ZAPI
         </Typography>
         <Stack direction="row" alignItems="center" spacing={2}>
@@ -147,18 +58,24 @@ const Footer: React.FC = () => {
           </a>
         </Stack>
       </Stack>
-    </footer>
+    </Box>
   );
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     background: "#081F4A",
-    padding: "2rem 4rem",
+    padding: "64px 109px",
+    [theme.breakpoints.down("tablet")]: {
+      padding: "64px 32px",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      padding: "64px 16px",
+    },
   },
   container: {
     width: "300px",
@@ -171,11 +88,11 @@ const useStyles = makeStyles({
   divider: {
     width: "100%",
     height: "1px",
-    background: "#d4d4d4",
+    background: "#D4D4D4",
     marginBottom: "1rem",
     color: "#F5F5F5",
   },
-});
+}));
 
 export default Footer;
 
