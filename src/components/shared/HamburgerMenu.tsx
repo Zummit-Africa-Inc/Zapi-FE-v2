@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react'
 import { FiX } from 'react-icons/fi'
 import { makeStyles } from '@mui/styles'
 import { Box, Stack, Theme } from '@mui/material'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { useAppContext } from '../../contexts/AppProvider'
 import { Moon, Sun } from '../../assets/icons'
@@ -35,13 +35,13 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Log In' variant='text' to='/login' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%', background: 'transparent' }} />
-                <Button label='Sign Up' variant='primary' to='/signup' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%', background: 'secondary' }} />
+                <Link to="/login" style={{width: "100%",color: "#FFF",padding: "8px 12px 8px 16px"}}>Login</Link>
+                <Button label='Sign Up' to='/signup' variant='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Dashboard' variant='primary' size='small' to='/developer/dashboard' onClick={() => setActiveMenu(false)} style={{width: '100%', background: 'white'}} />
-                <Button label='Logout' variant='primary' size='small' onClick={() => {setActiveMenu(false); handleClicked('logout')}} style={{width: '100%', background: 'secondary'}} />
+                <Button label='Dashboard' variant='text' size='small' to='/developer/dashboard' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
+                <Button label='Logout' variant='secondary' size='small' onClick={() => {setActiveMenu(false); handleClicked('logout')}} style={{width: '100%'}} />
             </Stack>
         )}
         <Stack width='100%' direction='row' justifyContent='end'>

@@ -1,11 +1,12 @@
-import { Box, Stack, Theme } from "@mui/material";
-import { cmLearningAPI, compVisionAPI, natLangAPI } from "../../assets/svg";
 import React from "react";
+import { FiArrowRight } from "react-icons/fi";
 import { makeStyles } from "@mui/styles";
-import { Button } from "..";
-import { ButtonArrow } from "../../assets/icons";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Box, Stack, Theme } from "@mui/material";
+
+import { cmLearningAPI, compVisionAPI, natLangAPI } from "../../assets/svg";
+import { Button } from "..";
 
 const Collections = [
   {
@@ -68,6 +69,7 @@ const responsive = {
 
 const Discover: React.FC = () => {
   const classes = useStyles();
+
   return (
     <Box className={classes.container}>
       <Stack pb={4} className={classes.heading}>
@@ -110,7 +112,7 @@ const Discover: React.FC = () => {
           variant="primary"
           type="button"
           size="large"
-          icon={<ButtonArrow color="#FFF" />}
+          icon={<FiArrowRight />}
         />
       </div>
     </Box>

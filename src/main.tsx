@@ -1,10 +1,12 @@
-import React from "react";
-import { Amplify } from "aws-amplify";
-import { Provider } from "react-redux";
-import ReactDOM from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import './init'
+import React from 'react'
+import { Amplify } from 'aws-amplify'
+import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
+import { BrowserRouter } from 'react-router-dom'
+import { GoogleOAuthProvider } from '@react-oauth/google'
+
 
 import { AppProvider } from "./contexts/AppProvider";
 import { endpoints } from "./libs/aws-config";

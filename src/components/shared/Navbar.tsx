@@ -73,7 +73,7 @@ const Navbar = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction="row" alignItems="center" spacing="24px">
-            <Button label="Log In" to="/login" variant="text" size="small" />
+            <Link to="/login" style={{color: "#FFF",padding: "8px 12px 8px 16px"}}>Login</Link>
             <Button
               label="Sign Up"
               to="/signup"
@@ -174,9 +174,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "24px",
-    color: "#FFF",
+    color: theme.palette.grey[300],
     "&:hover": {
-      color: theme.palette.grey[300],
+      color: "#FFF",
     },
   },
   icon: {
