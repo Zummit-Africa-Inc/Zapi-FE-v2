@@ -11,7 +11,8 @@ import {
   Navbar,
   Pricing,
   Blog,
-  GettingStarted
+  GettingStarted,
+  Footer
 } from "../components";
 
 const Home = () => {
@@ -27,6 +28,7 @@ const Home = () => {
       <Pricing />
       <Blog />
       <GettingStarted />
+      <Footer />
     </Stack>
   );
 };

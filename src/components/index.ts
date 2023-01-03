@@ -13,10 +13,10 @@ export { default as Paper } from './shared/Paper'
 // home
 export { default as Brands } from "./home/Brands";
 export { default as Hero } from "./home/Hero";
-export { default as Discover } from './home/Discover'
-export { default as Features } from './home/Features'
-export { default as Market } from './home/Market'
-export { default as AiModels } from './home/AiModels'
-export { default as Pricing } from './home/Pricing'
-export { default as Blog } from './home/Blog'
-export { default as GettingStarted } from './home/gettingStarted'
+export { default as Discover } from "./home/Discover"
+export { default as Features } from "./home/Features"
+export { default as Market } from "./home/Market"
+export { default as AiModels } from "./home/AiModels"
+export { default as Pricing } from "./home/Pricing"
+export { default as Blog } from "./home/Blog"
+export { default as GettingStarted } from "./home/gettingStarted"

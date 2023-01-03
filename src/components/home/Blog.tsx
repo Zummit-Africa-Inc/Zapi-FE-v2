@@ -18,7 +18,7 @@ const blogPosts = [
   }
 ];
 
-const Market: React.FC = () => {
+const Blog: React.FC = () => {
   const classes = useStyles();
   return (
     <Box className={classes.container}>
@@ -76,7 +76,7 @@ const Market: React.FC = () => {
   );
 };
 
-export default Market;
+export default Blog;
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
