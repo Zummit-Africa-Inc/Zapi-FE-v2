@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { FiChevronRight} from "react-icons/fi";
-import { Box, Stack, Theme, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Stack, Theme, Typography } from "@mui/material";
 
-import Button from "../shared/Buttons/CategoriesButton";
 import { useAppContext } from "../../contexts/AppProvider";
 import {blogIllustration, blogPost1,  blogPost2} from "../../assets/svg";
 
@@ -27,42 +26,32 @@ const Blog: React.FC = () => {
 
   return (
     <Box className={classes.container}>
-      <Stack>
-        <Stack className={classes.linkTag}>
-          <Box className={classes.left}>
-            {blogPosts.map((post, i) => (
-              <Stack key={i} mb="38px">
-                <Stack direction="row" alignItems="center" sx={{ width: "100%" }} spacing={2.4}>
-                    <Stack>
-                      <img src={post.image} alt="" width="100%" height="100%" />
-                      <Stack direction="column" alignItems="space-between" sx={{ width: "100%" }} spacing={2.4}>
-                        <Typography color="primary.contrastText" sx={{fontWeight: "700", fontSize: "23px", paddingTop:"10px"}}>
-                          {post.title}
-                        </Typography>
-                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                          <Typography color="primary.contrastText">Read More</Typography>
-                          <Typography sx={{color: "#929AA3"}}>{post.date}</Typography>
-                        </Stack>
-                      </Stack>
-                    </Stack>
-                  </Stack>
+      <Box className={classes.wrapper}>
+        {blogPosts.map((post, index) => (
+          <Link key={index} to={`/blog/`}>
+            <Card className={classes.card}>
+              <CardMedia sx={{height: "192px",borderRadius: 0}} image={post.image} />
+              <CardContent>
+                <Typography color="primary.contrastText" sx={{fontWeight: 700,fontSize: "23px",margin: "20px 0 28px"}}>
+                  {post.title}
+                </Typography>
+                <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                  <Typography color="primary.contrastText">Read More</Typography>
+                  <Typography sx={{color: "#929AA3"}}>{post.date}</Typography>
                 </Stack>
-              ))}
-            </Box>
-          </Stack>
-          <Link to="/" className={classes.viewAllBtn} style={{borderColor: currentMode === "dark" ? "#FFEA00" : "#081F4A",color: currentMode === "dark" ? "#FFEA00" : "#081F4A"}}>
-            View All<FiChevronRight />
+              </CardContent>
+            </Card>
           </Link>
-        </Stack>
-        <Stack className={classes.right}>
-        <Typography color="primary.contrastText" variant="h1">AI Education</Typography>
-        {/* <Typography sx={{fontWeight: 400, fontSize: "20px", lineHeight: "28px", marginTop: "0px"}} >
-            Explore our blog posts to get more insight on AI.
-        </Typography> */}
-        <Box className={classes.heroImage}>
-          <img src={blogIllustration} alt="" width="100%" height="100%" />
-        </Box>
-      </Stack>
+        ))}
+        <Link to="/" className={classes.link} style={{borderColor: currentMode === "dark" ? "#FFEA00" : "#081F4A",color: currentMode === "dark" ? "#FFEA00" : "#081F4A"}}>
+          View All<FiChevronRight />
+        </Link>
+      </Box>
+      <Box className={classes.container2}>
+        <Typography variant="h1">AI Education</Typography>
+        <Typography>Explore our blog posts to get more insight on AI.</Typography>
+        <img src={blogIllustration} alt="" width="100%" height="100%" />
+      </Box>
     </Box>
   );
 };
@@ -71,59 +60,80 @@ export default Blog;
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    height: "834px",
     width: "100%",
     display: "flex",
-    alignItems: "center",
     justifyContent: "space-between",
-    padding: "4rem 6.7rem",
-    gap: "159px",
+    padding: "64px 108px",
+    gap: "120px",
     backgroundRepeat: "no-repeat",
     backgroundPositionX: "right",
     [theme.breakpoints.down("laptop")]: {
       height: "fit-content",
-      padding: "4rem 2rem",
-      alignItems: "start",
-      gap: "64px",
+      flexDirection: "column-reverse",
+      padding: "64px 32px",
     },
     [theme.breakpoints.down("mobile")]: {
-      gap: "2rem",
-      flexDirection: "column",
-      height: "auto",
-      padding: "2.5rem 1rem",
-      backgroundPositionX: "none",
-      backgroundPositionY: "bottom",
+      padding: "64px 16px",
     },
   },
-  left: {
-    width: "513px",
+  wrapper: {
+    width: "580px",
+    maxWidth: "95%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
     [theme.breakpoints.down("tablet")]: {
-      width: "353px",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      width: "auto",
-    },
+      alignItems: "center",
+    }
   },
-  right: {
-    "& h1": {
-      fontSize: "33px",
-      fontWeight: 600,
-      letterSpacing: "-0.02em",
-      paddingBottom: "3rem",
-      [theme.breakpoints.down("tablet")]: {
-        fontSize: "28px",
-        fontWeight: 700,
+  card: {
+    "&.MuiCard-root": {
+      background: "transparent",
+      boxShadow: 0,
+      margin: "18px 0",
+      "& .MuiCardMedia": {
+        width: "100%",
+        objectFit: "contain",
       },
     },
   },
-  viewAllBtn: {
+  container2: {
+    "& h1": {
+      width: "524px",
+      maxWidth: "90%",
+      fontWeight: 600,
+      fontSize: "48px",
+      lineHeight: "56px",
+      letterSpacing: "-0.04em",
+      textAlign: "left",
+      color: theme.palette.primary.contrastText,
+      [theme.breakpoints.down("laptop")]: {
+        fontSize: "34px",
+        lineHeight: "40px",
+        textAlign: "center",
+      },
+      [theme.breakpoints.down("tablet")]: {
+        textAlign: "left",
+      },
+    },
+    "& p": {
+      fontSize: "20px",
+      lineHeight: "28px",
+      color: "#3E4245",
+      [theme.breakpoints.down("laptop")]: {
+        fontSize: "18px",
+        lineHeight: "22px",
+      },
+    },
+  },
+  link: {
     width: "330px",
+    maxWidth: "70%",
     height: "54px",
     display: "flex",
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: "center",
-    margin: "0 0 0 180px",
     padding: "16px 18px",
     gap: "8px",
     border: "1px solid",
@@ -132,21 +142,5 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "18px",
     lineHeight: "22px",
     cursor: "pointer",
-  },
-  linkTag: {
-    cursor: "pointer", 
-  },
-  blogBase: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  heroImage: {
-    width: "432.64px",
-    display: "block",
-    [theme.breakpoints.down("laptop")]: {
-      display: "none",
-    },
   },
 }));
