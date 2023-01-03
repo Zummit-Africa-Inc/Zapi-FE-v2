@@ -20,6 +20,13 @@ import secure from './secure.svg'
 import stacks from './stacks.svg'
 import zoom from './zoom.svg'
 import marketIllustration from './marketIllustration.svg'
+import LooperGroup from './LooperGroup.svg'
+import shine from './shine.svg'
+import LooperGroupTab from './LooperGroupTab.svg'
+import shineTab from './shineTab.svg'
+import LooperGroupMobile from './LooperGroupMobile.svg'
+import shineMobile from './shineMobile.svg'
+
 import blogIllustration from './blog-illustration.svg'
 import footerIllustration from './footer-illustration.svg'
 import copyright from './copyright.svg'
@@ -27,4 +34,7 @@ import twitterIcon from './twitter.svg'
 import youtubeIcon from './youtube.svg'
 import linkedinIcon from './linkedin.svg'
 
-export { facebook, figma, google, blogPost1, blogPost2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon }
+
+export { facebook, figma, google, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, 
+    zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars,
+     marketIllustration, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon }

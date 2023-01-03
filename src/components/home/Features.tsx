@@ -50,9 +50,7 @@ const Features: React.FC = () => {
       <h1>Robust set of features to power your business and project.</h1>
       <Box className={classes.features}>
         {features.map((feat, i) => (
-          <Stack
-            key={i}
-            style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <Stack key={i} className={classes.feature}>
             <Stack direction="row" spacing={1} alignItems="center">
               <img
                 style={{ width: "24px", height: "24px" }}
@@ -95,18 +93,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   features: {
-    display: "grid",
-    gridTemplateColumns: "365px 365px 365px",
-    gap: "64px 80px",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "64px",
     paddingBottom: "4rem",
-    [theme.breakpoints.down("laptop")]: {
-      gridTemplateColumns: "369px 369px",
-      gap: "32px",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      gridTemplateColumns: "182.5px 182.5px",
-      gap: "32px",
-    },
+    justifyCenter: "center",
+    margin: "0 auto",
     "& h5": {
       fontWeight: 600,
       fontSize: "23px",
@@ -123,6 +115,21 @@ const useStyles = makeStyles((theme: Theme) => ({
       [theme.breakpoints.down("tablet")]: {
         fontSize: "16px",
       },
+    },
+  },
+  feature: {
+    display: "flex",
+    flex: "0 0 30%",
+    justifyContent: "center",
+    margin: "0 auto",
+    gap: "24px",
+    [theme.breakpoints.down("laptop")]: {
+      flex: "0 0 40%",
+      gap: "24px",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      flex: "0 0 50%",
+      gap: "24px",
     },
   },
 }));

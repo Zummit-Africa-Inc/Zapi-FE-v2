@@ -15,16 +15,16 @@ const ButtonArrow: React.FC<Props> = ({ color }) => {
       <path
         d="M4.16602 10H15.8327"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M10 4.16699L15.8333 10.0003L10 15.8337"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

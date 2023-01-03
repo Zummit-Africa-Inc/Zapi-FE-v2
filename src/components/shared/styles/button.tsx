@@ -21,7 +21,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   primary: {
     "&.MuiButton-root": {
       background: theme.palette.primary.main,
-      color: theme.palette.text.secondary,
+      color: "#FFF",
       "&:hover": {
         background: "#223B6C",
       },
@@ -76,7 +76,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   text: {
     "&.MuiButton-root": {
       background: "transparent",
-      color: theme.palette.text.secondary,
+      color: theme.palette.primary.main,
       borderWidth: 0,
       "&:hover": {
         color: "#223B6C",
@@ -127,6 +127,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
         background: "#DAD7DA",
         color: "#929AA3",
       },
+    },
+  },
+  socialLogin: {
+    "&.MuiButton-root": {
+      background: "transparent",
+      color: theme.palette.text.secondary,
+      border: "1px solid #A8AEB5",
+      borderRadius: "10px",
     },
   },
   small: {

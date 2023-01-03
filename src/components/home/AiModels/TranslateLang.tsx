@@ -1,8 +1,9 @@
-import { Box, Stack, Tabs, Tab, Theme } from "@mui/material";
-import { Button, Paper, TabPanel } from "../..";
-import { ButtonArrow } from "../../../assets/icons";
 import React, { useState } from "react";
+import { FiArrowRight } from "react-icons/fi";
 import { makeStyles, styled } from "@mui/styles";
+import { Box, Stack, Tabs, Tab, Theme } from "@mui/material";
+
+import { Button, Paper, TabPanel } from "../..";
 import { useAppContext } from "../../../contexts/AppProvider";
 
 const TabLabel = [
@@ -34,7 +35,7 @@ const TranslateLang: React.FC = () => {
             type="button"
             size="medium"
             icon={
-              <ButtonArrow color={currentMode === "dark" ? "#000" : "#FFF"} />
+              <FiArrowRight />
             }
           />
           <Button
@@ -47,7 +48,11 @@ const TranslateLang: React.FC = () => {
       </Stack>
       <Stack className={classes.left}>
         <Stack>
-          <CustomTabs value={tab} onChange={(e, newValue) => setTab(newValue)}>
+          <CustomTabs
+            value={tab}
+            variant="scrollable"
+            scrollButtons="auto"
+            onChange={(e, newValue) => setTab(newValue)}>
             {TabLabel.map((label, i) => (
               <Tab
                 key={i}
@@ -124,6 +129,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: "64px",
+    padding: "40px",
     "& p": {
       fontFamily: "var(--code-font)",
       fontSize: "16px",
@@ -173,6 +179,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       textTransform: "none",
       fontWeight: 400,
       fontSize: "18px",
+      color: "#929AA3",
     },
     "&.Mui-selected": {
       backgroundColor: "#E9EBED",

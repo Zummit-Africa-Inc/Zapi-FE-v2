@@ -107,6 +107,10 @@ export const lightTheme = createTheme({
       "600": '#3E4245',
       "700": '#3E4245'
     },
+    text: {
+      primary: "#081F4A",
+      secondary: "#FFFFFF",
+  },
     info: {
       main: "#FFFFFF",
       contrastText: "#3E4245",

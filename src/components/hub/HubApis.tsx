@@ -1,17 +1,24 @@
-import { Box, FormControl, InputAdornment, OutlinedInput } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  Grid,
+  InputAdornment,
+  OutlinedInput,
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import ApiCard from "../apiCard/ApiCard";
 import { RiSearch2Line } from "react-icons/ri";
-import { useStyles } from "./HubApis.styles";
+
+import ApiCard from "./ApiCard";
 import ApiNotFound from "./ApiNotFound";
-import CustomTypography from "../shared/CustomTypography";
 import { ApiProps } from "../../interfaces";
+import { useStyles } from "./HubApis.styles";
+import CustomTypography from "../shared/CustomTypography";
 
 interface IHubApis {
   apis: ApiProps[];
 }
 
-const HubApis: React.FC<IHubApis> = ({ apis }) => {
+const HubApis = ({ apis }:IHubApis) => {
   const classes = useStyles({});
 
   return (
@@ -43,10 +50,21 @@ const HubApis: React.FC<IHubApis> = ({ apis }) => {
               />
             </FormControl>
           </Box>
-          <Box className={classes.cardContainer}>
-            {apis?.map((api) => (
-              <ApiCard key={api.id} api={api} />
-            ))}
+          <Box>
+            <Grid container spacing={3}>
+              {apis?.map((api) => (
+                <Grid
+                  item
+                  key={api.id}
+                  sx={{ flexGrow: 3 }}
+                  mobile={6}
+                  tablet={4}
+                  laptop={3}
+                  desktop={3}>
+                  <ApiCard api={api} />
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </>
       )}
