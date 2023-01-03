@@ -35,13 +35,17 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Log In' to='/login' background='transparent' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
-                <Button label='Sign Up' to='/signup' background='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
+                <Button label='Log In' to='/login' background='transparent' size='small' onClick={() => 
+                    setActiveMenu(false)} style={{width: '100%'}} />
+                <Button label='Sign Up' to='/signup' background='secondary' size='small' onClick={() => 
+                     setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Dashboard' background='white' size='small' to='/developer/dashboard' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
-                <Button label='Logout' background='secondary' size='small' onClick={() => {setActiveMenu(false); handleClicked('logout')}} style={{width: '100%'}} />
+                <Button label='Dashboard' background='white' size='small' to='/developer/dashboard' onClick={() => 
+                     setActiveMenu(false)} style={{width: '100%'}} />
+                <Button label='Logout' background='secondary' size='small' onClick={() => {setActiveMenu(false); 
+                     handleClicked('logout')}} style={{width: '100%'}} />
             </Stack>
         )}
         <Stack width='100%' direction='row' justifyContent='end'>
