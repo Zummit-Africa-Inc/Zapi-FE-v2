@@ -174,6 +174,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       textTransform: "none",
       fontWeight: 400,
       fontSize: "18px",
+      color: "#929AA3",
     },
     "&.Mui-selected": {
       backgroundColor: "#E9EBED",
