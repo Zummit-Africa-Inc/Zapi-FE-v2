@@ -42,7 +42,11 @@ const TaskLang: React.FC = () => {
     <Box className={classes.container}>
       <Stack className={classes.left}>
         <Stack>
-          <CustomTabs value={tab} onChange={(e, newValue) => setTab(newValue)}>
+          <CustomTabs
+            value={tab}
+            variant="scrollable"
+            scrollButtons="auto"
+            onChange={(e, newValue) => setTab(newValue)}>
             {TabLabel.map((label, i) => (
               <Tab
                 className={
@@ -127,6 +131,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     background: "#FFFFFF",
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.08)",
+    padding: "40px",
     display: "flex",
     flexDirection: "column",
     gap: "64px",

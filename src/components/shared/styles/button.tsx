@@ -129,6 +129,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  socialLogin: {
+    "&.MuiButton-root": {
+      background: "transparent",
+      color: theme.palette.text.secondary,
+      border: "1px solid #A8AEB5",
+      borderRadius: "10px",
+    },
+  },
   small: {
     "&.MuiButton-root": {
       fontSize: "14px",
