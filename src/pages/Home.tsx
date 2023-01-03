@@ -9,6 +9,10 @@ import {
   Hero,
   Market,
   Navbar,
+  Pricing,
+  Blog,
+  GettingStarted,
+  Footer
 } from "../components";
 
 const Home = () => {
@@ -21,6 +25,10 @@ const Home = () => {
       <Discover />
       <Features />
       <Market />
+      <Pricing />
+      <Blog />
+      <GettingStarted />
+      <Footer />
     </Stack>
   );
 };
