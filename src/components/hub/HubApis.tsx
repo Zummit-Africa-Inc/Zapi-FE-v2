@@ -18,12 +18,12 @@ interface IHubApis {
   apis: ApiProps[];
 }
 
-const HubApis = ({ apis }:IHubApis) => {
+const HubApis = ({ apis }: IHubApis) => {
   const classes = useStyles({});
 
   return (
     <Box className={classes.hubApiContainer}>
-      {apis.length < 1 ? (
+      {apis?.length < 1 ? (
         <ApiNotFound />
       ) : (
         <>
@@ -50,21 +50,25 @@ const HubApis = ({ apis }:IHubApis) => {
               />
             </FormControl>
           </Box>
-          <Box>
-            <Grid container spacing={3}>
-              {apis?.map((api) => (
-                <Grid
-                  item
-                  key={api.id}
-                  sx={{ flexGrow: 3 }}
-                  mobile={6}
-                  tablet={4}
-                  laptop={3}
-                  desktop={3}>
-                  <ApiCard api={api} />
-                </Grid>
-              ))}
-            </Grid>
+          <Box className={classes.apiContainer} component={"div"}>
+            {apis?.map((api) => (
+              <Grid
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  with: "100%",
+                }}
+                item
+                key={api.id}
+                mobile={6}
+                tablet={4}
+                laptop={4}
+                desktop={4}>
+                <ApiCard api={api} />
+              </Grid>
+            ))}
           </Box>
         </>
       )}

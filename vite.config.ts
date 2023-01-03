@@ -14,4 +14,7 @@ export default defineConfig({
       overlay: false,
     },
   },
+  define: {
+   global: {},
+},
 });

@@ -90,4 +90,21 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%!important",
     },
   },
+
+  apiContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "2rem",
+    width: "100%",
+
+    [theme.breakpoints.down("laptop")]: {
+      gridTemplateColumns: "repeat(3, 1fr)",
+    },
+    [theme.breakpoints.down("tablet")]: {
+      gridTemplateColumns: "repeat(2, 1fr)",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      gridTemplateColumns: "repeat(1, 1fr)",
+    },
+  },
 }));
