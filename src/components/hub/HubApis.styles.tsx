@@ -104,6 +104,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       gridTemplateColumns: "repeat(2, 1fr)",
     },
     [theme.breakpoints.down("mobile")]: {
+      width: "unset",
       gridTemplateColumns: "repeat(1, 1fr)",
     },
   },
