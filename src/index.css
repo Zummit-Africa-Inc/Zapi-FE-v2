@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap');
 @font-face {
   font-family: 'Lucida Console';
-  src: url(../src/assets/fonts/Lucida\ Console.ttf) format('ttf');
+  src: url(../src/assets/fonts/LucidaConsole.ttf) format('ttf');
 }
 
 :root {
