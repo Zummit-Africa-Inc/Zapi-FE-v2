@@ -7,6 +7,8 @@ import { createStyles, makeStyles } from "@mui/styles";
 import { useAppSelector, useHttpRequest } from "../hooks";
 import { ApiProps } from "../interfaces";
 
+const core_url = "VITE_CORE_URL";
+
 const Hub = () => {
   const classes = useStyles();
   const { apis } = useAppSelector((store) => store.apis);
@@ -27,12 +29,12 @@ const Hub = () => {
   const getApisByCategory = async () => {
     const headers = { "Content-Type": "application/json" };
     try {
-      const response = await fetch(
-        `https://development.core.zapi.ai/api/v1/categories/${selectedCategoryId}/apis`,
-        {
-          method: "get",
-          headers,
-        }
+      const response = await sendRequest(
+        `/categories/${selectedCategoryId}/apis`,
+        "get",
+        core_url,
+        undefined,
+        headers
       );
       const data = await response.json();
       setAllApis(data);
