@@ -1,6 +1,8 @@
 import facebook from './facebook.svg'
 import figma from './figma.svg'
 import google from './google.svg'
+import blogPost1 from './blog-post1.svg'
+import blogPost2 from './blog-post2.svg'
 import heroBig from './hero-desktop.svg'
 import heroMedium from './hero-tablet.svg'
 import heroSmall from './hero-mobile.svg'
@@ -18,6 +20,6 @@ import secure from './secure.svg'
 import stacks from './stacks.svg'
 import zoom from './zoom.svg'
 import marketIllustration from './marketIllustration.svg'
+import blogIllustration from './blog-illustration.svg'
 
-export { facebook, figma, google, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, 
-    zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration }
+export { facebook, figma, google, blogPost1, blogPost2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration }
