@@ -1,7 +1,6 @@
 import { SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, useReducer } from "react";
 
-
 export const useFormInputs = (initialState: any) => {
     const reducer = (state: typeof initialState, payload: { type: string, name: string, value: string | boolean}) => {
         switch(payload.type) {

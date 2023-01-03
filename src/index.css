@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap');
 @font-face {
   font-family: 'Lucida Console';
-  src: url(../src/assets/fonts/Lucida\ Console.ttf) format('ttf');
+  src: url(../src/assets/fonts/LucidaConsole.ttf) format('ttf');
 }
 
 :root {
@@ -17,6 +18,7 @@
   --black: #121212;
   --body-font: 'Lato', sans-serif;
   --code-font: 'Lucida Console', sans-serif;
+  --summary-font: 'Spline Sans', sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -49,10 +51,6 @@ a {
 
 input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
-}
-
-button {
-  font-family: var(--body-font);
 }
 
 ::-webkit-scrollbar {

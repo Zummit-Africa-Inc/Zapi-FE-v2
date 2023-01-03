@@ -16,7 +16,7 @@ const LINKS = [
     { name: 'Documentation', to: '/documentation' },
 ]
 
-const HamburgerMenu:React.FC = () => {
+const HamburgerMenu = () => {
     const { setActiveMenu, handleClicked, currentMode, setMode, activeMenu } = useAppContext()
     const { isLoggedIn } = useAppSelector(store => store.auth)
     const classes = useStyles()
@@ -35,13 +35,13 @@ const HamburgerMenu:React.FC = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Log In' to='/login' background='transparent' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
-                <Button label='Sign Up' to='/signup' background='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
+                <Button label='Log In' variant='text' to='/login' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%', background: 'transparent' }} />
+                <Button label='Sign Up' variant='primary' to='/signup' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%', background: 'secondary' }} />
             </Stack>
         ):(
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Button label='Dashboard' background='white' size='small' to='/developer/dashboard' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
-                <Button label='Logout' background='secondary' size='small' onClick={() => {setActiveMenu(false); handleClicked('logout')}} style={{width: '100%'}} />
+                <Button label='Dashboard' variant='primary' size='small' to='/developer/dashboard' onClick={() => setActiveMenu(false)} style={{width: '100%', background: 'white'}} />
+                <Button label='Logout' variant='primary' size='small' onClick={() => {setActiveMenu(false); handleClicked('logout')}} style={{width: '100%', background: 'secondary'}} />
             </Stack>
         )}
         <Stack width='100%' direction='row' justifyContent='end'>
