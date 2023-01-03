@@ -80,7 +80,6 @@ export default Blog;
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    
     height: "834px",
     width: "100%",
     display: "flex",
@@ -134,7 +133,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "22px",
     color: "#5A5F65",
  },
-viewAllBtn: {
+ viewAllBtn: {
     display: "flex",
     marginLeft: "180px",
     flexDirection: "row",
@@ -158,7 +157,7 @@ viewAllBtn: {
         alignItems: "center",
         cursor: "pointer",
         }
-},
+ },
 
  linkTag: {
     cursor: "pointer", 
@@ -169,7 +168,7 @@ viewAllBtn: {
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-  },
+ },
   
   heroImage: {
     width: "432.64px",

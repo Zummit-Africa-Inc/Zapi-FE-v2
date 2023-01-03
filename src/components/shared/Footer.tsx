@@ -111,6 +111,7 @@ const Footer: React.FC = () => {
           </div>
         ))}
       </Stack>
+      {/* Divider */}
       <div className={classes.divider} />
 
       <Stack
