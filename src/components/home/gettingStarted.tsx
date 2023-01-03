@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom'
 import "react-multi-carousel/lib/styles.css";
 
 
-
 const GettingStarted: React.FC = () => {
   const classes = useStyles();
   return (
