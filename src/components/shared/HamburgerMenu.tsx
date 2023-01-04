@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react'
 import { FiX } from 'react-icons/fi'
 import { makeStyles } from '@mui/styles'
-import { Box, Stack, Theme } from '@mui/material'
+import { Box, Stack, Theme, Typography } from '@mui/material'
 import { Link, NavLink } from 'react-router-dom'
 
 import { useAppContext } from '../../contexts/AppProvider'
@@ -35,7 +35,7 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Link to="/login" style={{width: "100%",color: "#FFF",padding: "8px 12px 8px 16px"}}>Login</Link>
+                <Link to="/login" className={classes.link}>Login</Link>
                 <Button label='Sign Up' to='/signup' variant='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(
@@ -44,13 +44,14 @@ const HamburgerMenu = () => {
                 <Button label='Logout' variant='secondary' size='small' onClick={() => {setActiveMenu(false); handleClicked('logout')}} style={{width: '100%'}} />
             </Stack>
         )}
-        <Stack width='100%' direction='row' justifyContent='end'>
-            <Box className={classes.modeToggle}>
-                <Box style={{background: currentMode === 'light' ? '#E9EBED':''}}>
-                    <Sun fill={currentMode !== 'dark' ? '#000' : '#E9EBED'} onClick={() => setMode('light')} />
+        <Stack width='100%' direction='row' justifyContent='space-between'>
+            <Typography sx={{color: '#FFF'}}>Theme</Typography>
+            <Box className={classes.modeToggle} style={{background: currentMode === 'light' ? '#FFF' : '#000'}}>
+                <Box className={classes.iconBase} style={{background: currentMode === 'light' ? '#E9EBED': ''}}>
+                    <Sun fill={currentMode === 'light' ? '#3E4245' : ''} onClick={() => setMode('light')} />
                 </Box>
-                <Box style={{background: currentMode === 'dark' ? '#E9EBED':''}}>
-                    <Moon fill={currentMode !== 'light' ? '#000' : '#E9EBED'} onClick={() => setMode('dark')} />
+                <Box className={classes.iconBase} style={{background: currentMode === 'dark' ? '#E9EBED': ''}}>
+                    <Moon fill={currentMode === 'dark' ? '#3E4245' : ''} onClick={() => setMode('dark')} />
                 </Box>
             </Box>
         </Stack>
@@ -92,27 +93,30 @@ const useStyles = makeStyles((theme: Theme) => ({
           color: theme.palette.grey[300],
         }
     },
+    link: {
+        width: "100%",
+        color: theme.palette.secondary.main,
+        padding: "8px 12px 8px 16px",
+        border: `1px solid ${theme.palette.secondary.main}`,
+        borderRadius: '6px',
+        textAlign: 'center',
+    },
     modeToggle: {
-        width: '144px',
-        height: '48px',
         display: 'flex',
         alignItems: 'center',
-        gap: '',
-        border: `1px solid ${theme.palette.background.paper}`,
-        borderRadius: '6px',
-        padding: '8px 16px',
-        '& .MuiBox-root': {
-            width: '56px',
-            height: '32px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '3px',
-        }
+        gap: '10px',
+        borderRadius: '50px',
+        padding: '4px',
+    },
+    iconBase: {
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        padding: '4px',
     },
     fullWidth: {
         width: '100%',
-    }
+    },
 }))
 
 export default HamburgerMenu
