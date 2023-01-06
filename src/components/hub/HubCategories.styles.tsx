@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   catTypoContainer: {
-    width: "60%",
+    width: "65%",
     marginTop: "2rem",
     [theme.breakpoints.down("tablet")]: {
       width: "80%!important",
