@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Stack, Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-
 import { ApiProps } from "../interfaces";
-import { Footer, Navbar } from "../components";
+import { Footer, Loader, Navbar } from "../components";
 import HubApis from "../components/hub/HubApis";
 import { useAppSelector, useHttpRequest } from "../hooks";
 import HubCategories from "../components/hub/HubCategories";
@@ -29,23 +28,23 @@ const Hub = () => {
 
   const getApisByCategory = async () => {
     const headers = { "Content-Type": "application/json" };
+    const payload = {};
     try {
-      const response = await sendRequest(
+      const data = await sendRequest(
         `/categories/${selectedCategoryId}/apis`,
         "get",
         core_url,
-        undefined,
+        payload,
         headers
       );
-      const data = await response.json();
       setAllApis(data);
     } catch (error) {}
   };
-
   useEffect(() => {
     if (selectedCategoryId) getApisByCategory();
   }, [selectedCategoryId]);
 
+  if (loading) return <Loader />;
   return (
     <Stack>
       <Navbar />
