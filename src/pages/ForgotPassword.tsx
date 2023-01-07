@@ -1,10 +1,11 @@
-import { makeStyles } from "@mui/styles";
 import React, { FormEvent } from "react";
+import { toast } from "react-toastify";
+import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
+import { Box, Stack, Theme, Typography } from "@mui/material";
+
 import { AuthLayout, Button, InputField, Paper } from "../components";
 import { useFormInputs, useHttpRequest } from "../hooks";
-import { toast } from "react-toastify";
-import { Stack, Theme } from "@mui/material";
 
 const initialState = { email: "" };
 
@@ -37,7 +38,7 @@ const ForgotPassword = () => {
       }, 5000);
     } catch (error: any) {
       if (error.request.status === 400) {
-        return toast.error(error.response.data.message);
+        return toast.error(error?.response.data.message);
       } else {
         return toast.error(error.message);
       }
@@ -47,13 +48,13 @@ const ForgotPassword = () => {
   return (
     <AuthLayout>
       <Paper className={classes.paper}>
-        <Stack spacing="40px">
-          <h5 className={classes.heading}>Forgot Password</h5>
-          <p className={classes.subHeading}>
+        <Box>
+          <Typography variant="h5">Forgot Password</Typography>
+          <Typography>
             An OTP code will be sent to your mail. Fill in mail address and
             proceed to get the code.
-          </p>
-        </Stack>
+          </Typography>
+        </Box>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Stack padding="32px 0">
             <InputField
@@ -62,6 +63,7 @@ const ForgotPassword = () => {
               name="email"
               {...bind}
               placeholder="Enter mail"
+              required
             />
           </Stack>
           <Stack>
@@ -82,21 +84,28 @@ export default ForgotPassword;
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
+    width: "687px",
+    maxWidth: "90%",
     background: "#FFFFFF",
-    padding: "64px 64px",
+    padding: "64px",
+    [theme.breakpoints.down("laptop")]: {      
+      margin: "0 0 24px 0",
+    },
     [theme.breakpoints.down("mobile")]: {
       padding: "16px 16px",
     },
-  },
-  heading: {
-    fontSize: "23px",
-    fontWeight: 700,
-    letterSpacing: "-0.02em",
-  },
-  subHeading: {
-    fontSize: "20px",
-    fontWeight: 400,
-    color: "#3E4245",
+    "& h5": {
+      fontSize: "23px",
+      fontWeight: 700,
+      color: "#060607",
+      lineHeight: "28px",
+      letterSpacing: "-0.02em",
+      marginBottom: "40px",
+      [theme.breakpoints.down("laptop")]: {
+        fontSize: "19px",
+        lineHeight: "23px",
+      },
+    },
   },
   form: {},
 }));

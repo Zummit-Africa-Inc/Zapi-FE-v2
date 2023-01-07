@@ -47,7 +47,7 @@ export const getApis = createAsyncThunk("apis/getApis", async (_, thunkAPI) => {
   }
 });
 
-const apiSlice = createSlice({
+const api = createSlice({
   name: "apis",
   initialState,
   reducers: {
@@ -91,5 +91,5 @@ const apiSlice = createSlice({
   },
 });
 
-export const { addApi, removeApi, clearError } = apiSlice.actions;
-export default apiSlice.reducer;
+export const { addApi, removeApi, clearError } = api.actions;
+export default api.reducer;

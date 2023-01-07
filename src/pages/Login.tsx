@@ -1,17 +1,18 @@
-import { Stack, Theme, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React, { FormEvent, useEffect } from "react";
-import { AuthLayout, Button, InputField, Paper } from "../components";
-import { LooperGroup, shine } from "../assets/svg";
-import { GithubIcon, GoogleIcon } from "../assets/icons";
-import { useAppDispatch, useFormInputs, useHttpRequest } from "../hooks";
-import { useAppContext } from "../contexts/AppProvider";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { EMAIL_REGEX, PASSWORD_REGEX } from "../utils";
-import { login } from "../store/slices/auth";
-import Cookies from "universal-cookie";
+import { Stack, Theme, Typography } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
+import { makeStyles } from "@mui/styles";
+import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
+
+import { useAppDispatch, useFormInputs, useHttpRequest } from "../hooks";
+import { AuthLayout, Button, InputField, Paper } from "../components";
+import { GithubIcon, GoogleIcon } from "../assets/icons";
+import { useAppContext } from "../contexts/AppProvider";
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../utils"; 
+import { LooperGroup, shine } from "../assets/svg";
+import { login } from "../store/slices/auth";
 
 const initialState = { email: "", password: "" };
 const url = "VITE_IDENTITY_URL";
@@ -33,9 +34,9 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || !EMAIL_REGEX.test(email))
-      console.log("Invalid email address");
+      return toast.error("Invalid email address");
     if (!password || !PASSWORD_REGEX.test(password))
-      console.error("Invalid password");
+      return toast.error("Invalid password");
     const payload = {
       email,
       password,
@@ -66,6 +67,7 @@ const Login: React.FC = () => {
       cookies.set("profileId", profileId);
       cookies.set("userId", userId);
       cookies.set("secretKey", secretKey);
+      navigate("/developer/dashboard")
     } catch (error) {}
   };
 
@@ -175,15 +177,16 @@ const Login: React.FC = () => {
     <AuthLayout>
       <Paper className={classes.paper}>
         <Stack className={classes.signIn}>
-          <h5>Sign In</h5>
+          <Typography variant="h5">Sign In</Typography>
           <form onSubmit={handleSubmit}>
-            <Stack spacing="20px">
+            <Stack spacing="24px">
               <InputField
                 label="Email"
                 type="text"
                 name="email"
                 {...bind}
                 placeholder="Email"
+                required
               />
               <InputField
                 label="Password"
@@ -191,6 +194,7 @@ const Login: React.FC = () => {
                 name="password"
                 {...bind}
                 placeholder="Password"
+                required
               />
             </Stack>
             <Stack alignItems="flex-end">
@@ -242,15 +246,17 @@ export default Login;
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
-    width: "100%",
+    width: "680px",
+    maxWidth: "90%",
     margin: "0 auto",
     background: "#FFFFFF",
-    padding: "25px 64px",
+    padding: "64px",
     [theme.breakpoints.down("tablet")]: {
-      padding: "25px 64px",
+      padding: "64px",
     },
     [theme.breakpoints.down("mobile")]: {
-      padding: "25px 16px",
+      padding: "16px",
+      margin: "0 0 24px 0",
     },
   },
   signIn: {
@@ -258,8 +264,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "23px",
       fontWeight: 700,
       color: "#060607",
+      lineHeight: "28px",
       letterSpacing: "-0.02em",
-      marginBottom: "20px",
+      marginBottom: "40px",
+      [theme.breakpoints.down("laptop")]: {
+        fontSize: "19px",
+        lineHeight: "23px",
+      },
     },
   },
   Or: {

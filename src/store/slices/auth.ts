@@ -43,7 +43,7 @@ const auth = createSlice({
             state.isLoggedIn = true
             localStorage.setItem('zapi-user', JSON.stringify(action.payload))
         },
-        logout: (state, action) => {
+        logout: (state) => {
             state.user = null
             state.isLoggedIn = false
             localStorage.removeItem('zapi-user')

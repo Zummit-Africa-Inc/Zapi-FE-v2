@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie'
 
 const AuthRoutes:React.FC = () => {
     const cookies = new Cookies()
-    let accessToken = cookies.get('access-token')
+    let accessToken = cookies.get('accessToken')
     
   return (
     accessToken ? <Outlet /> : <Navigate to='/' />

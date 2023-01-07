@@ -21,20 +21,18 @@ const AuthNavbar = () => {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
-    // height: "88px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "20px 3rem",
-    top: 0,
-    left: 0,
+    padding: "31px 108px",
+    margin: "0 0 64px 0",
     zIndex: "10 !important",
     [theme.breakpoints.down("laptop")]: {
-      padding: "24px 32px",
+      padding: "31px 32px",
     },
     [theme.breakpoints.down("tablet")]: {
-      padding: "24px 16px",
+      padding: "31px 16px",
     },
   },
   logo: {
