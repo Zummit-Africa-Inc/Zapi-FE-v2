@@ -27,7 +27,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   catTypoContainer: {
-    width: "50%",
+    width: "60%",
+    marginTop: "2rem",
     [theme.breakpoints.down("tablet")]: {
       width: "80%!important",
     },
@@ -36,28 +37,30 @@ export const useStyles = makeStyles((theme: Theme) => ({
   titleTypography: {
     textAlign: "center",
     color: theme.palette.primary.contrastText,
+    fontWeight: "700!important",
 
     [theme.breakpoints.down("tablet")]: {
       fontSize: "30px!important",
       padding: "0px",
     },
     [theme.breakpoints.down("mobile")]: {
-      fontSize: "16px",
+      fontSize: "18px",
       padding: "0px",
     },
   },
 
   subtitleTypography: {
     textAlign: "center",
+    marginTop: "1rem!important",
     color: theme.palette.primary.contrastText,
 
     [theme.breakpoints.down("tablet")]: {
       textAlign: "center",
-      fontSize: "18px!important",
+      fontSize: "16px!important",
       padding: "0px",
     },
     [theme.breakpoints.down("mobile")]: {
-      fontSize: "14px",
+      fontSize: "16px",
       padding: "0px",
     },
   },

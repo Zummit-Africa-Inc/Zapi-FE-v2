@@ -55,18 +55,18 @@ const HubCategories = ({
             onClick={() => setSelectedCategoryId!(category.id)}
             background={handleBg(category.id)}
             color={handleColor(category.id)}
-            size="large"
+            size="medium"
           />
         ))}
       </Box>
       <Box className={classes.catTypoContainer}>
         <CustomTypography
-          variant="h3"
+          variant="h2"
           className={classes.titleTypography}
           text="Discover and connect to hundreds of APIs from our Z-API Hub"
         />
         <CustomTypography
-          variant="h5"
+          variant="h4"
           className={classes.subtitleTypography}
           text="Select from the categories available, subscribe to an API and enjoy
           the services."
