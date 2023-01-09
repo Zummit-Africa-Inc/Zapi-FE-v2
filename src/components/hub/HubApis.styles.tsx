@@ -75,7 +75,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   notFoundContainer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     width: "90%",
 
     [theme.breakpoints.down("mobile")]: {
