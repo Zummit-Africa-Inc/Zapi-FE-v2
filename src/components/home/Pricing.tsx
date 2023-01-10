@@ -44,6 +44,7 @@ const Pricing: React.FC = () => {
                 </Stack>
               </Box>
             </Box>
+
             <Box className={classes.column}
               style={{
                 background: disabled ? "#E9EBED" : "#CFDEFA",
