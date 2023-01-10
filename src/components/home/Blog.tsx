@@ -145,9 +145,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     [theme.breakpoints.down("mobile")]: {
       textAlign: "center",
-    },
-    [theme.breakpoints.down("tablet")]: {
-      textAlign: "center",
-    },
+    }
   },
 }));
