@@ -1,6 +1,6 @@
-import { Stack, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React, { ChangeEvent } from "react";
+import { makeStyles } from "@mui/styles";
+import { Stack, Theme, Typography } from "@mui/material";
 
 interface InputProps {
   type: string;
@@ -11,9 +11,10 @@ interface InputProps {
   className?: string;
   label?: string;
   error?: string;
+  required?: boolean;
 }
 
-const InputField: React.FC<InputProps> = ({
+const InputField = ({
   type,
   name,
   value,
@@ -22,11 +23,12 @@ const InputField: React.FC<InputProps> = ({
   className,
   label,
   error,
-}) => {
+  required,
+}: InputProps) => {
   const classes = useStyles();
   return (
     <Stack spacing="7px">
-      <label className={classes.label}>{label}</label>
+      <label className={classes.label}>{label}{required && <span style={{color:"#E01507"}}>*</span>}</label>
       <input
         type={type}
         name={name}
@@ -34,6 +36,7 @@ const InputField: React.FC<InputProps> = ({
         onChange={onChange}
         placeholder={placeholder}
         className={`${classes.root} ${className}`}
+        required={required}
       />
       <Typography>{error}</Typography>
     </Stack>
@@ -42,7 +45,7 @@ const InputField: React.FC<InputProps> = ({
 
 export default InputField;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: "52px",
     background: "#FFFFFF",
@@ -63,5 +66,10 @@ const useStyles = makeStyles({
     fontSize: "18px",
     fontWeight: 400,
     color: "#060607",
+    lineHeight: "22px",
+    [theme.breakpoints.down("laptop")]: {
+      fontSize: "16px",
+      lineHeight: "24px",
+    }
   },
-});
+}));

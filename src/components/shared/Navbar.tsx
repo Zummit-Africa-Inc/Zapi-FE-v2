@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/styles";
-import { Link, NavLink } from "react-router-dom";
 import { Box, Stack, Theme } from "@mui/material";
+import { Link, NavLink } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import Cookies from "universal-cookie";
 
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import { useAppContext } from "../../contexts/AppProvider";
 import { Hamburger, Moon, Sun } from "../../assets/icons";
-import { useAppSelector } from "../../hooks";
+import { logout } from "../../store/slices/auth";
 import { zapi } from "../../assets/svg";
 import { Button } from "../";
 
@@ -27,12 +29,23 @@ const Navbar = () => {
   } = useAppContext();
   const { isLoggedIn } = useAppSelector((store) => store.auth);
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const cookies = new Cookies();
   const classes = useStyles();
 
   const handleScroll = () => {
     const offset = window.scrollY;
     offset > 700 ? setScrolled(true) : setScrolled(false);
   };
+
+  const handleLogout = () => {
+    cookies.remove("refreshToken");
+    cookies.remove("accessToken");
+    cookies.remove("secretKey");
+    cookies.remove("profileId");
+    cookies.remove("userId");
+    dispatch(logout())
+  }
 
   useEffect(() => {
     const handleScreenResize = () => setScreenSize(window.innerWidth);
@@ -90,7 +103,7 @@ const Navbar = () => {
           <Stack direction="row" alignItems="center" spacing="24px">
             <Button
               label="Dashboard"
-              variant="text"
+              variant="outline"
               size="small"
               to="/developer/dashboard"
             />
@@ -98,7 +111,7 @@ const Navbar = () => {
               label="Logout"
               variant="secondary"
               size="small"
-              onClick={() => handleClicked("logout")}
+              onClick={() => handleLogout()}
             />
             {currentMode === "light" ? (
               <Moon onClick={() => setMode("dark")} />
