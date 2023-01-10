@@ -24,11 +24,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       minWidth: "16em",
       maxHeight: "16em",
     },
-    [theme.breakpoints.down("tablet")]: {
-      width: "19em",
-      minWidth: "16em",
-      maxHeight: "16em",
-    },
+
     [theme.breakpoints.down("mobile")]: {
       width: "100%",
       minWidth: "320px",
