@@ -76,7 +76,7 @@ const Pricing: React.FC = () => {
                       color: "#5A5F65",
                       alignSelf: "center",
                     }}>
-                    /month
+                    &nbsp; /month
                   </Typography>
                 </Stack>
               </Box>
@@ -113,7 +113,7 @@ const Pricing: React.FC = () => {
                     color: "#5A5F65",
                     alignSelf: "center",
                   }}>
-                  /month
+                  &nbsp; /month
                 </Typography>
               </Stack>
             </Box>
@@ -149,7 +149,7 @@ const Pricing: React.FC = () => {
                     color: "#5A5F65",
                     alignSelf: "center",
                   }}>
-                  /month
+                  &nbsp; /month
                 </Typography>
               </Stack>
             </Box>
@@ -185,7 +185,7 @@ const Pricing: React.FC = () => {
                     color: "#5A5F65",
                     alignSelf: "center",
                   }}>
-                  /month
+                  &nbsp; /month
                 </Typography>
               </Stack>
             </Box>

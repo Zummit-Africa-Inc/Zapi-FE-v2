@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { linkedinIcon, twitterIcon, youtubeIcon} from "../../assets/svg";
+import { footerIllustration } from "../../assets/svg";
 import { FOOTERLINKS } from "./FOOTERLINKS";
 
 const Footer: React.FC = () => {
@@ -70,11 +71,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     background: "#081F4A",
     padding: "64px 109px",
+    backgroundImage: `url(${footerIllustration})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPositionX: "right",
     [theme.breakpoints.down("tablet")]: {
       padding: "64px 32px",
     },
     [theme.breakpoints.down("mobile")]: {
       padding: "64px 16px",
+      backgroundPositionX: "none",
+      backgroundPositionY: "top",
     },
   },
   container: {
