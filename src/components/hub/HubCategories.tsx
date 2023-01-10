@@ -61,12 +61,12 @@ const HubCategories = ({
       </Box>
       <Box className={classes.catTypoContainer}>
         <CustomTypography
-          variant="h2"
+          variant="h3"
           className={classes.titleTypography}
           text="Discover and connect to hundreds of APIs from our Z-API Hub"
         />
         <CustomTypography
-          variant="h4"
+          variant="h6"
           className={classes.subtitleTypography}
           text="Select from the categories available, subscribe to an API and enjoy
           the services."

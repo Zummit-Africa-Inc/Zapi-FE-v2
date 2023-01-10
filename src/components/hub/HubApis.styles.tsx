@@ -62,7 +62,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   notFoundSubtypography: {
-    color: theme.palette.primary.contrastText,
+    color: "#3E4245",
 
     [theme.breakpoints.down("tablet")]: {
       fontSize: "16px!important",
@@ -75,14 +75,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
   notFoundContainer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    width: "80%",
+    justifyContent: "space-around",
+    width: "90%",
 
     [theme.breakpoints.down("mobile")]: {
       width: "100%",
       flexDirection: "column",
       alignItems: "center",
       marginTop: "3rem",
+    },
+  },
+  notFoundStack: {
+    width: "40%",
+    [theme.breakpoints.down("mobile")]: {
+      width: "100%",
     },
   },
   homeButton: {

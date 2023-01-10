@@ -14,7 +14,9 @@ const ApiNotFound = () => {
 
   return (
     <Box className={classes.notFoundContainer}>
-      <Stack sx={{ alignItems: "left", gap: "2em" }}>
+      <Stack
+        className={classes.notFoundStack}
+        sx={{ alignItems: "left", gap: "1em"}}>
         <Typography
           className={classes.notFoundTypography}
           variant="h4"
@@ -24,8 +26,8 @@ const ApiNotFound = () => {
         </Typography>
         <Typography
           className={classes.notFoundSubtypography}
-          variant="h5"
-          component="h5">
+          variant="h6"
+          component="h6">
           Navigate through other categories to discover an API or return to
           homepage.
         </Typography>
