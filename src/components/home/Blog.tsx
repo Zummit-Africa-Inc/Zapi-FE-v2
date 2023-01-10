@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { FiChevronRight} from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { Box, Card, CardContent, CardMedia, Stack, Theme, Typography } from "@mui/material";
 
 import { useAppContext } from "../../contexts/AppProvider";
@@ -44,7 +44,7 @@ const Blog: React.FC = () => {
           </Link>
         ))}
         <Link to="/" className={classes.link} style={{borderColor: currentMode === "dark" ? "#FFEA00" : "#081F4A",color: currentMode === "dark" ? "#FFEA00" : "#081F4A"}}>
-          View All<FiChevronRight />
+          View all Zapi Blog Posts<FiArrowRight />
         </Link>
       </Box>
       <Box className={classes.container2}>
@@ -142,5 +142,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "18px",
     lineHeight: "22px",
     cursor: "pointer",
+    [theme.breakpoints.down("mobile")]: {
+      textAlign: "center",
+    },
+    [theme.breakpoints.down("tablet")]: {
+      textAlign: "center",
+    },
   },
 }));
