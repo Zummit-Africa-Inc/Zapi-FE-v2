@@ -3,6 +3,8 @@ import figma from './figma.svg'
 import google from './google.svg'
 import blogPost1 from './blog-post1.svg'
 import blogPost2 from './blog-post2.svg'
+import pricingBullet1 from './pricing-bullet1.svg'
+import pricingBullet2 from './pricing-bullet2.svg'
 import heroBig from './hero-desktop.svg'
 import heroMedium from './hero-tablet.svg'
 import heroSmall from './hero-mobile.svg'
@@ -33,5 +35,5 @@ import twitterIcon from './twitter.svg'
 import youtubeIcon from './youtube.svg'
 import linkedinIcon from './linkedin.svg'
 
-export { facebook, figma, google, blogPost1, blogPost2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile }
+export { facebook, figma, google, blogPost1, blogPost2, pricingBullet1, pricingBullet2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile }
 

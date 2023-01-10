@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Typography, Stack, Theme, Box } from "@mui/material";
-import { MdCheckCircle} from "react-icons/md";
+import {pricingBullet1, pricingBullet2 } from "../../assets/svg";
 
 
 const Pricing: React.FC = () => {
@@ -11,14 +11,14 @@ const Pricing: React.FC = () => {
   return (
     <Box>
       <Typography className={classes.pricing}>
-        Flexible pricing to get you started.
+        <h1>Flexible plans to get you started.</h1>
       </Typography>
       <Stack className={classes.wrapper}>
           <Box className={classes.columns}>
             <Box className={classes.column}>
               <Box className={classes.content}>
                 <Box style={{display: "flex",alignItems: "center",marginInlineEnd: "auto",gap: "1rem"}}>
-                  <MdCheckCircle style={{ color: "#081F4A" }} />
+                  <img  className={classes.bullets} src={pricingBullet1} alt="" width="32px" height="32px" />
                   <Stack direction="column" sx={{ textAlign: "start", gap: "0.5rem" }}>
                     <Typography variant="h6" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
                       Free
@@ -52,7 +52,7 @@ const Pricing: React.FC = () => {
               }}>
               <Box className={classes.content}>
                 <Box style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                  <MdCheckCircle style={{ color: "#5A5F65" }} />
+                  <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px"/>
                   <Stack direction="column"
                     sx={{ textAlign: "start", gap: "0.5rem" }}>
                     <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
@@ -65,7 +65,7 @@ const Pricing: React.FC = () => {
                 </Box>
                 <Stack direction="row" sx={{ textAlign: "start" }}>
                   <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#071B85"}}>
+                   color: "#5A5F65"}}>
                     $10
                   </Typography>
                   <Typography variant="h6"
@@ -74,6 +74,7 @@ const Pricing: React.FC = () => {
                       fontSize: "20px",
                       lineHeight: "26px",
                       color: "#5A5F65",
+                      alignSelf: "center",
                     }}>
                     /month
                   </Typography>
@@ -88,7 +89,7 @@ const Pricing: React.FC = () => {
             }}>
             <Box className={classes.content}>
               <div style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                <MdCheckCircle style={{  color: "#5A5F65" }} />
+                <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
                 <Stack direction="column"
                   sx={{ textAlign: "start", gap: "0.5rem" }}>
                   <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
@@ -101,7 +102,7 @@ const Pricing: React.FC = () => {
               </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
                 <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#071B85"}}>
+                   color:"#5A5F65"}}>
                   $20
                 </Typography>
                 <Typography variant="h6"
@@ -110,6 +111,7 @@ const Pricing: React.FC = () => {
                     fontSize: "20px",
                     lineHeight: "26px",
                     color: "#5A5F65",
+                    alignSelf: "center",
                   }}>
                   /month
                 </Typography>
@@ -123,7 +125,7 @@ const Pricing: React.FC = () => {
             }}>
             <Box className={classes.content}>
               <div style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                <MdCheckCircle style={{ color: "#5A5F65" }} />
+                <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
                 <Stack direction="column"
                   sx={{ textAlign: "start", gap: "0.5rem" }}>
                   <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
@@ -136,7 +138,7 @@ const Pricing: React.FC = () => {
               </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
                 <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#071B85"}}>
+                   color:"#5A5F65"}}>
                   $50
                 </Typography>
                 <Typography variant="h6"
@@ -145,6 +147,7 @@ const Pricing: React.FC = () => {
                     fontSize: "20px",
                     lineHeight: "26px",
                     color: "#5A5F65",
+                    alignSelf: "center",
                   }}>
                   /month
                 </Typography>
@@ -158,7 +161,7 @@ const Pricing: React.FC = () => {
             }}>
             <Box className={classes.content}>
               <div style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                <MdCheckCircle style={{ color: "#5A5F65" }} />
+                <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
                 <Stack direction="column"
                   sx={{ textAlign: "start", gap: "0.5rem" }}>
                   <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
@@ -171,7 +174,7 @@ const Pricing: React.FC = () => {
               </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
                 <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#071B85"}}>
+                   color:"#5A5F65"}}>
                   $100
                 </Typography>
                 <Typography variant="h6"
@@ -180,6 +183,7 @@ const Pricing: React.FC = () => {
                     fontSize: "20px",
                     lineHeight: "26px",
                     color: "#5A5F65",
+                    alignSelf: "center",
                   }}>
                   /month
                 </Typography>
@@ -201,6 +205,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     fontSize: "39px",
     paddingTop: "64px",
+    "& h1": {
+      fontWeight: 700,
+      fontSize: "39px",
+      color: theme.palette.grey[100],
+      [theme.breakpoints.down("tablet")]: {
+        fontSize: "34px",
+      },
+    },
+  },
+  bullets: {
+    marginRight: "62px"
   },
   wrapper: {
     padding: "32px",
