@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     justifyContent: "center",
     padding: "4rem 6.7rem",
+    marginBottom: "67px",
     background: theme.palette.background.default,
     [theme.breakpoints.down("tablet")]: {
       padding: "2.5rem 1rem",
