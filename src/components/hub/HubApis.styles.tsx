@@ -3,14 +3,21 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   hubApiContainer: {
-    display: "flex",
-    justifyContents: "center",
-    alignItems: "center",
-    flexDirection: "column",
+    // display: "flex",
+    // justifyContents: "center",
+    // alignItems: "center",
+    // flexDirection: "column",
     margin: "0px 3em 3em 3em",
+    width: "90%",
+        [theme.breakpoints.down("laptop")]: {
+      width: "60%",
+    },
+    [theme.breakpoints.down("tablet")]: {
+      width: "80%",
+    },
   },
   titleBarContainer: {
-    width: "100%",
+    // width: "100%",
     marginBottom: "3em",
     display: "flex",
     justifyContent: "space-between",
@@ -42,6 +49,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   searchInput: {
     width: "25%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 4,
 
     [theme.breakpoints.down("tablet")]: {
       width: "40%",
@@ -98,20 +107,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   apiContainer: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // width: "90%",
     gap: "2rem",
-    width: "100%",
+    // display: "grid",
+    // gridTemplateColumns: "repeat(3, 1fr)",
+    // gap: "2rem",
+    // width: "100%",
 
-    [theme.breakpoints.down("laptop")]: {
-      gridTemplateColumns: "repeat(3, 1fr)",
-    },
-    [theme.breakpoints.down("tablet")]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      width: "unset",
-      gridTemplateColumns: "repeat(1, 1fr)",
-    },
+    // [theme.breakpoints.down("laptop")]: {
+    //   gridTemplateColumns: "repeat(3, 1fr)",
+    // },
+    // [theme.breakpoints.down("tablet")]: {
+    //   gridTemplateColumns: "repeat(2, 1fr)",
+    // },
+    // [theme.breakpoints.down("mobile")]: {
+    //   width: "unset",
+    //   gridTemplateColumns: "repeat(1, 1fr)",
+    // },
   },
 }));
