@@ -1,36 +1,67 @@
-import React from "react";
-import { Stack } from "@mui/material";
+import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { Stack, Box, Tab, Tabs } from "@mui/material";
+import { makeStyles, styled } from "@mui/styles";
 
 import {
-  AiModels,
-  Brands,
-  Discover,
-  Features,
-  Hero,
-  Market,
   Navbar,
-  Pricing,
-  Blog,
-  GettingStarted,
+  APIMoreInfo,
   Footer
 } from "../components";
 
-const Home = () => {
+
+const CustomTabs = styled(Tabs)({
+  "&.MuiTabs-root": {
+    width: "auto",
+    fontSize: 500,
+  },
+  "& .MuiTabs-indicator": {
+    display: "none",
+  },
+});
+
+const CustomTab = styled(Tab)({
+  "&.MuiTab-root": {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      fontWeight: "normal",
+      fontSize: "14px",
+  },
+  "&.Mui-selected": {
+      backgroundColor: "#f1f1f1",
+  },
+});
+
+
+const APIDesc: React.FC = () => {
+  const classes = useStyles();
+  const [tab, setTab] = useState<number>(0);
+  
+  const handleTabChange = (e: ChangeEvent<unknown>, value: number) => setTab(value)
+
   return (
-    <Stack direction="column">
+    <Stack direction="column" >
       <Navbar />
-      <Hero />
-      <Brands />
-      <AiModels />
-      <Discover />
-      <Features />
-      <Market />
-      <Pricing />
-      <Blog />
-      <GettingStarted />
+
+      <APIMoreInfo />
+
+      <Box>
+          <CustomTabs value={tab} onChange={handleTabChange}>
+              <CustomTab label="Endpoints" />
+              <CustomTab label="Discussions" />
+              <CustomTab label="Reviews" />
+          </CustomTabs>
+          <Box>
+
+          </Box>
+      </Box>
+
       <Footer />
     </Stack>
   );
 };
 
-export default Home;
+const useStyles = makeStyles({
+})
+
+export default APIDesc;
