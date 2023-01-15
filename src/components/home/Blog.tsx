@@ -37,7 +37,9 @@ const Blog: React.FC = () => {
                   {post.title}
                 </Typography>
                 <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                  <Typography color="primary.contrastText">Read More</Typography>
+                  <Typography color="primary.contrastText">
+                    Read More
+                  </Typography>
                   <Typography sx={{color: "#929AA3"}}>{post.date}</Typography>
                 </Stack>
               </CardContent>
@@ -58,6 +60,7 @@ const Blog: React.FC = () => {
 };
 
 export default Blog;
+
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -145,6 +148,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     [theme.breakpoints.down("mobile")]: {
       textAlign: "center",
+      width: "274px",
+      maxWidth: "100%",
     }
-  },
+  },    
 }));

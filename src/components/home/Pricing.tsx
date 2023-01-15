@@ -215,7 +215,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   bullets: {
-    marginRight: "62px"
+    marginRight: "62px",
+    [theme.breakpoints.down("tablet")]: {
+      marginRight: "0px",
+      width: "24px",
+      height: "24px",
+    },
   },
   wrapper: {
     padding: "32px",
@@ -228,9 +233,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "20px",
     borderRadius: "4px",
     boxSizing: "border-box",
-    "@media screen and (max-width: 800px)": {
+    [theme.breakpoints.down("tablet")]: {
       width: "100%",
       margin: "0 3px 30px",
+      fontSize: "23px",
     },
   },
   subColomn: {
@@ -259,6 +265,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxSizing: "border-box",
     "@media screen and (max-width: 800px)": {
       width: "100%",
+      margin: "0 3px 30px",
+      fontSize: "23px",
     },
   },
   columns: {
@@ -273,6 +281,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: "1.5rem",
     textAlign: "center",
     position: "relative",
+    // [theme.breakpoints.down("tablet")]: {
+    //   paddingLeft: "-450px",
+    // },
   },
   discount: {
     borderRadius: "4px",
