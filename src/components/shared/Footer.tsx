@@ -5,7 +5,7 @@ import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { linkedinIcon, twitterIcon, youtubeIcon} from "../../assets/svg";
 import { footerIllustration } from "../../assets/svg";
-import { footerLinks } from "./footerLinks";
+import { footerLinks } from "./FooterLinks";
 
 const Footer: React.FC = () => {
   const classes = useStyles();
