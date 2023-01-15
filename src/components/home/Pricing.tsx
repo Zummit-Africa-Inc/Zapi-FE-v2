@@ -20,17 +20,27 @@ const Pricing: React.FC = () => {
                 <Box style={{display: "flex",alignItems: "center",marginInlineEnd: "auto",gap: "1rem"}}>
                   <img  className={classes.bullets} src={pricingBullet1} alt="" width="32px" height="32px" />
                   <Stack direction="column" sx={{ textAlign: "start", gap: "0.5rem" }}>
-                    <Typography variant="h6" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
+                    <Typography variant="h6" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px",  
+                    "@media screen and (max-width: 800px)": {
+                     paddingRight: "35px",
+                     fontSize: "20px",
+                     fontWeight: "600",
+                    }}}>
                       Free
                     </Typography>
-                    <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px"}}>
+                    <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {
+                    fontSize: "14px",
+                    fontWeight: "400",
+                    }}}>
                       500 Requests
                     </Typography>
                   </Stack>
                 </Box>
                 <Stack direction="row" sx={{ textAlign: "start" }}>
-                  <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#071B85"}}>
+                  <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",            color:"#071B85", "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}}>
                     $0
                   </Typography>
                   <Typography variant="h6"
@@ -55,17 +65,28 @@ const Pricing: React.FC = () => {
                   <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px"/>
                   <Stack direction="column"
                     sx={{ textAlign: "start", gap: "0.5rem" }}>
-                    <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
+                    <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px", 
+                     "@media screen and (max-width: 800px)": {
+                     paddingRight: "35px",
+                     fontSize: "20px",
+                     fontWeight: "600",
+                    },}}>
                       Basic
                     </Typography>
-                    <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px"}}>
+                    <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", 
+                     "@media screen and (max-width: 800px)": {
+                     fontSize: "14px",
+                     fontWeight: "400",
+                     }}}>
                       10,000 requests
                     </Typography>
                   </Stack>
                 </Box>
                 <Stack direction="row" sx={{ textAlign: "start" }}>
-                  <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color: "#5A5F65"}}>
+                  <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px", color: "#5A5F65", "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}}>
                     $10
                   </Typography>
                   <Typography variant="h6"
@@ -75,6 +96,10 @@ const Pricing: React.FC = () => {
                       lineHeight: "26px",
                       color: "#5A5F65",
                       alignSelf: "center",
+                      "@media screen and (max-width: 800px)": {
+                        fontSize: "14px",
+                        fontWeight: "400",
+                      },
                     }}>
                     &nbsp; /month
                   </Typography>
@@ -92,17 +117,27 @@ const Pricing: React.FC = () => {
                 <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
                 <Stack direction="column"
                   sx={{ textAlign: "start", gap: "0.5rem" }}>
-                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
+                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px", "@media screen and (max-width: 800px)": {
+                    paddingRight: "35px",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }, }}>
                     Premium
                   </Typography>
-                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px"}}>
+                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {
+                    fontSize: "14px",
+                    fontWeight: "400",
+                  },}}>
                     20,000 requests
                   </Typography>
                 </Stack>
               </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
                 <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#5A5F65"}}>
+                   color:"#5A5F65", "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  },}}>
                   $20
                 </Typography>
                 <Typography variant="h6"
@@ -111,7 +146,11 @@ const Pricing: React.FC = () => {
                     fontSize: "20px",
                     lineHeight: "26px",
                     color: "#5A5F65",
-                    alignSelf: "center",
+                    alignSelf: "center", 
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
                   }}>
                   &nbsp; /month
                 </Typography>
@@ -128,17 +167,26 @@ const Pricing: React.FC = () => {
                 <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
                 <Stack direction="column"
                   sx={{ textAlign: "start", gap: "0.5rem" }}>
-                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
+                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px",  "@media screen and (max-width: 800px)": {
+                     paddingRight: "35px",
+                     fontSize: "20px",
+                     fontWeight: "600",
+                    }}}>
                     Mega
                   </Typography>
-                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px"}}>
+                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {
+                    fontSize: "14px",
+                    fontWeight: "400",
+                  }}}>
                     100,000 requests
                   </Typography>
                 </Stack>
               </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
-                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#5A5F65"}}>
+                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",                color:"#5A5F65", "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}}>
                   $50
                 </Typography>
                 <Typography variant="h6"
@@ -148,6 +196,10 @@ const Pricing: React.FC = () => {
                     lineHeight: "26px",
                     color: "#5A5F65",
                     alignSelf: "center",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
                   }}>
                   &nbsp; /month
                 </Typography>
@@ -164,17 +216,25 @@ const Pricing: React.FC = () => {
                 <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
                 <Stack direction="column"
                   sx={{ textAlign: "start", gap: "0.5rem" }}>
-                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px"}}>
+                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px",  "@media screen and (max-width: 800px)": {
+                     fontSize: "20px",
+                     fontWeight: "600",
+                    }}}>
                     Entreprise
                   </Typography>
-                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px"}}>
+                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {
+                    fontSize: "14px",
+                    fontWeight: "400",
+                  }}}>
                     500,000 requests
                   </Typography>
                 </Stack>
               </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
-                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#5A5F65"}}>
+                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               color:"#5A5F65", "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}}>
                   $100
                 </Typography>
                 <Typography variant="h6"
@@ -184,6 +244,10 @@ const Pricing: React.FC = () => {
                     lineHeight: "26px",
                     color: "#5A5F65",
                     alignSelf: "center",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
                   }}>
                   &nbsp; /month
                 </Typography>
@@ -249,9 +313,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "20px",
     borderRadius: "4px",
     boxSizing: "border-box",
-    "@media screen and (max-width: 800px)": {
-      width: "100%",
+    [theme.breakpoints.down("tablet")]: {
+     width: "100%"
     },
+
+
+   
+
+
   },
   col: {
     marginLeft: "auto !important",
@@ -281,9 +350,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: "1.5rem",
     textAlign: "center",
     position: "relative",
-    // [theme.breakpoints.down("tablet")]: {
-    //   paddingLeft: "-450px",
-    // },
   },
   discount: {
     borderRadius: "4px",
