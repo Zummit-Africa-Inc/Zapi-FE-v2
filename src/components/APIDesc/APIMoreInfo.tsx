@@ -202,21 +202,21 @@ const APIMoreInfo: React.FC = () => {
 					}}
 				>
 		            <Box
-		            	variant={"div"}
+		            	component="div"
 					>
 						<GroupOutlined />
 		            	<Typography component="h5">270</Typography>
 					</Box>
 					
 		            <Box
-		            	variant={"div"}
+		            	component="div"
 					>
 						<AlarmOutlined />
 		            	<Typography component="h5">0 ms</Typography>
 					</Box>
 					
 		            <Box
-		            	variant={"div"}
+		            	component="div"
 					>
 						<StarBorderOutlined />
 		            	<Typography component="h5">5/10</Typography>
