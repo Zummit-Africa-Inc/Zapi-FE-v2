@@ -6,7 +6,9 @@ import {
   Navbar,
   APIMoreInfo,
   TabPanel,
-  Footer
+  Endpoints,
+  Footer, 
+  Reviews
 } from "../components";
 
 
@@ -53,18 +55,19 @@ const APIDesc: React.FC = () => {
 		  		display: 'flex',
 			    flexDirection: 'column',
 			    marginBottom: "15px",
-			    padding: "0 108px 80px 108px",
+			    padding: "0 108px",
 			    lineHeight: "41px",
 			    width: '100%',
 			    
 			
 			    "@media screen and (max-width: 900px)": {
-					padding: "44px 32px 80px 32px",
+					padding: "44px 32px 0 32px",
 				     
 			    },
 			
 			    "@media screen and (max-width: 428px)": {
-					padding: "20px 16px 80px 16px",fontSize: "14px",
+					padding: "20px 16px 0 16px",
+					fontSize: "14px",
 				},
 			}}
 		  >
@@ -75,9 +78,18 @@ const APIDesc: React.FC = () => {
           
           <Box>
 
-			<TabPanel value={tab} index={0}>
-			    {/* <Endpoints /> */}
-			</TabPanel>
+            <TabPanel value={tab} index={0}>
+                <Endpoints />
+            </TabPanel>
+
+            <TabPanel value={tab} index={1}>
+                <Endpoints />
+            </TabPanel>
+			
+            <TabPanel value={tab} index={2}>
+                <Reviews />
+            </TabPanel>
+			
 			
           </Box>
       </Box>

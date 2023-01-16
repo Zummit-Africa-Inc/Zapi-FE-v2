@@ -26,4 +26,5 @@ export { default as GettingStarted } from "./home/gettingStarted"
 // APIDesc
 export { default as APIMoreInfo } from "./APIDesc/APIMoreInfo";
 export { default as Endpoints } from "./APIDesc/Endpoints";
-
+export { default as Reviews } from "./APIDesc/Reviews";
+export { default as UserReview } from "./APIDesc/UserReview";
