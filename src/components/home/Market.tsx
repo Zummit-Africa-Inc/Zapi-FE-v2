@@ -35,6 +35,10 @@ const Market: React.FC = () => {
           fantastic APIs.
         </p>
         <Button
+          style={{
+            width: "200px",
+            height:" 54px"
+          }}
           type="button"
           label="List Your API"
           variant="secondary"
