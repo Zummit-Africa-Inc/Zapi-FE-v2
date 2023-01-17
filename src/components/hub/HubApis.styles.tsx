@@ -112,7 +112,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     // width: "90%",
-    gap: "2rem",
+    // gap: "1rem",
     // display: "grid",
     // gridTemplateColumns: "repeat(3, 1fr)",
     // gap: "2rem",
