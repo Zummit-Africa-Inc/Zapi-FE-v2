@@ -2,17 +2,26 @@ import React from "react";
 import { styled, makeStyles } from "@mui/styles";
 import { Typography, Theme, Box, Tooltip, Button, Paper, InputBase, IconButton, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Search, ExpandMore } from "@mui/icons-material";
+import Cookies from "universal-cookie";
+import { APIType, EndpointsType } from "../../types";
 
 const CustomAccordion = styled(Accordion)({
 	"&.MuiAccordion-root": {
 	  boxShadow: "unset",
 	  border: "unset",
 	  backgroundColor: "#fff",
-	},
+	}
 });
 
-const Endpoints: React.FC = () => {
+interface Props {
+	endpoints: Array<EndpointsType>;
+	api: APIType
+}
+  
+const Endpoints: React.FC<Props> = ({api, endpoints}) => {
   const classes = useStyles();
+  const cookies = new Cookies();
+  const accessToken = cookies.get("accessToken");
 
   return (
     <Box className={classes.root}>
