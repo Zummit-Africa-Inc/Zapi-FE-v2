@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   catButtonContainer: {
-    width: "100%",
+    width: "90%",
     marginBottom: "1em",
     marginTop: "3em",
     display: "flex",
@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   catTypoContainer: {
-    width: "60%",
+    width: "65%",
     marginTop: "2rem",
     [theme.breakpoints.down("tablet")]: {
       width: "80%!important",
@@ -36,8 +36,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   titleTypography: {
     textAlign: "center",
-    color: theme.palette.primary.contrastText,
-    fontWeight: "700!important",
+    color: "#000000",
+    fontWeight: "600!important",
 
     [theme.breakpoints.down("tablet")]: {
       fontSize: "30px!important",
@@ -52,7 +52,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   subtitleTypography: {
     textAlign: "center",
     marginTop: "1rem!important",
-    color: theme.palette.primary.contrastText,
+    color: "#3E4245",
 
     [theme.breakpoints.down("tablet")]: {
       textAlign: "center",

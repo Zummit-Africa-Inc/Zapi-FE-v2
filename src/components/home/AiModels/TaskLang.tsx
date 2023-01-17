@@ -88,6 +88,9 @@ const TaskLang: React.FC = () => {
           />
           <Button
             to="#"
+            style={{
+              color: '#081F4A'
+            }}
             label="Try it out"
             size="medium"
             variant={currentMode === "dark" ? "tertiary" : "outline"}

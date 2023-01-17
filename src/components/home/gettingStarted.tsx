@@ -4,13 +4,15 @@ import { makeStyles } from "@mui/styles";
 import { Button } from "..";
 import { ButtonArrow } from "../../assets/icons";
 import { NavLink } from 'react-router-dom'
+import { useAppContext } from "../../contexts/AppProvider";
 import "react-multi-carousel/lib/styles.css";
 
 
 const GettingStarted: React.FC = () => {
+  const { currentMode } = useAppContext();
   const classes = useStyles();
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} >
       <Stack pb={4} className={classes.heading}>
         <h1>Get started with ZAPI’s powerful AI API models to scale your business and project </h1>
       </Stack>
@@ -39,7 +41,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     justifyContent: "center",
     padding: "4rem 6.7rem",
-    background: theme.palette.background.default,
+    marginBottom: "67px",
+    background: theme.palette.grey[200],
     [theme.breakpoints.down("tablet")]: {
       padding: "2.5rem 1rem",
     },
