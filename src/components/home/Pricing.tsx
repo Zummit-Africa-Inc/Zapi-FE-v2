@@ -9,7 +9,7 @@ const Pricing: React.FC = () => {
 
   return (
     <Box>
-      <Typography className={classes.pricing}>
+      <Typography component={'span'} variant={'body2'} className={classes.pricing}>
         <h1>Flexible plans to get you started.</h1>
       </Typography>
       <Stack className={classes.wrapper}>
@@ -185,6 +185,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& h1": {
       fontWeight: 700,
       fontSize: "39px",
+      marginTop: "64px",
       color: theme.palette.grey[100],
       [theme.breakpoints.down("tablet")]: {
         fontSize: "34px",
