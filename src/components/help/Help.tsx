@@ -23,7 +23,7 @@ const CustomTab = styled(Tab)({
         justifyContent: "flex-start",
         alignItems: "center",
         gap: ".3rem",
-        paddingLeft: "35px",
+        // paddingLeft: "35px",
         fontSize: "13px",
         textAlign: "left",
         color: '#00000099',
@@ -62,13 +62,13 @@ const Help:React.FC = () => {
 
     return (
         <>
-        <Hero/>
+        {/* <Hero/> */}
 
         <Box sx={{ 
                     display: "flex",
                     flexDirection: "row",
                     gap: "2.5rem",
-                    marginTop: "30px",
+                    // marginTop: "30px",
                     padding: "30px 5rem 5rem 3rem",
                     width: "100%",
                     "@media screen and (max-width: 1024px)": {
@@ -102,35 +102,56 @@ const Help:React.FC = () => {
                         orientation="vertical"
                         onChange={handleTabChange}
                     >
+                        <Typography component="h2" px={2} pt={2}>
+                            Access API
+                        </Typography>
                         <CustomTab 
-                            icon={<Filter1 />}
-                            iconPosition="start"
                             label="Overview" 
                         />
                         
                         <CustomTab 
-                            icon={<Filter2 />}
-                            iconPosition="start"
                             label="Sign-Up" 
                         />
 
                         <CustomTab 
-                            icon={<Filter3 />}
-                            iconPosition="start"
                             label="Subscribe" 
                         />
 
                         <CustomTab 
-                            icon={<Filter4 />}
-                            iconPosition="start"
                             label="Access Token" 
                         />
                         
                         <CustomTab 
-                            icon={<Filter5 />}
-                            iconPosition="start"
                             label="Send Requests" 
                         />
+                            <Typography component="h2" px={2} pt={2}>
+                            Upload API
+                        </Typography>
+                        <CustomTab 
+                            label="Pre-requisite" 
+                        />
+                        
+                        <CustomTab 
+                            label="Updating API" 
+                        />
+
+                        <CustomTab 
+                            label="Endpoints" 
+                        />
+
+                        <CustomTab 
+                            label="Gateway" 
+                        />
+                        
+                        <CustomTab 
+                            label="Analytics"
+                            />
+                        <Typography component="h2" px={2} pt={2}>
+                            Testing
+                        </Typography>
+                        <CustomTab 
+                            label="Tests"
+                            />
                     </Tabs>
 
 
