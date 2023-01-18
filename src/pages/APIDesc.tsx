@@ -37,7 +37,7 @@ const CustomTab = styled(Tab)({
 });
 
 
-const APIDesc: React.FC = () => {
+const APIDesc = () => {
   const classes = useStyles();
   const [tab, setTab] = useState<number>(0);
   
