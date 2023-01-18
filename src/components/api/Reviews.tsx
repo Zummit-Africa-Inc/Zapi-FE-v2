@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
-import { Typography, Theme, Box } from "@mui/material";
-import { ChatRounded } from "@mui/icons-material";
-
-import { UserReview } from "../../components";
+import { Typography, Theme, Box, Stack } from "@mui/material";
+import { ChatRounded, AccountCircle } from "@mui/icons-material";
 
 import { ReviewType } from "../../types";
+
 
 interface Props {
   reviews: Array<ReviewType>
@@ -16,35 +15,38 @@ const Reviews:React.FC<Props> = ({reviews}) => {
 
   return (
     <Box className={classes.root}>
-        <Typography component="h2">Reviews</Typography>
+		{reviews.length !== 0 ? (
+        	<Typography component="h2">Reviews</Typography>
+		):(
+			<></>
+		)}
 
-        <Box className={classes.user_review}>
+		<Stack direction="column" spacing={1}>
 			{reviews.length !== 0 ? (
 				<>
 					{reviews.map((review, index) => (
-						<>
-							<Box
-								component="span"
-							/>
+						<Box className={classes.user_review}>
+							<AccountCircle />
 
 							<Box sx={{ width: "100%" }}>
-								<Typography component="p" sx={{ marginBottom: "8px" }}>User</Typography>
+								<Typography component="p" sx={{ marginBottom: "8px" }}>{"User"}</Typography>
 								<Typography component="p">
 									{ review.review || "s vitae erat diam arcu molestie mattis vestibulum lorem. Nulla dictum id aenean molestie aliquam volutpat enim tortor. Metus pretium magnis diam sit arcu nisl. Eget at a dolor ultricies et sit ut. Hendrerit viverra tincidunt ut ultricies nec enim aenean. Amet senectus pellentesque gravida iaculis urna diam orci. Fringilla sed auctor elementum mus non volutpat nullam. Purus aliquam sit tincidunt sit eu massa mauris nullam."}
 								</Typography>
 							</Box>
-						</>
+						</Box>
 						
 					))}
 				</>
 			):(
-				<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "110px", width: "100%" }}>
+				<Box sx={{ border: "unset", display: "flex", flexDirection: "column", justifyContent: "center", margin: "110px 0", alignItems: "center", width: "100%" }}>
 					<ChatRounded sx={{ fontSize: "32px", color: "#264276", }} />
-					<Typography sx={{fontSize:"18px",color:"#515D99"}}>No reviews on the API yet.</Typography>
+					<Typography sx={{fontSize:"18px",color:"#060607"}}>No reviews on the API yet.</Typography>
 				</Box>
 			)}
 
-      </Box>
+		</Stack>
+
 
     </Box>			
   );
@@ -92,9 +94,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "0 0 21px 25px",
     width: "100%",
     
-    "& span": {
-        backgroundColor: "#d1d1d1",
-        borderRadius: "50%",
+    "& svg": {
+		color: "#a1a1a1",
         width: "48px",
         height: "48px",
     },

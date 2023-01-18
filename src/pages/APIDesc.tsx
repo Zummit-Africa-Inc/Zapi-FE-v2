@@ -46,7 +46,7 @@ const CustomTab = styled(Tab)({
 });
 
 
-const APIDesc: React.FC = () => {
+const APIDesc = () => {
 
   	const {error, loading, sendRequest} = useHttpRequest();
     const [tab, setTab] = useState<number>(0);

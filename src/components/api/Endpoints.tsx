@@ -95,9 +95,10 @@ const Endpoints: React.FC<Props> = ({api, endpoints}) => {
 					padding: "4px 10px",
 					fontSize: "13px",
 					color: "#fff",
+					textTransform: "uppercase"
 				}}
 			>
-				<Typography component="p">Post</Typography>
+				<Typography component="p">POST</Typography>
 			</Box>
 
 			<Box

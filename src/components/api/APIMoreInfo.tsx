@@ -88,7 +88,6 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
         error && toast.error(`${error}`);
     }, [error]);
 
-    let subscribedButtonStyles = isSubscribed ? { backgroundColor: "#F5F5F5", color: "#000000", borderRadius: "5px", fontSize: "13px", minWidth: "130px", height: "2.3rem" } : { backgroundColor: "#264276", border: "1px solid #264276", color: "#FFFFFF", borderRadius: "5px", fontSize: "13px", minWidth: "130px", height: "2.3rem" };
 
 	return (
 		<>
@@ -98,7 +97,8 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 					display: "flex", 
 					justifyContent: "space-between", 
 					marginBottom: "16px",
-					
+					textTransform: "capitalize",
+
 					"@media screen and (max-width: 630px)": {
 						display: "flex", 
 						flexDirection: "column", 
@@ -107,20 +107,20 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 				}}>
 					<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 						<Box>
-							<Typography component="h2">{"Name of API"}</Typography>
+							<Typography component="h2">{api.name || "Name of API"}</Typography>
 							<Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: "16px" }}>
 								<Typography component="p">
 									<>By: {api.createdBy || "Unknown"}</>
 								</Typography>
 								<Typography component="p">|</Typography>
 								<Typography component="p">
-									<>Created On: {"Today"}</>
+									<>Created On: {api.createdOn && new Date(api.createdOn).toDateString() || "Today"}</>
 								</Typography>
 								<Typography component="p">|</Typography>
 								<Tooltip title="Category" placement="right" arrow>
 									<Link to={'/api-hub'} >
 										<Typography component="p">
-											{"Category"}
+											{category?.name || "Category"}
 										</Typography>
 									</Link>
 								</Tooltip>
@@ -173,44 +173,34 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 						</Box>
 						<Box>
 							<Button
-								// sx={{ 
-								// 	display: "flex", 
-								// 	flexDirection: "row", 
-								// 	alignItems: "center", 
-								// 	backgroundColor: "#081F4A", 
-								// 	border: "1px solid #264276", 
-								// 	color: "#FFFFFF", 
-								// 	borderRadius: "5px", 
-								// 	fontSize: "13px", 
-								// 	minWidth: "130px", 
-								// 	height: "2.4rem", 
+								sx={{ 
+									display: "flex", 
+									flexDirection: "row", 
+									alignItems: "center", 
+									backgroundColor: "#081F4A", 
+									border: "1px solid #081F4A", 
+									color: "#FFFFFF", 
+									borderRadius: "5px", 
+									fontSize: "13px", 
+									minWidth: "130px", 
+									height: "2.4rem", 
+						
+									"@media screen and (max-width: 900px)": {
+										fontSize: "11px", 
+										minWidth: "100px", 
+										height: "2.2rem", 
+										
+									}, 
 									
-								// 	"@media screen and (max-width: 900px)": {
-								// 		fontSize: "11px", 
-								// 		minWidth: "100px", 
-								// 		height: "2.2rem", 
+									"@media screen and (max-width: 428px)": {
+										fontSize: "11px", 
+										minWidth: "100px", 
+										height: "2.2rem", 
 										
-												
-								// 		"& svg": {
-								// 			width: "17px"
-								// 		},
 										
-								// 	}, 
-									
-								// 	"@media screen and (max-width: 428px)": {
-								// 		fontSize: "11px", 
-								// 		minWidth: "100px", 
-								// 		height: "2.2rem", 
-										
-												
-								// 		"& svg": {
-								// 			width: "17px"
-								// 		},
-										
-								// 	}
-								// }}
-								variant={isSubscribed ? "contained" : "outlined"}
-								sx={subscribedButtonStyles}
+									}
+								}}
+								variant={"contained"}
 								onClick={accessToken ? handleSubscription : () => handleClicked("login")}
 							>
 								{"Subscribe"}
@@ -227,7 +217,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 						<Box>
 							<Typography component="h3">Website</Typography>
 							<Typography component="p">
-								Website: {"Website not specified"}
+								Website: {api.api_website ? <a href={`${api.api_website}`} target="_blank" rel="noreferrer">{api.api_website}</a> : "Website not specified"}
 							</Typography>
 						</Box>
 						
@@ -299,25 +289,24 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 								component="div"
 							>
 								<AlarmOutlined />
-								<Typography component="h5">0 ms</Typography>
+								<Typography component="h5">{api.latency || 0} ms</Typography>
 							</Box>
 							
 							<Box
 								component="div"
 							>
 								<StarBorderOutlined />
-								<Typography component="h5">5/10</Typography>
+								<Typography component="h5">{api.popularity || 10}/10</Typography>
 							</Box>
 						</Box>
 					</Box>
 
 					<Typography component="h3">Documentation</Typography>
-					<Typography component="p">{"ReadMe file not attached"}</Typography>
+					<Typography component="p">{api.read_me ? api.read_me : "ReadMe file not attached"}</Typography>
 					
 					<Typography component="h3">About API</Typography>
 					<Typography component="p">
-						Lorem ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in nam bibendum. Orci velit senectus urna mauris augue et habitant sem. Sit facilisis donec in nisl pulvinar faucibus integer pharetra a. In blandit morbi varius malesuada. Massa urna dignissim varius erat nunc lacus facilisis pharetra. Amet justo mauris velit rutrum sed risus lectus. Turpis vitae erat diam arcu molestie mattis vestibulum lorem. Nulla dictum id aenean molestie aliquam volutpat enim tortor.
-						Metus pretium magnis diam sit arcu nisl. Eget at a dolor ultricies et sit ut. Hendrerit viverra tincidunt ut ultricies nec enim aenean. Amet senectus pellentesque gravida iaculis urna diam orci. Fringilla sed auctor elementum mus non volutpat nullam. Purus aliquam sit tincidunt sit eu massa mauris nullam.
+						{api.description || "Lorem ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in nam bibendum. Orci velit senectus urna mauris augue et habitant sem. Sit facilisis donec in nisl pulvinar faucibus integer pharetra a. In blandit morbi varius malesuada. Massa urna dignissim varius erat nunc lacus facilisis pharetra. Amet justo mauris velit rutrum sed risus lectus. Turpis vitae erat diam arcu molestie mattis vestibulum lorem. Nulla dictum id aenean molestie aliquam volutpat enim tortor. Metus pretium magnis diam sit arcu nisl. Eget at a dolor ultricies et sit ut. Hendrerit viverra tincidunt ut ultricies nec enim aenean. Amet senectus pellentesque gravida iaculis urna diam orci. Fringilla sed auctor elementum mus non volutpat nullam. Purus aliquam sit tincidunt sit eu massa mauris nullam."}
 					</Typography>
 					
 				</Box>

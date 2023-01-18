@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import { headers } from "./constant";
 import { EndpointsType } from "../../types";
-import { mockEndpoint } from "../../components/mockdata";
+import { mockEndpoint } from "../../components/api/mockdata";
 import Cookies from "universal-cookie"
 const cookies = new Cookies()
 const core_url = import.meta.env.VITE_CORE_URL
