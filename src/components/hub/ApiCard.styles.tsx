@@ -57,4 +57,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   chipIcon: {
     color: `${theme.palette.primary.main}!important`,
   },
+  typography: {
+    color: "##3E4245",
+  },
 }));

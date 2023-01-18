@@ -39,7 +39,7 @@ const HubApis = ({ apis }: IHubApis) => {
               size="small">
               <OutlinedInput
                 type="text"
-                placeholder="Search APIs"
+                placeholder="Search"
                 startAdornment={
                   <InputAdornment position="start">
                     <IconButton edge="start">
@@ -54,11 +54,11 @@ const HubApis = ({ apis }: IHubApis) => {
             {apis?.map((api) => (
               <Grid
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  alignSelf: "center",
-                  with: "100%",
+                  // display: "flex",
+                  // alignItems: "center",
+                  // justifyContent: "center",
+                  // alignSelf: "center",
+                  // width: "100%",
                 }}
                 item
                 key={api.id}
