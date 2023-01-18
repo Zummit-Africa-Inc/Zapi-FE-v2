@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { BookmarkAddedOutlined, BookmarkRemove, BookmarkAddOutlined, StarBorderOutlined, AlarmOutlined, GroupOutlined } from "@mui/icons-material";
 
 
-const APIMoreInfo: React.FC = () => {
+const APIMoreInfo = () => {
   const classes = useStyles();
 
   return (
