@@ -32,5 +32,6 @@ import copyright from './copyright.svg'
 import twitterIcon from './twitter.svg'
 import youtubeIcon from './youtube.svg'
 import linkedinIcon from './linkedin.svg'
+import clouds from './clouds.svg'
 
-export { facebook, figma, google, blogPost1, blogPost2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile }
+export { facebook, figma, google, blogPost1, blogPost2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile, clouds }
