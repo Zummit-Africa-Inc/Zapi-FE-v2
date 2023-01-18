@@ -6,7 +6,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { Box, Card, CardContent, CardMedia, Stack, Theme, Typography } from "@mui/material";
 
 import { useAppContext } from "../../contexts/AppProvider";
-import {blogIllustration, blogPost1,  blogPost2} from "../../assets/svg";
+import {blogIllustrationLight, blogIllustrationDark, blogPost1,  blogPost2} from "../../assets/svg";
 
 const blogPosts = [
   {
@@ -37,7 +37,9 @@ const Blog: React.FC = () => {
                   {post.title}
                 </Typography>
                 <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                  <Typography color="primary.contrastText">Read More</Typography>
+                  <Typography color="primary.contrastText">
+                    Read More
+                  </Typography>
                   <Typography sx={{color: "#929AA3"}}>{post.date}</Typography>
                 </Stack>
               </CardContent>
@@ -50,14 +52,15 @@ const Blog: React.FC = () => {
       </Box>
       <Box className={classes.container2}>
         <Typography variant="h1">AI Education</Typography>
-        <Typography>Explore our blog posts to get more insight on AI.</Typography>
-        <img src={blogIllustration} alt="" width="100%" height="100%" />
+        <Typography style={{borderColor: currentMode === "dark" ? "#F5F5F5" : "#060607",color: currentMode === "dark" ? "#F5F5F5" : "#060607"}}>Explore our blog posts to get more insight on AI.</Typography>
+        <img src={currentMode === "dark" ? blogIllustrationDark : blogIllustrationLight} alt="" width="100%" height="100%" />
       </Box>
     </Box>
   );
 };
 
 export default Blog;
+
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -145,6 +148,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     [theme.breakpoints.down("mobile")]: {
       textAlign: "center",
+      width: "274px",
+      maxWidth: "100%",
     }
-  },
+  },    
 }));
