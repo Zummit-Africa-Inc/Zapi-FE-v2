@@ -2,7 +2,7 @@ import React from "react";
 import { styled, makeStyles } from "@mui/styles";
 import { Typography, Box, Theme } from "@mui/material";
 
-const UserReview: React.FC = () => {
+const UserReview = () => {
   const classes = useStyles();
 
   return (
