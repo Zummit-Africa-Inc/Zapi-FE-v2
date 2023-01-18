@@ -1,9 +1,36 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent, SyntheticEvent, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
-import { Typography, Theme, Box, Tooltip, Button, Paper, InputBase, IconButton, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
-import { Search, ExpandMore } from "@mui/icons-material";
+import { Typography, Theme, Box, Tooltip, Button, Paper, InputBase, IconButton, Accordion, AccordionSummary, AccordionDetails, Tabs, Tab, Stack } from "@mui/material";
+import { Search, ExpandMore, ChatRounded } from "@mui/icons-material";
 import Cookies from "universal-cookie";
 import { APIType, EndpointsType } from "../../types";
+
+const CustomTabs = styled(Tabs)({
+  "&.MuiTabs-root": {
+    width: "auto",
+    borderRight: "1px solid #D1D1D1",
+    height: "100vh",
+  },
+  "& .MuiTabs-indicator": {
+    display: "none",
+  },
+});
+
+const CustomTab = styled(Tab)({
+  "&.MuiTab-root": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    fontWeight: "normal",
+    fontSize: "14px",
+    maxWidth: "100%",
+    borderBottom: "1px solid #D1D1D1",
+    
+  },
+  "&.Mui-selected": {
+    backgroundColor: "#f1f1f1",
+  },
+});
 
 const CustomAccordion = styled(Accordion)({
 	"&.MuiAccordion-root": {
@@ -22,6 +49,10 @@ const Endpoints: React.FC<Props> = ({api, endpoints}) => {
   const classes = useStyles();
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
+  const [tab, setTab] = useState<number>(0);
+  const handleTabChange = (e: SyntheticEvent, newValue: number) => {
+    setTab(newValue);
+  };
 
   return (
     <Box className={classes.root}>
@@ -77,42 +108,66 @@ const Endpoints: React.FC<Props> = ({api, endpoints}) => {
 		</Box>
 
 
-		<Box
-			sx={{
-				display: "flex",
-				flexDirection: "row",
-				alignItems: "center",
-				gap: "28px",
-				marginBottom: "32px",
-				backgroundColor: "#D3D7DA",
-				padding: "12px 24px",
-			}}
-		>
-			<Box
+
+		{endpoints && endpoints.length !== 0 ? (
+			<Box 
 				sx={{
-					backgroundColor: "#081F4A",
-					borderRadius: "3px",
-					padding: "4px 10px",
-					fontSize: "13px",
-					color: "#fff",
-					textTransform: "uppercase"
+					display: "flex",
+					flexDirection: "column",
+					gap: "20px",
+					marginBottom: "64px",
 				}}
 			>
-				<Typography component="p">POST</Typography>
+				{endpoints?.map((endpoint, index) => (
+					
+					<Box
+						sx={{
+							cursor: "pointer",
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							gap: "28px",
+							backgroundColor: "#D3D7DA",
+							padding: "12px 24px",
+						}}
+					>
+				
+						<Box
+							sx={{
+								backgroundColor: "#081F4A",
+								borderRadius: "3px",
+								padding: "4px 10px",
+								fontSize: "13px",
+								color: "#fff",
+								textTransform: "uppercase"
+							}}
+						>
+							<Typography component="p">{endpoint.method || "POST"}</Typography>
+						</Box>
+
+						<Box
+							sx={{
+								fontSize: "16px",
+								fontWeight: 400,
+								color: "#060607"
+							}}
+						>
+							<Typography component="p">{endpoint.name || "ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in"}</Typography>
+						</Box>
+
+						
+					</Box>
+				
+				))}
 			</Box>
-
-			<Box
-				sx={{
-					fontSize: "16px",
-					fontWeight: 400,
-					color: "#060607"
-				}}
-			>
-				<Typography component="p">ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in </Typography>
+		) : (
+			<Box>
+				<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "80px", width: "100%" }}>
+					<ChatRounded sx={{ fontSize: "28px", color: "#264276", }} />
+					<Typography sx={{fontSize:"15px",color:"#060607"}}>There are no endpoints in this API.</Typography>
+				</Box>
 			</Box>
-
-		</Box>
-
+		)}
 		
 		<Typography component="h3" 
 			sx={{
@@ -220,7 +275,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "41px",
     width: '100%',
     "& h2": {
-        margin: "63px 0",
+        margin: "64px 0 32px 0",
         fontWeight: "bold",
         fontSize: "19px",
         color: "#060607",
