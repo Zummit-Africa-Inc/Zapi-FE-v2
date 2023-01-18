@@ -67,6 +67,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     hubContainer: {
       backgroundColor: theme.palette.background.default,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   })
 );
