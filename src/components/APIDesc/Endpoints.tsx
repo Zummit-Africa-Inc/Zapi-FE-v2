@@ -11,7 +11,7 @@ const CustomAccordion = styled(Accordion)({
 	},
 });
 
-const Endpoints: React.FC = () => {
+const Endpoints = () => {
   const classes = useStyles();
 
   return (
