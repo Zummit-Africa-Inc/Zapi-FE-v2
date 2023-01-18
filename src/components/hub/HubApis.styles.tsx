@@ -42,6 +42,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   searchInput: {
     width: "25%",
+    background: `${theme.palette.info.main}!important`,
+
 
     [theme.breakpoints.down("tablet")]: {
       width: "40%",
@@ -50,6 +52,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
+
   notFoundTypography: {
     color: theme.palette.primary.contrastText,
 
