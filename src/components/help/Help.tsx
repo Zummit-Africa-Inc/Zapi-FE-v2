@@ -26,6 +26,7 @@ const CustomTab = styled(Tab)({
         paddingLeft: "35px",
         fontSize: "13px",
         textAlign: "left",
+        color: '#00000099',
         "@media screen and (max-width: 1024px)": {
             gap: "0",
             fontSize: "12px",
