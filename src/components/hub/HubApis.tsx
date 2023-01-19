@@ -38,6 +38,9 @@ const HubApis = ({ apis }: IHubApis) => {
               variant="outlined"
               size="small">
               <OutlinedInput
+                style={{
+                  color: "white"
+                }}
                 type="text"
                 placeholder="Search"
                 startAdornment={

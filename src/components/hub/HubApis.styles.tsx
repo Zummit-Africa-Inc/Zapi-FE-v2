@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     // flexDirection: "column",
     margin: "0px 3em 3em 3em",
     width: "90%",
-        [theme.breakpoints.down("laptop")]: {
+    [theme.breakpoints.down("laptop")]: {
       width: "60%",
     },
     [theme.breakpoints.down("tablet")]: {
@@ -49,8 +49,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   searchInput: {
     width: "25%",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 4,
+    background: `${theme.palette.info.main}!important`,
 
     [theme.breakpoints.down("tablet")]: {
       width: "40%",
@@ -59,6 +58,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
+
   notFoundTypography: {
     color: theme.palette.primary.contrastText,
 
