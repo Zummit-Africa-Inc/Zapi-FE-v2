@@ -5,7 +5,7 @@ import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { linkedinIcon, twitterIcon, youtubeIcon} from "../../assets/svg";
 import { footerIllustration } from "../../assets/svg";
-import { FOOTERLINKS } from "./FOOTERLINKS";
+import { footerLinks } from "./FOOTERLINKS";
 
 const Footer: React.FC = () => {
   const classes = useStyles();
@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
   return (
     <Box className={classes.footer}>
       <Stack direction="row" width="100%" flexWrap="wrap" mb="32px">
-        {FOOTERLINKS.map((item, index) => (
+        {footerLinks.map((item, index) => (
           <Box key={index} className={classes.container}>
             <>
             <Typography sx={{fontSize: "18px",fontWeight: 600,lineHeight: "22px",color: "#F5F5F5",mb: "40px",textTransform: "uppercase"}}>
@@ -32,6 +32,7 @@ const Footer: React.FC = () => {
           </Box>
         ))}
       </Stack>
+      
       {/* Divider */}
       <hr className={classes.divider} />
       <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between">
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down("mobile")]: {
       padding: "64px 16px",
-      backgroundPositionX: "none",
+      backgroundPositionX: "-90%",
       backgroundPositionY: "top",
     },
   },

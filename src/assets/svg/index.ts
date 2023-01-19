@@ -28,12 +28,13 @@ import LooperGroupTab from './LooperGroupTab.svg'
 import shineTab from './shineTab.svg'
 import LooperGroupMobile from './LooperGroupMobile.svg'
 import shineMobile from './shineMobile.svg'
-import blogIllustration from './blog-illustration.svg'
+import blogIllustrationLight from './blog-illustration.svg'
+import blogIllustrationDark from './blog-illustration-dark.svg'
 import footerIllustration from './footer-illustration.svg'
 import copyright from './copyright.svg'
 import twitterIcon from './twitter.svg'
 import youtubeIcon from './youtube.svg'
 import linkedinIcon from './linkedin.svg'
 
-export { facebook, figma, google, blogPost1, blogPost2, pricingBullet1, pricingBullet2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustration, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile }
+export { facebook, figma, google, blogPost1, blogPost2, pricingBullet1, pricingBullet2, heroBig, heroIllustration, heroMedium, heroSmall, ibm, microsoft, zapi, cmLearningAPI, compVisionAPI, natLangAPI, chevron, stacks, secure, pencil, zoom, dollars, marketIllustration, blogIllustrationLight, blogIllustrationDark, footerIllustration, copyright, twitterIcon, youtubeIcon, linkedinIcon, LooperGroup, shine, LooperGroupTab, shineTab, LooperGroupMobile, shineMobile }
 

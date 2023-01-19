@@ -23,7 +23,7 @@ export { default as Pricing } from "./home/Pricing"
 export { default as Blog } from "./home/Blog"
 export { default as GettingStarted } from "./home/gettingStarted"
 
-// APIDesc
-export { default as APIMoreInfo } from "./APIDesc/APIMoreInfo";
-export { default as Endpoints } from "./APIDesc/Endpoints";
-
+// api
+export { default as APIMoreInfo } from "./api/APIMoreInfo";
+export { default as Endpoints } from "./api/Endpoints";
+export { default as Reviews } from "./api/Reviews";

@@ -49,7 +49,7 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Link to="/login" className={classes.link}>Login</Link>
+                <Link to="/login" className={classes.link} onClick={() => setActiveMenu(false)}>Login</Link>
                 <Button label='Sign Up' to='/signup' variant='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(

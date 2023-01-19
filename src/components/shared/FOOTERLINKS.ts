@@ -1,4 +1,4 @@
-export const FOOTERLINKS = [
+export const footerLinks = [
     {
       title: 'Explore',
       links: [
