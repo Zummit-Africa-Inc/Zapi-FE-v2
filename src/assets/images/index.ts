@@ -7,5 +7,5 @@ import request from './request_edit.png'
 import signup from './signup.png'
 import subscriptions1 from './subscriptions1.png'
 import subscriptions2 from './subscriptions2.png'
-
-export { zapiLogo , apihub , apihubbox , login2 , otp , request , signup , subscriptions1 , subscriptions2 }
+import uploadapi from './uploadapi.png'
+export { zapiLogo , apihub , apihubbox , login2 , otp , request , signup , subscriptions1 , subscriptions2, uploadapi }

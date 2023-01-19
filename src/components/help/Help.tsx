@@ -14,6 +14,7 @@ import { apihub,
     request,
     subscriptions1,
     subscriptions2, 
+    uploadapi,
 } from '../../assets/images';
 
 const CustomTab = styled(Tab)({
@@ -55,9 +56,20 @@ const Help:React.FC = () => {
     
     const [tab, setTab] = useState<number>(0);
     const classes = useStyles();
+    
 
     const handleTabChange = (e: SyntheticEvent, newValue: number) => {
         setTab(newValue);
+        // change tabs on scroll
+        const tab = document.getElementById(`tab-${newValue}`);
+        if (tab) {
+            tab.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "center",
+            });
+        }
+         
     };
 
     return (
@@ -101,6 +113,7 @@ const Help:React.FC = () => {
                         indicatorColor="primary"
                         orientation="vertical"
                         onChange={handleTabChange}
+                        // variant="scrollable"
                     >
                         {/* <Typography component="h2" px={2} pt={2}>
                             Access API
@@ -158,9 +171,15 @@ const Help:React.FC = () => {
                     <Box sx={{ 
                         display: "fixed",
                         width: "100%",
-                        height: "450px",
+                        // height: "450px",
                         overflowX: "scroll",
                         overflowY: "unset",
+                        "& h1": {
+                            marginBottom: "10px",
+                            fontSize: "48px",
+                            fontWeight: "700",
+                            color: "#060607",
+                        },
                         "& h2": {
                             marginBottom: "8px", 
                             fontSize: "26px", 
@@ -194,7 +213,7 @@ const Help:React.FC = () => {
                         "& p": {
                             marginBottom: "20px", 
                             fontSize: "15px", 
-                            color: "#3e4fa7", 
+                            color: "#060607", 
                             width: "88%",
                                     
                             "@media screen and (max-width: 1024px)": {
@@ -214,6 +233,7 @@ const Help:React.FC = () => {
                     }}>
                             
                         <TabPanel value={tab} index={0}>
+                        <Typography component="h1">Access API</Typography>
                             <Typography component="h2">Overview</Typography>
                             <Typography component="p">Welcome to the world's largest Artificial Intelligence API hub.</Typography>
 
@@ -332,16 +352,26 @@ const Help:React.FC = () => {
 
                         </TabPanel>
                         <TabPanel value={tab} index={5}>
+                            <Typography component="h1">Upload API</Typography>
                             <Typography component="h2">Pre-requisite</Typography>
                             
                             <Typography component="p">
                                 In this example we are going to use Postman to send a request, to do so you will need an endpoint and your access token:
                             </Typography>
-
+                            <Typography component="h3">Sign-in</Typography>
+                            
+                            <Typography component="p">
+                                In this example we are going to use Postman to send a request, to do so you will need an endpoint and your access token:
+                            </Typography>
+                            <Typography component="h3">Add API</Typography>
+                            
+                            <Typography component="p">
+                                In this example we are going to use Postman to send a request, to do so you will need an endpoint and your access token:
+                            </Typography>
                             <Box
                                 component="img"
                                 alt="request"
-                                src={request}
+                                src={uploadapi}
                             />
 
                         </TabPanel>
