@@ -102,9 +102,9 @@ const Help:React.FC = () => {
                         orientation="vertical"
                         onChange={handleTabChange}
                     >
-                        <Typography component="h2" px={2} pt={2}>
+                        {/* <Typography component="h2" px={2} pt={2}>
                             Access API
-                        </Typography>
+                        </Typography> */}
                         <CustomTab 
                             label="Overview" 
                         />
@@ -124,9 +124,9 @@ const Help:React.FC = () => {
                         <CustomTab 
                             label="Send Requests" 
                         />
-                            <Typography component="h2" px={2} pt={2}>
+                            {/* <Typography component="h2" px={2} pt={2}>
                             Upload API
-                        </Typography>
+                        </Typography> */}
                         <CustomTab 
                             label="Pre-requisite" 
                         />
@@ -331,6 +331,21 @@ const Help:React.FC = () => {
                             />
 
                         </TabPanel>
+                        <TabPanel value={tab} index={5}>
+                            <Typography component="h2">Pre-requisite</Typography>
+                            
+                            <Typography component="p">
+                                In this example we are going to use Postman to send a request, to do so you will need an endpoint and your access token:
+                            </Typography>
+
+                            <Box
+                                component="img"
+                                alt="request"
+                                src={request}
+                            />
+
+                        </TabPanel>
+                    
                     
                     </Box>
                 </Box>
