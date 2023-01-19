@@ -41,11 +41,10 @@ export const Router: React.FC = () => {
       <Route path="/documentation" element={<Documentation />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/api-hub" element={<Hub />} />
-      <Route path="/api/:id" element={<API />} />
       <Route path="/feedback" element={<Feedback />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/free-trial" element={<FreeTrial />} />
-      <Route path="/api-desc/:id" element={<APIDesc />} />
+      <Route path="/api/:id" element={<APIDesc />} />
 
       <Route element={<AuthRoutes />}>
         <Route path="/developer/:id" element={<User />} />

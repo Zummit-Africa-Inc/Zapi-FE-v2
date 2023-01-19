@@ -19,12 +19,14 @@ const Hub = () => {
   const { error, loading, sendRequest } = useHttpRequest();
   const { categories } = useAppSelector((store) => store.apis);
 
+
   useEffect(() => {
     const all = categories.find((category) => category.id === "All");
     if (all?.id) {
       setSelectedCategoryId(all.id);
     }
   }, [categories]);
+
 
   const getApisByCategory = async () => {
     const headers = { "Content-Type": "application/json" };
@@ -43,6 +45,7 @@ const Hub = () => {
   useEffect(() => {
     if (selectedCategoryId) getApisByCategory();
   }, [selectedCategoryId]);
+
 
   if (loading) return <Loader />;
   return (
