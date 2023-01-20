@@ -49,7 +49,7 @@ const Help: React.FC = () => {
             },
         },
         "&.Mui-selected": {
-            backgroundColor: currentMode === 'light' ? "#d1d1d1" : "#FFEA00",
+            backgroundColor: currentMode === 'light' ? "#CFDEFA" : "#FFEA00",
             fontWeight: "bold",
         },
         "& svg": {
@@ -66,7 +66,7 @@ const Help: React.FC = () => {
 
     ReactGA.send({ hitType: "pageview", page: "/documentation" });
 
-    const [tab, setTab] = useState<number>(0);
+    const [tab, setTab] = useState<number>(1);
     const classes = useStyles();
 
 
@@ -127,13 +127,16 @@ const Help: React.FC = () => {
                     onChange={handleTabChange}
                 // variant="scrollable"
                 >
-                    {/* <Typography component="h2" px={2} pt={2}>
-                            Access API
-                        </Typography> */}
+                    <Typography component="h2" px={0} pt={2} sx={{
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
+                        fontWeight: "600",
+                        fontSize: "18px",
+                    }}>
+                        Access API
+                    </Typography>
                     <CustomTab
                         label="Overview"
                     />
-
                     <CustomTab
                         label="Sign-Up"
                     />
@@ -149,10 +152,13 @@ const Help: React.FC = () => {
                     <CustomTab
                         label="Send Requests"
                     />
-                    {/*ignore next components index  */}
-                    {/* <Typography component="h2" px={2} pt={2}>
-                            Upload API
-                        </Typography> */}
+                    <Typography component="h2" px={0} pt={2} sx={{
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
+                        fontWeight: "600",
+                        fontSize: "18px",
+                    }}>
+                        Upload API
+                    </Typography>
                     <CustomTab
                         label="Pre-requisite"
                     />
@@ -172,9 +178,13 @@ const Help: React.FC = () => {
                     <CustomTab
                         label="Analytics"
                     />
-                    {/* <Typography component="h2" px={2} pt={2}>
+                    <Typography component="h2" px={0} pt={2} sx={{
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
+                        fontWeight: "600",
+                        fontSize: "18px",
+                    }}>
                         Testing
-                    </Typography> */}
+                    </Typography>
                     <CustomTab
                         label="Tests"
                     />
@@ -212,7 +222,7 @@ const Help: React.FC = () => {
                         marginBottom: "10px",
                         fontSize: "17px",
                         fontWeight: "bold",
-                        color: currentMode === 'light' ? "#060607" : "#ffffff",
+                        color: currentMode === 'light' ? "#223B6C" : "#A0BDF5",
                         width: "100%",
 
                         "@media screen and (max-width: 1024px)": {
@@ -245,7 +255,7 @@ const Help: React.FC = () => {
                     },
                 }}>
 
-                    <TabPanel value={tab} index={0}>
+                    <TabPanel value={tab} index={1}>
                         <Typography component="h1">Access API</Typography>
                         <Typography component="h2">Overview</Typography>
                         <Typography component="p">Welcome to the world's largest Artificial Intelligence API hub.</Typography>
@@ -262,7 +272,7 @@ const Help: React.FC = () => {
                         </Typography>
                     </TabPanel>
 
-                    <TabPanel value={tab} index={1}>
+                    <TabPanel value={tab} index={2}>
                         <Typography component="h2">Sign-Up</Typography>
                         <Typography component="h3">How to create a ZAPI account</Typography>
                         <Typography component="p">
@@ -289,7 +299,7 @@ const Help: React.FC = () => {
                     </TabPanel>
 
 
-                    <TabPanel value={tab} index={2}>
+                    <TabPanel value={tab} index={3}>
                         <Typography component="h2">Subscribe</Typography>
                         <Typography component="h3">
                             Discover the API(s) that work best for your application
@@ -310,7 +320,7 @@ const Help: React.FC = () => {
                     </TabPanel>
 
 
-                    <TabPanel value={tab} index={3}>
+                    <TabPanel value={tab} index={4}>
                         <Typography component="h2">Access Token</Typography>
                         <Typography component="h3">
                             Getting access token
@@ -350,7 +360,7 @@ const Help: React.FC = () => {
                     </TabPanel>
 
 
-                    <TabPanel value={tab} index={4}>
+                    <TabPanel value={tab} index={5}>
                         <Typography component="h2">Send Requests</Typography>
 
                         <Typography component="p">
@@ -364,7 +374,7 @@ const Help: React.FC = () => {
                         />
 
                     </TabPanel>
-                    <TabPanel value={tab} index={5}>
+                    <TabPanel value={tab} index={7}>
                         <Typography component="h1">Upload API</Typography>
                         <Typography component="h2">Pre-requisite</Typography>
 
@@ -390,7 +400,7 @@ const Help: React.FC = () => {
                         />
 
                     </TabPanel>
-                    <TabPanel value={tab} index={6}>
+                    <TabPanel value={tab} index={8}>
                         <Typography component="h2">Updating API</Typography>
                         <Typography component="p">
                             Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis.
@@ -431,7 +441,7 @@ const Help: React.FC = () => {
                         />
 
                     </TabPanel>
-                    <TabPanel value={tab} index={7}>
+                    <TabPanel value={tab} index={9}>
                         <Typography component="h2">Endpoints</Typography>
                         <Typography component="p">
                             Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis.
@@ -510,7 +520,7 @@ const Help: React.FC = () => {
                         />
 
                     </TabPanel>
-                    <TabPanel value={tab} index={8}>
+                    <TabPanel value={tab} index={10}>
                         <Typography component="h2">Gateway</Typography>
 
                         <Typography component="p">
@@ -525,7 +535,7 @@ const Help: React.FC = () => {
                         </Typography>
 
                     </TabPanel>
-                    <TabPanel value={tab} index={9}>
+                    <TabPanel value={tab} index={11}>
                         <Typography component="h2">Analytics</Typography>
 
                         <Typography component="p">
@@ -547,7 +557,7 @@ const Help: React.FC = () => {
                             src={analytics}
                         />
                     </TabPanel>
-                    <TabPanel value={tab} index={10}>
+                    <TabPanel value={tab} index={13}>
                         <Typography component="h1">Testing</Typography>
                         <Typography component="h2">Tests</Typography>
 
