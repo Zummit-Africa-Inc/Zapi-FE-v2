@@ -10,7 +10,7 @@ import { useAppDispatch, useFormInputs, useHttpRequest } from "../hooks";
 import { AuthLayout, Button, InputField, Paper } from "../components";
 import { GithubIcon, GoogleIcon } from "../assets/icons";
 import { useAppContext } from "../contexts/AppProvider";
-import { EMAIL_REGEX, PASSWORD_REGEX } from "../utils"; 
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../utils";
 import { LooperGroup, shine } from "../assets/svg";
 import { login } from "../store/slices/auth";
 
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
       cookies.set("profileId", profileId);
       cookies.set("userId", userId);
       cookies.set("secretKey", secretKey);
-      navigate("/developer/dashboard")
+      navigate("/developer/dashboard");
     } catch (error) {}
   };
 

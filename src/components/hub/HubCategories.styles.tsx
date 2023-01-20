@@ -36,7 +36,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   titleTypography: {
     textAlign: "center",
-    color: "#000000",
+    color: theme.palette.grey[100],
     fontWeight: "600!important",
 
     [theme.breakpoints.down("tablet")]: {
@@ -52,7 +52,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   subtitleTypography: {
     textAlign: "center",
     marginTop: "1rem!important",
-    color: "#3E4245",
+    color: theme.palette.grey[600],
 
     [theme.breakpoints.down("tablet")]: {
       textAlign: "center",

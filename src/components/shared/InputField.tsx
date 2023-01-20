@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     "&::placeholder": {
       fontSize: "18px",
       fontWeight: 400,
-      color: "#A8AEB5",
+      color: '#BEC2C8',
       padding: ".5rem .5rem",
     },
     ":focus": {

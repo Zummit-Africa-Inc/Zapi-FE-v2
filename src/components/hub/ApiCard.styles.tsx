@@ -5,8 +5,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   card: {
     padding: "1em",
     height: "16em",
-    width: "24em",
-    minWidth: "24em",
+    width: "410px",
+    minWidth: "390px",
     maxHeight: "16em",
     cursor: "pointer",
     borderRadius: "8px!important",
@@ -21,14 +21,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 
     [theme.breakpoints.down("laptop")]: {
-      width: "19em",
-      minWidth: "16em",
+      width: "372px",
+      minWidth: "auto",
       maxHeight: "16em",
     },
 
     [theme.breakpoints.down("mobile")]: {
-      width: "100%",
-      minWidth: "320px",
+      width: "396px",
+      minWidth: "auto",
       maxHeight: "16em",
     },
   },
