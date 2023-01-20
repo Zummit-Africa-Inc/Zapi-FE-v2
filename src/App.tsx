@@ -2,16 +2,17 @@ import React, { Suspense, useMemo, useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+
+import { getApiCategories, getApis } from "./store/slices/api";
 import { useAppContext } from "./contexts/AppProvider";
 import { HamburgerMenu, Loader } from "./components";
-import { darkTheme, lightTheme } from "./theme";
-import Router from "./Router";
-import { useAppDispatch } from "./hooks";
-import { getApiCategories, getApis } from "./store/slices/apiSlice";
-import { login } from "./store/slices/auth";
 import { deviceDetect } from "react-device-detect";
-import Helmet from "./Helmet";
+import { darkTheme, lightTheme } from "./theme";
+import { login } from "./store/slices/auth";
+import { useAppDispatch } from "./hooks";
 import { getDeviceIP } from "./utils";
+import Helmet from "./Helmet";
+import Router from "./Router";
 
 const App: React.FC = () => {
   const {

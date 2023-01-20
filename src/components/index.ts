@@ -22,3 +22,8 @@ export { default as AiModels } from "./home/AiModels"
 export { default as Pricing } from "./home/Pricing"
 export { default as Blog } from "./home/Blog"
 export { default as GettingStarted } from "./home/gettingStarted"
+
+// api
+export { default as APIMoreInfo } from "./api/APIMoreInfo";
+export { default as Endpoints } from "./api/Endpoints";
+export { default as Reviews } from "./api/Reviews";

@@ -39,13 +39,13 @@ const Help: React.FC = () => {
             // paddingLeft: "35px",
             fontSize: "13px",
             textAlign: "left",
-            color: currentMode === 'light' ? '#00000099': '#ffffff',
+            color: currentMode === 'light' ? '#00000099' : '#ffffff',
             "@media screen and (max-width: 1024px)": {
                 gap: "0",
                 fontSize: "12px",
             },
             "@media screen and (max-width: 375px)": {
-    
+
             },
         },
         "&.Mui-selected": {
@@ -54,12 +54,12 @@ const Help: React.FC = () => {
         },
         "& svg": {
             width: "22px",
-    
+
             "@media screen and (max-width: 1024px)": {
                 width: "20px",
             },
             "@media screen and (max-width: 375px)": {
-    
+
             },
         },
     });
@@ -68,7 +68,7 @@ const Help: React.FC = () => {
 
     const [tab, setTab] = useState<number>(0);
     const classes = useStyles();
-   
+
 
     const handleTabChange = (e: SyntheticEvent, newValue: number) => {
         setTab(newValue);

@@ -18,12 +18,12 @@ const Hero: React.FC = () => {
     <Stack direction="column" className={classes.root}>
       <Box className={classes.container}>
         <Box className={classes.heroText}>
-          <h1>We provide AI models that literally changes your life</h1>
-          <p>
+          <Typography variant="h1">We provide AI models that literally changes your life</Typography>
+          <Typography>
             Z-API allows you to harness the power of AI on your applications
             without stress. Use powerful AI APIs developed by machine learning
             engineers all over the world
-          </p>
+          </Typography>
           <Button
             label="Get Started"
             size="large"

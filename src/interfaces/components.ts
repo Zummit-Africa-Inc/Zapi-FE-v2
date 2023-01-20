@@ -12,6 +12,7 @@ export interface ButtonProps {
     * @prop style?: CSSProperties - adds extra styling to the button, overriding existing styles
     */
     label: string
+
     variant: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'text' | 'rounded' | 'square' | 'socialLogin'
     size: 'small' | 'medium' | 'large' 
     type?: 'submit' | 'reset' | 'button'

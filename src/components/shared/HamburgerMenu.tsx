@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, Ref, useEffect, useRef } from 'react'
 import { FiX } from 'react-icons/fi'
 import { makeStyles } from '@mui/styles'
 import { Box, Stack, Theme, Typography } from '@mui/material'
@@ -20,9 +20,23 @@ const HamburgerMenu = () => {
     const { setActiveMenu, handleClicked, currentMode, setMode, activeMenu } = useAppContext()
     const { isLoggedIn } = useAppSelector(store => store.auth)
     const classes = useStyles()
+    const menuRef = useRef<HTMLDivElement | null>(null)
+
+    const checkClickRef = (ref: any) => {
+        useEffect(() => {
+            const handleClickOutside = (e: any) => {
+                if(ref.current && !ref.current.contains(e.target)) {
+                    setActiveMenu(false)
+                }
+            }
+            document.addEventListener("mousedown", handleClickOutside)
+            return () => document.removeEventListener("mousedown", handleClickOutside)
+        },[ref])
+    }
+    checkClickRef(menuRef)
 
   return (
-    <Box className={classes.root} onClick={(e: MouseEvent) => e.stopPropagation()} style={{transform: activeMenu ? 'translateX(0)' : 'translateX(-101%)'}}>
+    <Box ref={menuRef} className={classes.root} onClick={(e: MouseEvent) => e.stopPropagation()} style={{transform: activeMenu ? 'translateX(0)' : 'translateX(-101%)'}}>
         <Stack width='100%' direction='row' justifyContent='end' mb='48px'>
             <FiX onClick={() => setActiveMenu(false)} style={{color: '#FFF',fontSize: '24px',cursor: 'pointer'}} />
         </Stack>
@@ -35,7 +49,7 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Link to="/login" className={classes.link}>Login</Link>
+                <Link to="/login" className={classes.link} onClick={() => setActiveMenu(false)}>Login</Link>
                 <Button label='Sign Up' to='/signup' variant='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
             </Stack>
         ):(
