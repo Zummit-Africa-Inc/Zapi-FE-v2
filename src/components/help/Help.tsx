@@ -22,7 +22,7 @@ import {
     route,
     uploadendpoints,
     analytics,
-    tests
+    tests,
 } from '../../assets/images';
 
 
@@ -259,12 +259,6 @@ const Help: React.FC = () => {
                         <Typography component="h1">Access API</Typography>
                         <Typography component="h2">Overview</Typography>
                         <Typography component="p">Welcome to the world's largest Artificial Intelligence API hub.</Typography>
-
-                        <Box
-                            component="img"
-                            alt="api-hub-page."
-                            src={apihub}
-                        />
 
                         <Typography component="p">
                             ZAPI is used by developers to find, test, and connect to thousands of APIs — all with a single API key and dashboard. <br /> <br />

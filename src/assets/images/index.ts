@@ -32,5 +32,5 @@ export {
     route,
     uploadendpoints,
     analytics,
-    tests
+    tests,
 }
