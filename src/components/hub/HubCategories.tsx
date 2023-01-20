@@ -77,4 +77,3 @@ const HubCategories = ({
 };
 
 export default HubCategories;
-
