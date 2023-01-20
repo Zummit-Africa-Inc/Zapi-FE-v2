@@ -3,7 +3,7 @@ import ReactGA from "react-ga4";
 import Hero from './Hero';
 import TabPanel from '../shared/TabPanel'
 import { makeStyles, styled } from '@mui/styles'
-import { Filter1, Filter2, Filter3, Filter4, Filter5 } from "@mui/icons-material";
+import { useAppContext } from '../../contexts/AppProvider';
 import { Tab, Tabs, Typography, Box } from "@mui/material";
 import { Link } from 'react-router-dom';
 import {
@@ -25,46 +25,50 @@ import {
     tests
 } from '../../assets/images';
 
-const CustomTab = styled(Tab)({
-    "&.MuiTab-root": {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        gap: ".3rem",
-        // paddingLeft: "35px",
-        fontSize: "13px",
-        textAlign: "left",
-        color: '#00000099',
-        "@media screen and (max-width: 1024px)": {
-            gap: "0",
-            fontSize: "12px",
-        },
-        "@media screen and (max-width: 375px)": {
 
-        },
-    },
-    "&.Mui-selected": {
-        backgroundColor: "#d1d1d1",
-        fontWeight: "bold",
-    },
-    "& svg": {
-        width: "22px",
 
-        "@media screen and (max-width: 1024px)": {
-            width: "20px",
-        },
-        "@media screen and (max-width: 375px)": {
-
-        },
-    },
-});
 const Help: React.FC = () => {
+    const { currentMode } = useAppContext();
+    const CustomTab = styled(Tab)({
+        "&.MuiTab-root": {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            gap: ".3rem",
+            // paddingLeft: "35px",
+            fontSize: "13px",
+            textAlign: "left",
+            color: currentMode === 'light' ? '#00000099': '#ffffff',
+            "@media screen and (max-width: 1024px)": {
+                gap: "0",
+                fontSize: "12px",
+            },
+            "@media screen and (max-width: 375px)": {
+    
+            },
+        },
+        "&.Mui-selected": {
+            backgroundColor: currentMode === 'light' ? "#d1d1d1" : "#FFEA00",
+            fontWeight: "bold",
+        },
+        "& svg": {
+            width: "22px",
+    
+            "@media screen and (max-width: 1024px)": {
+                width: "20px",
+            },
+            "@media screen and (max-width: 375px)": {
+    
+            },
+        },
+    });
+
     ReactGA.send({ hitType: "pageview", page: "/documentation" });
 
     const [tab, setTab] = useState<number>(0);
     const classes = useStyles();
-
+   
 
     const handleTabChange = (e: SyntheticEvent, newValue: number) => {
         setTab(newValue);
@@ -145,6 +149,7 @@ const Help: React.FC = () => {
                     <CustomTab
                         label="Send Requests"
                     />
+                    {/*ignore next components index  */}
                     {/* <Typography component="h2" px={2} pt={2}>
                             Upload API
                         </Typography> */}
@@ -186,13 +191,13 @@ const Help: React.FC = () => {
                         marginBottom: "10px",
                         fontSize: "48px",
                         fontWeight: "700",
-                        color: "#060607",
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
                     },
                     "& h2": {
                         marginBottom: "8px",
                         fontSize: "26px",
                         fontWeight: "bold",
-                        color: "#071B85",
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
 
                         "@media screen and (max-width: 1024px)": {
                             marginBottom: "2px",
@@ -207,7 +212,7 @@ const Help: React.FC = () => {
                         marginBottom: "10px",
                         fontSize: "17px",
                         fontWeight: "bold",
-                        color: "#071B85",
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
                         width: "100%",
 
                         "@media screen and (max-width: 1024px)": {
@@ -221,7 +226,7 @@ const Help: React.FC = () => {
                     "& p": {
                         marginBottom: "20px",
                         fontSize: "15px",
-                        color: "#060607",
+                        color: currentMode === 'light' ? "#060607" : "#ffffff",
                         width: "88%",
 
                         "@media screen and (max-width: 1024px)": {
@@ -624,6 +629,10 @@ const useStyles = makeStyles({
         "@media screen and (max-width: 375px)": {
 
         },
+    },
+    darkCustomTab: {
+        backgroundColor: "#FFEA00",
+        color: "#fff",
     }
 
 });
