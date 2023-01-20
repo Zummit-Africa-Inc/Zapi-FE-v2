@@ -17,7 +17,9 @@ import { apihub,
     uploadapi,
     endpoints,
     visibility,
-    uploadlogo
+    uploadlogo,
+    route,
+    uploadendpoints
 } from '../../assets/images';
 
 const CustomTab = styled(Tab)({
@@ -421,7 +423,85 @@ const Help:React.FC = () => {
                             />
 
                         </TabPanel>
-                    
+                        <TabPanel value={tab} index={7}>
+                            <Typography component="h2">Endpoints</Typography>
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. Aliquam nunc blandit aliquet velit pellentesque fermentum sodales laoreet mauris. 
+                            Eget convallis pellentesque lectus integer enim feugiat consequat etiam.
+                            </Typography>
+                            
+                            <Typography component="h3">Add & edit Endpoints (manually)</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis.
+                            </Typography>
+                            <Box
+                                component="img"
+                                alt="request"
+                                src={endpoints}
+                            />
+                            <Typography component="h3">Name</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Typography component="h3">Descriptions</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Typography component="h3">GET</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Typography component="h3">POST</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Typography component="h3">PATCH</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Typography component="h3">DELETE</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Typography component="h3">Route</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Box
+                                component="img"
+                                alt="request"
+                                src={route}
+                            />
+                            <Typography component="h3">Upload Endpoints</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. 
+                            </Typography>
+                            <Box
+                                component="img"
+                                alt="request"
+                                src={uploadendpoints}
+                            />
+
+                        </TabPanel>
                     </Box>
                 </Box>
 
