@@ -8,4 +8,7 @@ import signup from './signup.png'
 import subscriptions1 from './subscriptions1.png'
 import subscriptions2 from './subscriptions2.png'
 import uploadapi from './uploadapi.png'
-export { zapiLogo , apihub , apihubbox , login2 , otp , request , signup , subscriptions1 , subscriptions2, uploadapi }
+import uploadlogo from './uploadlogo.png'
+import visibility from './visibility.png'
+import endpoints from './endpoints.png'
+export { zapiLogo , apihub , apihubbox , login2 , otp , request , signup , subscriptions1 , subscriptions2, uploadapi, uploadlogo, visibility, endpoints }

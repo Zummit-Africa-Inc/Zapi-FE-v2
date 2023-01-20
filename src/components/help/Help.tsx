@@ -15,6 +15,9 @@ import { apihub,
     subscriptions1,
     subscriptions2, 
     uploadapi,
+    endpoints,
+    visibility,
+    uploadlogo
 } from '../../assets/images';
 
 const CustomTab = styled(Tab)({
@@ -366,7 +369,9 @@ const Help:React.FC = () => {
                             <Typography component="h3">Add API</Typography>
                             
                             <Typography component="p">
-                                In this example we are going to use Postman to send a request, to do so you will need an endpoint and your access token:
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. Aliquam nunc blandit aliquet velit pellentesque fermentum sodales laoreet mauris. 
+                            Eget convallis pellentesque lectus integer enim feugiat consequat etiam.
                             </Typography>
                             <Box
                                 component="img"
@@ -375,7 +380,47 @@ const Help:React.FC = () => {
                             />
 
                         </TabPanel>
-                    
+                        <TabPanel value={tab} index={6}>
+                            <Typography component="h2">Updating API</Typography>
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. Aliquam nunc blandit aliquet velit pellentesque fermentum sodales laoreet mauris. 
+                            Eget convallis pellentesque lectus integer enim feugiat consequat etiam.
+                            </Typography>
+                            
+                            <Typography component="h3">Upload Logo</Typography>
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. Aliquam nunc blandit aliquet velit pellentesque fermentum sodales laoreet mauris. 
+                            Eget convallis pellentesque lectus integer enim feugiat consequat etiam.
+                            </Typography>
+                            <Box
+                                component="img"
+                                alt="request"
+                                src={uploadlogo}
+                            />
+                            
+                            <Typography component="h3">Short description, Read me, Descriptions (Optional)</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. Aliquam nunc blandit aliquet velit pellentesque fermentum sodales laoreet mauris. 
+                            Eget convallis pellentesque lectus integer enim feugiat consequat etiam.
+                            </Typography>
+                            <Typography component="h3">Visibility</Typography>
+                            
+                            <Typography component="p">
+                            Lorem ipsum dolor sit amet consectetur. Ullamcorper pulvinar mattis aliquam egestas sed et iaculis. Quis facilisis adipiscing purus vivamus integer lobortis. 
+                            Iaculis aliquam aliquam purus vel duis. Aliquam nunc blandit aliquet velit pellentesque fermentum sodales laoreet mauris. 
+                            Eget convallis pellentesque lectus integer enim feugiat consequat etiam.
+                            </Typography>
+                            <Box
+                                component="img"
+                                alt="request"
+                                src={visibility}
+                            />
+
+                        </TabPanel>
                     
                     </Box>
                 </Box>
