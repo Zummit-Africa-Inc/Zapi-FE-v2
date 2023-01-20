@@ -13,19 +13,24 @@ import visibility from './visibility.png'
 import endpoints from './endpoints.png'
 import route from './route.png'
 import uploadendpoints from './uploadendpoints.png'
-export { zapiLogo,
-     apihub,
-      apihubbox, 
-      login2,
-       otp, 
-       request, 
-       signup,
-        subscriptions1,
-     subscriptions2, 
-     uploadapi, 
-     uploadlogo, 
-     visibility,
-      endpoints, 
-      route,
-      uploadendpoints
-    }
+import analytics from './analytics.png'
+import tests from './tests.png'
+export {
+    zapiLogo,
+    apihub,
+    apihubbox,
+    login2,
+    otp,
+    request,
+    signup,
+    subscriptions1,
+    subscriptions2,
+    uploadapi,
+    uploadlogo,
+    visibility,
+    endpoints,
+    route,
+    uploadendpoints,
+    analytics,
+    tests
+}
