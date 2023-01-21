@@ -174,9 +174,7 @@ const Signup: React.FC = () => {
   return (
     <AuthLayout>
       <Paper className={classes.paper}>
-        <Stack
-          className={classes.signup}
-          onClick={(e) => e.stopPropagation()}>
+        <Stack className={classes.signup} onClick={(e) => e.stopPropagation()}>
           <Typography variant="h5">Sign Up</Typography>
           <form onSubmit={handleSubmit}>
             <Stack spacing="20px">
@@ -243,11 +241,7 @@ const Signup: React.FC = () => {
               startIcon={<GithubIcon />}
             />
           </Stack>
-          <Stack
-            direction="row"
-            mt="1rem"
-            spacing=".5rem"
-            alignItems="center">
+          <Stack direction="row" mt="1rem" spacing=".5rem" alignItems="center">
             <Typography variant="subtitle1" className={classes.account}>
               Do you have an account?
             </Typography>

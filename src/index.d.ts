@@ -1,1 +1,2 @@
-declare module ["*png","*jpg","*svg"]
+declare;
+module[("*png", "*jpg", "*svg")];

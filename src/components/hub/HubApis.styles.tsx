@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     // flexDirection: "column",
     margin: "0px 3em 3em 3em",
     width: "90%",
-        [theme.breakpoints.down("laptop")]: {
+    [theme.breakpoints.down("laptop")]: {
       width: "60%",
     },
     [theme.breakpoints.down("tablet")]: {

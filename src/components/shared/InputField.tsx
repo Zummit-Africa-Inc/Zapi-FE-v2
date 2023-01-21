@@ -12,7 +12,7 @@ interface InputProps {
   label?: string;
   error?: string;
   required?: boolean;
-  style?: CSSProperties
+  style?: CSSProperties;
 }
 
 const InputField = ({
@@ -31,7 +31,10 @@ const InputField = ({
 
   return (
     <Stack spacing="7px">
-      <label className={classes.label}>{label}{required && <span style={{color:"#E01507"}}>*</span>}</label>
+      <label className={classes.label}>
+        {label}
+        {required && <span style={{ color: "#E01507" }}>*</span>}
+      </label>
       <input
         type={type}
         name={name}
@@ -65,6 +68,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     ":focus": {
       border: "2px solid #A0BDF5",
     },
+    [theme.breakpoints.down("laptop")]: {
+      height: "42px",
+    },
   },
   label: {
     fontSize: "18px",
@@ -72,8 +78,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.primary.contrastText,
     lineHeight: "22px",
     [theme.breakpoints.down("laptop")]: {
-      fontSize: "16px",
+      fontSize: "14px",
       lineHeight: "24px",
-    }
+    },
   },
 }));

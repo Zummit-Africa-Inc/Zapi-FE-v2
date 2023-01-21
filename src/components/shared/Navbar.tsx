@@ -44,8 +44,8 @@ const Navbar = () => {
     cookies.remove("secretKey");
     cookies.remove("profileId");
     cookies.remove("userId");
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
 
   useEffect(() => {
     const handleScreenResize = () => setScreenSize(window.innerWidth);
@@ -86,7 +86,12 @@ const Navbar = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction="row" alignItems="center" spacing="24px">
-            <Button label="Login" onClick={() => handleClicked("login")} variant="outline" size="small" />
+            <Button
+              label="Login"
+              onClick={() => handleClicked("login")}
+              variant="outline"
+              size="small"
+            />
             <Button
               label="Sign Up"
               onClick={() => handleClicked("login")}

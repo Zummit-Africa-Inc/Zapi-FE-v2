@@ -1,6 +1,6 @@
 // shared
-export { default as AuthNavbar } from './shared/AuthNavbar';
-export { default as AuthLayout } from './shared/AuthLayout';
+export { default as AuthNavbar } from "./shared/AuthNavbar";
+export { default as AuthLayout } from "./shared/AuthLayout";
 export { default as Backdrop } from "./shared/Backdrop";
 export { default as Button } from "./shared/Buttons/Button";
 export { default as Footer } from "./shared/Footer";
@@ -16,13 +16,13 @@ export { default as TabPanel } from "./shared/TabPanel";
 // home
 export { default as Brands } from "./home/Brands";
 export { default as Hero } from "./home/Hero";
-export { default as Discover } from "./home/Discover"
-export { default as Features } from "./home/Features"
-export { default as Market } from "./home/Market"
-export { default as AiModels } from "./home/AiModels"
-export { default as Pricing } from "./home/Pricing"
-export { default as Blog } from "./home/Blog"
-export { default as GettingStarted } from "./home/gettingStarted"
+export { default as Discover } from "./home/Discover";
+export { default as Features } from "./home/Features";
+export { default as Market } from "./home/Market";
+export { default as AiModels } from "./home/AiModels";
+export { default as Pricing } from "./home/Pricing";
+export { default as Blog } from "./home/Blog";
+export { default as GettingStarted } from "./home/gettingStarted";
 
 // api
 export { default as APIMoreInfo } from "./api/APIMoreInfo";
@@ -30,4 +30,4 @@ export { default as Endpoints } from "./api/Endpoints";
 export { default as Reviews } from "./api/Reviews";
 
 // auth
-export { default as Auth } from "./auth/Auth"
+export { default as Auth } from "./auth/Auth";

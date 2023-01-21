@@ -34,9 +34,7 @@ const TranslateLang: React.FC = () => {
             variant={currentMode === "dark" ? "secondary" : "primary"}
             type="button"
             size="medium"
-            icon={
-              <FiArrowRight />
-            }
+            icon={<FiArrowRight />}
           />
           <Button
             to="#"

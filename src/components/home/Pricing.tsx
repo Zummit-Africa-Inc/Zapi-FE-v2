@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Typography, Stack, Theme, Box } from "@mui/material";
-import {pricingBullet1, pricingBullet2 } from "../../assets/svg";
+import { pricingBullet1, pricingBullet2 } from "../../assets/svg";
 
 const Pricing: React.FC = () => {
   const classes = useStyles();
@@ -9,165 +9,434 @@ const Pricing: React.FC = () => {
 
   return (
     <Box>
-      <Typography component={'span'} variant={'body2'} className={classes.pricing}>
+      <Typography
+        component={"span"}
+        variant={"body2"}
+        className={classes.pricing}>
         <h1>Flexible plans to get you started.</h1>
       </Typography>
       <Stack className={classes.wrapper}>
-          <Box className={classes.columns}>
-            <Box className={classes.column}>
-              <Box className={classes.content}>
-                <Box style={{display: "flex",alignItems: "center",marginInlineEnd: "auto",gap: "1rem"}}>
-                  <img  className={classes.bullets} src={pricingBullet1} alt="" width="32px" height="32px" />
-                  <Stack direction="column" sx={{ textAlign: "start", gap: "0.5rem" }}>
-                    <Typography variant="h6" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px",  
-                    "@media screen and (max-width: 800px)": {paddingRight: "35px", fontSize: "20px", fontWeight: "600",}}}>
-                      Free
-                    </Typography>
-                    <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400",}}}>
-                      500 Requests
-                    </Typography>
-                  </Stack>
-                </Box>
-                <Stack direction="row" sx={{ textAlign: "start" }}>
-                  <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",            color:"#071B85", "@media screen and (max-width: 800px)": {fontSize: "20px", fontWeight: "600",}}}>
-                    $0
+        <Box className={classes.columns}>
+          <Box className={classes.column}>
+            <Box className={classes.content}>
+              <Box
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginInlineEnd: "auto",
+                  gap: "1rem",
+                }}>
+                <img
+                  className={classes.bullets}
+                  src={pricingBullet1}
+                  alt=""
+                  width="32px"
+                  height="32px"
+                />
+                <Stack
+                  direction="column"
+                  sx={{ textAlign: "start", gap: "0.5rem" }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "24px",
+                      lineHeight: "31px",
+                      "@media screen and (max-width: 800px)": {
+                        paddingRight: "35px",
+                        fontSize: "20px",
+                        fontWeight: "600",
+                      },
+                    }}>
+                    Free
                   </Typography>
-                  <Typography variant="h6"
-                    sx={{fontWeight: 500, fontSize: "20px", lineHeight: "26px", color: "#071B85",}}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      lineHeight: "20px",
+                      "@media screen and (max-width: 800px)": {
+                        fontSize: "14px",
+                        fontWeight: "400",
+                      },
+                    }}>
+                    500 Requests
                   </Typography>
                 </Stack>
               </Box>
+              <Stack direction="row" sx={{ textAlign: "start" }}>
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "36px",
+                    lineHeight: "46px",
+                    color: "#071B85",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    },
+                  }}>
+                  $0
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    lineHeight: "26px",
+                    color: "#071B85",
+                  }}></Typography>
+              </Stack>
             </Box>
+          </Box>
 
-            <Box className={classes.column}
-              style={{
-                background: disabled ? "#E9EBED" : "#CFDEFA",
-                pointerEvents: disabled ? "none" : "initial",
-              }}>
-              <Box className={classes.content}>
-                <Box style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                  <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px"/>
-                  <Stack direction="column"
-                    sx={{ textAlign: "start", gap: "0.5rem" }}>
-                    <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px", 
-                     "@media screen and (max-width: 800px)": {paddingRight: "35px", fontSize: "20px", fontWeight: "600"},}}>
-                      Basic
-                    </Typography>
-                    <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", 
-                     "@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400",}}}>
-                      10,000 requests
-                    </Typography>
-                  </Stack>
-                </Box>
-                <Stack direction="row" sx={{ textAlign: "start" }}>
-                  <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px", color: "#5A5F65", "@media screen and (max-width: 800px)": {fontSize: "20px", fontWeight: "600",}}}>
-                    $10
+          <Box
+            className={classes.column}
+            style={{
+              background: disabled ? "#E9EBED" : "#CFDEFA",
+              pointerEvents: disabled ? "none" : "initial",
+            }}>
+            <Box className={classes.content}>
+              <Box
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginInlineEnd: "auto",
+                  gap: "1rem",
+                }}>
+                <img
+                  className={classes.bullets}
+                  src={pricingBullet2}
+                  alt=""
+                  width="32px"
+                  height="32px"
+                />
+                <Stack
+                  direction="column"
+                  sx={{ textAlign: "start", gap: "0.5rem" }}>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "24px",
+                      lineHeight: "31px",
+                      "@media screen and (max-width: 800px)": {
+                        paddingRight: "35px",
+                        fontSize: "20px",
+                        fontWeight: "600",
+                      },
+                    }}>
+                    Basic
                   </Typography>
-                  <Typography variant="h6"
-                    sx={{fontWeight: 500, fontSize: "20px", lineHeight: "26px", color: "#5A5F65", alignSelf:"center", "@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400"},}}>
-                    &nbsp; /month
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      lineHeight: "20px",
+                      "@media screen and (max-width: 800px)": {
+                        fontSize: "14px",
+                        fontWeight: "400",
+                      },
+                    }}>
+                    10,000 requests
                   </Typography>
                 </Stack>
               </Box>
-            </Box>
-          </Box>
-          <Box className={classes.subColomn}
-            style={{
-              background: disabled ? "#E9EBED" : "#CFDEFA",
-              pointerEvents: disabled ? "none" : "initial",
-            }}>
-            <Box className={classes.content}>
-              <div style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
-                <Stack direction="column"
-                  sx={{ textAlign: "start", gap: "0.5rem" }}>
-                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px", "@media screen and (max-width: 800px)": {paddingRight: "35px", fontSize: "20px", fontWeight: "600",}, }}>
-                    Premium
-                  </Typography>
-                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400",},}}>
-                    20,000 requests
-                  </Typography>
-                </Stack>
-              </div>
               <Stack direction="row" sx={{ textAlign: "start" }}>
-                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               
-                   color:"#5A5F65", "@media screen and (max-width: 800px)": {fontSize: "20px", fontWeight: "600"},}}>
-                  $20
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "36px",
+                    lineHeight: "46px",
+                    color: "#5A5F65",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    },
+                  }}>
+                  $10
                 </Typography>
-                <Typography variant="h6"
-                  sx={{fontWeight: 500, fontSize: "20px", lineHeight: "26px", color: "#5A5F65", alignSelf: "center", "@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400"},}}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    lineHeight: "26px",
+                    color: "#5A5F65",
+                    alignSelf: "center",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
+                  }}>
                   &nbsp; /month
                 </Typography>
               </Stack>
             </Box>
           </Box>
-          <Box className={classes.subColomn}
-            style={{
-              background: disabled ? "#E9EBED" : "#CFDEFA",
-              pointerEvents: disabled ? "none" : "initial",
-            }}>
-            <Box className={classes.content}>
-              <div style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
-                <Stack direction="column"
-                  sx={{ textAlign: "start", gap: "0.5rem" }}>
-                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px",  "@media screen and (max-width: 800px)": {paddingRight: "35px", fontSize: "20px", fontWeight: "600",}}}>
-                    Mega
-                  </Typography>
-                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {
+        </Box>
+        <Box
+          className={classes.subColomn}
+          style={{
+            background: disabled ? "#E9EBED" : "#CFDEFA",
+            pointerEvents: disabled ? "none" : "initial",
+          }}>
+          <Box className={classes.content}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginInlineEnd: "auto",
+                gap: "1rem",
+              }}>
+              <img
+                className={classes.bullets}
+                src={pricingBullet2}
+                alt=""
+                width="32px"
+                height="32px"
+              />
+              <Stack
+                direction="column"
+                sx={{ textAlign: "start", gap: "0.5rem" }}>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "24px",
+                    lineHeight: "31px",
+                    "@media screen and (max-width: 800px)": {
+                      paddingRight: "35px",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    },
+                  }}>
+                  Premium
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
+                  }}>
+                  20,000 requests
+                </Typography>
+              </Stack>
+            </div>
+            <Stack direction="row" sx={{ textAlign: "start" }}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "36px",
+                  lineHeight: "46px",
+                  color: "#5A5F65",
+                  "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  },
+                }}>
+                $20
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  lineHeight: "26px",
+                  color: "#5A5F65",
+                  alignSelf: "center",
+                  "@media screen and (max-width: 800px)": {
                     fontSize: "14px",
                     fontWeight: "400",
-                  }}}>
-                    100,000 requests
-                  </Typography>
-                </Stack>
-              </div>
-              <Stack direction="row" sx={{ textAlign: "start" }}>
-                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",                color:"#5A5F65", "@media screen and (max-width: 800px)": {fontSize: "20px", fontWeight: "600",}}}>
-                  $50
+                  },
+                }}>
+                &nbsp; /month
+              </Typography>
+            </Stack>
+          </Box>
+        </Box>
+        <Box
+          className={classes.subColomn}
+          style={{
+            background: disabled ? "#E9EBED" : "#CFDEFA",
+            pointerEvents: disabled ? "none" : "initial",
+          }}>
+          <Box className={classes.content}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginInlineEnd: "auto",
+                gap: "1rem",
+              }}>
+              <img
+                className={classes.bullets}
+                src={pricingBullet2}
+                alt=""
+                width="32px"
+                height="32px"
+              />
+              <Stack
+                direction="column"
+                sx={{ textAlign: "start", gap: "0.5rem" }}>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "24px",
+                    lineHeight: "31px",
+                    "@media screen and (max-width: 800px)": {
+                      paddingRight: "35px",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    },
+                  }}>
+                  Mega
                 </Typography>
-                <Typography variant="h6"
-                  sx={{fontWeight: 500, fontSize: "20px", lineHeight: "26px", color: "#5A5F65", alignSelf: "center","@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400"},}}>
-                  &nbsp; /month
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
+                  }}>
+                  100,000 requests
                 </Typography>
               </Stack>
-            </Box>
-          </Box>
-          <Box className={classes.subColomn}
-            style={{
-              background: disabled ? "#E9EBED" : "#CFDEFA",
-              pointerEvents: disabled ? "none" : "initial",
-            }}>
-            <Box className={classes.content}>
-              <div style={{display: "flex", alignItems: "center", marginInlineEnd: "auto", gap: "1rem"}}>
-                <img className={classes.bullets} src={pricingBullet2} alt="" width="32px" height="32px" />
-                <Stack direction="column"
-                  sx={{ textAlign: "start", gap: "0.5rem" }}>
-                  <Typography variant="h5" sx={{fontWeight: 700, fontSize: "24px", lineHeight: "31px",  "@media screen and (max-width: 800px)": {fontSize: "20px", fontWeight: "600",}}}>
-                    Entreprise
-                  </Typography>
-                  <Typography variant="h6" sx={{fontWeight: 500, fontSize: "16px", lineHeight: "20px", "@media screen and (max-width: 800px)": {
+            </div>
+            <Stack direction="row" sx={{ textAlign: "start" }}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "36px",
+                  lineHeight: "46px",
+                  color: "#5A5F65",
+                  "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  },
+                }}>
+                $50
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  lineHeight: "26px",
+                  color: "#5A5F65",
+                  alignSelf: "center",
+                  "@media screen and (max-width: 800px)": {
                     fontSize: "14px",
                     fontWeight: "400",
-                  }}}>
-                    500,000 requests
-                  </Typography>
-                </Stack>
-              </div>
-              <Stack direction="row" sx={{ textAlign: "start" }}>
-                <Typography variant="h1" sx={{fontWeight: 700, fontSize: "36px", lineHeight: "46px",               color:"#5A5F65", "@media screen and (max-width: 800px)": {fontSize: "20px",
-              fontWeight: "600",
-                  }}}>
-                  $100
+                  },
+                }}>
+                &nbsp; /month
+              </Typography>
+            </Stack>
+          </Box>
+        </Box>
+        <Box
+          className={classes.subColomn}
+          style={{
+            background: disabled ? "#E9EBED" : "#CFDEFA",
+            pointerEvents: disabled ? "none" : "initial",
+          }}>
+          <Box className={classes.content}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginInlineEnd: "auto",
+                gap: "1rem",
+              }}>
+              <img
+                className={classes.bullets}
+                src={pricingBullet2}
+                alt=""
+                width="32px"
+                height="32px"
+              />
+              <Stack
+                direction="column"
+                sx={{ textAlign: "start", gap: "0.5rem" }}>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "24px",
+                    lineHeight: "31px",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    },
+                  }}>
+                  Entreprise
                 </Typography>
-                <Typography variant="h6"
-                  sx={{fontWeight: 500, fontSize: "20px", lineHeight: "26px", color: "#5A5F65", alignSelf: "center","@media screen and (max-width: 800px)": {fontSize: "14px", fontWeight: "400",},}}>
-                  &nbsp; /month
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    "@media screen and (max-width: 800px)": {
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
+                  }}>
+                  500,000 requests
                 </Typography>
               </Stack>
-            </Box>
+            </div>
+            <Stack direction="row" sx={{ textAlign: "start" }}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "36px",
+                  lineHeight: "46px",
+                  color: "#5A5F65",
+                  "@media screen and (max-width: 800px)": {
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  },
+                }}>
+                $100
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  lineHeight: "26px",
+                  color: "#5A5F65",
+                  alignSelf: "center",
+                  "@media screen and (max-width: 800px)": {
+                    fontSize: "14px",
+                    fontWeight: "400",
+                  },
+                }}>
+                &nbsp; /month
+              </Typography>
+            </Stack>
           </Box>
-        </Stack>
+        </Box>
+      </Stack>
     </Box>
   );
 };
@@ -228,9 +497,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "4px",
     boxSizing: "border-box",
     [theme.breakpoints.down("tablet")]: {
-     width: "100%"
+      width: "100%",
     },
-
   },
   col: {
     marginLeft: "auto !important",

@@ -5,7 +5,12 @@ import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { Button } from "../";
 import { useAppContext } from "../../contexts/AppProvider";
-import { heroBig, heroIllustration, heroMedium, heroSmall } from "../../assets/svg";
+import {
+  heroBig,
+  heroIllustration,
+  heroMedium,
+  heroSmall,
+} from "../../assets/svg";
 
 const Hero: React.FC = () => {
   const { currentMode } = useAppContext();
@@ -15,7 +20,9 @@ const Hero: React.FC = () => {
     <Stack direction="column" className={classes.root}>
       <Box className={classes.container}>
         <Box className={classes.heroText}>
-          <Typography variant="h1">We provide AI models that literally changes your life</Typography>
+          <Typography variant="h1">
+            We provide AI models that literally changes your life
+          </Typography>
           <Typography>
             Z-API allows you to harness the power of AI on your applications
             without stress. Use powerful AI APIs developed by machine learning
