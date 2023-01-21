@@ -4,14 +4,11 @@ import { FiArrowRight } from "react-icons/fi";
 import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { Button } from "../";
-import {
-  heroBig,
-  heroIllustration,
-  heroMedium,
-  heroSmall,
-} from "../../assets/svg";
+import { useAppContext } from "../../contexts/AppProvider";
+import { heroBig, heroIllustration, heroMedium, heroSmall } from "../../assets/svg";
 
 const Hero: React.FC = () => {
+  const { currentMode } = useAppContext();
   const classes = useStyles();
 
   return (
@@ -28,6 +25,7 @@ const Hero: React.FC = () => {
             label="Get Started"
             size="large"
             variant="secondary"
+            // variant={currentMode === "dark" ? "primary" : "secondary"}
             to="/documentation"
             icon={<FiArrowRight />}
           />
@@ -44,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
     height: "693px",
-    background: theme.palette.primary.main,
+    background: "#081F4A",
     backgroundImage: `url(${heroBig})`,
     backgroundPosition: "center",
     backgroundSize: "100% 100%",

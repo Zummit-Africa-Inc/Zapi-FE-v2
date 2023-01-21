@@ -10,6 +10,7 @@ export { default as Loader } from "./shared/Loader";
 export { default as Modal } from "./shared/Modal";
 export { default as Navbar } from "./shared/Navbar";
 export { default as Paper } from "./shared/Paper";
+export { default as Spinner } from "./shared/Spinner";
 export { default as TabPanel } from "./shared/TabPanel";
 
 // home
@@ -27,3 +28,6 @@ export { default as GettingStarted } from "./home/gettingStarted"
 export { default as APIMoreInfo } from "./api/APIMoreInfo";
 export { default as Endpoints } from "./api/Endpoints";
 export { default as Reviews } from "./api/Reviews";
+
+// auth
+export { default as Auth } from "./auth/Auth"

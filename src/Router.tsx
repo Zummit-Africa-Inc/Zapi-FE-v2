@@ -13,13 +13,11 @@ import {
   FreeTrial,
   Home,
   Hub,
-  Login,
   LoginHistory,
   Notifications,
   OTP,
   Pricing,
   ResetPassword,
-  Signup,
   Success,
   Terms,
   User,
@@ -31,8 +29,6 @@ export const Router: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/error" element={<Error />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />

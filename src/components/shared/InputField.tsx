@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, CSSProperties } from "react";
 import { makeStyles } from "@mui/styles";
 import { Stack, Theme, Typography } from "@mui/material";
 
@@ -12,6 +12,7 @@ interface InputProps {
   label?: string;
   error?: string;
   required?: boolean;
+  style?: CSSProperties
 }
 
 const InputField = ({
@@ -24,8 +25,10 @@ const InputField = ({
   label,
   error,
   required,
+  style,
 }: InputProps) => {
   const classes = useStyles();
+
   return (
     <Stack spacing="7px">
       <label className={classes.label}>{label}{required && <span style={{color:"#E01507"}}>*</span>}</label>
@@ -36,6 +39,7 @@ const InputField = ({
         onChange={onChange}
         placeholder={placeholder}
         className={`${classes.root} ${className}`}
+        style={style}
         required={required}
       />
       <Typography>{error}</Typography>
@@ -48,7 +52,7 @@ export default InputField;
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: "52px",
-    background: "#FFFFFF",
+    background: "transparent",
     border: "1px solid #A8AEB5",
     borderRadius: "4px",
     padding: ".5rem .5rem",
@@ -65,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   label: {
     fontSize: "18px",
     fontWeight: 400,
-    color: "#060607",
+    color: theme.palette.primary.contrastText,
     lineHeight: "22px",
     [theme.breakpoints.down("laptop")]: {
       fontSize: "16px",

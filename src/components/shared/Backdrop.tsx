@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     root: {
         width: '100vw',
         height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         background: "rgba(225, 225, 225, 0.3)",
         backdropFilter: "blur(2px)",
         zIndex: '50 !important',

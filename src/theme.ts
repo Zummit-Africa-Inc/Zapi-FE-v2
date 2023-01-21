@@ -30,11 +30,26 @@ export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#081F4A",
+      main: "#FFEA00",
       contrastText: "#E9EBED",
+      light: "#FFFDE5",
+      "100": "#FFFBCC",
+      "200": "#FFF9B2",
+      "300": "#FFF799",
+      "400": "#FFF266",
+      "500": "#FFEE33",
     },
     secondary: {
-      main: "#FFEA00",
+      main: "#081F4A",
+      light: "#F3F7FE",
+      "100": "#E7EFFC",
+      "200": "#CFDEFA",
+      "300": "#B8CEF7",
+      "400": "#A0BDF5",
+      "500": "#7B9FE1",
+      "600": "#6282C0",
+      "700": "#5574AF",
+      "800": "#223B6C",
     },
     background: {
       default: "#121212",
@@ -48,6 +63,7 @@ export const darkTheme = createTheme({
       "500": '#1E1E1E',
       "600": '#BEC2C8',
       "700": '#E9EBED',
+      "800": "#D3D7DA",
     },
     text: {
       primary: "#081F4A",
@@ -90,9 +106,24 @@ export const lightTheme = createTheme({
     primary: {
       main: "#081F4A",
       contrastText: "#121212",
+      light: "#F3F7FE",
+      "100": "#E7EFFC",
+      "200": "#CFDEFA",
+      "300": "#B8CEF7",
+      "400": "#A0BDF5",
+      "500": "#7B9FE1",
+      "600": "#6282C0",
+      "700": "#5574AF",
+      "800": "#223B6C",
     },
     secondary: {
       main: "#FFEA00",
+      light: "#FFFDE5",
+      "100": "#FFFBCC",
+      "200": "#FFF9B2",
+      "300": "#FFF799",
+      "400": "#FFF266",
+      "500": "#FFEE33",
     },
     background: {
       default: "#F5F5F5",
@@ -105,7 +136,8 @@ export const lightTheme = createTheme({
       "400": '#5A5F65',
       "500": '#FFFFFF',
       "600": '#3E4245',
-      "700": '#3E4245'
+      "700": '#3E4245',
+      "800": "#D3D7DA",
     },
     text: {
       primary: "#081F4A",

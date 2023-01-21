@@ -86,10 +86,10 @@ const Navbar = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction="row" alignItems="center" spacing="24px">
-            <Link to="/login" style={{color: "#FFF",padding: "8px 12px 8px 16px"}}>Login</Link>
+            <Button label="Login" onClick={() => handleClicked("login")} variant="outline" size="small" />
             <Button
               label="Sign Up"
-              to="/signup"
+              onClick={() => handleClicked("login")}
               variant="secondary"
               size="small"
             />
@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    background: theme.palette.primary.main,
+    background: "#081F4A",
     padding: "24px 3rem",
     top: 0,
     left: 0,
@@ -181,7 +181,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "24px",
-    color: theme.palette.secondary.main,
+    color: "#FFEA00",
   },
   inactiveLink: {
     fontWeight: 500,

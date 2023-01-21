@@ -22,6 +22,11 @@ const HamburgerMenu = () => {
     const classes = useStyles()
     const menuRef = useRef<HTMLDivElement | null>(null)
 
+    const onClick = () => {
+        setActiveMenu(false)
+        handleClicked("login")
+    }
+
     const checkClickRef = (ref: any) => {
         useEffect(() => {
             const handleClickOutside = (e: any) => {
@@ -49,8 +54,8 @@ const HamburgerMenu = () => {
         </Stack>
         {!isLoggedIn ? (
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
-                <Link to="/login" className={classes.link} onClick={() => setActiveMenu(false)}>Login</Link>
-                <Button label='Sign Up' to='/signup' variant='secondary' size='small' onClick={() => setActiveMenu(false)} style={{width: '100%'}} />
+                <Button label='Log In' variant='outline' size='small' onClick={() => onClick()} style={{width: '100%'}} />
+                <Button label='Sign Up' variant='secondary' size='small' onClick={() => onClick()} style={{width: '100%'}} />
             </Stack>
         ):(
             <Stack width='100%' direction='column' spacing='42px' mt='32px' mb='64px'>
