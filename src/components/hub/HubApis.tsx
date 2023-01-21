@@ -38,6 +38,9 @@ const HubApis = ({ apis }: IHubApis) => {
               variant="outlined"
               size="small">
               <OutlinedInput
+                style={{
+                  color: "white",
+                }}
                 type="text"
                 placeholder="Search"
                 startAdornment={
@@ -52,24 +55,7 @@ const HubApis = ({ apis }: IHubApis) => {
           </Box>
           <Box className={classes.apiContainer} component={"div"}>
             {apis?.map((api) => (
-              <Grid
-                sx={
-                  {
-                    // display: "flex",
-                    // alignItems: "center",
-                    // justifyContent: "center",
-                    // alignSelf: "center",
-                    // width: "100%",
-                  }
-                }
-                item
-                key={api.id}
-                mobile={6}
-                tablet={4}
-                laptop={4}
-                desktop={4}>
-                <ApiCard api={api} />
-              </Grid>
+              <ApiCard api={api} />
             ))}
           </Box>
         </>
