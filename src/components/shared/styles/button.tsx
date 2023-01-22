@@ -23,10 +23,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
       background: theme.palette.primary.main,
       color: "#FFF",
       "&:hover": {
-        background: "#223B6C",
+        background: `${theme.palette.primary.main}AC`,
       },
       "&:active": {
-        background: "#5574AF",
+        background: `${theme.palette.primary.main}50`,
       },
       "&:disabled": {
         background: "#DAD7DA",
@@ -39,10 +39,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
       background: theme.palette.secondary.main,
       color: theme.palette.primary.main,
       "&:hover": {
-        background: "#FFEE33",
+        background: `${theme.palette.secondary.main}AC`,
       },
       "&:active": {
-        background: "#FFF266",
+        background: `${theme.palette.secondary.main}50`,
       },
       "&:disabled": {
         background: "#DAD7DA",
@@ -131,7 +131,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   socialLogin: {
     "&.MuiButton-root": {
-      background: "transparent",
+      background: "#A8AEB5",
       color: theme.palette.text.secondary,
       border: "1px solid #A8AEB5",
       borderRadius: "10px",

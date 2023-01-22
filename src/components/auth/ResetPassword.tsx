@@ -1,15 +1,15 @@
 import { Box, Stack, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { AuthLayout, Button, InputField, Paper } from "../components";
-import { useAppContext } from "../contexts/AppProvider";
-import { useFormInputs } from "../hooks";
+import { AuthLayout, Button, InputField, Paper } from "..";
+import { useAppContext } from "../../contexts/AppProvider";
+import { useFormInputs } from "../../hooks";
 
 const initialState = { password: "", confirm_password: "" };
 
 const ResetPassword = () => {
   const { inputs, bind } = useFormInputs(initialState);
-  const { handleUnclicked } = useAppContext();
+  const { handleUnclicked, currentMode } = useAppContext();
   const classes = useStyles();
   return (
     <Box
@@ -40,8 +40,11 @@ const ResetPassword = () => {
             <Button
               label="Submit"
               type="submit"
-              variant="secondary"
+              variant="primary"
               size="large"
+              style={{
+                color: currentMode === "dark" ? "#060607" : "#F5F5F5",
+              }}
             />
           </Stack>
         </form>
@@ -67,10 +70,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   paper: {
     width: "50%",
-    background: "#FFFFFF",
+    background: theme.palette.grey[900],
     padding: "64px 64px",
+    [theme.breakpoints.down("laptop")]: {
+      width: "70%",
+      padding: "64px 32px",
+    },
     [theme.breakpoints.down("mobile")]: {
-      padding: "16px 16px",
+      width: "90%",
+      padding: "64px 16px",
     },
   },
   heading: {
@@ -78,6 +86,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     letterSpacing: "-0.02em",
     textAlign: "center",
+    color: theme.palette.grey[100],
   },
-  form: {},
+  form: {
+    width: "auto",
+  },
 }));

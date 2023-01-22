@@ -4,10 +4,10 @@ import { Box, Stack, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import OtpInput from "react-otp-input";
 import { toast } from "react-toastify";
-import { useAppDispatch } from "../hooks/redux-hook";
-import { useHttpRequest } from "../hooks";
-import { AuthLayout, Button, Paper } from "../components";
-import { useAppContext } from "../contexts/AppProvider";
+import { useAppDispatch } from "../../hooks/redux-hook";
+import { useHttpRequest } from "../../hooks";
+import { AuthLayout, Button, Paper } from "../../components";
+import { useAppContext } from "../../contexts/AppProvider";
 
 const url = "VITE_IDENTITY_URL";
 
@@ -18,7 +18,7 @@ const OTP: React.FC = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const handleChange = (code: React.SetStateAction<string>) => setCode(code);
-  const { handleUnclicked } = useAppContext();
+  const { handleUnclicked, currentMode } = useAppContext();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -67,23 +67,29 @@ const OTP: React.FC = () => {
                 isInputNum={true}
                 shouldAutoFocus={true}
                 inputStyle={{
-                  border: "1px solid #081F4A",
+                  border:
+                    currentMode === "dark"
+                      ? "1px solid #FFF"
+                      : "1px solid #000",
                   width: "32px",
                   height: "32px",
                   fontSize: "12px",
-                  color: "#000",
+                  color: currentMode === "dark" ? "#FFFFFF" : "#000000",
                   fontWeight: "400",
                   caretColor: "blue",
                 }}
-                focusStyle={{ border: "1px solid #CFD3DB", outline: "none" }}
+                focusStyle={{ border: "1px solid #A8AEB5", outline: "none" }}
               />
             </Stack>
             <Stack>
               <Button
                 type="submit"
-                variant="secondary"
+                variant="primary"
                 label="Proceed"
                 size="large"
+                style={{
+                  color: currentMode === "dark" ? "#060607" : "#F5F5F5",
+                }}
               />
             </Stack>
           </form>
@@ -110,9 +116,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   paper: {
     width: "50%",
-    background: "#FFFFFF",
+    background: theme.palette.grey[900],
     padding: "64px 64px",
+    [theme.breakpoints.down("laptop")]: {
+      width: "70%",
+      padding: "64px 32px",
+    },
     [theme.breakpoints.down("mobile")]: {
+      width: "90%",
       padding: "64px 16px",
     },
   },
@@ -121,12 +132,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     letterSpacing: "-0.02em",
     textAlign: "center",
+    color: theme.palette.grey[100],
   },
   subHeading: {
     fontSize: "20px",
     fontWeight: 400,
     textAlign: "center",
-    color: "#3E4245",
+    color: theme.palette.grey[600],
     [theme.breakpoints.down("mobile")]: {
       fontSize: "18px",
     },
@@ -135,8 +147,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& input": {
       width: "32px",
       height: "32px",
-      border: "1px solid #000000",
+      // border: "1px solid #000000",
       borderRadius: "3px",
+      background: theme.palette.grey[900],
     },
   },
 }));

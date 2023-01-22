@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import { getApiCategories, getApis } from "./store/slices/api";
 import { useAppContext } from "./contexts/AppProvider";
-import { HamburgerMenu, Loader } from "./components";
+import { Auth, HamburgerMenu, Loader, OTP, ResetPassword } from "./components";
 import { deviceDetect } from "react-device-detect";
 import { darkTheme, lightTheme } from "./theme";
 import { login } from "./store/slices/auth";
@@ -13,8 +13,6 @@ import { useAppDispatch } from "./hooks";
 import { getDeviceIP } from "./utils";
 import Helmet from "./Helmet";
 import Router from "./Router";
-import ResetPassword from "./pages/ResetPassword";
-import OTP from "./pages/OTP";
 
 const App: React.FC = () => {
   const {
@@ -88,6 +86,7 @@ const App: React.FC = () => {
         </div>
         {isClicked.resetPassword && <ResetPassword />}
         {isClicked.otp && <OTP />}
+        {isClicked.login && <Auth />}
       </ThemeProvider>
     </>
   );

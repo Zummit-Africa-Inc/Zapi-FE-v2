@@ -12,7 +12,7 @@ import {
   Pricing,
   Blog,
   GettingStarted,
-  Footer
+  Footer,
 } from "../components";
 
 const Home = () => {
