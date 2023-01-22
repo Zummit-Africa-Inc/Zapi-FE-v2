@@ -16,9 +16,9 @@ import {
   Login,
   LoginHistory,
   Notifications,
-  OTP,
+  // OTP,
   Pricing,
-  ResetPassword,
+  // ResetPassword,
   Signup,
   Success,
   Terms,
@@ -36,8 +36,8 @@ export const Router: React.FC = () => {
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/error" element={<Error />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/otp" element={<OTP />} />
+      {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
+      {/* <Route path="/otp" element={<OTP />} /> */}
       <Route path="/documentation" element={<Documentation />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/api-hub" element={<Hub />} />

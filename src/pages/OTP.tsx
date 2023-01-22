@@ -1,12 +1,13 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Stack, Theme } from "@mui/material";
+import { Box, Stack, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import OtpInput from "react-otp-input";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../hooks/redux-hook";
 import { useHttpRequest } from "../hooks";
 import { AuthLayout, Button, Paper } from "../components";
+import { useAppContext } from "../contexts/AppProvider";
 
 const url = "VITE_IDENTITY_URL";
 
@@ -17,6 +18,7 @@ const OTP: React.FC = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const handleChange = (code: React.SetStateAction<string>) => setCode(code);
+  const { handleUnclicked } = useAppContext();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ const OTP: React.FC = () => {
     error && console.log(error);
   }, [error]);
   return (
-    <AuthLayout>
+    <Box className={classes.box} onClick={() => handleUnclicked("otp")}>
       <Paper className={classes.paper}>
         <Stack style={{ width: "100%" }}>
           <Stack spacing="40px">
@@ -87,14 +89,27 @@ const OTP: React.FC = () => {
           </form>
         </Stack>
       </Paper>
-    </AuthLayout>
+    </Box>
   );
 };
 
 export default OTP;
 
 const useStyles = makeStyles((theme: Theme) => ({
+  box: {
+    width: "100vw",
+    height: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "fixed",
+    top: "0rem",
+    background: "rgba(0, 0, 0, 0.5)",
+    backdropFilter: "blur(2px)",
+    zIndex: 50,
+  },
   paper: {
+    width: "50%",
     background: "#FFFFFF",
     padding: "64px 64px",
     [theme.breakpoints.down("mobile")]: {

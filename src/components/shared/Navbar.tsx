@@ -44,8 +44,8 @@ const Navbar = () => {
     cookies.remove("secretKey");
     cookies.remove("profileId");
     cookies.remove("userId");
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
 
   useEffect(() => {
     const handleScreenResize = () => setScreenSize(window.innerWidth);
@@ -86,10 +86,20 @@ const Navbar = () => {
         </Stack>
         {!isLoggedIn ? (
           <Stack direction="row" alignItems="center" spacing="24px">
-            <Link to="/login" style={{color: "#FFF",padding: "8px 12px 8px 16px"}}>Login</Link>
+            <Link
+              to="/login"
+              style={{ color: "#FFF", padding: "8px 12px 8px 16px" }}>
+              Login
+            </Link>
             <Button
               label="Sign Up"
               to="/signup"
+              variant="secondary"
+              size="small"
+            />
+            <Button
+              label="Reset"
+              onClick={() => handleClicked("otp")}
               variant="secondary"
               size="small"
             />

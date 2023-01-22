@@ -13,6 +13,8 @@ import { useAppDispatch } from "./hooks";
 import { getDeviceIP } from "./utils";
 import Helmet from "./Helmet";
 import Router from "./Router";
+import ResetPassword from "./pages/ResetPassword";
+import OTP from "./pages/OTP";
 
 const App: React.FC = () => {
   const {
@@ -73,16 +75,21 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={currentMode === "dark" ? darkTheme : lightTheme}>
-      <Helmet />
-      <ToastContainer />
-      <HamburgerMenu />
-      <div style={{ background: currentMode === "dark" ? "#121212" : "#FFF" }}>
-        <Suspense fallback={<Loader />}>
-          <Router />
-        </Suspense>
-      </div>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={currentMode === "dark" ? darkTheme : lightTheme}>
+        <Helmet />
+        <ToastContainer />
+        <HamburgerMenu />
+        <div
+          style={{ background: currentMode === "dark" ? "#121212" : "#FFF" }}>
+          <Suspense fallback={<Loader />}>
+            <Router />
+          </Suspense>
+        </div>
+        {isClicked.resetPassword && <ResetPassword />}
+        {isClicked.otp && <OTP />}
+      </ThemeProvider>
+    </>
   );
 };
 
