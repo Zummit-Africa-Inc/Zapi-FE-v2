@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Box, Stack, Theme, Typography } from "@mui/material";
 
-import { linkedinIcon, twitterIcon, youtubeIcon} from "../../assets/svg";
+import { linkedinIcon, twitterIcon, youtubeIcon } from "../../assets/svg";
 import { footerIllustration } from "../../assets/svg";
 import { footerLinks } from "./FOOTERLINKS";
 
@@ -16,27 +16,47 @@ const Footer: React.FC = () => {
         {footerLinks.map((item, index) => (
           <Box key={index} className={classes.container}>
             <>
-            <Typography sx={{fontSize: "18px",fontWeight: 600,lineHeight: "22px",color: "#F5F5F5",mb: "40px",textTransform: "uppercase"}}>
-              {item.title}
-            </Typography>
-            <Stack direction="column" spacing="24px">
-              {item.links.map((link, index) => (
-                <Link key={index} to={`/${link.link}`}>
-                  <Typography fontSize="16px" fontWeight={400} lineHeight="24px" color="#FFF">
-                    {link.name}
-                  </Typography>
-                </Link>
-              ))}
-            </Stack>
+              <Typography
+                sx={{
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  lineHeight: "22px",
+                  color: "#F5F5F5",
+                  mb: "40px",
+                  textTransform: "uppercase",
+                }}>
+                {item.title}
+              </Typography>
+              <Stack direction="column" spacing="24px">
+                {item.links.map((link, index) => (
+                  <Link key={index} to={`/${link.link}`}>
+                    <Typography
+                      fontSize="16px"
+                      fontWeight={400}
+                      lineHeight="24px"
+                      color="#FFF">
+                      {link.name}
+                    </Typography>
+                  </Link>
+                ))}
+              </Stack>
             </>
           </Box>
         ))}
       </Stack>
-      
+
       {/* Divider */}
       <hr className={classes.divider} />
-      <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between">
-        <Typography fontSize="14px" fontWeight={900} lineHeight="30px" color="white">
+      <Stack
+        direction="row"
+        width="100%"
+        alignItems="center"
+        justifyContent="space-between">
+        <Typography
+          fontSize="14px"
+          fontWeight={900}
+          lineHeight="30px"
+          color="white">
           &copy; {new Date().getFullYear()} ZAPI
         </Typography>
         <Stack direction="row" alignItems="center" spacing={2}>
@@ -102,4 +122,3 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default Footer;
-

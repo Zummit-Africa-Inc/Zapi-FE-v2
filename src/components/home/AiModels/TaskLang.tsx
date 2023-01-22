@@ -82,14 +82,12 @@ const TaskLang: React.FC = () => {
             variant={currentMode === "dark" ? "secondary" : "primary"}
             type="button"
             size="medium"
-            icon={
-              <FiArrowRight />
-            }
+            icon={<FiArrowRight />}
           />
           <Button
             to="#"
             style={{
-              color: '#081F4A'
+              color: "#081F4A",
             }}
             label="Try it out"
             size="medium"
