@@ -43,6 +43,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     '& input::placeholder':{
       color: theme.palette.grey[100]
     },
+
     width: "25%",
     background: `${theme.palette.info.main}!important`,
    
