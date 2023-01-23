@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const FreeTrial = () => {
-  return (
-    <div>FreeTrial</div>
-  )
-}
+  return <div>FreeTrial</div>;
+};
 
-export default FreeTrial
+export default FreeTrial;

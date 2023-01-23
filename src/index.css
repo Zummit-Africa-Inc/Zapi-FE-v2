@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap");
 @font-face {
-  font-family: 'Lucida Console';
-  src: url(../src/assets/fonts/LucidaConsole.ttf) format('ttf');
+  font-family: "Lucida Console";
+  src: url(../src/assets/fonts/LucidaConsole.ttf) format("ttf");
 }
 
 :root {
-  --primary: #081F4A;
-  --primary-100: #CFDEFA;
-  --primary-200: #96C6FF;
-  --secondary: #FFEA00;
-  --grey: #E9EBED;
-  --grey-100: #D3D7DA;
-  --grey-200: #A8AEB5;
-  --grey-dark: #1E1E1E;
-  --white: #F5F5F5;
+  --primary: #081f4a;
+  --primary-100: #cfdefa;
+  --primary-200: #96c6ff;
+  --secondary: #ffea00;
+  --grey: #e9ebed;
+  --grey-100: #d3d7da;
+  --grey-200: #a8aeb5;
+  --grey-dark: #1e1e1e;
+  --white: #f5f5f5;
   --black: #121212;
-  --body-font: 'Lato', sans-serif;
-  --code-font: 'Lucida Console', sans-serif;
-  --summary-font: 'Spline Sans', sans-serif;
+  --body-font: "Lato", sans-serif;
+  --code-font: "Lucida Console", sans-serif;
+  --summary-font: "Spline Sans", sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

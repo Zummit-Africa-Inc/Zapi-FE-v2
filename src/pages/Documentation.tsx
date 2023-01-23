@@ -29,4 +29,4 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default Documentation
+export default Documentation;
