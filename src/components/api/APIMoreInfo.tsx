@@ -28,7 +28,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
     const accessToken = cookies.get("accessToken");
     const classes = useStyles();
     const dispatch = useAppDispatch();
-    const { handleClicked } = useAppContext();
+    const { handleClicked, currentMode } = useAppContext();
 
     const category = categories.find((category) => category.id === api.categoryId);
 
@@ -330,13 +330,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         marginBottom: 16,
         fontWeight: "bold",
         fontSize: "28px",
-        color: "#060607",
+		color: theme.palette.grey[100],
     },
     "& h3": {
         marginBottom: 16,
         fontWeight: 700,
         fontSize: "19px",
-        color: "#060607",
+		color: theme.palette.grey[100],
     },
     "& p": {
         marginBottom: 32,

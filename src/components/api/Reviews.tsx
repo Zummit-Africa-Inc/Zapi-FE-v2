@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         margin: "63px 0",
         fontWeight: "bold",
         fontSize: "19px",
-        color: "#060607",
+        color: theme.palette.grey[100],
     },
 
     "@media screen and (max-width: 900px)": {
