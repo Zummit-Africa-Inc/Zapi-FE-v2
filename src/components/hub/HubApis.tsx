@@ -53,11 +53,14 @@ const HubApis = ({ apis }: IHubApis) => {
               />
             </FormControl>
           </Box>
-          <Box className={classes.apiContainer} component={"div"}>
+          <Box className={classes.apiContainer}>
+              <Box className={classes.apis} component={"div"}>
             {apis?.map((api) => (
               <ApiCard api={api} />
             ))}
+            </Box>
           </Box>
+          
         </>
       )}
     </Box>

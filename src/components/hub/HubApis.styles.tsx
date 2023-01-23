@@ -40,8 +40,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   searchInput: {
+    '& input::placeholder':{
+      color: theme.palette.grey[100]
+    },
     width: "25%",
     background: `${theme.palette.info.main}!important`,
+   
 
     [theme.breakpoints.down("tablet")]: {
       width: "40%",
@@ -100,10 +104,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   apiContainer: {
     display: "flex",
-    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    gap: "2rem",
+
+    [theme.breakpoints.down('tablet')]: {
+      marginRight: "1rem"
+    },
   },
+
+  apis:{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridGap: "15px",
+
+    [theme.breakpoints.down('tablet')]: {
+      gridTemplateColumns: "repeat(2, 1fr)",
+    },
+    [theme.breakpoints.down('mobile')]: {
+      gridTemplateColumns: "repeat(1, 1fr)"
+    }
+  }
+
 }));
