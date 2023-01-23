@@ -1,3 +1,3 @@
-import zapiLogo from './zapi-logo.png'
+import zapiLogo from "./zapi-logo.png";
 
-export { zapiLogo }
+export { zapiLogo };

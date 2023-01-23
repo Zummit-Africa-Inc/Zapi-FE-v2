@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import { getApiCategories, getApis } from "./store/slices/api";
 import { useAppContext } from "./contexts/AppProvider";
-import { HamburgerMenu, Loader } from "./components";
+import { Auth, HamburgerMenu, Loader } from "./components";
 import { deviceDetect } from "react-device-detect";
 import { darkTheme, lightTheme } from "./theme";
 import { login } from "./store/slices/auth";
@@ -82,6 +82,7 @@ const App: React.FC = () => {
           <Router />
         </Suspense>
       </div>
+      {isClicked.login && <Auth />}
     </ThemeProvider>
   );
 };

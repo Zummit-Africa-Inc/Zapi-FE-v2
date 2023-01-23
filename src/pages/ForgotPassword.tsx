@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "90%",
     background: "#FFFFFF",
     padding: "64px",
-    [theme.breakpoints.down("laptop")]: {      
+    [theme.breakpoints.down("laptop")]: {
       margin: "0 0 24px 0",
     },
     [theme.breakpoints.down("mobile")]: {

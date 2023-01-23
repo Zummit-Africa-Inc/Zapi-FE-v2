@@ -1,36 +1,36 @@
 import React, { FormEvent, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { Stack, Theme, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
 import { makeStyles } from "@mui/styles";
 import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
 
-import { useAppDispatch, useFormInputs, useHttpRequest } from "../hooks";
-import { AuthLayout, Button, InputField, Paper } from "../components";
-import { GithubIcon, GoogleIcon } from "../assets/icons";
-import { useAppContext } from "../contexts/AppProvider";
-import { EMAIL_REGEX, PASSWORD_REGEX } from "../utils";
-import { LooperGroup, shine } from "../assets/svg";
-import { login } from "../store/slices/auth";
+import { useAppDispatch, useFormInputs, useHttpRequest } from "../../hooks";
+import { GithubIcon, GoogleIcon } from "../../assets/icons";
+import { useAppContext } from "../../contexts/AppProvider";
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils";
+import { Button, InputField, Spinner } from "../../components";
+import { login } from "../../store/slices/auth";
+import { useStyles } from "./styles/styles";
 
 const initialState = { email: "", password: "" };
 const url = "VITE_IDENTITY_URL";
 const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
-const Login: React.FC = () => {
-  const classes = useStyles();
-  const { inputs, bind } = useFormInputs(initialState);
-  const { deviceInfo, deviceLocation, deviceIP, handleUnclicked } =
+const Signin = () => {
+  const { deviceInfo, deviceLocation, deviceIP, currentMode, handleUnclicked } =
     useAppContext();
   const { error, loading, sendRequest } = useHttpRequest();
   const [searchParams, setSearchParams] = useSearchParams();
+  const headers = { "Content-Type": "application/json" };
+  const { inputs, bind } = useFormInputs(initialState);
+  const { email, password } = inputs;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const { email, password } = inputs;
+  const classes = useStyles();
 
-  const headers = { "Content-Type": "application/json" };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || !EMAIL_REGEX.test(email))
@@ -69,6 +69,7 @@ const Login: React.FC = () => {
       cookies.set("secretKey", secretKey);
       navigate("/developer/dashboard");
     } catch (error) {}
+    handleUnclicked("login");
   };
 
   const googleAuth = useGoogleLogin({
@@ -112,10 +113,11 @@ const Login: React.FC = () => {
         cookies.set("secretKey", secretKey);
         navigate("/developer/dashboard");
       } catch (error) {}
+      handleUnclicked("login");
     },
     onError: (errorResponse) => {
-      console.log(errorResponse);
       toast.error("Login Failed, try to login with your email.");
+      console.log(errorResponse);
     },
   });
 
@@ -165,139 +167,84 @@ const Login: React.FC = () => {
           cookies.set("profileId", profileId);
           cookies.set("userId", userId);
           cookies.set("secretKey", secretKey);
-
           navigate("/developer/dashboard");
         } catch (error) {}
       };
       githubLogin();
+      handleUnclicked("login");
     }, []);
   }
 
+  useEffect(() => {
+    error && toast.error(`${error}`);
+  }, [error]);
+
   return (
-    <AuthLayout>
-      <Paper className={classes.paper}>
-        <Stack className={classes.signIn}>
-          <Typography variant="h5">Sign In</Typography>
-          <form onSubmit={handleSubmit}>
-            <Stack spacing="24px">
-              <InputField
-                label="Email"
-                type="text"
-                name="email"
-                {...bind}
-                placeholder="Email"
-                required
-              />
-              <InputField
-                label="Password"
-                type="password"
-                name="password"
-                {...bind}
-                placeholder="Password"
-                required
-              />
-            </Stack>
-            <Stack alignItems="flex-end">
-              <Link to="/forgot-password" className={classes.link}>
-                Forgot Password?
-              </Link>
-            </Stack>
-            <Stack>
-              <Button
-                type="submit"
-                label="Sign In"
-                variant="secondary"
-                size="large"
-              />
-            </Stack>
-          </form>
-          <span className={classes.Or}>Or</span>
-          <Stack spacing="20px">
-            <Button
-              label="Sign In Google"
-              variant="socialLogin"
-              onClick={() => googleAuth()}
-              size="large"
-              startIcon={<GoogleIcon />}
-            />
-            <Button
-              label="Sign In Github"
-              variant="socialLogin"
-              size="large"
-              onClick={githubAuth}
-              startIcon={<GithubIcon />}
-            />
-          </Stack>
-          <Stack direction="row" mt="1rem" spacing=".5rem" alignItems="center">
-            <Typography variant="subtitle1" className={classes.account}>
-              Do you have an account?
-            </Typography>
-            <Link to="/signup" className={classes.signup}>
-              Sign Up
-            </Link>
-          </Stack>
-        </Stack>
-      </Paper>
-    </AuthLayout>
+    <Box className={classes.container}>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <InputField
+          label="Email"
+          name="email"
+          type="email"
+          {...bind}
+          style={{
+            background: currentMode === "dark" ? "#383838" : "#FFF",
+            color: currentMode === "dark" ? "#FFF" : "#000",
+          }}
+        />
+        <InputField
+          label="Password"
+          name="password"
+          type="password"
+          {...bind}
+          style={{
+            background: currentMode === "dark" ? "#383838" : "#FFF",
+            color: currentMode === "dark" ? "#FFF" : "#000",
+          }}
+        />
+        <Box className={classes.div}>
+          <Link to="/forgot-password" onClick={() => handleUnclicked("login")}>
+            <Typography color="grey.700">Forgot Password?</Typography>
+          </Link>
+        </Box>
+        <Button
+          label={loading ? <Spinner /> : "Sign In"}
+          size="large"
+          type="submit"
+          variant="primary"
+          style={{ color: currentMode === "dark" ? "#060607" : "#F5F5F5" }}
+        />
+      </form>
+      <Typography
+        sx={{
+          fontWeight: 600,
+          lineHeight: "24px",
+          color: currentMode === "dark" ? "#F5F5F5" : "#060607",
+        }}>
+        Or
+      </Typography>
+      <Box className={classes.flex}>
+        <Button
+          label=""
+          size="large"
+          type="button"
+          variant="socialLogin"
+          onClick={() => googleAuth()}
+          icon={<GoogleIcon />}
+          style={{ width: "100%" }}
+        />
+        <Button
+          label=""
+          size="large"
+          type="button"
+          variant="socialLogin"
+          onClick={() => githubAuth()}
+          icon={<GithubIcon />}
+          style={{ width: "100%" }}
+        />
+      </Box>
+    </Box>
   );
 };
 
-export default Login;
-
-const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
-    width: "680px",
-    maxWidth: "90%",
-    margin: "0 auto",
-    background: "#FFFFFF",
-    padding: "64px",
-    [theme.breakpoints.down("tablet")]: {
-      padding: "64px",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      padding: "16px",
-      margin: "0 0 24px 0",
-    },
-  },
-  signIn: {
-    "& h5": {
-      fontSize: "23px",
-      fontWeight: 700,
-      color: "#060607",
-      lineHeight: "28px",
-      letterSpacing: "-0.02em",
-      marginBottom: "40px",
-      [theme.breakpoints.down("laptop")]: {
-        fontSize: "19px",
-        lineHeight: "23px",
-      },
-    },
-  },
-  Or: {
-    fontSize: "16px",
-    fontWeight: 600,
-    color: "#060607",
-    textAlign: "center",
-    margin: "20px 0",
-  },
-  account: {
-    fontSize: "16px",
-    fontWeight: 400,
-    color: "#060607",
-  },
-  signup: {
-    fontSize: "16px",
-    fontWeight: 400,
-    textDecorationLine: "underline",
-    color: " #5574AF",
-  },
-  link: {
-    fontSize: "16px",
-    fontWeight: 400,
-    color: "#5A5F65",
-    textDecorationLine: "underline",
-    textDecoration: "none",
-    marginBottom: "30px",
-    marginTop: "16px",
-  },
-}));
+export default Signin;

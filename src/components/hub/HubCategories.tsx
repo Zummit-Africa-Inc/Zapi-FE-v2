@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, makeStyles } from "@mui/material";
 
 import { useAppSelector } from "../../hooks";
 import { useStyles } from "./HubCategories.styles";
