@@ -169,7 +169,7 @@ const APIDesc = () => {
               </TabPanel>
 
               <TabPanel value={tab} index={1}>
-                <Discussions reviews={reviews} />
+                <Discussions api={api} discussions={discussions} />
               </TabPanel>
 
               <TabPanel value={tab} index={2}>
