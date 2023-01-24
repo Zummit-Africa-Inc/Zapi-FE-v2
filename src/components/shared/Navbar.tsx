@@ -89,7 +89,7 @@ const Navbar = () => {
             <Button
               label="Login"
               onClick={() => handleClicked("login")}
-              variant="outline"
+              variant="outlineLogin"
               size="small"
             />
             <Button
