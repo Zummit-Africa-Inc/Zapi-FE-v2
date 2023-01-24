@@ -14,6 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     background: `${theme.palette.info.main}!important`,
+    marginBottom: "1em",
 
     "&:hover": {
       boxShadow: " rgba(99, 99, 99, 0.2) 0px 0px 8px 0px",
