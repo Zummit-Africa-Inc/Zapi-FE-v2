@@ -25,7 +25,7 @@ const ResetPassword = () => {
           <h5 className={classes.heading}>Reset Password</h5>
         </Stack>
         <form className={classes.form}>
-          <Stack padding="32px 0">
+          <Stack padding="32px 0" spacing={2}>
             <InputField
               label="New Password"
               type="password"
