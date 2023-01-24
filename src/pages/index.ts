@@ -9,7 +9,6 @@ const Discussions = React.lazy(() => import('./Discussions'))
 const Documentation = React.lazy(() => import('./Documentation'))
 const Error = React.lazy(() => import('./Error'))
 const Feedback = React.lazy(() => import('./Feedback'))
-const ForgotPassword = React.lazy(() => import('./ForgotPassword'))
 const FreeTrial = React.lazy(() => import('./FreeTrial'))
 const Home = React.lazy(() => import('./Home'))
 const Hub = React.lazy(() => import('./Hub'))
@@ -25,6 +24,6 @@ const APIDesc = React.lazy(() => import('./APIDesc'))
 
 export {
     API, ComingSoon, Configuration, Dashboard, DashboardAPI, Discussions, Documentation, Error, Feedback,
-    ForgotPassword, FreeTrial, Home, Hub, Login, LoginHistory, Notifications, Pricing,
+     FreeTrial, Home, Hub, Login, LoginHistory, Notifications, Pricing,
     Signup, Success, Terms, User, APIDesc
 }

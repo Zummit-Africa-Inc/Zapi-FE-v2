@@ -11,11 +11,16 @@ const ResetPassword = () => {
   const { inputs, bind } = useFormInputs(initialState);
   const { handleUnclicked, currentMode } = useAppContext();
   const classes = useStyles();
+
+  const handleBubble = (e: any) => {
+    if (!e) e.stopBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+  };
   return (
     <Box
       className={classes.box}
       onClick={() => handleUnclicked("resetPassword")}>
-      <Paper className={classes.paper}>
+      <Box className={classes.paper} onClick={handleBubble}>
         <Stack spacing="40px">
           <h5 className={classes.heading}>Reset Password</h5>
         </Stack>
@@ -48,7 +53,7 @@ const ResetPassword = () => {
             />
           </Stack>
         </form>
-      </Paper>
+      </Box>
     </Box>
   );
 };
@@ -72,6 +77,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "50%",
     background: theme.palette.grey[900],
     padding: "64px 64px",
+    borderRadius: "10px",
     [theme.breakpoints.down("laptop")]: {
       width: "70%",
       padding: "64px 32px",

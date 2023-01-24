@@ -33,3 +33,4 @@ export { default as Reviews } from "./api/Reviews";
 export { default as Auth } from "./auth/Auth";
 export {default as OTP} from './auth/OTP'
 export {default as ResetPassword} from "./auth/ResetPassword"
+export {default as ForgotPassword} from "./auth/ForgotPassword"

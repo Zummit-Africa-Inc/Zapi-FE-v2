@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
 import { makeStyles } from "@mui/styles";
 import Cookies from "universal-cookie";
@@ -19,8 +19,14 @@ const url = "VITE_IDENTITY_URL";
 const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
 const Signin = () => {
-  const { deviceInfo, deviceLocation, deviceIP, currentMode, handleUnclicked } =
-    useAppContext();
+  const {
+    deviceInfo,
+    deviceLocation,
+    deviceIP,
+    currentMode,
+    handleUnclicked,
+    handleClicked,
+  } = useAppContext();
   const { error, loading, sendRequest } = useHttpRequest();
   const [searchParams, setSearchParams] = useSearchParams();
   const headers = { "Content-Type": "application/json" };
@@ -175,6 +181,11 @@ const Signin = () => {
     }, []);
   }
 
+  const handlePopChange = (e: any) => {
+    handleUnclicked("login");
+    handleClicked("forgotPassword");
+  };
+
   useEffect(() => {
     error && toast.error(`${error}`);
   }, [error]);
@@ -203,9 +214,9 @@ const Signin = () => {
           }}
         />
         <Box className={classes.div}>
-          <Link to="/forgot-password" onClick={() => handleUnclicked("login")}>
+          <div onClick={handlePopChange}>
             <Typography color="grey.700">Forgot Password?</Typography>
-          </Link>
+          </div>
         </Box>
         <Button
           label={loading ? <Spinner /> : "Sign In"}

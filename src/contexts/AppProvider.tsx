@@ -15,6 +15,7 @@ const initialState = {
   logout: false,
   resetPassword: false,
   otp: false,
+  forgotPassword: false,
 };
 const initialLocation = { lat: 0, lon: 0, time: 0 } as Location;
 const initialDeviceInfo = {

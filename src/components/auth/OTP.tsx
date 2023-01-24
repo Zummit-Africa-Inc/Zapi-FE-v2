@@ -18,7 +18,7 @@ const OTP: React.FC = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const handleChange = (code: React.SetStateAction<string>) => setCode(code);
-  const { handleUnclicked, currentMode } = useAppContext();
+  const { handleUnclicked, currentMode, handleClicked } = useAppContext();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -38,9 +38,14 @@ const OTP: React.FC = () => {
         return;
       } else {
         toast.success(`${data?.message}`);
-        navigate("/reset-password");
+        handleClicked("resetPassword");
       }
     } catch (error) {}
+  };
+
+  const handleBubble = (e: any) => {
+    if (!e) e.stopBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
   };
 
   useEffect(() => {
@@ -49,7 +54,7 @@ const OTP: React.FC = () => {
   }, [error]);
   return (
     <Box className={classes.box} onClick={() => handleUnclicked("otp")}>
-      <Paper className={classes.paper}>
+      <Box className={classes.paper} onClick={handleBubble}>
         <Stack style={{ width: "100%" }}>
           <Stack spacing="40px">
             <h5 className={classes.heading}>Reset Password</h5>
@@ -94,7 +99,7 @@ const OTP: React.FC = () => {
             </Stack>
           </form>
         </Stack>
-      </Paper>
+      </Box>
     </Box>
   );
 };
@@ -118,6 +123,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "50%",
     background: theme.palette.grey[900],
     padding: "64px 64px",
+    borderRadius: "10px",
     [theme.breakpoints.down("laptop")]: {
       width: "70%",
       padding: "64px 32px",

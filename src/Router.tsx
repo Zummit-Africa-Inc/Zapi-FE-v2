@@ -9,7 +9,6 @@ import {
   Documentation,
   Error,
   Feedback,
-  ForgotPassword,
   FreeTrial,
   Home,
   Hub,
@@ -29,7 +28,6 @@ export const Router: React.FC = () => {
       <Route path="/" element={<Home />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/error" element={<Error />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/documentation" element={<Documentation />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/api-hub" element={<Hub />} />
