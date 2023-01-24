@@ -38,7 +38,7 @@ const ResetPassword = () => {
               type="password"
               name="confirm_password"
               {...bind}
-              placeholder="Enter mail"
+              placeholder="Enter Password"
             />
           </Stack>
           <Stack>

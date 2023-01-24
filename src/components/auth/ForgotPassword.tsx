@@ -73,7 +73,7 @@ const ForgotPassword = () => {
                 type="email"
                 name="email"
                 {...bind}
-                placeholder="Enter mail"
+                placeholder="Enter email"
               />
             </Stack>
             <Stack>
