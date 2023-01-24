@@ -1,14 +1,11 @@
-import React, { ChangeEvent, FormEvent, SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
-import {Typography, Theme, Box, Tooltip, Button, Paper, InputBase, IconButton, Accordion, Avatar, AccordionSummary, AccordionDetails, Tabs, Tab, Stack} from "@mui/material";
-import { Search, ExpandMore, ChatRounded, AddCommentOutlined } from "@mui/icons-material";
+import {Typography, Theme, Box, Accordion, Avatar, AccordionSummary, AccordionDetails, Tabs, Tab, Stack} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { discussionQuote } from "../../assets/svg";
 
-
 import Cookies from "universal-cookie";
 import { APIType, DiscussionType } from "../../types";
-
 
 const CustomTabs = styled(Tabs)({
   "&.MuiTabs-root": {
@@ -54,11 +51,8 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
   const [tab, setTab] = useState<number>(0);
-  const handleTabChange = (e: SyntheticEvent, newValue: number) => {
-    setTab(newValue);
-  };
-
-// Discussion function
+ 
+  //Discussion function
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -175,9 +169,9 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                     {"User"}
                   </Typography>
                   <Typography  sx={{ width: "100%", height: "100%"}}  component="p">
-                    {/* {discussions.review ||
-                      "s vitae erat diam arcu molestie mattis vestibulum lorem. Nulla dictum id aenean molestie aliquam volutpat enim tortor. Metus pretium magnis diam sit arcu nisl. Eget at a dolor ultricies et sit ut. Hendrerit viverra tincidunt ut ultricies nec enim aenean. Amet senectus pellentesque gravida iaculis urna diam orci. Fringilla sed auctor elementum mus non volutpat nullam. Purus aliquam sit tincidunt sit eu massa mauris nullam."} */}
-                      Lorem ipsum dolor sit amet consectetur. Vel
+                    {discussions.body ||
+                      "Lorem ipsum dolor sit amet consectetur. Vel"}
+                      
                   </Typography>
                 </Box>
               </Box>
