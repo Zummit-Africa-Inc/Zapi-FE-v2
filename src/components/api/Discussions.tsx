@@ -1,7 +1,11 @@
 import React, { ChangeEvent, FormEvent, SyntheticEvent, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
-import {Typography, Theme, Box, Tooltip, Button, Paper, InputBase, IconButton, Accordion, AccordionSummary,         AccordionDetails, Tabs, Tab, Stack} from "@mui/material";
-import { Search, ExpandMore, ChatRounded } from "@mui/icons-material";
+import {Typography, Theme, Box, Tooltip, Button, Paper, InputBase, IconButton, Accordion, Avatar, AccordionSummary, AccordionDetails, Tabs, Tab, Stack} from "@mui/material";
+import { Search, ExpandMore, ChatRounded, AddCommentOutlined } from "@mui/icons-material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { discussionQuote } from "../../assets/svg";
+
+
 import Cookies from "universal-cookie";
 import { APIType, DiscussionType } from "../../types";
 
@@ -54,158 +58,134 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
     setTab(newValue);
   };
 
-  return (
-    <Box className={classes.root}>
-      {discussions && discussions.length !== 0 ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            marginBottom: "64px",
-          }}>
-          {discussions?.map((discussions, index) => (
-            <Box
-              sx={{
-                cursor: "pointer",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: "28px",
-                backgroundColor: "#D3D7DA",
-                padding: "12px 24px",
-              }}>
-              <Box
-                sx={{
-                  backgroundColor: "#081F4A",
-                  borderRadius: "3px",
-                  padding: "4px 10px",
-                  fontSize: "13px",
-                  color: "#fff",
-                  textTransform: "uppercase",
-                }}>
-                <Typography component="p">
-                  {discussions.title || "POST"}
-                </Typography>
-              </Box>
-
-              <Box
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: 400,
-                  color: "#060607",
-                }}>
-                <Typography component="p">
-                  {discussions.body ||
-                    "ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in"}
-                </Typography>
-              </Box>
-            </Box>
-          ))}
-        </Box>
-      ) : (
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "80px",
-              width: "100%",
-            }}>
-            <ChatRounded sx={{ fontSize: "28px", color: "#264276" }} />
-            <Typography sx={{ fontSize: "15px", color: "#060607" }}>
-              There are no endpoints in this API.
-            </Typography>
-          </Box>
-        </Box>
-      )}
-
-
-{/* export default function ControlledAccordions() {
+// Discussion function
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
-
+  
   return (
-    <div>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+    <Box className={classes.root}>
+      <Accordion className={classes.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
+          <Avatar sx={{ marginLeft: "1rem", marginRight: "1rem"}} src="/broken-image.jpg" />
+          <Typography sx={{ width: '33%', flexShrink: 0, marginTop: "0.45rem" }}>
+            Username
+          </Typography>
+          <Box
+            sx={{
+              fontSize: "16px",
+              fontWeight: 400,
+              color: "#060607",
+              marginLeft: "-10rem",
+              marginRight: "2rem",
+              marginTop: "0.45rem",
+            }}>
+            <Typography component="p">
+              A comment or discussion about {api.name}
+            </Typography>
+          </Box>
+          <Box
+              sx={{
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "#060607",
+                marginLeft: "3rem",
+                marginTop: "0.45rem",
+              }}>
+              <Typography component="p">
+                    {(api.createdOn &&
+                      new Date(api.createdOn).toLocaleString('en-US', { hour: 'numeric', minute:'numeric', hour12: true })) ||
+                      "Today"}
+              </Typography>
+            </Box>
+          <Box
+              sx={{
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "#060607",
+                marginLeft: "11rem",
+                marginTop: "0.45rem",
+              }}>
+              <Typography component="p">
+              {discussions.length} Comments
+              </Typography>
+            </Box>
+        </AccordionSummary>
+        <AccordionDetails sx={{ display: "flex",  backgroundColor: "white"}}>
+        {/* Join Discussion Button */}
+        {/* <Box>
+            <Button
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                border: "1px solid #081F4A",
+                color: "#081F4A",
+                borderRadius: "5px",
+                fontSize: "13px",
+                minWidth: "130px",
+                height: "2.4rem",
+
+                "@media screen and (max-width: 900px)": {
+                  fontSize: "11px",
+                  minWidth: "100px",
+                  height: "2.2rem",
+
+                  "& svg": {
+                    width: "17px",
+                  },
+                },
+
+                "@media screen and (max-width: 428px)": {
+                  fontSize: "11px",
+                  minWidth: "100px",
+                  height: "2.2rem",
+
+                  "& svg": {
+                    width: "17px",
+                  },
+                },
+              }}>
+              <img src={discussionQuote} alt=""/>
+                Join  Discussion
+            </Button>
+        </Box> */}
+          {/* <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            General settings
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam.
-          </Typography>
+            User2 
+            <Typography>
+              Lorem ipsum dolor sit amet consectetur. Vel
+            </Typography> 
+          </Typography> */}
+
+          <Stack direction="column" spacing={1} className={classes.user_review}>
+          <>
+            {discussions.map((discussions, index) => (
+              <Box className={classes.user_review}>
+                <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
+                <Box sx={{ width: "100%" }}>
+                  <Typography component="p" sx={{ marginBottom: "8px" }}>
+                    {"User"}
+                  </Typography>
+                  <Typography  sx={{ width: "100%", height: "100%"}}  component="p">
+                    {/* {discussions.review ||
+                      "s vitae erat diam arcu molestie mattis vestibulum lorem. Nulla dictum id aenean molestie aliquam volutpat enim tortor. Metus pretium magnis diam sit arcu nisl. Eget at a dolor ultricies et sit ut. Hendrerit viverra tincidunt ut ultricies nec enim aenean. Amet senectus pellentesque gravida iaculis urna diam orci. Fringilla sed auctor elementum mus non volutpat nullam. Purus aliquam sit tincidunt sit eu massa mauris nullam."} */}
+                      Lorem ipsum dolor sit amet consectetur. Vel
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
+          </>
+        </Stack>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            You are currently not an owner
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-            varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-            laoreet.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3bh-content"
-          id="panel3bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Advanced settings
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            Filtering has been entirely disabled for whole web server
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel4bh-content"
-          id="panel4bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </div> */}
 
     </Box>
   );
@@ -240,5 +220,27 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: "20px 16px 24px 16px",
       fontSize: "14px",
     },
+  },
+
+  user_review: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: "24px",
+    marginBottom: "12px",
+    marginTop: "40px",
+    borderBottom: "1px solid #d1d1d1",
+    padding: "0 0 21px 25px",
+    width: "100%",
+    backgroundColor: "white",
+    "& p": {
+      fontWeight: "normal",
+      fontSize: "16px",
+      color: "#3E4245",
+    },
+  },
+
+  accordion: {
+    marginTop: "60px",
   },
 }));

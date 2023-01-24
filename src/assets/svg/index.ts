@@ -22,6 +22,7 @@ import secure from "./secure.svg";
 import stacks from "./stacks.svg";
 import zoom from "./zoom.svg";
 import marketIllustration from "./marketIllustration.svg";
+import discussionQuote from "./discussion-quotes.svg";
 import LooperGroup from "./LooperGroup.svg";
 import shine from "./shine.svg";
 import LooperGroupTab from "./LooperGroupTab.svg";
@@ -61,6 +62,7 @@ export {
   zoom,
   dollars,
   marketIllustration,
+  discussionQuote,
   blogIllustrationLight,
   blogIllustrationDark,
   footerIllustration,
