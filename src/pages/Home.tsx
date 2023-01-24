@@ -14,13 +14,14 @@ import {
   GettingStarted,
   Footer,
   Loader,
+  Spinner,
 } from "../components";
 
 const Home = () => {
   return (
     <Stack direction="column">
-      <Loader/>
-      {/* <Navbar />
+      <Spinner/>
+      <Navbar />
       <Hero />
       <Brands />
       <AiModels />
@@ -30,7 +31,7 @@ const Home = () => {
       <Pricing />
       <Blog />
       <GettingStarted />
-      <Footer /> */}
+      <Footer />
     </Stack>
   );
 };

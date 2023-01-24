@@ -1,18 +1,21 @@
-import React, { CSSProperties } from "react";
+import { ThemeContext } from "@emotion/react";
+import { Theme } from "@mui/material";
+import '../shared/styles/spinner.css'
+import { useAppContext } from "../../contexts/AppProvider";
 
-import "./styles/spinner.css";
 
-interface Props {
-  /*
-   * Spinner
-   * @props
-   * style: CSS properties to modify the appearance of the spinner
-   */
-  style?: CSSProperties;
+
+const Spinner = () => {
+  const { currentMode } = useAppContext();
+  let changeColor = () => {
+    if (currentMode === "light") {
+      return "light"
+    } else return "dark"
+  }
+  return (
+    <div className={changeColor()}></div>
+  );
 }
 
-const Spinner = ({ style }: Props) => {
-  return <div className="spinner" style={style}></div>;
-};
 
 export default Spinner;
