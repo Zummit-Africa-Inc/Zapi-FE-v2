@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
 
     "& svg": {
-      color: "#a1a1a1",
+      color: theme.palette.grey[100],
       width: "48px",
       height: "48px",
     },
@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& p": {
       fontWeight: "normal",
       fontSize: "16px",
-      color: "#3E4245",
+      color: theme.palette.grey[100],
     },
   },
 }));

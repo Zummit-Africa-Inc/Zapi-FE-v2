@@ -54,6 +54,12 @@ export const darkTheme = createTheme({
     background: {
       default: "#121212",
       paper: "#E9EBED",
+      // method_container: "#272727",
+      // method: "#FFF9B2",
+      // tab: "#FFEA00",
+      // active_tab_text: "#060607",
+      // tab_text: "#FFFBCC",
+      // button: "#FFEA00"
     },
     grey: {
       "100": "#F5F5F5",
@@ -64,6 +70,7 @@ export const darkTheme = createTheme({
       "600": "#BEC2C8",
       "700": "#E9EBED",
       "800": "#D3D7DA",
+      "900": "#3E4245",
     },
     text: {
       primary: "#081F4A",
@@ -128,6 +135,12 @@ export const lightTheme = createTheme({
     background: {
       default: "#F5F5F5",
       paper: "#E9EBED",
+      // method_container: "#D3D7DA",
+      // method: "#081F4A",
+      // tab: "#B8CEF7",
+      // active_tab_text: "#081F4A",
+      // tab_text: "#5574AF",
+      // button: "#081F4A"
     },
     grey: {
       "100": "#060607",
@@ -138,6 +151,7 @@ export const lightTheme = createTheme({
       "600": "#3E4245",
       "700": "#3E4245",
       "800": "#D3D7DA",
+      "900": "#A8AEB5",
     },
     text: {
       primary: "#081F4A",
