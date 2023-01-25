@@ -18,12 +18,21 @@ const TabPanel: React.FC<ITabPanel> = ({
 }) => {
   return (
     <Box
-      style={{ width: "100%", height: "100%"}}
+      style={{ width: "100%", height: "100%" }}
       className={className}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tab-${index}`}>
-      {value === index && <Box style={{ padding: "0 0rem", height: "100%", borderRight: borderRight }}>{children}</Box>}
+      {value === index && (
+        <Box
+          style={{
+            padding: "0 0rem",
+            height: "100%",
+            borderRight: borderRight,
+          }}>
+          {children}
+        </Box>
+      )}
     </Box>
   );
 };

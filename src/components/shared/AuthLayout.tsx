@@ -12,10 +12,10 @@ import {
 } from "../../assets/svg";
 
 interface Props {
-  children: JSX.Element
-};
+  children: JSX.Element;
+}
 
-const AuthLayout= ({children}:Props) => {
+const AuthLayout = ({ children }: Props) => {
   const classes = useStyles();
 
   return (
