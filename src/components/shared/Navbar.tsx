@@ -15,7 +15,7 @@ const LINKS = [
   { name: "Home", to: "/" },
   { name: "API Hub", to: "/api-hub" },
   { name: "Pricing", to: "/pricing" },
-  { name: "Documentation", to: "/documentation" },
+  { name: "Help", to: "/documentation" },
 ];
 
 const Navbar = () => {
@@ -107,7 +107,7 @@ const Navbar = () => {
         ) : (
           <Stack direction="row" alignItems="center" spacing="24px">
             <Button
-              label="Dashboard"
+              label="Help"
               variant="outline"
               size="small"
               to="/developer/dashboard"
