@@ -31,13 +31,16 @@ const TranslateLang: React.FC = () => {
         <Stack direction="row" spacing={2}>
           <Button
             label="Get Started"
-            variant={currentMode === "dark" ? "secondary" : "primary"}
+            variant={currentMode === "dark" ? "secondaryDark" : "primary"}
             type="button"
             size="medium"
             icon={<FiArrowRight />}
           />
           <Button
             to="#"
+            style={{
+              color: currentMode === "dark" ? "#FFEA00" : "",
+            }}
             label="Try it Out"
             size="medium"
             variant={currentMode === "dark" ? "tertiary" : "text"}

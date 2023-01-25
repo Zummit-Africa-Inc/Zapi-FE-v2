@@ -22,7 +22,9 @@ export interface ButtonProps {
     | "rounded"
     | "square"
     | "socialLogin"
-    | "outlineLogin";
+    | "outlineLogin"
+    | "secondaryDark"
+    | "primaryDark";
   size: "small" | "medium" | "large";
   type?: "submit" | "reset" | "button";
   onClick?: () => void;

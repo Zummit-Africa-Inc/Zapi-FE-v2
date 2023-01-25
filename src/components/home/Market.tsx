@@ -5,6 +5,7 @@ import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { Button } from "..";
 import { marketIllustration } from "../../assets/svg";
+import { useAppContext } from "../../contexts/AppProvider";
 
 const marketSteps = [
   {
@@ -24,6 +25,7 @@ const marketSteps = [
 
 const Market: React.FC = () => {
   const classes = useStyles();
+  const { currentMode } = useAppContext();
   return (
     <Box className={classes.container}>
       <Stack className={classes.left}>
@@ -41,7 +43,7 @@ const Market: React.FC = () => {
           }}
           type="button"
           label="List Your API"
-          variant="secondary"
+          variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
           size="large"
           icon={<FiArrowRight />}
         />

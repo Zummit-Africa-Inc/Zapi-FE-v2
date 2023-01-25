@@ -34,10 +34,43 @@ export const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  primaryDark: {
+    "&.MuiButton-root": {
+      background: theme.palette.secondary.main,
+      color: "#FFF",
+      "&:hover": {
+        background: "#223B6C",
+      },
+      "&:active": {
+        background: `${theme.palette.primary.main}50`,
+      },
+      "&:disabled": {
+        background: "#DAD7DA",
+        color: "#929AA3",
+      },
+    },
+  },
   secondary: {
     "&.MuiButton-root": {
       background: theme.palette.secondary.main,
       color: theme.palette.primary.main,
+      "&:hover": {
+        background: "#FFEE33",
+        color: "#000",
+      },
+      "&:active": {
+        background: `${theme.palette.secondary.main}50`,
+      },
+      "&:disabled": {
+        background: "#DAD7DA",
+        color: "#929AA3",
+      },
+    },
+  },
+  secondaryDark: {
+    "&.MuiButton-root": {
+      background: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
       "&:hover": {
         background: "#FFEE33",
         color: "#000",

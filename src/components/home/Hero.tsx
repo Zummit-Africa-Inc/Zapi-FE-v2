@@ -31,8 +31,8 @@ const Hero: React.FC = () => {
           <Button
             label="Get Started"
             size="large"
-            variant="secondary"
-            // variant={currentMode === "dark" ? "primary" : "secondary"}
+            //variant="secondary"
+            variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
             to="/documentation"
             icon={<FiArrowRight />}
           />

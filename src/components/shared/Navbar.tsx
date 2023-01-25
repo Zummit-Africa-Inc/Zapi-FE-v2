@@ -95,7 +95,7 @@ const Navbar = () => {
             <Button
               label="Sign Up"
               onClick={() => handleClicked("login")}
-              variant="secondary"
+              variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
               size="small"
             />
             {currentMode === "light" ? (
@@ -108,13 +108,13 @@ const Navbar = () => {
           <Stack direction="row" alignItems="center" spacing="24px">
             <Button
               label="Help"
-              variant="outline"
+              variant="outlineLogin"
               size="small"
               to="/developer/dashboard"
             />
             <Button
               label="Logout"
-              variant="secondary"
+              variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
               size="small"
               onClick={() => handleLogout()}
             />
