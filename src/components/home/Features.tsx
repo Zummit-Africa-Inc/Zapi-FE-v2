@@ -133,8 +133,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       gap: "24px",
     },
     [theme.breakpoints.down("mobile")]: {
-      flex: "0 0 50%",
+      flex: "0 0 100%",
       gap: "24px",
+      fontSize: "16px",
     },
   },
 }));

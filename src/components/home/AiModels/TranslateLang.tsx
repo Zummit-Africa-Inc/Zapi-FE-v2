@@ -116,6 +116,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("laptop")]: {
       flexDirection: "column",
       padding: "4rem 1rem",
+      gap: '64px',
     },
   },
   left: {
