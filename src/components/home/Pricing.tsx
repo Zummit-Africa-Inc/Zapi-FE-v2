@@ -31,7 +31,7 @@ const Pricing: React.FC = () => {
         }}
 
       >
-        <Box sx={{ width: '40%',
+        <Box sx={{ width: '45%',
              '@media screen and (max-width: 800px)': {
               width: '90%',
             },
@@ -44,7 +44,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5" sx={{ color: "#223B6C" }}>
+                <Typography component="div" variant="h5" sx={{ color: "#223B6C", fontWeight: "600"}}>
                   Free
                 </Typography>
                 <Typography
@@ -84,7 +84,7 @@ const Pricing: React.FC = () => {
         </Box>
         <Box sx={{ display: 'flex', 
         flexDirection: "column", 
-        width: "40%", 
+        width: "45%", 
         gap: 2 ,
         '@media screen and (max-width: 800px)': {
           width: '90% !important',
@@ -104,7 +104,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5" sx={{ color: "#5A5F65" }} >
+                <Typography component="div" variant="h5" sx={{ color: "#5A5F65", fontWeight: "600" }} >
                   Basic
                 </Typography>
                 <Typography
@@ -126,7 +126,6 @@ const Pricing: React.FC = () => {
                 <Typography
                   variant="h1"
                   sx={{
-                    pr: 1,
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
@@ -171,7 +170,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5" sx={{ color: "#5A5F65" }} >
+                <Typography component="div" variant="h5" sx={{ color: "#5A5F65", fontWeight: "600" }} >
                   Premium
                 </Typography>
                 <Typography
@@ -193,7 +192,6 @@ const Pricing: React.FC = () => {
                 <Typography
                   variant="h1"
                   sx={{
-                    pr: 1,
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
@@ -238,7 +236,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5" sx={{ color: "#5A5F65" }} >
+                <Typography component="div" variant="h5" sx={{ color: "#5A5F65", fontWeight: "600" }} >
                   Mega
                 </Typography>
                 <Typography
@@ -260,7 +258,6 @@ const Pricing: React.FC = () => {
                 <Typography
                   variant="h1"
                   sx={{
-                    pr: 1,
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
@@ -304,7 +301,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5" sx={{color:"#5A5F65"}}>
+                <Typography component="div" variant="h5" sx={{color:"#5A5F65", fontWeight: "600"}}>
                   Enterprise
                 </Typography>
                 <Typography
@@ -326,7 +323,6 @@ const Pricing: React.FC = () => {
                 <Typography
                   variant="h1"
                   sx={{
-                    pr: 1,
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
@@ -383,7 +379,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   bullets: {
-    marginRight: "62px",
+    // marginRight: "62px",
     [theme.breakpoints.down("tablet")]: {
       marginRight: "0px",
       width: "24px",
