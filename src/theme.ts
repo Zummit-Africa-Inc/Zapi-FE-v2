@@ -54,12 +54,6 @@ export const darkTheme = createTheme({
     background: {
       default: "#121212",
       paper: "#E9EBED",
-      // method_container: "#272727",
-      // method: "#FFF9B2",
-      // tab: "#FFEA00",
-      // active_tab_text: "#060607",
-      // tab_text: "#FFFBCC",
-      // button: "#FFEA00"
     },
     grey: {
       "100": "#F5F5F5",
@@ -135,12 +129,6 @@ export const lightTheme = createTheme({
     background: {
       default: "#F5F5F5",
       paper: "#E9EBED",
-      // method_container: "#D3D7DA",
-      // method: "#081F4A",
-      // tab: "#B8CEF7",
-      // active_tab_text: "#081F4A",
-      // tab_text: "#5574AF",
-      // button: "#081F4A"
     },
     grey: {
       "100": "#060607",
