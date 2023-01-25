@@ -113,6 +113,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "100%",
     display: "flex",
+    '@media (max-width: 1280px)': {
+      justifyContent: "space-between",
+      gap:'64px',
+    },
     justifyContent: "space-around",
     padding: "64px 108px",
     gap: "10%",

@@ -80,6 +80,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "507px",
     width: "100%",
     display: "flex",
+    '@media (max-width: 1280px)': {
+      justifyContent: "space-between",
+      gap: '64px',
+    },
     alignItems: "center",
     justifyContent: "center",
     background: "#081F4A",
