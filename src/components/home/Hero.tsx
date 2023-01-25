@@ -71,7 +71,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    gap: '20%',
     marginTop: "80px",
     [theme.breakpoints.down("laptop")]: {
       marginTop: "54px",

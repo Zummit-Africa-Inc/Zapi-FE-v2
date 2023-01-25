@@ -194,6 +194,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   carouselContainer: {
     width: "100%",
     paddingBottom: "4rem",
+
   },
   carouselItem: {},
 }));

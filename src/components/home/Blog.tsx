@@ -112,9 +112,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     padding: "64px 108px",
-    gap: "120px",
+    gap: "20%",
     backgroundRepeat: "no-repeat",
     backgroundPositionX: "right",
     [theme.breakpoints.down("laptop")]: {
