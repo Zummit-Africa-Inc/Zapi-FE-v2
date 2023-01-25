@@ -44,7 +44,7 @@ const Hub = () => {
     if (selectedCategoryId) getApisByCategory();
   }, [selectedCategoryId]);
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
   return (
     <Stack>
       <Navbar />
@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     hubContainer: {
       backgroundColor: theme.palette.background.default,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   })
 );

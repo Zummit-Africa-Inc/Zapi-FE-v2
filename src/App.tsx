@@ -5,7 +5,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import { getApiCategories, getApis } from "./store/slices/api";
 import { useAppContext } from "./contexts/AppProvider";
-import { HamburgerMenu, Loader } from "./components";
+import {
+  Auth,
+  ForgotPassword,
+  HamburgerMenu,
+  Loader,
+  OTP,
+  ResetPassword,
+} from "./components";
 import { deviceDetect } from "react-device-detect";
 import { darkTheme, lightTheme } from "./theme";
 import { login } from "./store/slices/auth";
@@ -73,16 +80,23 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={currentMode === "dark" ? darkTheme : lightTheme}>
-      <Helmet />
-      <ToastContainer />
-      <HamburgerMenu />
-      <div style={{ background: currentMode === "dark" ? "#121212" : "#FFF" }}>
-        <Suspense fallback={<Loader />}>
-          <Router />
-        </Suspense>
-      </div>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={currentMode === "dark" ? darkTheme : lightTheme}>
+        <Helmet />
+        <ToastContainer />
+        <HamburgerMenu />
+        <div
+          style={{ background: currentMode === "dark" ? "#121212" : "#FFF" }}>
+          <Suspense fallback={<Loader />}>
+            <Router />
+          </Suspense>
+        </div>
+        {isClicked.forgotPassword && <ForgotPassword />}
+        {isClicked.resetPassword && <ResetPassword />}
+        {isClicked.otp && <OTP />}
+        {isClicked.login && <Auth />}
+      </ThemeProvider>
+    </>
   );
 };
 

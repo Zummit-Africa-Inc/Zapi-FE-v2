@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const API = React.lazy(() => import('./API'))
 const ComingSoon = React.lazy(() => import('./ComingSoon'))
@@ -9,16 +9,13 @@ const Discussions = React.lazy(() => import('./Discussions'))
 const Documentation = React.lazy(() => import('./Documentation'))
 const Error = React.lazy(() => import('./Error'))
 const Feedback = React.lazy(() => import('./Feedback'))
-const ForgotPassword = React.lazy(() => import('./ForgotPassword'))
 const FreeTrial = React.lazy(() => import('./FreeTrial'))
 const Home = React.lazy(() => import('./Home'))
 const Hub = React.lazy(() => import('./Hub'))
 const Login = React.lazy(() => import('./Login'))
 const LoginHistory = React.lazy(() => import('./LoginHistory'))
 const Notifications = React.lazy(() => import('./Notifications'))
-const OTP = React.lazy(() => import('./OTP'))
 const Pricing = React.lazy(() => import('./Pricing'))
-const ResetPassword = React.lazy(() => import('./ResetPassword'))
 const Signup = React.lazy(() => import('./Signup'))
 const Success = React.lazy(() => import('./Success'))
 const Terms = React.lazy(() => import('./Terms'))
@@ -27,6 +24,6 @@ const APIDesc = React.lazy(() => import('./APIDesc'))
 
 export {
     API, ComingSoon, Configuration, Dashboard, DashboardAPI, Discussions, Documentation, Error, Feedback,
-    ForgotPassword, FreeTrial, Home, Hub, Login, LoginHistory, Notifications, OTP, Pricing, ResetPassword,
+     FreeTrial, Home, Hub, Login, LoginHistory, Notifications, Pricing,
     Signup, Success, Terms, User, APIDesc
 }

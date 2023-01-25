@@ -3,14 +3,13 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   hubApiContainer: {
-    display: "flex",
-    justifyContents: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    margin: "0px 3em 3em 3em",
+    padding: "64px 108px",
+    width: "100%",
+    [theme.breakpoints.down("laptop")]: {
+      padding: "64px 16px",
+    },
   },
   titleBarContainer: {
-    width: "100%",
     marginBottom: "3em",
     display: "flex",
     justifyContent: "space-between",
@@ -42,6 +41,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   searchInput: {
     width: "25%",
+    background: `${theme.palette.info.main}!important`,
 
     [theme.breakpoints.down("tablet")]: {
       width: "40%",
@@ -50,6 +50,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
+
   notFoundTypography: {
     color: theme.palette.primary.contrastText,
 
@@ -98,20 +99,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   apiContainer: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "2rem",
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
     width: "100%",
-
-    [theme.breakpoints.down("laptop")]: {
-      gridTemplateColumns: "repeat(3, 1fr)",
-    },
-    [theme.breakpoints.down("tablet")]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      width: "unset",
-      gridTemplateColumns: "repeat(1, 1fr)",
-    },
+    gap: "2rem",
   },
 }));

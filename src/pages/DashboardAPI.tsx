@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const DashboardAPI = () => {
-  return (
-    <div>DashboardAPI</div>
-  )
-}
+  return <div>DashboardAPI</div>;
+};
 
-export default DashboardAPI
+export default DashboardAPI;

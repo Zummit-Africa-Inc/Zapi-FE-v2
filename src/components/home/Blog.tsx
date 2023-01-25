@@ -1,12 +1,24 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { FiArrowRight } from "react-icons/fi";
-import { Box, Card, CardContent, CardMedia, Stack, Theme, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Stack,
+  Theme,
+  Typography,
+} from "@mui/material";
 
 import { useAppContext } from "../../contexts/AppProvider";
-import {blogIllustration, blogPost1,  blogPost2} from "../../assets/svg";
+import {
+  blogIllustrationLight,
+  blogIllustrationDark,
+  blogPost1,
+  blogPost2,
+} from "../../assets/svg";
 
 const blogPosts = [
   {
@@ -18,7 +30,7 @@ const blogPosts = [
     image: blogPost1,
     title: "Interactive Artificial Intelligence Articles",
     date: "Nov 11, 2022",
-  }
+  },
 ];
 
 const Blog: React.FC = () => {
@@ -31,27 +43,64 @@ const Blog: React.FC = () => {
         {blogPosts.map((post, index) => (
           <Link key={index} to={`/blog/`}>
             <Card className={classes.card}>
-              <CardMedia sx={{height: "192px",borderRadius: 0}} image={post.image} />
+              <CardMedia
+                sx={{ height: "192px", borderRadius: 0 }}
+                image={post.image}
+              />
               <CardContent>
-                <Typography color="primary.contrastText" sx={{fontWeight: 700,fontSize: "23px",margin: "20px 0 28px"}}>
+                <Typography
+                  color="primary.contrastText"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "23px",
+                    margin: "20px 0 28px",
+                  }}>
                   {post.title}
                 </Typography>
-                <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                  <Typography color="primary.contrastText">Read More</Typography>
-                  <Typography sx={{color: "#929AA3"}}>{post.date}</Typography>
+                <Stack
+                  width="100%"
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between">
+                  <Typography color="primary.contrastText">
+                    Read More
+                  </Typography>
+                  <Typography sx={{ color: "#929AA3" }}>{post.date}</Typography>
                 </Stack>
               </CardContent>
             </Card>
           </Link>
         ))}
-        <Link to="/" className={classes.link} style={{borderColor: currentMode === "dark" ? "#FFEA00" : "#081F4A",color: currentMode === "dark" ? "#FFEA00" : "#081F4A"}}>
-          View all Zapi Blog Posts<FiArrowRight />
+        <Link
+          to="/"
+          className={classes.link}
+          style={{
+            borderColor: currentMode === "dark" ? "#FFEA00" : "#081F4A",
+            color: currentMode === "dark" ? "#FFEA00" : "#081F4A",
+          }}>
+          View all Zapi Blog Posts
+          <FiArrowRight />
         </Link>
       </Box>
       <Box className={classes.container2}>
         <Typography variant="h1">AI Education</Typography>
-        <Typography>Explore our blog posts to get more insight on AI.</Typography>
-        <img src={blogIllustration} alt="" width="100%" height="100%" />
+        <Typography
+          style={{
+            borderColor: currentMode === "dark" ? "#F5F5F5" : "#060607",
+            color: currentMode === "dark" ? "#F5F5F5" : "#060607",
+          }}>
+          Explore our blog posts to get more insight on AI.
+        </Typography>
+        <img
+          src={
+            currentMode === "dark"
+              ? blogIllustrationDark
+              : blogIllustrationLight
+          }
+          alt=""
+          width="100%"
+          height="100%"
+        />
       </Box>
     </Box>
   );
@@ -85,7 +134,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "flex-end",
     [theme.breakpoints.down("tablet")]: {
       alignItems: "center",
-    }
+    },
   },
   card: {
     "&.MuiCard-root": {
@@ -133,7 +182,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "54px",
     display: "flex",
     flexDirection: "row",
-    alignItems: 'center',
+    alignItems: "center",
     justifyContent: "center",
     padding: "16px 18px",
     gap: "8px",
@@ -145,6 +194,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     [theme.breakpoints.down("mobile")]: {
       textAlign: "center",
-    }
+      width: "274px",
+      maxWidth: "100%",
+    },
   },
 }));
