@@ -73,16 +73,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
     gap: '20%',
+    '@media (max-width: 1280px)': {
+      gap: '5%'
+    },
     marginTop: "80px",
     [theme.breakpoints.down("laptop")]: {
       marginTop: "54px",
+      gap: '5%'
     },
     [theme.breakpoints.down("tablet")]: {
       marginTop: "64px",
     },
   },
   heroText: {
-    width: "40%",
+    width: "656px",
     maxWidth: "",
     display: "flex",
     flexDirection: "column",
