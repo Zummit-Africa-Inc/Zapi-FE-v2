@@ -36,7 +36,7 @@ const Pricing: React.FC = () => {
               width: '90%',
             },
       }}>
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none", backgroundColor: "#CFDEFA" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -44,7 +44,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5">
+                <Typography component="div" variant="h5" sx={{ color: "#223B6C" }}>
                   Free
                 </Typography>
                 <Typography
@@ -53,6 +53,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 500,
                     fontSize: "16px",
                     lineHeight: "20px",
+                    color: "#081F4A",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "14px",
                       fontWeight: "400",
@@ -89,7 +90,7 @@ const Pricing: React.FC = () => {
           width: '90% !important',
         },
         }}>
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" , backgroundColor:"#E9EBED"}}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -103,7 +104,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5">
+                <Typography component="div" variant="h5" sx={{ color: "#5A5F65" }} >
                   Basic
                 </Typography>
                 <Typography
@@ -112,6 +113,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 500,
                     fontSize: "16px",
                     lineHeight: "20px",
+                    color: "#929AA3",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "14px",
                       fontWeight: "400",
@@ -128,7 +130,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
-                    color: "#071B85",
+                    color: "#5A5F65",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "20px",
                       fontWeight: "600",
@@ -155,7 +157,7 @@ const Pricing: React.FC = () => {
             </Box>
           </Card>
 
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none", backgroundColor:"#E9EBED" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -169,7 +171,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5">
+                <Typography component="div" variant="h5" sx={{ color: "#5A5F65" }} >
                   Premium
                 </Typography>
                 <Typography
@@ -178,6 +180,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 500,
                     fontSize: "16px",
                     lineHeight: "20px",
+                    color: "#929AA3",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "14px",
                       fontWeight: "400",
@@ -194,7 +197,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
-                    color: "#071B85",
+                    color: "#5A5F65",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "20px",
                       fontWeight: "600",
@@ -221,7 +224,7 @@ const Pricing: React.FC = () => {
             </Box>
           </Card>
 
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none", backgroundColor:"#E9EBED" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -235,7 +238,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5">
+                <Typography component="div" variant="h5" sx={{ color: "#5A5F65" }} >
                   Mega
                 </Typography>
                 <Typography
@@ -244,6 +247,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 500,
                     fontSize: "16px",
                     lineHeight: "20px",
+                    color: "#929AA3",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "14px",
                       fontWeight: "400",
@@ -260,7 +264,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
-                    color: "#071B85",
+                    color: "#5A5F65",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "20px",
                       fontWeight: "600",
@@ -286,7 +290,7 @@ const Pricing: React.FC = () => {
               </Box>
             </Box>
           </Card>
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none",backgroundColor:"#E9EBED" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -300,7 +304,7 @@ const Pricing: React.FC = () => {
                 </IconButton>
               </Box>
               <CardContent sx={{ flex: '1 0 auto', pl: 5 }}>
-                <Typography component="div" variant="h5">
+                <Typography component="div" variant="h5" sx={{color:"#5A5F65"}}>
                   Enterprise
                 </Typography>
                 <Typography
@@ -309,6 +313,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 500,
                     fontSize: "16px",
                     lineHeight: "20px",
+                    color: "#929AA3",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "14px",
                       fontWeight: "400",
@@ -325,7 +330,7 @@ const Pricing: React.FC = () => {
                     fontWeight: 700,
                     fontSize: "36px",
                     lineHeight: "46px",
-                    color: "#071B85",
+                    color: "#5A5F65",
                     "@media screen and (max-width: 800px)": {
                       fontSize: "20px",
                       fontWeight: "600",
