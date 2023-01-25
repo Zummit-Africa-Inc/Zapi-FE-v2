@@ -72,10 +72,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "41px",
     width: "100%",
     "& h2": {
-      margin: "63px 0",
-      fontWeight: "bold",
-      fontSize: "19px",
-      color: "#060607",
+        margin: "63px 0",
+        fontWeight: "bold",
+        fontSize: "19px",
+        color: theme.palette.grey[100],
     },
 
     "@media screen and (max-width: 900px)": {
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
 
     "& svg": {
-      color: "#a1a1a1",
+      color: theme.palette.grey[100],
       width: "48px",
       height: "48px",
     },
@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& p": {
       fontWeight: "normal",
       fontSize: "16px",
-      color: "#3E4245",
+      color: theme.palette.grey[100],
     },
   },
 }));
