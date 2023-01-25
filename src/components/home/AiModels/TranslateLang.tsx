@@ -103,14 +103,20 @@ export default TranslateLang;
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
+    width: "100%",  
     display: "flex",
-    justifyContent: "space-between",
-    gap: "64px",
+    '@media (max-width: 1280px)': {
+      justifyContent: "space-between",
+      gap:'64px',
+    },
+    justifyContent: "center",
+    gap: '20%',
     padding: "4rem 6.7rem",
     background: theme.palette.background.default,
     [theme.breakpoints.down("laptop")]: {
       flexDirection: "column",
       padding: "4rem 1rem",
+      gap: '64px',
     },
   },
   left: {
