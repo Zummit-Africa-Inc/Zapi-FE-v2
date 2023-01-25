@@ -32,7 +32,7 @@ const Pricing: React.FC = () => {
 
       >
         <Box sx={{ width: '40%' }}>
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -78,7 +78,7 @@ const Pricing: React.FC = () => {
           </Card>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: "column", width: "40%", gap: 2 }}>
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -144,7 +144,7 @@ const Pricing: React.FC = () => {
             </Box>
           </Card>
 
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -210,7 +210,7 @@ const Pricing: React.FC = () => {
             </Box>
           </Card>
 
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
@@ -275,7 +275,7 @@ const Pricing: React.FC = () => {
               </Box>
             </Box>
           </Card>
-          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between" }}>
+          <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                 <IconButton aria-label="previous">
