@@ -21,9 +21,10 @@ const Success = React.lazy(() => import('./Success'))
 const Terms = React.lazy(() => import('./Terms'))
 const User = React.lazy(() => import('./User'))
 const APIDesc = React.lazy(() => import('./APIDesc'))
+const Contact = React.lazy(() => import('./Contact'))
 
 export {
     API, ComingSoon, Configuration, Dashboard, DashboardAPI, Discussions, Documentation, Error, Feedback,
-     FreeTrial, Home, Hub, Login, LoginHistory, Notifications, Pricing,
-    Signup, Success, Terms, User, APIDesc
+    FreeTrial, Home, Hub, Login, LoginHistory, Notifications, Pricing,
+    Signup, Success, Terms, User, APIDesc, Contact
 }
