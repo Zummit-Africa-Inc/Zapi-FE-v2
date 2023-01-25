@@ -112,10 +112,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("laptop")]: {
       flexDirection: "column-reverse",
       padding: "4rem 1rem",
-    },
-    [theme.breakpoints.down("mobile")]: {
-      flexDirection: "column-reverse",
-      padding: "4rem 1rem",
+      gap: '64px',
     },
   },
   left: {
