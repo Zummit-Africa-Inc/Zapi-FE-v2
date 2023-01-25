@@ -31,7 +31,11 @@ const Pricing: React.FC = () => {
         }}
 
       >
-        <Box sx={{ width: '40%' }}>
+        <Box sx={{ width: '40%',
+             '@media screen and (max-width: 800px)': {
+              width: '90%',
+            },
+      }}>
           <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
@@ -77,7 +81,14 @@ const Pricing: React.FC = () => {
             </Box>
           </Card>
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: "column", width: "40%", gap: 2 }}>
+        <Box sx={{ display: 'flex', 
+        flexDirection: "column", 
+        width: "40%", 
+        gap: 2 ,
+        '@media screen and (max-width: 800px)': {
+          width: '90% !important',
+        },
+        }}>
           <Card sx={{ display: 'flex', p: 2, width: '100%', justifyContent: "space-between", boxShadow: "none" }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", width: '100%', }}>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
