@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   heroText: {
-    width: "656px",
+    width: "40%",
     maxWidth: "",
     display: "flex",
     flexDirection: "column",

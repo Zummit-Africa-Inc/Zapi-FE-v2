@@ -95,6 +95,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   features: {
     display: "flex",
     flexWrap: "wrap",
+    width: "90%",
     gap: "50px",
     paddingBottom: "4rem",
     justifyCenter: "center",

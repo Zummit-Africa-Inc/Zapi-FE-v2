@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   left: {
-    width: "513px",
+    width: "40%",
     [theme.breakpoints.down("tablet")]: {
       width: "353px",
     },

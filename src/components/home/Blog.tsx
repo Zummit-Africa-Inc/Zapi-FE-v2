@@ -42,7 +42,8 @@ const Blog: React.FC = () => {
       <Box className={classes.wrapper}>
         {blogPosts.map((post, index) => (
           <Link key={index} to={`/blog/`}>
-            <Card className={classes.card}>
+            <Card 
+             className={classes.card}>
               <CardMedia
                 sx={{ height: "192px", borderRadius: 0 }}
                 image={post.image}
@@ -112,9 +113,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "100%",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-around",
     padding: "64px 108px",
-    gap: "20%",
+    gap: "10%",
     backgroundRepeat: "no-repeat",
     backgroundPositionX: "right",
     [theme.breakpoints.down("laptop")]: {
@@ -127,7 +128,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   wrapper: {
-    width: "580px",
+    // width: "50%",
     maxWidth: "95%",
     display: "flex",
     flexDirection: "column",
@@ -139,7 +140,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   card: {
     "&.MuiCard-root": {
       background: "transparent",
-      boxShadow: 0,
+      border: "none",
+      boxShadow: "none", 
       margin: "18px 0",
       "& .MuiCardMedia": {
         width: "100%",
