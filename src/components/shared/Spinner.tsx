@@ -1,5 +1,3 @@
-import { ThemeContext } from "@emotion/react";
-import { Theme } from "@mui/material";
 import '../shared/styles/spinner.css'
 import { useAppContext } from "../../contexts/AppProvider";
 

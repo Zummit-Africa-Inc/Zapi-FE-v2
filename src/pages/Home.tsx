@@ -13,14 +13,11 @@ import {
   Blog,
   GettingStarted,
   Footer,
-  Loader,
-  Spinner,
 } from "../components";
 
 const Home = () => {
   return (
     <Stack direction="column">
-      <Spinner/>
       <Navbar />
       <Hero />
       <Brands />

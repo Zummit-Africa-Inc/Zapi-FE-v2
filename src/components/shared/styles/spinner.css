@@ -1,10 +1,10 @@
 .light {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 3.1em;
   margin: 0;
   background: transparent;
-  border-top: 7px solid #081F4A;
-  border-right: 7px solid transparent;
+  border-top: 0.25em solid #081F4A;
+  border-right: 0.25em solid transparent;
   border-radius: 50%;
   border-bottom-color: black;
   border-radius: 50%;
@@ -13,12 +13,12 @@
 }
 
 .dark {
-  width: 100px;
-  height: 100px;
+  width: 3.1em;
+  height: 3.1em;
   margin: 0;
   background: transparent;
-  border-top: 7px solid #FFEA00;;
-  border-right: 7px solid transparent;
+  border-top: 0.25em solid #FFEA00;
+  border-right: 0.25em solid transparent;
   border-radius: 50%;
   border-bottom-color: #FFEA00;
   border-radius: 50%;
