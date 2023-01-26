@@ -20,54 +20,54 @@ import { contactBg } from "../../assets/images";
 
 const Hero: React.FC = () => {
     const classes = useStyles();
-    const {currentMode} = useAppContext();
+    const { currentMode } = useAppContext();
 
     return (
         <Stack direction="column" className={classes.root}>
-            <Box className={classes.container} sx={{ backgroundColor:  currentMode === "light"? "#E9EBED" : "#383838"}}>
-            <img src={contactBg} alt=""  className={classes.heroImage} />
+            <Box className={classes.container} sx={{ backgroundColor: currentMode === "light" ? "#E9EBED" : "#383838" }}>
+                <img src={contactBg} alt="" className={classes.heroImage} />
                 <Box className={classes.header}>
-                <Box>
-                    <Typography 
-                    // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
-                    color={currentMode === "light"? "#3E4245" : "#F5F5F5" }
-                    component="h1"
-                    >
-                        Contact Us
+                    <Box>
+                        <Typography
+                            // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
+                            color={currentMode === "light" ? "#3E4245" : "#F5F5F5"}
+                            component="h1"
+                        >
+                            Contact Us
                         </Typography>
-                    <Typography
-                    // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
-                    color={currentMode === "light"? "#3E4245" : "#D3D7DA"}
-                    component="p">
-                    We welcome your message, please reach out to us through one of the contact methods listed.
-                    </Typography>
-                </Box>
-                
-                </Box>
-                <Box className={classes.lowerContainer} sx={{ backgroundColor:  currentMode === "light"? "#fff" : "#121212"}}>
-                <Box className={classes.header}>
-                <Box>
-                    <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                    <LocalPhoneOutlinedIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}
-                    fontSize="large" />
-                   <Typography sx={{ color: currentMode === "light"? "#081F4A" : "#D3D7DA" }}
-                    component="p">08012345678</Typography>
-                    </Stack>
-                    <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                    <EmailOutlinedIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }} fontSize="large" />
-                    <Typography sx={{ color: currentMode === "light"? "#081F4A" : "#D3D7DA" }}
-                     component="p">
-                        support@zapi.ai</Typography>
-                    </Stack>
-                    <Stack direction="row" spacing={2} alignItems="center" mt={3}>
-                    <TwitterIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}fontSize="large" />
-                    <InstagramIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}fontSize="large" />
-                    <YouTubeIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}fontSize="large" />
-                    </Stack>
-                </Box>
-                
-                </Box>
+                        <Typography
+                            // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
+                            color={currentMode === "light" ? "#3E4245" : "#D3D7DA"}
+                            component="p">
+                            We welcome your message, please reach out to us through one of the contact methods listed.
+                        </Typography>
                     </Box>
+
+                </Box>
+                <Box className={classes.lowerContainer} sx={{ backgroundColor: currentMode === "light" ? "#fff" : "#121212" }}>
+                    <Box className={classes.header}>
+                        <Box>
+                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
+                                <LocalPhoneOutlinedIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
+                                    fontSize="large" />
+                                <Typography sx={{ color: currentMode === "light" ? "#081F4A" : "#D3D7DA" }}
+                                    component="p">08012345678</Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
+                                <EmailOutlinedIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
+                                <Typography sx={{ color: currentMode === "light" ? "#081F4A" : "#D3D7DA" }}
+                                    component="p">
+                                    support@zapi.ai</Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={2} alignItems="center" mt={3}>
+                                <TwitterIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
+                                <InstagramIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
+                                <YouTubeIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
+                            </Stack>
+                        </Box>
+
+                    </Box>
+                </Box>
             </Box>
         </Stack>
     );
