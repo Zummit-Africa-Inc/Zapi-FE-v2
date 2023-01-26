@@ -161,38 +161,6 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
             <Button 
               endIcon={<StarBorderOutlined />} 
               className={classes.rate_button}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                border: `1px solid #081F4A`,
-                color: "#081F4A",
-                borderRadius: "5px",
-                fontSize: "13px",
-                fontWeight: "bold",
-                minWidth: "130px",
-                height: "2.4rem",
-
-                "@media screen and (max-width: 900px)": {
-                  fontSize: "11px",
-                  minWidth: "100px",
-                  height: "2.2rem",
-
-                  "& svg": {
-                    width: "17px",
-                  },
-                },
-
-                "@media screen and (max-width: 428px)": {
-                  fontSize: "11px",
-                  minWidth: "100px",
-                  height: "2.2rem",
-
-                  "& svg": {
-                    width: "17px",
-                  },
-                },
-              }}
               onClick={
                 accessToken
                   ? handleSubscription
@@ -204,31 +172,6 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
             <Button
               variant="contained"
               className={classes.subscribe_button}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: "#081F4A",
-                border: "1px solid transparent",
-                color: "#fff",
-                borderRadius: "5px",
-                fontSize: "13px",
-                fontWeight: "bold",
-                minWidth: "130px",
-                height: "2.4rem",
-
-                "@media screen and (max-width: 900px)": {
-                  fontSize: "11px",
-                  minWidth: "100px",
-                  height: "2.2rem",
-                },
-
-                "@media screen and (max-width: 428px)": {
-                  fontSize: "11px",
-                  minWidth: "100px",
-                  height: "2.2rem",
-                },
-              }}
               onClick={
                 accessToken
                   ? handleSubscription
@@ -407,13 +350,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    border: `1px solid ${theme.palette.secondary.main}`,
-    color: theme.palette.text.secondary,
+    border: `1px solid ${theme.shadows[9]}`,
+    color: theme.shadows[9],
     borderRadius: "5px",
     fontSize: "13px",
-    fontWeight: "bold",
-    textTransform: "capitalize",
-    minWidth: "130px",
+    fontWeight: "bold !important",
+    minWidth: "130px !important",
     height: "2.4rem",
 
     "@media screen and (max-width: 900px)": {
@@ -441,14 +383,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.shadows[9],
     border: "1px solid transparent",
-    color: theme.palette.text.secondary,
+    color: theme.shadows[10],
     borderRadius: "5px",
     fontSize: "13px",
-    fontWeight: "bold",
+    fontWeight: "bold !important",
     textTransform: "capitalize",
-    minWidth: "130px",
+    minWidth: "130px !important",
     height: "2.4rem",
 
     "@media screen and (max-width: 900px)": {
