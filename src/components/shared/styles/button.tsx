@@ -16,6 +16,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderWidth: "1px",
       borderRadius: "4px",
       cursor: "pointer",
+      [theme.breakpoints.down("mobile")]: {
+        transform: "scale(0.9)",
+      }
     },
   },
   primary: {
@@ -131,11 +134,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   socialLogin: {
     "&.MuiButton-root": {
-      background: "#A8AEB5",
+      background: "#",
       color: theme.palette.text.secondary,
       border: "1px solid #A8AEB5",
       borderRadius: "10px",
     },
+    "&:hover": {
+      background: "#"
+    }
   },
   small: {
     "&.MuiButton-root": {
