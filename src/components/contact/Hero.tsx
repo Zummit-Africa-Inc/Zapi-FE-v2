@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
+import { useAppContext } from '../../contexts/AppProvider';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -19,35 +20,49 @@ import { contactBg } from "../../assets/images";
 
 const Hero: React.FC = () => {
     const classes = useStyles();
+    const {currentMode} = useAppContext();
 
     return (
         <Stack direction="column" className={classes.root}>
-            <Box className={classes.container}>
+            <Box className={classes.container} sx={{ backgroundColor:  currentMode === "light"? "#E9EBED" : "#383838"}}>
             <img src={contactBg} alt=""  className={classes.heroImage} />
                 <Box className={classes.header}>
                 <Box>
-                    <Typography component="h1">Contact Us</Typography>
-                    <Typography component="p">
+                    <Typography 
+                    // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
+                    color={currentMode === "light"? "#3E4245" : "#F5F5F5" }
+                    component="h1"
+                    >
+                        Contact Us
+                        </Typography>
+                    <Typography
+                    // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
+                    color={currentMode === "light"? "#3E4245" : "#D3D7DA"}
+                    component="p">
                     We welcome your message, please reach out to us through one of the contact methods listed.
                     </Typography>
                 </Box>
                 
                 </Box>
-                <Box className={classes.lowerContainer}>
+                <Box className={classes.lowerContainer} sx={{ backgroundColor:  currentMode === "light"? "#fff" : "#121212"}}>
                 <Box className={classes.header}>
                 <Box>
                     <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                    <LocalPhoneOutlinedIcon sx={{ color:"#081F4A" }} fontSize="large" />
-                    <Typography component="p">08012345678</Typography>
+                    <LocalPhoneOutlinedIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}
+                    fontSize="large" />
+                   <Typography sx={{ color: currentMode === "light"? "#081F4A" : "#D3D7DA" }}
+                    component="p">08012345678</Typography>
                     </Stack>
                     <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                    <EmailOutlinedIcon sx={{ color:"#081F4A" }} fontSize="large" />
-                    <Typography component="p">support@zapi.ai</Typography>
+                    <EmailOutlinedIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }} fontSize="large" />
+                    <Typography sx={{ color: currentMode === "light"? "#081F4A" : "#D3D7DA" }}
+                     component="p">
+                        support@zapi.ai</Typography>
                     </Stack>
                     <Stack direction="row" spacing={2} alignItems="center" mt={3}>
-                    <TwitterIcon sx={{ color:"#081F4A" }} fontSize="large" />
-                    <InstagramIcon sx={{ color:"#081F4A" }} fontSize="large" />
-                    <YouTubeIcon sx={{ color:"#081F4A" }} fontSize="large" />
+                    <TwitterIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}fontSize="large" />
+                    <InstagramIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}fontSize="large" />
+                    <YouTubeIcon sx={{ color: currentMode === "light"? "#081F4A" : "#fff" }}fontSize="large" />
                     </Stack>
                 </Box>
                 
@@ -80,7 +95,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         // },
     },
     container: {
-        backgroundColor: "#E9EBED",
+        // backgroundColor: currentMode === "light"? "#E9EBED" : "#383838",
+        minHeight: "498px",
         // width: "100%",
         // display: "flex",
         // flexDirection: "row",
@@ -96,9 +112,10 @@ const useStyles = makeStyles((theme: Theme) => ({
         // },
     },
     lowerContainer: {
-        backgroundColor: "#fff",
+        // backgroundColor: "#fff",
         width: "100%",
-        height: '50vh',
+        minHeight: "50vh",
+        // height: '50vh',
     },
     heroText: {
         width: "656px",
@@ -138,6 +155,9 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     heroImage: {
+        '@media screen and (max-width: 1280px)': {
+            width: "50%",
+        },
         width: "40%",
         // height: "50%",
         display: "block",
@@ -163,7 +183,7 @@ const useStyles = makeStyles((theme: Theme) => ({
             fontSize: "42px",
             fontWeight: "bold",
             // textAlign: "center",
-            color: "#3E4245",
+            // color: "#3E4245",
             lineHeight: "60px",
 
             "@media screen and (max-width: 1024px)": {
@@ -178,7 +198,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         "& p": {
             // textAlign: "center",
             fontSize: "18px",
-            color: "#3E4245",
+            // color: "#3E4245",
             lineHeight: "20px",
             width: "55%",
 
