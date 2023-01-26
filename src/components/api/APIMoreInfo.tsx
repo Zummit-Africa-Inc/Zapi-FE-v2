@@ -22,17 +22,17 @@ interface Props {
 }
 
 const APIMoreInfo: React.FC<Props> = ({ api }) => {
-  const { error, loading, sendRequest } = useHttpRequest();
-  const { categories } = useAppSelector((store) => store.apis);
-  const [isRatingOpen, setIsRatingOpen] = useState<boolean>(false);
-  // const { subscribedApis } = useAppSelector((store) => store.user);
-  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
-  const cookies = new Cookies();
-  const profileId = cookies.get("profileId");
-  const accessToken = cookies.get("accessToken");
-  const classes = useStyles();
-  const dispatch = useAppDispatch();
-  const { handleClicked } = useAppContext();
+	const { error, loading, sendRequest } = useHttpRequest();
+    const { categories } = useAppSelector(store => store.apis);
+    const [isRatingOpen, setIsRatingOpen] = useState<boolean>(false)
+    // const { subscribedApis } = useAppSelector((store) => store.user);
+    const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+    const cookies = new Cookies();
+    const profileId = cookies.get("profileId");
+    const accessToken = cookies.get("accessToken");
+    const classes = useStyles();
+    const dispatch = useAppDispatch();
+    const { handleClicked, currentMode } = useAppContext();
 
   const category = categories.find(
     (category) => category.id === api.categoryId
@@ -156,79 +156,30 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
             direction="row"
             spacing={3}
             justifyContent={"end"}
-            alignItems={"center"}>
-            <Box>
-              <Button
-                endIcon={<StarBorderOutlined />}
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  border: "1px solid #081F4A",
-                  color: "#081F4A",
-                  borderRadius: "5px",
-                  fontSize: "13px",
-                  minWidth: "130px",
-                  height: "2.4rem",
-
-                  "@media screen and (max-width: 900px)": {
-                    fontSize: "11px",
-                    minWidth: "100px",
-                    height: "2.2rem",
-
-                    "& svg": {
-                      width: "17px",
-                    },
-                  },
-
-                  "@media screen and (max-width: 428px)": {
-                    fontSize: "11px",
-                    minWidth: "100px",
-                    height: "2.2rem",
-
-                    "& svg": {
-                      width: "17px",
-                    },
-                  },
-                }}>
-                Rate
-              </Button>
-            </Box>
-            <Box>
-              <Button
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  backgroundColor: "#081F4A",
-                  border: "1px solid #081F4A",
-                  color: "#FFFFFF",
-                  borderRadius: "5px",
-                  fontSize: "13px",
-                  minWidth: "130px",
-                  height: "2.4rem",
-
-                  "@media screen and (max-width: 900px)": {
-                    fontSize: "11px",
-                    minWidth: "100px",
-                    height: "2.2rem",
-                  },
-
-                  "@media screen and (max-width: 428px)": {
-                    fontSize: "11px",
-                    minWidth: "100px",
-                    height: "2.2rem",
-                  },
-                }}
-                variant={"contained"}
-                onClick={
-                  accessToken
-                    ? handleSubscription
-                    : () => handleClicked("login")
-                }>
-                {"Subscribe"}
-              </Button>
-            </Box>
+            alignItems={"center"}
+          >
+            <Button 
+              endIcon={<StarBorderOutlined />} 
+              className={classes.rate_button}
+              onClick={
+                accessToken
+                  ? handleSubscription
+                  : () => handleClicked("login")
+              }
+            >
+              Rate
+            </Button>
+            <Button
+              variant="contained"
+              className={classes.subscribe_button}
+              onClick={
+                accessToken
+                  ? handleSubscription
+                  : () => handleClicked("login")
+              }
+            >
+              {"Subscribe"}
+            </Button>
           </Stack>
         </Box>
 
@@ -361,19 +312,19 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginBottom: 16,
       fontWeight: "bold",
       fontSize: "28px",
-      color: "#060607",
+      color: theme.palette.grey[100],
     },
     "& h3": {
-      marginBottom: 16,
-      fontWeight: 700,
-      fontSize: "19px",
-      color: "#060607",
+        marginBottom: 16,
+        fontWeight: 700,
+        fontSize: "19px",
+		color: theme.palette.grey[100],
     },
     "& p": {
       marginBottom: 32,
       fontWeight: 400,
       fontSize: "16px",
-      color: "#3E4245",
+      color: theme.palette.grey[600],
     },
 
     "@media screen and (max-width: 900px)": {
@@ -395,4 +346,64 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "14px",
     },
   },
+  rate_button: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    border: `1px solid ${theme.shadows[9]}`,
+    color: theme.shadows[9],
+    borderRadius: "5px",
+    fontSize: "13px",
+    fontWeight: "bold !important",
+    minWidth: "130px !important",
+    height: "2.4rem",
+
+    "@media screen and (max-width: 900px)": {
+      fontSize: "11px",
+      minWidth: "100px",
+      height: "2.2rem",
+
+      "& svg": {
+        width: "17px",
+      },
+    },
+
+    "@media screen and (max-width: 428px)": {
+      fontSize: "11px",
+      minWidth: "100px",
+      height: "2.2rem",
+
+      "& svg": {
+        width: "17px",
+      },
+    },
+  },
+
+  subscribe_button: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: theme.shadows[9],
+    border: "1px solid transparent",
+    color: theme.shadows[10],
+    borderRadius: "5px",
+    fontSize: "13px",
+    fontWeight: "bold !important",
+    textTransform: "capitalize",
+    minWidth: "130px !important",
+    height: "2.4rem",
+
+    "@media screen and (max-width: 900px)": {
+      fontSize: "11px",
+      minWidth: "100px",
+      height: "2.2rem",
+    },
+
+    "@media screen and (max-width: 428px)": {
+      fontSize: "11px",
+      minWidth: "100px",
+      height: "2.2rem",
+    },
+  },
+
 }));
