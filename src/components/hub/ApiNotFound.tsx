@@ -16,7 +16,7 @@ const ApiNotFound = () => {
     <Box className={classes.notFoundContainer}>
       <Stack
         className={classes.notFoundStack}
-        sx={{ alignItems: "left", gap: "1em"}}>
+        sx={{ alignItems: "left", gap: "1em" }}>
         <Typography
           className={classes.notFoundTypography}
           variant="h4"

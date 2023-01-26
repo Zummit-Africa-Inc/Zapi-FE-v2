@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { createStyles, makeStyles } from "@mui/styles";
 
 interface Props {
-  label: string;
+  label: string | JSX.Element;
   background:
     | "primary"
     | "secondary"

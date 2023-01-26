@@ -3,28 +3,30 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button } from "..";
 import { ButtonArrow } from "../../assets/icons";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 import { useAppContext } from "../../contexts/AppProvider";
 import "react-multi-carousel/lib/styles.css";
-
 
 const GettingStarted: React.FC = () => {
   const { currentMode } = useAppContext();
   const classes = useStyles();
   return (
-    <Box className={classes.container} >
+    <Box className={classes.container}>
       <Stack pb={4} className={classes.heading}>
-        <h1>Get started with ZAPI’s powerful AI API models to scale your business and project </h1>
+        <h1>
+          Get started with ZAPI’s powerful AI API models to scale your business
+          and project{" "}
+        </h1>
       </Stack>
       <div style={{ paddingTop: "4rem", color: "#FFF" }}>
         <NavLink to="/api-hub">
-            <Button
+          <Button
             label="Get Started"
             variant="primary"
             type="button"
             size="large"
             icon={<ButtonArrow color="#FFF" />}
-            />
+          />
         </NavLink>
       </div>
     </Box>
