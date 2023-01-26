@@ -2,6 +2,7 @@ import React from 'react'
 import { Stack, Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { Footer, Loader, Navbar } from "../components";
+import ContactMain from '../components/contact/ContactMain';
 
 const Contact = () => {
     const classes = useStyles();
@@ -9,7 +10,7 @@ const Contact = () => {
         <Stack>
             <Navbar />
             <Stack className={classes.docContainer}>
-                <Loader />
+                <ContactMain />
             </Stack>
             <Footer />
         </Stack>
