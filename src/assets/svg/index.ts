@@ -35,6 +35,7 @@ import copyright from "./copyright.svg";
 import twitterIcon from "./twitter.svg";
 import youtubeIcon from "./youtube.svg";
 import linkedinIcon from "./linkedin.svg";
+import clouds from "./clouds.svg";
 
 export {
   facebook,
@@ -74,4 +75,5 @@ export {
   shineTab,
   LooperGroupMobile,
   shineMobile,
+  clouds,
 };

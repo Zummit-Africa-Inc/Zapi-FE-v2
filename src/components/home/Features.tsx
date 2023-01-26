@@ -95,6 +95,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   features: {
     display: "flex",
     flexWrap: "wrap",
+    '@media (max-width: 1280px)': {
+      width: '100% !important',
+    },
+    width: "90%",
     gap: "50px",
     paddingBottom: "4rem",
     justifyCenter: "center",
@@ -106,6 +110,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       [theme.breakpoints.down("tablet")]: {
         fontSize: "19px",
       },
+
     },
     "& p": {
       fontWeight: 400,
@@ -128,8 +133,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       gap: "24px",
     },
     [theme.breakpoints.down("mobile")]: {
-      flex: "0 0 50%",
+      flex: "0 0 100%",
       gap: "24px",
+      fontSize: "16px",
     },
   },
 }));
