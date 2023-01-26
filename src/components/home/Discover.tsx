@@ -193,8 +193,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   carouselContainer: {
-    width: "100%",
+    width: "90%",
     paddingBottom: "4rem",
+    display: "flex",
+    justifyContent: "center",
+    '@media (max-width: 1280px)': {
+      width: "100%",
+    },
   },
-  carouselItem: {},
+  carouselItem: {
+    padding: "0 1rem",
+    
+  },
 }));

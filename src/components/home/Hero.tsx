@@ -69,12 +69,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "100%",
     display: "flex",
+    '@media (max-width: 1280px)': {
+      justifyContent: "space-between",
+      gap:'64px',
+    },
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    gap: '20%',
     marginTop: "80px",
     [theme.breakpoints.down("laptop")]: {
       marginTop: "54px",
+      gap: '5%'
     },
     [theme.breakpoints.down("tablet")]: {
       marginTop: "64px",
