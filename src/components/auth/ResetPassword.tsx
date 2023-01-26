@@ -33,7 +33,6 @@ const ResetPassword = () => {
               {...bind}
               placeholder="Enter Password"
               style={{
-                color: currentMode === "dark" ? "#A8AEB5" : "#000000",
                 background: currentMode === "dark" ? "#383838" : "#FFFFFF",
               }}
             />
@@ -44,7 +43,6 @@ const ResetPassword = () => {
               {...bind}
               placeholder="Enter Password"
               style={{
-                color: currentMode === "dark" ? "#A8AEB5" : "#000000",
                 background: currentMode === "dark" ? "#383838" : "#FFFFFF",
               }}
             />
