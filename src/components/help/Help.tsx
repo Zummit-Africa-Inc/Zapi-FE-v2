@@ -39,7 +39,7 @@ const Help: React.FC = () => {
             // paddingLeft: "35px",
             fontSize: "13px",
             textAlign: "left",
-            color: currentMode === 'light' ? '#00000099' : '#ffffff',
+            color: currentMode === 'light' ? '#00000099' : '#BEC2C8' + ' !important',
             "@media screen and (max-width: 1024px)": {
                 gap: "0",
                 fontSize: "12px",
@@ -49,6 +49,7 @@ const Help: React.FC = () => {
             },
         },
         "&.Mui-selected": {
+            color: currentMode === 'light' ? '#060607' : '#060607' + ' !important',
             backgroundColor: currentMode === 'light' ? "#CFDEFA" : "#FFEA00",
             fontWeight: "bold",
         },
@@ -72,22 +73,11 @@ const Help: React.FC = () => {
 
     const handleTabChange = (e: SyntheticEvent, newValue: number) => {
         setTab(newValue);
-        // change tabs on scroll
-        const tab = document.getElementById(`tab-${newValue}`);
-        if (tab) {
-            tab.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-                inline: "center",
-            });
-        }
 
     };
 
     return (
         <>
-            {/* <Hero/> */}
-
             <Box sx={{
                 display: "flex",
                 flexDirection: "row",
