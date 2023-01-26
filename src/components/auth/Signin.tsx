@@ -198,6 +198,7 @@ const Signin = () => {
           name="email"
           type="email"
           {...bind}
+          placeholder="Enter Email"
           style={{
             background: currentMode === "dark" ? "#383838" : "#FFF",
             color: currentMode === "dark" ? "#FFF" : "#000",
@@ -208,6 +209,7 @@ const Signin = () => {
           name="password"
           type="password"
           {...bind}
+          placeholder="********"
           style={{
             background: currentMode === "dark" ? "#383838" : "#FFF",
             color: currentMode === "dark" ? "#FFF" : "#000",
@@ -239,19 +241,19 @@ const Signin = () => {
           label=""
           size="large"
           type="button"
-          variant="socialLogin"
+          variant="social"
           onClick={() => googleAuth()}
           icon={<GoogleIcon />}
-          style={{ width: "100%" }}
+          style={{width: "100%",background: currentMode === "dark" ? "#2C2C2C" : "#D3D7DA"}}
         />
         <Button
           label=""
           size="large"
           type="button"
-          variant="socialLogin"
+          variant="social"
           onClick={() => githubAuth()}
           icon={<GithubIcon />}
-          style={{ width: "100%" }}
+          style={{width: "100%",background: currentMode === "dark" ? "#2C2C2C" : "#D3D7DA"}}
         />
       </Box>
     </Box>

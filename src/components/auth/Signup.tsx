@@ -191,6 +191,7 @@ const Signup = () => {
           name="userName"
           type="text"
           {...bind}
+          placeholder="Enter Username"
           style={{
             background: currentMode === "dark" ? "#383838" : "#FFF",
             color: currentMode === "dark" ? "#FFF" : "#000",
@@ -201,6 +202,7 @@ const Signup = () => {
           name="email"
           type="email"
           {...bind}
+          placeholder="Enter Email"
           style={{
             background: currentMode === "dark" ? "#383838" : "#FFF",
             color: currentMode === "dark" ? "#FFF" : "#000",
@@ -211,13 +213,14 @@ const Signup = () => {
           name="password"
           type="password"
           {...bind}
+          placeholder="********"
           style={{
             background: currentMode === "dark" ? "#383838" : "#FFF",
             color: currentMode === "dark" ? "#FFF" : "#000",
           }}
         />
         <Button
-          label={loading ? <Spinner /> : "Sign In"}
+          label={loading ? <Spinner /> : "Sign Up"}
           size="large"
           type="submit"
           variant="primary"
@@ -237,19 +240,19 @@ const Signup = () => {
           label=""
           size="large"
           type="button"
-          variant="socialLogin"
+          variant="social"
           onClick={() => googleAuth()}
           icon={<GoogleIcon />}
-          style={{ width: "100%" }}
+          style={{width: "100%",background: currentMode === "dark" ? "#2C2C2C" : "#D3D7DA"}}
         />
         <Button
           label=""
           size="large"
           type="button"
-          variant="socialLogin"
+          variant="social"
           onClick={() => githubAuth()}
           icon={<GithubIcon />}
-          style={{ width: "100%" }}
+          style={{width: "100%",background: currentMode === "dark" ? "#2C2C2C" : "#D3D7DA"}}
         />
       </Box>
     </Box>
