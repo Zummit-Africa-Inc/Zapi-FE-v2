@@ -220,7 +220,7 @@ const Signup = () => {
           }}
         />
         <Button
-          label={loading ? <Spinner /> : "Sign In"}
+          label={loading ? <Spinner /> : "Sign Up"}
           size="large"
           type="submit"
           variant="primary"
