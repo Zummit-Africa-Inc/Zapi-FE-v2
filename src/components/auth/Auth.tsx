@@ -120,7 +120,7 @@ const Auth = () => {
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "580px",
-    minHeight: "694px",
+    minHeight: "65%",
     display: "flex",
     flexDirection: "column",
     border: "2px solid #3E4245",
@@ -128,8 +128,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: "0 9px 18px rgba(0, 0, 0, 0.15)",
     padding: "40px 32px 32px 32px",
     [theme.breakpoints.down("tablet")]: {
-      width: "446px",
-      height: "679px",
+      width: "80%",
+      height: "80%",
     },
     [theme.breakpoints.down("mobile")]: {
       width: "100%",
@@ -157,8 +157,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   backdrop: {
     background: "rgba(0, 0, 0, 0.5)",
-    height: "938px",
-    top: "88px",
+    // height: "938px",
+    // top: "88px",
     [theme.breakpoints.down("mobile")]: {
       alignItems: "flex-start",
       top: 0,
