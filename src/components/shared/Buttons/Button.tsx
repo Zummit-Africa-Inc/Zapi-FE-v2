@@ -31,7 +31,7 @@ const ButtonBase = ({
     text: classes.text,
     rounded: classes.rounded,
     square: classes.square,
-    social: classes.social,
+    socialLogin: classes.socialLogin,
   };
 
   if (to) {

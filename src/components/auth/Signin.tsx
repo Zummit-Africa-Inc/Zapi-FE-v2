@@ -241,7 +241,7 @@ const Signin = () => {
           label=""
           size="large"
           type="button"
-          variant="social"
+          variant="socialLogin"
           onClick={() => googleAuth()}
           icon={<GoogleIcon />}
           style={{width: "100%",background: currentMode === "dark" ? "#2C2C2C" : "#D3D7DA"}}
@@ -250,7 +250,7 @@ const Signin = () => {
           label=""
           size="large"
           type="button"
-          variant="social"
+          variant="socialLogin"
           onClick={() => githubAuth()}
           icon={<GithubIcon />}
           style={{width: "100%",background: currentMode === "dark" ? "#2C2C2C" : "#D3D7DA"}}

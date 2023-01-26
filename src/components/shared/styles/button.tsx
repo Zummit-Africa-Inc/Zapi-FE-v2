@@ -132,7 +132,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
-  social: {
+  socialLogin: {
     "&.MuiButton-root": {
       background: "#",
       color: theme.palette.text.secondary,
