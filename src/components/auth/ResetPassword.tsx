@@ -32,6 +32,10 @@ const ResetPassword = () => {
               name="password"
               {...bind}
               placeholder="Enter Password"
+              style={{
+                color: currentMode === "dark" ? "#A8AEB5" : "#000000",
+                background: currentMode === "dark" ? "#383838" : "#FFFFFF",
+              }}
             />
             <InputField
               label="Confirm New Password"
@@ -39,6 +43,10 @@ const ResetPassword = () => {
               name="confirm_password"
               {...bind}
               placeholder="Enter Password"
+              style={{
+                color: currentMode === "dark" ? "#A8AEB5" : "#000000",
+                background: currentMode === "dark" ? "#383838" : "#FFFFFF",
+              }}
             />
           </Stack>
           <Stack>
