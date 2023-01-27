@@ -10,13 +10,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   titleBarContainer: {
+    width: "100%",
     marginBottom: "3em",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    [theme.breakpoints.down("tablet")]: {
+      marginLeft: "3rem"
+    },
 
     [theme.breakpoints.down("mobile")]: {
+      justifyContent: "center",
       flexDirection: "column",
+      position: 'relative',
+      right: "3rem"
     },
   },
   catButton: {
@@ -27,11 +34,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: "4px 10px",
   },
   typography: {
+    // position: "relative",
+    // right: "30px",
     textAlign: "center",
     color: theme.palette.primary.contrastText,
 
     [theme.breakpoints.down("tablet")]: {
       fontSize: "20px!important",
+      // margin: "0 30px"
     },
     [theme.breakpoints.down("mobile")]: {
       marginBottom: "1rem!important",
@@ -40,14 +50,27 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   searchInput: {
+    // position: "relative",
+    // left: "30px",
+    '& input::placeholder':{
+      color: theme.palette.grey[100]
+    },
+    "& .MuiInputBase-input-MuiOutlinedInput-input":{
+      color: "white"
+    },
     width: "25%",
     background: `${theme.palette.info.main}!important`,
+   
 
     [theme.breakpoints.down("tablet")]: {
-      width: "40%",
+      position: "relative",
+      right: "100px",
+      width: "30%",
     },
     [theme.breakpoints.down("mobile")]: {
-      width: "100%",
+      width: "50%",
+      position: "relative",
+      left: "5px"
     },
   },
 
@@ -100,10 +123,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   apiContainer: {
     display: "flex",
-    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    gap: "2rem",
+
+    // [theme.breakpoints.down('tablet')]: {
+    //   marginRight: "1rem"
+    // },
   },
+
+  apis:{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridGap: "20px",
+
+    [theme.breakpoints.down('tablet')]: {
+      gridTemplateColumns: "repeat(2, 1fr)",
+    },
+    [theme.breakpoints.down('mobile')]: {
+      gridTemplateColumns: "repeat(1, 1fr)"
+    }
+  }
+
 }));
