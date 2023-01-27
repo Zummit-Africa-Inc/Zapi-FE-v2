@@ -157,12 +157,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   backdrop: {
     background: "rgba(0, 0, 0, 0.5)",
-    // height: "938px",
-    // top: "88px",
-    [theme.breakpoints.down("mobile")]: {
-      alignItems: "flex-start",
-      top: 0,
-    }
+    height: "100%",
   }
 }));
 
