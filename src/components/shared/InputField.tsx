@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     "&::placeholder": {
       fontSize: "18px",
       fontWeight: 400,
-      color: theme.palette.primary.main,
+      color: "#A8AEB5",
     },
     ":focus": {
       border: "2px solid #A0BDF5",

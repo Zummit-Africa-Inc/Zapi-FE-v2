@@ -74,6 +74,10 @@ const ForgotPassword = () => {
                 name="email"
                 {...bind}
                 placeholder="Enter email"
+                style={{
+                  color: currentMode === "dark" ? "#A8AEB5" : "#000000",
+                  background: currentMode === "dark" ? "#383838" : "#FFFFFF",
+                }}
               />
             </Stack>
             <Stack>
