@@ -1,19 +1,24 @@
 import React from "react";
-import { CardContent, Radio, Stack, Theme } from "@mui/material";
-import { createStyles, makeStyles, styled } from "@mui/styles";
 import {
-    Paper,
-    Box,
-    Grid,
-    Input,
+    CardContent,
+    Icon,
+    Button,
+    Radio,
+    Stack,
+    Theme,
     FormControl,
     InputLabel,
     TextField,
     Checkbox,
-    InputBase,
     Card,
     Typography,
+    Paper,
+    Box,
 } from "@mui/material";
+import { createStyles, makeStyles, styled } from "@mui/styles";
+
+import { AttachFile } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 // export interface  ContactFormProps {
 
@@ -195,15 +200,17 @@ const ContactForm = () => {
                     </Box>
                 </FormControl>
             </Stack>
-            <Stack sx={{ width: "100%", display: "flex", flexDirection: "column", p:1 }}>
+            <Stack
+                sx={{ width: "100%", display: "flex", flexDirection: "column", p: 1 }}>
                 <Typography
                     sx={{ color: "#060607", fontWeight: 600, fontSize: "18px" }}>
                     What is your goal?
                 </Typography>
-                <Stack sx={{ width: "100%", display: "flex", flexDirection: "row", gap:2 }}>
+                <Stack
+                    sx={{ width: "100%", display: "flex", flexDirection: "row", gap: 3, flexWrap: "wrap", }}>
                     <Card
                         sx={{
-                            width: "100%",
+                            // width: "18%",
                             p: 1,
                             mt: 2,
                             backgroundColor: "#fff",
@@ -228,7 +235,7 @@ const ContactForm = () => {
                     </Card>
                     <Card
                         sx={{
-                            width: "100%",
+                            // width: "18%",
                             p: 1,
                             mt: 2,
                             backgroundColor: "#fff",
@@ -253,7 +260,7 @@ const ContactForm = () => {
                     </Card>
                     <Card
                         sx={{
-                            width: "100%",
+                            // width: "18%",
                             p: 1,
                             mt: 2,
                             backgroundColor: "#fff",
@@ -278,7 +285,7 @@ const ContactForm = () => {
                     </Card>
                     <Card
                         sx={{
-                            width: "100%",
+                            // width: "18%",
                             p: 1,
                             mt: 2,
                             backgroundColor: "#fff",
@@ -303,7 +310,7 @@ const ContactForm = () => {
                     </Card>
                     <Card
                         sx={{
-                            width: "100%",
+                            // width: "18%",
                             p: 1,
                             mt: 2,
                             backgroundColor: "#fff",
@@ -327,7 +334,8 @@ const ContactForm = () => {
                         </CardContent>
                     </Card>
                 </Stack>
-                <Typography sx={{ color: "#060607", fontWeight: 600, fontSize: "18px", mt:2 }}>
+                <Typography
+                    sx={{ color: "#060607", fontWeight: 600, fontSize: "18px", mt: 2 }}>
                     Please give us more details about your request*
                 </Typography>
                 <TextField
@@ -344,8 +352,83 @@ const ContactForm = () => {
                         borderRadius: "4px",
                     }}
                 />
-                
+                <Stack
+                    sx={{
+                        width: "50%",
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: 2,
+                        mt: 2,
+                    }}>
+                    <AttachFile
+                        className={classes.iconStyle}
+                        sx={{ color: "#5A5F65" }}
+                        fontSize="large"
+                    />
+                    <Stack
+                        sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
+                        <Typography
+                            sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "16px" }}>
+                            Upload a file with details
+                        </Typography>
+                        <Typography
+                            sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "10px" }}>
+                            Pdf, doc, docx, jpg, png, avi, mp4, txt
+                        </Typography>
+                    </Stack>
+                </Stack>
+                <Typography
+                    sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "14px", mt: 2 }}>
+                    *Please check the box before submitting
+                </Typography>
+                {/* <Stack sx={{ width: "100%", display: "flex", flexDirection: "row", gap:2, mt:2 }}>
+                    <Checkbox sx={{ color: "#A8AEB5" }} />
+                    <Typography sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "14px" }}>
+                        I agree to the terms and conditions
+                    </Typography>
+                    </Stack> */}
+                <FormControl
+                    sx={{
+                        width: "100%",
+                        // p: 2,
+                        display: "flex",
+                        flexDirection: "row",
+                        // color: "#333",
+                        alignItems: "center",
+                    }}>
+                    <Checkbox sx={{ color: "#A8AEB5" }} />
+                    <Box>
+                        <Typography
+                            sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "14px" }}>
+                            I agree to the zapi.ai{" "}
+                            <Link className={classes.link} to="#">
+                                Privacy Policy
+                            </Link>
+                        </Typography>
+                    </Box>
+                </FormControl>
             </Stack>
+            <Stack sx={{ width: "100%", display: "flex", flexDirection: "row", gap: 2, mt: 2 }}>
+            <Button
+                    sx={{
+                        width: "40%",
+                        marginLeft: "auto",
+                        mt: 1,
+                        p:1,
+                        mb:2,
+                        backgroundColor: "#081F4A",
+                        color: "#f2f5fa",
+                        borderRadius: "4px",
+                        "&:hover": {
+                            backgroundColor: "#081F4A",
+                        },
+                        textTransform: "none",
+                        fontWeight: 600,
+                        fontSize: "16px",
+                    }}>
+                    Send Message
+                </Button>
+                </Stack>
         </Paper>
     );
 };
@@ -365,6 +448,15 @@ const useStyles = makeStyles((theme: Theme) =>
             left: "30%",
             // transform: "translate(-50%, -50%)",
             // zIndex: 10,
+        },
+        iconStyle: {
+            transform: "rotate(45deg)",
+        },
+        link: {
+            color: "#081F4A",
+            textDecoration: "underline",
+            fontWeight: 400,
+            fontSize: "16px",
         },
     })
 );

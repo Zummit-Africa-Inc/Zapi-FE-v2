@@ -7,7 +7,7 @@ import ContactMain from '../components/contact/ContactMain';
 const Contact = () => {
     const classes = useStyles();
     return (
-        <Stack>
+        <Stack className={classes.root}>
             <Navbar />
             <Stack className={classes.docContainer}>
                 <ContactMain />
@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+        },
+        root: {
+            flexGrow: 1,
+            height: "100vh",
+            width: "100%",
         },
     })
 );
