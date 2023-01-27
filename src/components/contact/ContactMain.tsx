@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
                     </Box>
                 </Box>
             </Box>
-            <ContactForm className={classes.contactForm} />
+            <ContactForm/>
         </Stack>
     );
 };
