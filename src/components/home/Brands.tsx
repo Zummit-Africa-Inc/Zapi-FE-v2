@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
   },
   brands: {
-    width: "100%",
+    width: "90%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     margin: "0 0 64px",
     "& img": {
       display: "block",

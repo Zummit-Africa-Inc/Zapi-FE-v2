@@ -30,7 +30,7 @@ const InputField = ({
   const classes = useStyles();
 
   return (
-    <Stack spacing="7px">
+    <Stack spacing="2px">
       <label className={classes.label}>
         {label}
         {required && <span style={{ color: "#E01507" }}>*</span>}
@@ -58,18 +58,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: "transparent",
     border: "1px solid #A8AEB5",
     borderRadius: "4px",
-    padding: ".5rem .5rem",
+    padding: "15px 12px",
+    outline: "none",
+    color: theme.palette.primary.main,
     "&::placeholder": {
       fontSize: "18px",
       fontWeight: 400,
-      color: '#BEC2C8',
-      padding: ".5rem .5rem",
+      color: "#A8AEB5",
     },
     ":focus": {
       border: "2px solid #A0BDF5",
     },
     [theme.breakpoints.down("laptop")]: {
-      height: "42px",
+      height: "38px",
     },
   },
   label: {

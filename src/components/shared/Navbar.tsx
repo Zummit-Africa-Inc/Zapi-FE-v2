@@ -15,7 +15,7 @@ const LINKS = [
   { name: "Home", to: "/" },
   { name: "API Hub", to: "/api-hub" },
   { name: "Pricing", to: "/pricing" },
-  { name: "Documentation", to: "/documentation" },
+  { name: "Help", to: "/documentation" },
 ];
 
 const Navbar = () => {
@@ -89,13 +89,13 @@ const Navbar = () => {
             <Button
               label="Login"
               onClick={() => handleClicked("login")}
-              variant="outline"
+              variant="outlineLogin"
               size="small"
             />
             <Button
               label="Sign Up"
               onClick={() => handleClicked("login")}
-              variant="secondary"
+              variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
               size="small"
             />
             {currentMode === "light" ? (
@@ -107,14 +107,14 @@ const Navbar = () => {
         ) : (
           <Stack direction="row" alignItems="center" spacing="24px">
             <Button
-              label="Dashboard"
-              variant="outline"
+              label="Help"
+              variant="outlineLogin"
               size="small"
               to="/developer/dashboard"
             />
             <Button
               label="Logout"
-              variant="secondary"
+              variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
               size="small"
               onClick={() => handleLogout()}
             />
