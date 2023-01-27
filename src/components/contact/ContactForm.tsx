@@ -9,8 +9,10 @@ import {
     FormControl,
     InputLabel,
     TextField,
+    Checkbox,
     InputBase,
     OutlinedInput,
+    Typography
 } from "@mui/material";
 
 // export interface  ContactFormProps {
@@ -168,6 +170,24 @@ const ContactForm = () => {
                     />
                 </FormControl>
             </Stack>
+            <Stack sx={{ width: "50%", display: "flex", flexDirection: "row", justifyContent:'center', }}>
+                <FormControl
+                    sx={{
+                        width: "100%",
+                        // p: 2,
+                        display: "flex",
+                        flexDirection: "row",
+                        color: "#333",
+                        alignItems: 'center' 
+                    }}>
+                        <Checkbox sx={{color: "#A8AEB5"}}/>
+                        <Box>
+                            <Typography 
+                            sx={{color: "#3E4245", fontWeight: 400, fontSize: "14px"}}
+                            >I would like to be contacted via phone</Typography>
+                        </Box>
+                </FormControl>
+                </Stack>
         </Paper>
     );
 };
