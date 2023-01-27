@@ -29,7 +29,7 @@ const App: React.FC = () => {
     isClicked,
     setDeviceLocation,
     setDeviceInfo,
-    setDeviceIP,
+    setDeviceIP,  
   } = useAppContext();
   const dispatch = useAppDispatch();
 
