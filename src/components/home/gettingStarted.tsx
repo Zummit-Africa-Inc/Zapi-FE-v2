@@ -22,7 +22,7 @@ const GettingStarted: React.FC = () => {
         <NavLink to="/api-hub">
           <Button
             label="Get Started"
-            variant="primary"
+            variant={currentMode === "dark" ? "primaryDark" : "primary"}
             type="button"
             size="large"
             icon={<ButtonArrow color="#FFF" />}

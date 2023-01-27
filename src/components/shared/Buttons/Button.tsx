@@ -32,6 +32,9 @@ const ButtonBase = ({
     rounded: classes.rounded,
     square: classes.square,
     socialLogin: classes.socialLogin,
+    outlineLogin: classes.outlineLogin,
+    secondaryDark: classes.secondaryDark,
+    primaryDark: classes.primaryDark,
   };
 
   if (to) {

@@ -1,79 +1,44 @@
-import facebook from "./facebook.svg";
-import figma from "./figma.svg";
-import google from "./google.svg";
-import blogPost1 from "./blog-post1.svg";
-import blogPost2 from "./blog-post2.svg";
-import pricingBullet1 from "./pricing-bullet1.svg";
-import pricingBullet2 from "./pricing-bullet2.svg";
-import heroBig from "./hero-desktop.svg";
-import heroMedium from "./hero-tablet.svg";
-import heroSmall from "./hero-mobile.svg";
-import heroIllustration from "./hero-illustration.svg";
-import ibm from "./ibm.svg";
-import microsoft from "./microsoft.svg";
-import zapi from "./zapi.svg";
-import cmLearningAPI from "./cmLearningAPI.svg";
-import compVisionAPI from "./compVisionAPI.svg";
-import natLangAPI from "./natLangAPI.svg";
-import chevron from "./chevron.svg";
-import dollars from "./dollars.svg";
-import pencil from "./pencil.svg";
-import secure from "./secure.svg";
-import stacks from "./stacks.svg";
-import zoom from "./zoom.svg";
-import marketIllustration from "./marketIllustration.svg";
-import LooperGroup from "./LooperGroup.svg";
-import shine from "./shine.svg";
-import LooperGroupTab from "./LooperGroupTab.svg";
-import shineTab from "./shineTab.svg";
-import LooperGroupMobile from "./LooperGroupMobile.svg";
-import shineMobile from "./shineMobile.svg";
-import blogIllustrationLight from "./blog-illustration.svg";
-import blogIllustrationDark from "./blog-illustration-dark.svg";
-import footerIllustration from "./footer-illustration.svg";
-import copyright from "./copyright.svg";
-import twitterIcon from "./twitter.svg";
-import youtubeIcon from "./youtube.svg";
-import linkedinIcon from "./linkedin.svg";
-import clouds from "./clouds.svg";
-
-export {
-  facebook,
-  figma,
-  google,
-  blogPost1,
-  blogPost2,
-  pricingBullet1,
-  pricingBullet2,
-  heroBig,
-  heroIllustration,
-  heroMedium,
-  heroSmall,
-  ibm,
-  microsoft,
-  zapi,
-  cmLearningAPI,
-  compVisionAPI,
-  natLangAPI,
-  chevron,
-  stacks,
-  secure,
-  pencil,
-  zoom,
-  dollars,
-  marketIllustration,
-  blogIllustrationLight,
-  blogIllustrationDark,
-  footerIllustration,
-  copyright,
-  twitterIcon,
-  youtubeIcon,
-  linkedinIcon,
-  LooperGroup,
-  shine,
-  LooperGroupTab,
-  shineTab,
-  LooperGroupMobile,
-  shineMobile,
-  clouds,
-};
+export { default as facebook } from "./facebook.svg";
+export { default as figma } from "./figma.svg";
+export { default as google } from "./google.svg";
+export { default as blogPost1 } from "./blog-post1.svg";
+export { default as blogPost2 } from "./blog-post2.svg";
+export { default as pricingBullet1 } from "./pricing-bullet1.svg";
+export { default as pricingBullet2 } from "./pricing-bullet2.svg";
+export { default as heroBig } from "./hero-desktop.svg";
+export { default as heroMedium } from "./hero-tablet.svg";
+export { default as heroSmall } from "./hero-mobile.svg";
+export { default as heroIllustration } from "./hero-illustration.svg";
+export { default as ibm } from "./ibm.svg";
+export { default as microsoft } from "./microsoft.svg";
+export { default as zapi } from "./zapi.svg";
+export { default as cmLearningAPI } from "./cmLearningAPI.svg";
+export { default as compVisionAPI } from "./compVisionAPI.svg";
+export { default as natLangAPI } from "./natLangAPI.svg";
+export { default as chevron } from "./chevron.svg";
+export { default as dollars } from "./dollars.svg";
+export { default as pencil } from "./pencil.svg";
+export { default as secure } from "./secure.svg";
+export { default as stacks } from "./stacks.svg";
+export { default as zoom } from "./zoom.svg";
+export { default as marketIllustration } from "./marketIllustration.svg";
+export { default as LooperGroup } from "./LooperGroup.svg";
+export { default as shine } from "./shine.svg";
+export { default as LooperGroupTab } from "./LooperGroupTab.svg";
+export { default as shineTab } from "./shineTab.svg";
+export { default as LooperGroupMobile } from "./LooperGroupMobile.svg";
+export { default as shineMobile } from "./shineMobile.svg";
+export { default as blogIllustrationLight } from "./blog-illustration.svg";
+export { default as blogIllustrationDark } from "./blog-illustration-dark.svg";
+export { default as footerIllustration } from "./footer-illustration.svg";
+export { default as copyright } from "./copyright.svg";
+export { default as twitterIcon } from "./twitter.svg";
+export { default as youtubeIcon } from "./youtube.svg";
+export { default as linkedinIcon } from "./linkedin.svg";
+export { default as clouds } from "./clouds.svg";
+export { default as scrollDarkBlueSmall } from "./scroll1.svg";
+export { default as scrollDarkBlueMedium } from "./scroll2.svg";
+export { default as scrollDarkBlueLarge } from "./scroll3.svg";
+export { default as scrollYellowSmall } from "./scroll4.svg";
+export { default as scrollYellowMedium } from "./scroll5.svg";
+export { default as scrollYellowLarge } from "./scroll6.svg";
