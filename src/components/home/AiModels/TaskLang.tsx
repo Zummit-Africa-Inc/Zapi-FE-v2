@@ -79,7 +79,7 @@ const TaskLang: React.FC = () => {
         <Stack direction="row" spacing={2}>
           <Button
             label="Get Started"
-            variant={currentMode === "dark" ? "secondary" : "primary"}
+            variant={currentMode === "dark" ? "secondaryDark" : "primary"}
             type="button"
             size="medium"
             icon={<FiArrowRight />}
@@ -87,11 +87,11 @@ const TaskLang: React.FC = () => {
           <Button
             to="#"
             style={{
-              color: "#081F4A",
+              color: currentMode === "dark" ? "#FFEA00" : "",
             }}
             label="Try it out"
             size="medium"
-            variant={currentMode === "dark" ? "tertiary" : "outline"}
+            variant={currentMode === "dark" ? "tertiary" : "text"}
           />
         </Stack>
       </Stack>

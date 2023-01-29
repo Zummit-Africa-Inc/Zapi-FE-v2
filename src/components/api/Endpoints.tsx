@@ -19,6 +19,7 @@ import {
 import { Search, ExpandMore, ChatRounded } from "@mui/icons-material";
 import Cookies from "universal-cookie";
 import { APIType, EndpointsType } from "../../types";
+import { RiSearch2Line } from "react-icons/ri";
 
 const CustomTabs = styled(Tabs)({
 	"&.MuiTabs-root": {
@@ -86,7 +87,11 @@ const Endpoints: React.FC<Props> = ({ api, endpoints }) => {
 				<Box component="form" className={classes.search_form}>
 					<InputBase
 						sx={{
-							backgroundColor: "transparent",
+							background: "unset",
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							gap: "2px",
 							margin: "2px 20px 2px 3px",
 							fontSize: "16px",
 							fontFamily: "Lato",
@@ -96,7 +101,7 @@ const Endpoints: React.FC<Props> = ({ api, endpoints }) => {
 						inputProps={{ "aria-label": "search" }}
 						startAdornment={
 							<IconButton type="button" aria-label="search">
-								<Search sx={{ width: "20px" }} />
+								<RiSearch2Line style={{ color: "#929AA3", width: "20px" }} />
 							</IconButton>
 						}
 					/>
@@ -231,7 +236,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: theme.palette.grey[500],
-		border: `1px solid ${theme.palette.grey[300]}`,
+		border: `1px solid ${theme.shadows[1]}`,
 		borderRadius: "4px",
 		"@media screen and (max-width: 428px)": {
 			marginBottom: "64px",
@@ -243,22 +248,21 @@ const useStyles = makeStyles((theme: Theme) => ({
 		flexDirection: "row",
 		alignItems: "center",
 		gap: "28px",
-		backgroundColor: "#D3D7DA",
+		backgroundColor: theme.shadows[2],
 		padding: "12px 24px",
 	},
 	endpoint_method: {
-		backgroundColor: "#081F4A",
+		backgroundColor: theme.shadows[3],
 		borderRadius: "3px",
 		padding: "4px 10px",
 		fontSize: "13px",
-		// color: theme.palette.grey[100],
-		color: "#fff",
-		textTransform: "uppercase",
+		color: theme.shadows[4],
+		textTransform: "capitalize",
 	},
 	endpoint_desc: {
 		fontSize: "16px",
 		fontWei9ght: 400,
-		color: theme.palette.grey[600],
+		color: theme.shadows[5],
 	},
 	accordion_summary: {
 		display: "flex",

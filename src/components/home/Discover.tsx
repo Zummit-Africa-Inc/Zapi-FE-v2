@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Box, Stack, Theme } from "@mui/material";
-
+import { useAppContext } from "../../contexts/AppProvider";
 import { cmLearningAPI, compVisionAPI, natLangAPI } from "../../assets/svg";
 import { Button } from "..";
 
@@ -69,6 +69,7 @@ const responsive = {
 
 const Discover: React.FC = () => {
   const classes = useStyles();
+  const { currentMode } = useAppContext();
 
   return (
     <Box className={classes.container}>
@@ -109,7 +110,7 @@ const Discover: React.FC = () => {
       <div style={{ paddingTop: "4rem" }}>
         <Button
           label="Explore API Hub"
-          variant="primary"
+          variant={currentMode === "dark" ? "primaryDark" : "primary"}
           type="button"
           size="large"
           icon={<FiArrowRight />}
