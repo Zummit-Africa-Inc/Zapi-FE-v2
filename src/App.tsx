@@ -98,7 +98,6 @@ const App: React.FC = () => {
         {isClicked.otp && <OTP />}
         {isClicked.login && <Auth />}
         <ScrollButton />
-        {/* <DevNavbar /> */}
       </ThemeProvider>
     </>
   );
