@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Box, Stack, makeStyles } from "@mui/material";
 
 import { useAppSelector } from "../../hooks";
@@ -19,15 +18,6 @@ const HubCategories = ({
   setSelectedCategoryId,
 }: IHubCategories) => {
   const { categories } = useAppSelector((store) => store.apis);
-  let category_id = localStorage.getItem("category") || categories[0].id;
-  
-  if(category_id.length > 0) {
-    useEffect(() => {
-      setSelectedCategoryId!(category_id);
-      localStorage.removeItem("category");
-    }, []);
-  }
-
 
   const classes = useStyles({});
   const { currentMode } = useAppContext();
