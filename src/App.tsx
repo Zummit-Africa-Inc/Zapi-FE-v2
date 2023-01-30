@@ -21,7 +21,7 @@ import { getDeviceIP } from "./utils";
 import Helmet from "./Helmet";
 import Router from "./Router";
 import ScrollButton from "./components/shared/ScrollButton";
-import DevNavbar from "./components/dev/DevNavbar";
+// import DevNavbar from "./components/dev/DevNavbar";
 
 const App: React.FC = () => {
   const {
