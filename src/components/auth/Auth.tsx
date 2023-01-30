@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Box, Tab, Tabs, Theme } from "@mui/material";
+import { Box, Divider, Tab, Tabs, Theme, Typography } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
-import { FiX } from "react-icons/fi";
+import { FiX, FiHeart } from "react-icons/fi";
 
 import { useAppContext } from "../../contexts/AppProvider";
 import { Backdrop, TabPanel } from "../";
@@ -19,18 +19,21 @@ const CustomTabs = styled(Tabs)({
 
 const CustomTab = styled(Tab)({
   "&.MuiTab-root": {
+    alignItems: "start",
     color: "#A8AEB5",
     fontWeight: 600,
     fontSize: "19px",
     lineHeight: "23px",
     textTransform: "capitalize",
+    textAlign: "left",
+    padding: "0",
     "@media screen and (max-width: 1260px)": {
       fontSize: "14px",
       lineHeight: "20px",
     }
   },
   "&.Mui-selected": {
-    color: "#060607",
+    color: "primary.contrastText",
   },
 });
 
@@ -43,7 +46,7 @@ const Auth = () => {
 
   return (
     <Backdrop
-      style={{ background: "rgba(0, 0, 0, 0.5)" }}
+      className={classes.backdrop}
       onClose={() => handleUnclicked("login")}>
       <Box
         className={classes.container}
@@ -66,14 +69,23 @@ const Auth = () => {
             alignItems: "center",
             justifyContent: "center",
           }}>
-          <CustomTabs value={tab} onChange={handleTabSwitch}>
+          <CustomTabs value={tab} onChange={handleTabSwitch} sx={{margin: "0 0 16px 0"}}>
             <CustomTab
-              label="Sign In"
-              sx={{ color: currentMode === "dark" ? "#F5F5F5" : "#060607" }}
+              label="Log In"
+              sx={{minWidth: "76px"}}
+            />
+            <CustomTab
+              icon={<Divider orientation="vertical" sx={{
+                borderColor: currentMode === "dark" ? "#FFF" : "#000",
+                height: "32px",
+                position: "relative",
+                top: "12px"
+              }}/>}
+              sx={{minWidth: "1px",marginRight: "16px"}}
+              disabled
             />
             <CustomTab
               label="Sign Up"
-              sx={{ color: currentMode === "dark" ? "#F5F5F5" : "#060607" }}
             />
           </CustomTabs>
         </Box>
@@ -81,9 +93,24 @@ const Auth = () => {
           <TabPanel value={tab} index={0}>
             <Signin />
           </TabPanel>
-          <TabPanel value={tab} index={1}>
+          {/* DO NOT REMOVE THIS TABPANEL */}
+          <TabPanel value={tab} index={1} children={<></>} />
+          <TabPanel value={tab} index={2}>
             <Signup />
           </TabPanel>
+        </Box>
+        <Box mt="16px">
+          {tab === 0 ? (
+            <Typography className={classes.p} onClick={() => setTab(2)}>
+              Don't have an account?
+              <span>Sign Up</span>
+            </Typography>
+            ): (
+            <Typography className={classes.p} onClick={() => setTab(0)}>
+              Already have an account?
+              <span>Sign In</span>
+            </Typography>
+          )}
         </Box>
       </Box>
     </Backdrop>
@@ -93,15 +120,19 @@ const Auth = () => {
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "580px",
-    maxWidth: "95%",
-    height: "694px",
+    minHeight: "65%",
     display: "flex",
     flexDirection: "column",
     border: "2px solid #3E4245",
     borderRadius: "10px",
     boxShadow: "0 9px 18px rgba(0, 0, 0, 0.15)",
-    padding: "40px 32px 0 32px",
+    padding: "40px 32px 32px 32px",
+    [theme.breakpoints.down("tablet")]: {
+      width: "80%",
+      height: "80%",
+    },
     [theme.breakpoints.down("mobile")]: {
+      width: "100%",
       height: "fit-content",
       padding: "20px 16px",
     },
@@ -111,6 +142,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "flex-end",
   },
+  p: {
+    color: theme.palette.primary.contrastText,
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "24px",
+    textAlign: "center",
+    "& span": {
+      color: theme.palette.primary.main,
+      textDecoration: "underline",
+      cursor: "pointer",
+      margin: "0 0 0 8px",
+    }
+  },
+  backdrop: {
+    background: "rgba(0, 0, 0, 0.5)",
+    height: "100%",
+  }
 }));
 
 export default Auth;

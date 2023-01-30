@@ -22,17 +22,17 @@ interface Props {
 }
 
 const APIMoreInfo: React.FC<Props> = ({ api }) => {
-	const { error, loading, sendRequest } = useHttpRequest();
-	const { categories } = useAppSelector(store => store.apis);
-	const [isRatingOpen, setIsRatingOpen] = useState<boolean>(false)
-	// const { subscribedApis } = useAppSelector((store) => store.user);
-	const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
-	const cookies = new Cookies();
-	const profileId = cookies.get("profileId");
-	const accessToken = cookies.get("accessToken");
-	const classes = useStyles();
-	const dispatch = useAppDispatch();
-	const { handleClicked, currentMode } = useAppContext();
+  const { error, loading, sendRequest } = useHttpRequest();
+  const { categories } = useAppSelector((store) => store.apis);
+  const [isRatingOpen, setIsRatingOpen] = useState<boolean>(false);
+  // const { subscribedApis } = useAppSelector((store) => store.user);
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+  const cookies = new Cookies();
+  const profileId = cookies.get("profileId");
+  const accessToken = cookies.get("accessToken");
+  const classes = useStyles();
+  const dispatch = useAppDispatch();
+  const { handleClicked, currentMode } = useAppContext();
 
   const category = categories.find(
 	(category) => category.id === api.categoryId
@@ -151,36 +151,29 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 			</Box>
 		  </Box>
 
-		  <Stack
-			direction="row"
-			spacing={3}
-			justifyContent={"end"}
-			alignItems={"center"}
-		  >
-			<Button 
-			  endIcon={<StarBorderOutlined />} 
-			  className={classes.rate_button}
-			  onClick={
-				accessToken
-				  ? handleSubscription
-				  : () => handleClicked("login")
-			  }
-			>
-			  Rate
-			</Button>
-			<Button
-			  variant="contained"
-			  className={classes.subscribe_button}
-			  onClick={
-				accessToken
-				  ? handleSubscription
-				  : () => handleClicked("login")
-			  }
-			>
-			  {"Subscribe"}
-			</Button>
-		  </Stack>
-		</Box>
+          <Stack
+            direction="row"
+            spacing={3}
+            justifyContent={"end"}
+            alignItems={"center"}>
+            <Button
+              endIcon={<StarBorderOutlined />}
+              className={classes.rate_button}
+              onClick={
+                accessToken ? handleSubscription : () => handleClicked("login")
+              }>
+              Rate
+            </Button>
+            <Button
+              variant="contained"
+              className={classes.subscribe_button}
+              onClick={
+                accessToken ? handleSubscription : () => handleClicked("login")
+              }>
+              {"Subscribe"}
+            </Button>
+          </Stack>
+        </Box>
 
 		<Box>
 		  <Box
@@ -301,30 +294,30 @@ export default APIMoreInfo;
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-	display: "flex",
-	flexDirection: "column",
-	marginBottom: "15px",
-	padding: "86px 108px 24px 108px",
-	lineHeight: "41px",
-	width: "100%",
-	"& h2": {
-	  marginBottom: 16,
-	  fontWeight: "bold",
-	  fontSize: "28px",
-	  color: theme.palette.grey[100],
-	},
-	"& h3": {
-		marginBottom: 16,
-		fontWeight: 700,
-		fontSize: "19px",
-		color: theme.palette.grey[100],
-	},
-	"& p": {
-	  marginBottom: 32,
-	  fontWeight: 400,
-	  fontSize: "16px",
-	  color: theme.palette.grey[600],
-	},
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: "15px",
+    padding: "86px 108px 24px 108px",
+    lineHeight: "41px",
+    width: "100%",
+    "& h2": {
+      marginBottom: 16,
+      fontWeight: "bold",
+      fontSize: "28px",
+      color: theme.palette.grey[100],
+    },
+    "& h3": {
+      marginBottom: 16,
+      fontWeight: 700,
+      fontSize: "19px",
+      color: theme.palette.grey[100],
+    },
+    "& p": {
+      marginBottom: 32,
+      fontWeight: 400,
+      fontSize: "16px",
+      color: theme.palette.grey[600],
+    },
 
 	"@media screen and (max-width: 900px)": {
 	  padding: "44px 32px 24px 32px",
@@ -404,5 +397,4 @@ const useStyles = makeStyles((theme: Theme) => ({
 	  height: "2.2rem",
 	},
   },
-
 }));
