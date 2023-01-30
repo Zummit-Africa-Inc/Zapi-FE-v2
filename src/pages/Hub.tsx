@@ -65,6 +65,7 @@ const Hub = () => {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     hubContainer: {
+      marginBottom: "2rem",
       backgroundColor: theme.palette.background.default,
       display: "flex",
       justifyContent: "center",
