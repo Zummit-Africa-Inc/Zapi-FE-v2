@@ -189,7 +189,11 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-            <Avatar sx={{ marginLeft: "1rem", marginRight: "1rem"}} src="/broken-image.jpg" />
+            <Avatar sx={{ marginLeft: "1rem", marginRight: "1rem",   
+              "@media screen and (max-width: 900px)": {
+                marginLeft: "0", 
+                marginRight: "0"
+                },}} src="/broken-image.jpg" />
             <Typography sx={{ width: '33%', flexShrink: 0, marginTop: "0.45rem",
 
                 "& div": {
@@ -222,7 +226,6 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                     alignItems: "center",
                     gap: "6px",
                     borderRadius: "3px",
-                    padding: "0 7px",
                   },
                   "& h5": {
                     fontSize: "10px",
@@ -250,6 +253,9 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
               marginLeft: "-10rem",
               marginRight: "2rem",
               marginTop: "0.45rem",
+              "@media screen and (max-width: 900px)": {
+                display: "none",
+              },
             }}>
             <Typography component="p">
               A comment or discussion about {api.name}
@@ -262,6 +268,9 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                 color: "#060607",
                 marginLeft: "3rem",
                 marginTop: "0.45rem",
+                "@media screen and (max-width: 900px)": {
+                  display: "none",
+                },
               }}>
               <Typography component="p">
                     {(api.createdOn &&
@@ -276,6 +285,10 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                 color: "#060607",
                 marginLeft: "11rem",
                 marginTop: "0.45rem",
+                "@media screen and (max-width: 900px)": {
+                  marginLeft: "3.1rem",
+
+                },
               }}>
               <Typography component="p">
               {discussions.length} Comments
