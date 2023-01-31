@@ -50,8 +50,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
-  const [tab, setTab] = useState<number>(0);
- 
+
   //Discussion function
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -68,10 +67,59 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Avatar sx={{ marginLeft: "1rem", marginRight: "1rem"}} src="/broken-image.jpg" />
-          <Typography sx={{ width: '33%', flexShrink: 0, marginTop: "0.45rem" }}>
-            Username
-          </Typography>
+            <Avatar sx={{ marginLeft: "1rem", marginRight: "1rem"}} src="/broken-image.jpg" />
+            <Typography sx={{ width: '33%', flexShrink: 0, marginTop: "0.45rem",
+
+                "& div": {
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "6px",
+                  backgroundColor: "#B8CEF7",
+                  borderRadius: "5px",
+                  padding: "2px 8px",
+                  width: "auto",
+                  height: "auto",
+                },
+
+                "& h5": {
+                  lineHeight: 0,
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  color: "#081F4A",
+                },
+
+                "& svg": {
+                  width: "17px",
+                },
+
+                "@media screen and (max-width: 900px)": {
+                  "& div": {
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "6px",
+                    borderRadius: "3px",
+                    padding: "0 7px",
+                  },
+                  "& h5": {
+                    fontSize: "10px",
+                  },
+
+                  "& svg": {
+                    width: "14px",
+                  },
+                },
+
+                "@media screen and (max-width: 428px)": {
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                  gap: "8px",
+                },
+              }}>
+              Username
+            </Typography>
           <Box
             sx={{
               fontSize: "16px",
@@ -159,10 +207,10 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
             </Typography> 
           </Typography> */}
 
-          <Stack direction="column" spacing={1} className={classes.user_review}>
+          <Stack direction="column" spacing={1} className={classes.discussion_comment}>
           <>
             {discussions.map((discussions, index) => (
-              <Box className={classes.user_review}>
+              <Box className={classes.discussion_comment}>
                 <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
                 <Box sx={{ width: "100%" }}>
                   <Typography component="p" sx={{ marginBottom: "8px" }}>
@@ -170,8 +218,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                   </Typography>
                   <Typography  sx={{ width: "100%", height: "100%"}}  component="p">
                     {discussions.body ||
-                      "Lorem ipsum dolor sit amet consectetur. Vel"}
-                      
+                      "Lorem ipsum dolor sit amet consectetur. Vel"}   
                   </Typography>
                 </Box>
               </Box>
@@ -216,7 +263,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 
-  user_review: {
+  discussion_comment: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -236,5 +283,21 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   accordion: {
     marginTop: "60px",
+    // "@media screen and (max-width: 900px)": {
+    //   "& AccordionSummary": {
+    //     display: "flex",
+    //     flexDirection: "row",
+    //     alignItems: "center",
+    //   },
+    //   "& svg": {
+    //     width: "14px",
+    //   },
+    // },
+
+    // "@media screen and (max-width: 428px)": {
+    //   display: "flex",
+    //   flexDirection: "column",
+    // },
+            
   },
 }));
