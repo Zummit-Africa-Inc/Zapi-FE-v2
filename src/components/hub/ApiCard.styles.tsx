@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   card: {
     padding: "1em",
     height: "16em",
-    width: "410px",
+    width: "350px",
     minWidth: "390px",
     maxHeight: "16em",
     cursor: "pointer",
@@ -14,19 +14,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     background: `${theme.palette.info.main}!important`,
+    marginBottom: "1em",
 
     "&:hover": {
       boxShadow: " rgba(99, 99, 99, 0.2) 0px 0px 8px 0px",
     },
 
     [theme.breakpoints.down("laptop")]: {
-      width: "372px",
+      width: "auto",
       minWidth: "auto",
       maxHeight: "16em",
     },
 
     [theme.breakpoints.down("mobile")]: {
-      width: "396px",
+      width: "auto",
       minWidth: "auto",
       maxHeight: "16em",
     },

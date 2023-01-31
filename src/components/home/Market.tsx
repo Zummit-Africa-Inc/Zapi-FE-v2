@@ -5,6 +5,7 @@ import { Box, Stack, Theme, Typography } from "@mui/material";
 
 import { Button } from "..";
 import { marketIllustration } from "../../assets/svg";
+import { useAppContext } from "../../contexts/AppProvider";
 
 const marketSteps = [
   {
@@ -24,6 +25,7 @@ const marketSteps = [
 
 const Market: React.FC = () => {
   const classes = useStyles();
+  const { currentMode } = useAppContext();
   return (
     <Box className={classes.container}>
       <Stack className={classes.left}>
@@ -41,7 +43,7 @@ const Market: React.FC = () => {
           }}
           type="button"
           label="List Your API"
-          variant="secondary"
+          variant={currentMode === "dark" ? "secondaryDark" : "secondary"}
           size="large"
           icon={<FiArrowRight />}
         />
@@ -80,11 +82,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "507px",
     width: "100%",
     display: "flex",
+    '@media (max-width: 1280px)': {
+      justifyContent: "space-between",
+      gap: '64px',
+    },
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     background: "#081F4A",
     padding: "4rem 6.7rem",
-    gap: "159px",
+    gap: "20%",
     backgroundImage: `url(${marketIllustration})`,
     backgroundRepeat: "no-repeat",
     backgroundPositionX: "right",
@@ -104,7 +110,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   left: {
-    width: "513px",
+    width: "40%",
     [theme.breakpoints.down("tablet")]: {
       width: "353px",
     },

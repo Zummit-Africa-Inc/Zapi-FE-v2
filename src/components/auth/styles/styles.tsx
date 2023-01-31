@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     gap: "24px",
     [theme.breakpoints.down("mobile")]: {
-      gap: "12px",
+      gap: "10px",
     },
   },
   form: {
@@ -18,13 +18,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     gap: "24px",
     [theme.breakpoints.down("mobile")]: {
-      gap: "12px",
+      gap: "10px",
     },
   },
   div: {
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
+    cursor: "pointer",
   },
   flex: {
     width: "100%",
