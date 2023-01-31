@@ -56,7 +56,6 @@ const APIDesc = () => {
   const cookies = new Cookies();
   const classes = useStyles();
   const { id } = useParams();
-
   const getApiData = async (apiId: string | undefined) => {
 	if (!apiId) return;
 	const headers = {
@@ -107,7 +106,6 @@ const APIDesc = () => {
 	  ) {
 		window.location.href = "/api-hub";
 	  }
-	  console.log({ api, endpoints, discussions, reviews });
 	  setApi(api.data);
 	  setReviews(reviews.data);
 	  setEndpoints(endpoints.data);
