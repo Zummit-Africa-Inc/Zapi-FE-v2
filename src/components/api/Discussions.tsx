@@ -11,7 +11,6 @@ import { useAppContext } from "../../contexts/AppProvider";
 import { APIType, DiscussionType } from "../../types";
 import {  useHttpRequest } from "../../hooks";
 
-
 const CustomTabs = styled(Tabs)({
   "&.MuiTabs-root": {
     width: "auto",
@@ -158,10 +157,10 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                     height: "46px",
                     fontFamily: "inherit",
                     color: currentMode === "dark" ? "#060607" : "#F5F5F5",
+                    background: currentMode === "dark" ? "#FFEA00" : "#081F4A",
                     borderRadius: "4px",
                     textAlign: "center",
                     cursor: "pointer",
-                    background: currentMode === "dark" ? "#FFEA00" : "#081F4A",
                   }} 
                 type="submit">
                  {loading ? <Spinner/> : 'Submit'}
@@ -283,71 +282,25 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
         <AccordionDetails sx={{ display: "flex",  backgroundColor: "white", 
         background: currentMode === "dark" ? "#121212" : "#F5F5F5"
         }}>
-        {/* Join Discussion Button */}
-        {/* <Box>
-            <Button
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                border: "1px solid #081F4A",
-                color: "#081F4A",
-                borderRadius: "5px",
-                fontSize: "13px",
-                minWidth: "130px",
-                height: "2.4rem",
-
-                "@media screen and (max-width: 900px)": {
-                  fontSize: "11px",
-                  minWidth: "100px",
-                  height: "2.2rem",
-
-                  "& svg": {
-                    width: "17px",
-                  },
-                },
-
-                "@media screen and (max-width: 428px)": {
-                  fontSize: "11px",
-                  minWidth: "100px",
-                  height: "2.2rem",
-
-                  "& svg": {
-                    width: "17px",
-                  },
-                },
-              }}>
-              <img src={discussionQuote} alt=""/>
-                Join  Discussion
-            </Button>
-        </Box> */}
-          {/* <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            User2 
-            <Typography>
-              Lorem ipsum dolor sit amet consectetur. Vel
-            </Typography> 
-          </Typography> */}
-
-          <Stack sx={{
-        background: currentMode === "dark" ? "#121212" : "#F5F5F5"
-        }} direction="column" spacing={1} className={classes.discussion_comment}>
-          <>
-            {discussions.map((discussions, index) => (
-              <Box sx={{background: currentMode === "dark" ? "#121212" : "#F5F5F5", color: currentMode === "dark" ? "#F5F5F5" : "#121212"}} className={classes.discussion_comment}>
-                <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
-                <Box sx={{ width: "100%" }}>
-                  <Typography component="p" sx={{ marginBottom: "8px" }}>
-                    {"User"}
-                  </Typography>
-                  <Typography  sx={{ width: "100%", height: "100%"}}  component="p">
-                    {discussions.body ||
-                      "Lorem ipsum dolor sit amet consectetur. Vel"}   
-                  </Typography>
+        <Stack sx={{
+          background: currentMode === "dark" ? "#121212" : "#F5F5F5"
+          }} direction="column" spacing={1} className={classes.discussion_comment}>
+            <>
+              {discussions.map((discussions, index) => (
+                <Box sx={{background: currentMode === "dark" ? "#121212" : "#F5F5F5", color: currentMode === "dark" ? "#F5F5F5" : "#121212"}} className={classes.discussion_comment}>
+                  <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
+                  <Box sx={{ width: "100%" }}>
+                    <Typography component="p" sx={{ marginBottom: "8px" }}>
+                      {"User"}
+                    </Typography>
+                    <Typography  sx={{ width: "100%", height: "100%"}}  component="p">
+                      {discussions.body ||
+                        "Lorem ipsum dolor sit amet consectetur. Vel"}   
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-            ))}
-          </>
+              ))}
+            </>
         </Stack>
         </AccordionDetails>
       </Accordion>
@@ -407,7 +360,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   form: {
     width: "100%", 
     marginTop: "-10px",
-    // background: currentMode === "dark" ? "#121212" : "#FFF",
     "@media screen and (max-width: 870px)": {
         marginTop: "-40px",
         width: "100%", 
@@ -434,22 +386,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   accordion: {
     marginTop: "60px",
-    marginBottom: "3rem",
-    // "@media screen and (max-width: 900px)": {
-    //   "& AccordionSummary": {
-    //     display: "flex",
-    //     flexDirection: "row",
-    //     alignItems: "center",
-    //   },
-    //   "& svg": {
-    //     width: "14px",
-    //   },
-    // },
-
-    // "@media screen and (max-width: 428px)": {
-    //   display: "flex",
-    //   flexDirection: "column",
-    // },
-            
+    marginBottom: "3rem"          
   },
 }));
