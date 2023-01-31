@@ -7,6 +7,7 @@ import { RiAddFill } from "react-icons/ri";
 // import { discussionQuote } from "../../assets/svg";
 
 import Cookies from "universal-cookie";
+import { useAppContext } from "../../contexts/AppProvider";
 import { APIType, DiscussionType } from "../../types";
 import {  useHttpRequest } from "../../hooks";
 
@@ -52,6 +53,7 @@ interface Props {
 
 const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
+  const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
   const { loading, sendRequest } = useHttpRequest();
   const cookies = new Cookies();
@@ -116,23 +118,6 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                 required
                 onChange={(e) => setBody(e.target.value)}
             />
-            {/* <Typography
-                sx={{ my: 4, display: "flex", justifyContent: "center" }}>
-                <Button
-                sx={{
-                    width: "100%",
-                    background: "#081F4A",
-                    color: "white",
-                }}
-                variant="contained"
-                disableElevation
-                disableFocusRipple
-                disabled={!isValid}
-                onClick={handleSubmit}>
-                {load ? <Spinner/> : 'Submit'}
-                </Button>
-            </Typography> */}
-
         </Box>
          <Box sx={{
               gap: "1rem",
@@ -153,7 +138,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                   fontFamily: "inherit",
                   height: "46px",
                   cursor: "pointer",
-                  background: "#ffffff",
+                  background: currentMode === "dark" ? "#121212" : "#FFFFFF",
                   color: "#929AA3",
                   border: "1px solid #929AA3",
                   borderRadius: "4px",
@@ -171,12 +156,12 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                     padding: "12px 24px",
                     gap: "16px",
                     height: "46px",
-                    background: "#081F4A",
                     fontFamily: "inherit",
-                    color: "white",
+                    color: currentMode === "dark" ? "#060607" : "#F5F5F5",
                     borderRadius: "4px",
                     textAlign: "center",
                     cursor: "pointer",
+                    background: currentMode === "dark" ? "#FFEA00" : "#081F4A",
                   }} 
                 type="submit">
                  {loading ? <Spinner/> : 'Submit'}
@@ -295,7 +280,9 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
               </Typography>
             </Box>
         </AccordionSummary>
-        <AccordionDetails sx={{ display: "flex",  backgroundColor: "white"}}>
+        <AccordionDetails sx={{ display: "flex",  backgroundColor: "white", 
+        background: currentMode === "dark" ? "#121212" : "#F5F5F5"
+        }}>
         {/* Join Discussion Button */}
         {/* <Box>
             <Button
@@ -342,10 +329,12 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
             </Typography> 
           </Typography> */}
 
-          <Stack direction="column" spacing={1} className={classes.discussion_comment}>
+          <Stack sx={{
+        background: currentMode === "dark" ? "#121212" : "#F5F5F5"
+        }} direction="column" spacing={1} className={classes.discussion_comment}>
           <>
             {discussions.map((discussions, index) => (
-              <Box className={classes.discussion_comment}>
+              <Box sx={{background: currentMode === "dark" ? "#121212" : "#F5F5F5", color: currentMode === "dark" ? "#F5F5F5" : "#121212"}} className={classes.discussion_comment}>
                 <Avatar sx={{ marginLeft: "2rem", marginRight: "1rem"}} src="/broken-image.jpg" />
                 <Box sx={{ width: "100%" }}>
                   <Typography component="p" sx={{ marginBottom: "8px" }}>
@@ -418,6 +407,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   form: {
     width: "100%", 
     marginTop: "-10px",
+    // background: currentMode === "dark" ? "#121212" : "#FFF",
     "@media screen and (max-width: 870px)": {
         marginTop: "-40px",
         width: "100%", 
