@@ -6,6 +6,8 @@ import { Footer, Loader, Navbar } from "../components";
 import HubApis from "../components/hub/HubApis";
 import { useAppSelector, useHttpRequest } from "../hooks";
 import HubCategories from "../components/hub/HubCategories";
+import Spinner from "../components/shared/Spinner";
+
 
 const core_url = "VITE_CORE_URL";
 
@@ -53,7 +55,7 @@ const Hub = () => {
           selectedCategoryId={selectedCategoryId}
           setSelectedCategoryId={setSelectedCategoryId}
         />
-        <HubApis apis={allApis} />
+       {loading ? <Spinner /> : <HubApis apis={allApis} />}
       </Stack>
       <Footer />
     </Stack>
@@ -63,6 +65,7 @@ const Hub = () => {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     hubContainer: {
+      marginBottom: "2rem",
       backgroundColor: theme.palette.background.default,
       display: "flex",
       justifyContent: "center",

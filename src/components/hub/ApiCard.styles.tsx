@@ -52,13 +52,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "6px!important",
     height: "30px!important",
     backgroundColor: "#B8CEF7!important",
-    color: `${theme.palette.primary.main}!important`,
+    color: "#081F4A",
     fontSize: "14px!important",
   },
   chipIcon: {
-    color: `${theme.palette.primary.main}!important`,
+    color: "#081F4A!important"
   },
   typography: {
-    color: "##3E4245",
+    color: "#081F4A",
   },
 }));

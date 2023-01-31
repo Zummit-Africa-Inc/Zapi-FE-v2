@@ -13,6 +13,7 @@ import {
   Endpoints,
   Footer,
   Reviews,
+  Discussions,
 } from "../components";
 
 import { APIType, DiscussionType, EndpointsType, ReviewType } from "../types";
@@ -55,7 +56,6 @@ const APIDesc = () => {
   const cookies = new Cookies();
   const classes = useStyles();
   const { id } = useParams();
-
   const getApiData = async (apiId: string | undefined) => {
 	if (!apiId) return;
 	const headers = {
@@ -106,7 +106,6 @@ const APIDesc = () => {
 	  ) {
 		window.location.href = "/api-hub";
 	  }
-	  console.log({ api, endpoints, discussions, reviews });
 	  setApi(api.data);
 	  setReviews(reviews.data);
 	  setEndpoints(endpoints.data);
@@ -167,9 +166,9 @@ const APIDesc = () => {
 				<Endpoints api={api} endpoints={endpoints} />
 			  </TabPanel>
 
-			  <TabPanel value={tab} index={1}>
-				<Endpoints api={api} endpoints={endpoints} />
-			  </TabPanel>
+              <TabPanel value={tab} index={1}>
+                <Discussions api={api} discussions={discussions} />
+              </TabPanel>
 
 			  <TabPanel value={tab} index={2}>
 				<Reviews reviews={reviews} />
