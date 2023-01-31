@@ -13,6 +13,7 @@ import {
   Endpoints,
   Footer,
   Reviews,
+  Discussions,
 } from "../components";
 
 import { APIType, DiscussionType, EndpointsType, ReviewType } from "../types";
@@ -165,9 +166,9 @@ const APIDesc = () => {
 				<Endpoints api={api} endpoints={endpoints} />
 			  </TabPanel>
 
-			  <TabPanel value={tab} index={1}>
-				<Endpoints api={api} endpoints={endpoints} />
-			  </TabPanel>
+              <TabPanel value={tab} index={1}>
+                <Discussions api={api} discussions={discussions} />
+              </TabPanel>
 
 			  <TabPanel value={tab} index={2}>
 				<Reviews reviews={reviews} />
