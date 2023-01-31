@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
-import { Typography, Theme, Box, Stack } from "@mui/material";
+import { Typography, Theme, Box, Stack, Button } from "@mui/material";
 import { ChatRounded, AccountCircle } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 
 import { ReviewType } from "../../types";
+import { useAppContext } from "../../contexts/AppProvider";
 
 interface Props {
   reviews: Array<ReviewType>;
@@ -11,15 +13,29 @@ interface Props {
 
 const Reviews: React.FC<Props> = ({ reviews }) => {
   const classes = useStyles();
+  const { handleClicked } = useAppContext();
 
   return (
     <Box className={classes.root}>
-      {reviews.length !== 0 ? (
+      {reviews.length == 0 ? (
         <Typography component="h2">Reviews</Typography>
       ) : (
         <></>
       )}
-
+      <Box style={{ display: "flex", justifyContent: "end" }}>
+        <Button
+          variant="outlined"
+          sx={{
+            backgroundColor: "#fff",
+            color: "#264276",
+            width: "200px",
+            height: "2.5rem",
+          }}
+          className={classes.newDiscussion}
+          onClick={() => handleClicked("addDiscussion")}>
+          <Add /> <Typography sx={{ fontSize: "14px" }}>New Review</Typography>
+        </Button>
+      </Box>
       <Stack direction="column" spacing={1}>
         {reviews.length !== 0 ? (
           <>
@@ -72,10 +88,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "41px",
     width: "100%",
     "& h2": {
-        margin: "63px 0",
-        fontWeight: "bold",
-        fontSize: "19px",
-        color: theme.palette.grey[100],
+      margin: "63px 0",
+      fontWeight: "bold",
+      fontSize: "19px",
+      color: theme.palette.grey[100],
     },
 
     "@media screen and (max-width: 900px)": {
@@ -90,6 +106,27 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: "20px 16px 24px 16px",
       fontSize: "14px",
     },
+  },
+  newDiscussion: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: "8px 16px",
+    gap: "16px",
+    width: "200px",
+    lineHeight: "46px",
+    // borderColor: "#071B85",
+    borderRadius: "8px",
+    cursor: "pointer",
+    color: "#FFFFFF",
+    border: " solid #071B85",
+    fontWeight: "500",
+    fontSize: "16px",
+    "@media screen and (max-width: 1024px)": {
+      marginBottom: "1rem",
+      width: "385px",
+    },
+    "@media screen and (max-width: 500px)": {},
   },
 
   user_review: {
