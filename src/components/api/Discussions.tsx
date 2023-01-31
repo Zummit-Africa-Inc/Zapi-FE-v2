@@ -1,11 +1,15 @@
 import React, { SyntheticEvent, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
-import {Typography, Theme, Box, Accordion, Avatar, AccordionSummary, AccordionDetails, Tabs, Tab, Stack} from "@mui/material";
+import {Typography, Theme, Box, Accordion, Avatar, 	IconButton, TextareaAutosize, AccordionSummary, AccordionDetails, Tabs, Tab, Stack} from "@mui/material";
+import { Button, Spinner } from "../../components";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { discussionQuote } from "../../assets/svg";
+import { RiAddFill } from "react-icons/ri";
+// import { discussionQuote } from "../../assets/svg";
 
 import Cookies from "universal-cookie";
 import { APIType, DiscussionType } from "../../types";
+import {  useHttpRequest } from "../../hooks";
+
 
 const CustomTabs = styled(Tabs)({
   "&.MuiTabs-root": {
@@ -48,6 +52,8 @@ interface Props {
 
 const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
+  const [body, setBody] = useState<string>("");
+  const { loading, sendRequest } = useHttpRequest();
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
 
@@ -61,6 +67,122 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
   
   return (
     <Box className={classes.root}>
+      <Box
+				sx={{
+					display: "column",
+					flexDirection: "row",
+					justifyContent: "space-between",
+					alignItems: "center",
+
+					"@media screen and (max-width: 428px)": {
+						flexDirection: "column",
+					},
+				}}>
+
+				<Box component="form" className={classes.add_button}>
+					<Box
+          sx={{
+            background: "unset",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: "2px",
+            margin: "2px 20px 2px 3px",
+            fontSize: "16px",
+            fontFamily: "Lato",
+            color: "#929AA3",
+          }}>
+							<IconButton type="button" aria-label="search">
+								<RiAddFill style={{ color: "#929AA3", width: "20px" }} />
+							</IconButton>
+              <Typography>Add  Discussion</Typography>
+          </Box>
+				</Box>
+
+        <Box className={classes.form}>
+          <TextareaAutosize
+                aria-label="minimum height"
+                maxRows={6}
+                minRows={6}
+                placeholder="Start a Discussion here..."
+                style={{
+                    width: "99%",
+                    height: "30%",
+                    marginTop: "5%",
+                    padding: "2%",
+                    fontSize: "1em",
+                }}
+                value={body}
+                required
+                onChange={(e) => setBody(e.target.value)}
+            />
+            {/* <Typography
+                sx={{ my: 4, display: "flex", justifyContent: "center" }}>
+                <Button
+                sx={{
+                    width: "100%",
+                    background: "#081F4A",
+                    color: "white",
+                }}
+                variant="contained"
+                disableElevation
+                disableFocusRipple
+                disabled={!isValid}
+                onClick={handleSubmit}>
+                {load ? <Spinner/> : 'Submit'}
+                </Button>
+            </Typography> */}
+
+        </Box>
+         <Box sx={{
+              gap: "1rem",
+              display: "flex",
+              flexDirection: "row",
+              marginLeft: "auto",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+              }}>
+              <button
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginRight: "6px",
+                  padding: "12px 24px",
+                  gap: "16px",
+                  fontFamily: "inherit",
+                  height: "46px",
+                  cursor: "pointer",
+                  background: "#ffffff",
+                  color: "#929AA3",
+                  border: "1px solid #929AA3",
+                  borderRadius: "4px",
+                }}
+                >
+                Cancel
+              </button>
+              <button
+                style={{
+                    outline: "none",
+                    border: "none",
+                    display: "flex",
+                    marginRight: "6px",
+                    alignItems: "center",
+                    padding: "12px 24px",
+                    gap: "16px",
+                    height: "46px",
+                    background: "#081F4A",
+                    fontFamily: "inherit",
+                    color: "white",
+                    borderRadius: "4px",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }} 
+                type="submit">
+                 {loading ? <Spinner/> : 'Submit'}
+              </button>
+            </Box>
+			</Box>
       <Accordion className={classes.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -263,6 +385,32 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 
+  add_button: {
+		boxShadow: "unset",
+		display: "flex",
+    width: "20%",
+    marginTop: "2.5rem",
+    cursor: "pointer",
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: theme.palette.grey[500],
+		border: `1px solid ${theme.shadows[1]}`,
+		borderRadius: "4px",
+		"@media screen and (max-width: 428px)": {
+			marginBottom: "64px",
+      width: "50%",
+		},
+	},
+
+  form: {
+    width: "100%", 
+    marginTop: "-10px",
+    "@media screen and (max-width: 870px)": {
+        marginTop: "-40px",
+        width: "100%", 
+    },
+  },
+
   discussion_comment: {
     display: "flex",
     flexDirection: "row",
@@ -283,6 +431,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   accordion: {
     marginTop: "60px",
+    marginBottom: "3rem",
     // "@media screen and (max-width: 900px)": {
     //   "& AccordionSummary": {
     //     display: "flex",
