@@ -20,6 +20,8 @@ import { useAppDispatch } from "./hooks";
 import { getDeviceIP } from "./utils";
 import Helmet from "./Helmet";
 import Router from "./Router";
+import ScrollButton from "./components/shared/ScrollButton";
+// import DevNavbar from "./components/dev/DevNavbar";
 
 const App: React.FC = () => {
   const {
@@ -28,7 +30,7 @@ const App: React.FC = () => {
     isClicked,
     setDeviceLocation,
     setDeviceInfo,
-    setDeviceIP,
+    setDeviceIP,  
   } = useAppContext();
   const dispatch = useAppDispatch();
 
@@ -95,6 +97,7 @@ const App: React.FC = () => {
         {isClicked.resetPassword && <ResetPassword />}
         {isClicked.otp && <OTP />}
         {isClicked.login && <Auth />}
+        <ScrollButton />
       </ThemeProvider>
     </>
   );

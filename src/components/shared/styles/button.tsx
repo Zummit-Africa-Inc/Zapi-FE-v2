@@ -16,6 +16,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderWidth: "1px",
       borderRadius: "4px",
       cursor: "pointer",
+      [theme.breakpoints.down("mobile")]: {
+        transform: "scale(0.9)",
+      }
     },
   },
   primary: {
@@ -23,7 +26,23 @@ export const useStyles = makeStyles((theme: Theme) => ({
       background: theme.palette.primary.main,
       color: "#FFF",
       "&:hover": {
-        background: `${theme.palette.primary.main}AC`,
+        background: "#223B6C",
+      },
+      "&:active": {
+        background: `${theme.palette.primary.main}50`,
+      },
+      "&:disabled": {
+        background: "#DAD7DA",
+        color: "#929AA3",
+      },
+    },
+  },
+  primaryDark: {
+    "&.MuiButton-root": {
+      background: theme.palette.secondary.main,
+      color: "#FFF",
+      "&:hover": {
+        background: "#223B6C",
       },
       "&:active": {
         background: `${theme.palette.primary.main}50`,
@@ -39,7 +58,25 @@ export const useStyles = makeStyles((theme: Theme) => ({
       background: theme.palette.secondary.main,
       color: theme.palette.primary.main,
       "&:hover": {
-        background: `${theme.palette.secondary.main}AC`,
+        background: "#FFEE33",
+        color: "#000",
+      },
+      "&:active": {
+        background: `${theme.palette.secondary.main}50`,
+      },
+      "&:disabled": {
+        background: "#DAD7DA",
+        color: "#929AA3",
+      },
+    },
+  },
+  secondaryDark: {
+    "&.MuiButton-root": {
+      background: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
+      "&:hover": {
+        background: "#FFEE33",
+        color: "#000",
       },
       "&:active": {
         background: `${theme.palette.secondary.main}50`,
@@ -54,6 +91,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     "&.MuiButton-root": {
       background: "transparent",
       color: theme.palette.secondary.main,
+      "&:hover": {
+        background: theme.palette.secondary.main,
+        color: "#FFEA00",
+      },
     },
   },
   outline: {
@@ -63,6 +104,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderColor: theme.palette.primary.main,
       "&:hover": {
         background: "#CFDEFA",
+      },
+      "&:active": {
+        background: "#B8CEF7",
+      },
+      "&:disabled": {
+        background: "#DAD7DA",
+        color: "#929AA3",
+      },
+    },
+  },
+  outlineLogin: {
+    "&.MuiButton-root": {
+      background: "transparent",
+      color: theme.palette.text.secondary,
+      borderColor: theme.palette.primary.main,
+      "&:hover": {
+        background: "#CFDEFA",
+        color: "#000",
       },
       "&:active": {
         background: "#B8CEF7",
@@ -131,11 +190,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   socialLogin: {
     "&.MuiButton-root": {
-      background: "#A8AEB5",
+      background: "#",
       color: theme.palette.text.secondary,
       border: "1px solid #A8AEB5",
       borderRadius: "10px",
     },
+    "&:hover": {
+      background: "#"
+    }
   },
   small: {
     "&.MuiButton-root": {

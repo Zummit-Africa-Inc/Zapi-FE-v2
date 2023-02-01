@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Stack, Theme } from "@mui/material";
+import { Box, Stack, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import OtpInput from "react-otp-input";
 import { toast } from "react-toastify";
@@ -44,7 +44,7 @@ const OTP: React.FC = () => {
   };
 
   const handleBubble = (e: any) => {
-    if (!e) e.stopBubble = true;
+    if (!e) e.cancelBubble = true;
     if (e.stopPropagation) e.stopPropagation();
   };
 
@@ -53,15 +53,31 @@ const OTP: React.FC = () => {
     error && console.log(error);
   }, [error]);
   return (
-    <Box className={classes.box} onClick={() => handleUnclicked("otp")}>
+    <Box className={classes.box}>
       <Box className={classes.paper} onClick={handleBubble}>
         <Stack style={{ width: "100%" }}>
-          <Stack spacing="40px">
+          <Stack
+            onClick={() => handleUnclicked("otp")}
+            style={{
+              color: currentMode === "dark" ? "#FFFFFF" : "#000000",
+              marginLeft: "auto",
+              cursor: "pointer",
+            }}>
+            <Typography variant="subtitle1" style={{ fontWeight: 600 }}>
+              X
+            </Typography>
+          </Stack>
+          <Stack
+            spacing="40px"
+            style={{
+              margin: "0 auto",
+            }}>
             <h5 className={classes.heading}>Reset Password</h5>
             <p className={classes.subHeading}>
               Input the OTP code sent to your mail
             </p>
           </Stack>
+
           <form onSubmit={handleSubmit} className={classes.form}>
             <Stack justifyContent="center" alignItems="center" padding="32px 0">
               <OtpInput

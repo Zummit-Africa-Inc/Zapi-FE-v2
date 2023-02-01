@@ -19,12 +19,16 @@ import {
 import { Search, ExpandMore, ChatRounded } from "@mui/icons-material";
 import Cookies from "universal-cookie";
 import { APIType, EndpointsType } from "../../types";
+import { RiSearch2Line } from "react-icons/ri";
+import { TabPanel } from "../";
 
 const CustomTabs = styled(Tabs)({
 	"&.MuiTabs-root": {
-		width: "auto",
-		borderRight: "1px solid #D1D1D1",
-		height: "100vh",
+		display: "flex",
+		flexDirection: "column",
+		gap: "20px",
+		marginBottom: "44px",
+		width: "100%"
 	},
 	"& .MuiTabs-indicator": {
 		display: "none",
@@ -36,13 +40,12 @@ const CustomTab = styled(Tab)({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "flex-start",
-		fontWeight: "normal",
-		fontSize: "14px",
-		maxWidth: "100%",
-		borderBottom: "1px solid #D1D1D1",
+		marginBottom: "20px",
+		padding: "0 0 0 6px",
 	},
 	"&.Mui-selected": {
-		backgroundColor: "#f1f1f1",
+		marginLeft: "6px",
+		borderRadius: "2px 0 0 2px",
 	},
 });
 
@@ -86,7 +89,11 @@ const Endpoints: React.FC<Props> = ({ api, endpoints }) => {
 				<Box component="form" className={classes.search_form}>
 					<InputBase
 						sx={{
-							backgroundColor: "transparent",
+							background: "unset",
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							gap: "2px",
 							margin: "2px 20px 2px 3px",
 							fontSize: "16px",
 							fontFamily: "Lato",
@@ -96,7 +103,7 @@ const Endpoints: React.FC<Props> = ({ api, endpoints }) => {
 						inputProps={{ "aria-label": "search" }}
 						startAdornment={
 							<IconButton type="button" aria-label="search">
-								<Search sx={{ width: "20px" }} />
+								<RiSearch2Line style={{ color: "#929AA3", width: "20px" }} />
 							</IconButton>
 						}
 					/>
@@ -104,30 +111,34 @@ const Endpoints: React.FC<Props> = ({ api, endpoints }) => {
 			</Box>
 
 			{endpoints && endpoints.length !== 0 ? (
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						gap: "20px",
-						marginBottom: "64px",
-					}}>
+				<CustomTabs
+					variant="fullWidth"
+					value={tab}
+					orientation="vertical"
+					onChange={handleTabChange}
+				>
 					{endpoints?.map((endpoint, index) => (
-						<Box className={classes.endpoint_container}>
-							<Box className={classes.endpoint_method}>
-								<Typography component="p">
-									{endpoint.method || "POST"}
-								</Typography>
-							</Box>
+						<CustomTab 
+							key={index}
+							label={
+								<Box className={classes.endpoint_container}>
+									<Box className={classes.endpoint_method}>
+										<Typography component="p">
+											{endpoint.method || "POST"}
+										</Typography>
+									</Box>
 
-							<Box className={classes.endpoint_desc}>
-								<Typography component="p">
-									{endpoint.name ||
-										"ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in"}
-								</Typography>
-							</Box>
-						</Box>
+									<Box className={classes.endpoint_desc}>
+										<Typography component="p">
+											{endpoint.name ||
+												"ipsum dolor sit amet consectetur. Feugiat amet aliquam rutrum in"}
+										</Typography>
+									</Box>
+								</Box>
+							}
+						/>
 					))}
-				</Box>
+				</CustomTabs>
 			) : (
 				<Box>
 					<Box
@@ -155,30 +166,91 @@ const Endpoints: React.FC<Props> = ({ api, endpoints }) => {
 				positive or negative.
 			</Typography>
 
-			<Box
-				sx={{
-					marginBottom: "80px",
-					padding: "0 4px",
-				}}>
-				<CustomAccordion>
-					<AccordionSummary expandIcon={<ExpandMore />} className={classes.accordion_summary}>
-						<Typography component="h4">Headers Parameters</Typography>
-					</AccordionSummary>
-					<AccordionDetails></AccordionDetails>
-				</CustomAccordion>
-				<CustomAccordion>
-					<AccordionSummary expandIcon={<ExpandMore />} className={classes.accordion_summary}>
-						<Typography component="h4">Body Parameters</Typography>
-					</AccordionSummary>
-					<AccordionDetails></AccordionDetails>
-				</CustomAccordion>
-				<CustomAccordion>
-					<AccordionSummary expandIcon={<ExpandMore />} className={classes.accordion_summary}>
-						<Typography component="h4">Query Parameters</Typography>
-					</AccordionSummary>
-					<AccordionDetails></AccordionDetails>
-				</CustomAccordion>
-			</Box>
+
+			{endpoints && endpoints.length !== 0 ? (
+				<Box className={classes.endpoint_inputs}>
+					{endpoints?.map((endpoint, index) => (
+						<TabPanel key={index} value={tab} index={index}>
+							<Box
+								sx={{
+									marginBottom: "80px",
+									padding: "0 4px",
+								}}>
+								<CustomAccordion>
+									<AccordionSummary expandIcon={<ExpandMore />} className={classes.accordion_summary}>
+										<Typography component="h4">Headers Parameters</Typography>
+									</AccordionSummary>
+									<AccordionDetails>
+										{endpoint?.headers?.map((header, index) => (
+											<Stack key={index} direction="row" alignItems="center" spacing={4} my={1}>
+												<Stack width={200} direction="column" spacing={1} sx={{padding:"0 10px"}}>
+													<Typography component="p" sx={{fontSize:"16px"}}>{header.name}</Typography>
+													<Typography component="p" sx={{fontSize:"11px",textTransform:"uppercase"}}>{header.type}</Typography>
+												</Stack>
+
+												<Stack direction="column" spacing={1}>
+													<input type="text" defaultValue={header.value} className={classes.input} disabled />
+													<Typography component="p" sx={{fontSize:"11px",textTransform:"uppercase"}}>
+														{header.required ? "*required":"not required"}
+													</Typography>
+												</Stack>
+											</Stack>
+										))}
+									</AccordionDetails>
+								</CustomAccordion>
+								<CustomAccordion>
+									<AccordionSummary expandIcon={<ExpandMore />} className={classes.accordion_summary}>
+										<Typography component="h4">Body Parameters</Typography>
+									</AccordionSummary>
+									<AccordionDetails>
+										{endpoint?.body?.map((bodyItem, index) => (
+											<Stack key={index} direction="row" alignItems="center" spacing={4} my={1}>
+												<Stack width={200} direction="column" spacing={1} sx={{padding:"0 10px"}}>
+													<Typography component="p" sx={{fontSize:"16px"}}>{bodyItem.name}</Typography>
+													<Typography component="p" sx={{fontSize:"11px",textTransform:"uppercase"}}>{bodyItem.type}</Typography>
+												</Stack>
+
+												<Stack direction="column" spacing={1}>
+													<input type="text" defaultValue={bodyItem.value} className={classes.input} disabled />
+													<Typography component="p" sx={{fontSize:"11px",textTransform:"uppercase"}}>
+														{bodyItem.required ? "*required":"not required"}
+													</Typography>
+												</Stack>
+											</Stack>
+										))}
+									</AccordionDetails>
+								</CustomAccordion>
+								<CustomAccordion>
+									<AccordionSummary expandIcon={<ExpandMore />} className={classes.accordion_summary}>
+										<Typography component="h4">Query Parameters</Typography>
+									</AccordionSummary>
+									<AccordionDetails>
+										{endpoint?.query?.map((queryItem, index) => (
+											<Stack key={index} direction="row" alignItems="center" spacing={4} my={1}>
+												<Stack width={200} direction="column" spacing={1} sx={{padding:"0 10px"}}>
+													<Typography component="p" sx={{fontSize:"16px"}}>{queryItem.name}</Typography>
+													<Typography component="p" sx={{fontSize:"11px",textTransform:"uppercase"}}>{queryItem.type}</Typography>
+												</Stack>
+
+												<Stack direction="column" spacing={1}>
+													<input type="text" defaultValue={queryItem.value} className={classes.input} disabled />
+													<Typography component="p" sx={{fontSize:"11px",textTransform:"uppercase"}}>
+														{queryItem.required ? "*required":"not required"}
+													</Typography>
+												</Stack>
+											</Stack>
+										))}
+									</AccordionDetails>
+								</CustomAccordion>
+							</Box>
+						</TabPanel>
+					))}
+				</Box>
+				
+			
+            ) : (
+				<Box></Box>
+			)}
 		</Box>
 	);
 };
@@ -208,18 +280,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 			},
 		},
 
-	"& h3": {
-		fontWeight: "bold",
-		fontSize: "19px",
-		color: theme.palette.grey[100],
-	},
+		"& h3": {
+			fontWeight: "bold",
+			fontSize: "19px",
+			color: theme.palette.grey[100],
+		},
 
-	"& h5": {
-		margin: "16px 0 40px 0",
-		fontSize: "16px",
-		color: theme.palette.grey[600],
-	},
-
+		"& h5": {
+			margin: "16px 0 40px 0",
+			fontSize: "16px",
+			color: theme.palette.grey[600],
+		},
 		"@media screen and (max-width: 428px)": {
 			padding: "20px 16px 24px 16px",
 			fontSize: "14px",
@@ -231,34 +302,33 @@ const useStyles = makeStyles((theme: Theme) => ({
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: theme.palette.grey[500],
-		border: `1px solid ${theme.palette.grey[300]}`,
+		border: `1px solid ${theme.shadows[1]}`,
 		borderRadius: "4px",
 		"@media screen and (max-width: 428px)": {
 			marginBottom: "64px",
 		},
 	},
 	endpoint_container: {
-		cursor: "pointer",
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
 		gap: "28px",
-		backgroundColor: "#D3D7DA",
+		backgroundColor: theme.shadows[2],
 		padding: "12px 24px",
+		width: "100%",
 	},
 	endpoint_method: {
-		backgroundColor: "#081F4A",
+		backgroundColor: theme.shadows[3],
 		borderRadius: "3px",
 		padding: "4px 10px",
 		fontSize: "13px",
-		// color: theme.palette.grey[100],
-		color: "#fff",
-		textTransform: "uppercase",
+		color: theme.shadows[4],
+		textTransform: "capitalize",
 	},
 	endpoint_desc: {
 		fontSize: "16px",
-		fontWei9ght: 400,
-		color: theme.palette.grey[600],
+		fontWeight: 400,
+		color: theme.shadows[5],
 	},
 	accordion_summary: {
 		display: "flex",
@@ -272,6 +342,21 @@ const useStyles = makeStyles((theme: Theme) => ({
 		"& svg": {
 			fontSize: "32px",
 		},
+	},
+	endpoint_inputs: {
+		"& p": {
+			color: theme.palette.grey[600],
+		},
+	},
+	input: {
+		outline: "none",
+		background: "none",
+		border: `1px solid ${theme.palette.grey[600]}`,
+		borderRadius: "4px",
+		padding: "0 0.5rem",
+		color: theme.palette.grey[600],
+		width: "300px",
+		height: "30px",
 	}
 	
 }));

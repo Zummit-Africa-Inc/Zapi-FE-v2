@@ -27,6 +27,14 @@ const HamburgerMenu = () => {
     setActiveMenu(false);
     handleClicked("login");
   };
+  
+  const toggleTheme = () => {
+    if(currentMode === "dark") {
+      setMode("light")
+    } else {
+      setMode("dark")
+    }
+  }
 
   const checkClickRef = (ref: any) => {
     useEffect(() => {
@@ -119,6 +127,7 @@ const HamburgerMenu = () => {
       <Stack width="100%" direction="row" justifyContent="space-between">
         <Typography sx={{ color: "#FFF" }}>Theme</Typography>
         <Box
+          onClick={() => toggleTheme()}
           className={classes.modeToggle}
           style={{ background: currentMode === "light" ? "#FFF" : "#000" }}>
           <Box
@@ -126,7 +135,6 @@ const HamburgerMenu = () => {
             style={{ background: currentMode === "light" ? "#E9EBED" : "" }}>
             <Sun
               fill={currentMode === "light" ? "#3E4245" : ""}
-              onClick={() => setMode("light")}
             />
           </Box>
           <Box
@@ -134,7 +142,6 @@ const HamburgerMenu = () => {
             style={{ background: currentMode === "dark" ? "#E9EBED" : "" }}>
             <Moon
               fill={currentMode === "dark" ? "#3E4245" : ""}
-              onClick={() => setMode("dark")}
             />
           </Box>
         </Box>
@@ -166,7 +173,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "24px",
-    color: theme.palette.secondary.main,
+    color: "#FFEA00",
   },
   inactiveLink: {
     fontWeight: 500,

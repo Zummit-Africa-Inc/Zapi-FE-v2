@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   card: {
     padding: "1em",
     height: "16em",
-    width: "410px",
+    width: "350px",
     minWidth: "390px",
     maxHeight: "16em",
     cursor: "pointer",
@@ -21,13 +21,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 
     [theme.breakpoints.down("laptop")]: {
-      width: "372px",
+      width: "auto",
       minWidth: "auto",
       maxHeight: "16em",
     },
 
     [theme.breakpoints.down("mobile")]: {
-      width: "396px",
+      width: "auto",
       minWidth: "auto",
       maxHeight: "16em",
     },
@@ -52,13 +52,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "6px!important",
     height: "30px!important",
     backgroundColor: "#B8CEF7!important",
-    color: `${theme.palette.primary.main}!important`,
+    color: "#081F4A",
     fontSize: "14px!important",
   },
   chipIcon: {
-    color: `${theme.palette.primary.main}!important`,
+    color: "#081F4A!important"
   },
   typography: {
-    color: "##3E4245",
+    color: "#081F4A",
   },
 }));
