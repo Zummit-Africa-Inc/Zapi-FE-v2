@@ -118,7 +118,7 @@ function Help() {
             },
         }}
       >
-        <Typography component="h2" py={1} sx={{
+        <Typography component="h2" pt={2} sx={{
             color: currentMode === 'light' ? "#060607" : "#ffffff",
             fontWeight: "600",
             fontSize: "18px",
@@ -130,7 +130,7 @@ function Help() {
         <CustomTab label="Subscribe" {...a11yProps(3)} />
         <CustomTab label="Access Token" {...a11yProps(4)} />
         <CustomTab label="Send Requests" {...a11yProps(5)} />
-        <Typography component="h2" py={1} sx={{
+        <Typography component="h2" pt={2} sx={{
             color: currentMode === 'light' ? "#060607" : "#ffffff",
             fontWeight: "600",
             fontSize: "18px",
@@ -142,7 +142,7 @@ function Help() {
         <CustomTab label="Endpoints" {...a11yProps(9)} />
         <CustomTab label="Gateway" {...a11yProps(10)} />
         <CustomTab label="Analytics" {...a11yProps(11)} />
-        <Typography component="h2" py={1} sx={{
+        <Typography component="h2" pt={2} sx={{
             color: currentMode === 'light' ? "#060607" : "#ffffff",
             fontWeight: "600",
             fontSize: "18px",
