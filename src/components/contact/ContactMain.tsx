@@ -1,11 +1,11 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { useAppContext } from '../../contexts/AppProvider';
-import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import { useAppContext } from "../../contexts/AppProvider";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, Stack, Theme, Typography, Tab, Tabs } from "@mui/material";
 import ContactForm from "./ContactForm";
 
@@ -19,57 +19,31 @@ import {
 } from "../../assets/svg";
 import { contactBg } from "../../assets/images";
 
-const Hero: React.FC = () => {
+const ContactMain: React.FC = () => {
     const classes = useStyles();
     const { currentMode } = useAppContext();
 
     return (
-        <Stack direction="column" className={classes.root}>
-            <Box className={classes.container} sx={{ backgroundColor: currentMode === "light" ? "#E9EBED" : "#383838" }}>
-                <img src={contactBg} alt="" className={classes.heroImage} />
-                <Box className={classes.header}>
-                    <Box>
-                        <Typography
-                            // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
-                            color={currentMode === "light" ? "#3E4245" : "#F5F5F5"}
-                            component="h1"
-                        >
-                            Contact Us
-                        </Typography>
-                        <Typography
-                            // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
-                            color={currentMode === "light" ? "#3E4245" : "#D3D7DA"}
-                            component="p">
-                            We welcome your message, please reach out to us through one of the contact methods listed.
-                        </Typography>
-                    </Box>
-
-                </Box>
-                <Box className={classes.lowerContainer} sx={{ backgroundColor: currentMode === "light" ? "#fff" : "#121212" }}>
-                    <Box className={classes.header}>
-                        <Box>
-                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                                <LocalPhoneOutlinedIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large" />
-                                <Typography sx={{ color: currentMode === "light" ? "#081F4A" : "#D3D7DA" }}
-                                    component="p">08012345678</Typography>
-                            </Stack>
-                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                                <EmailOutlinedIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
-                                <Typography sx={{ color: currentMode === "light" ? "#081F4A" : "#D3D7DA" }}
-                                    component="p">
-                                    support@zapi.ai</Typography>
-                            </Stack>
-                            <Stack direction="row" spacing={2} alignItems="center" mt={3}>
-                                <TwitterIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
-                                <InstagramIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
-                                <YouTubeIcon sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }} fontSize="large" />
-                            </Stack>
-                        </Box>
-
-                    </Box>
-                </Box>
-            </Box>
+        <Stack className={classes.root}
+        sx={{
+                    //          background:
+                    //     currentMode === "light" ? " rgb(233,235,237) " : "#383838",
+                    // background:
+                    //     currentMode === "light"
+                    //         ? "linear-gradient(180deg, rgba(233,235,237,1) 50%, rgba(255,255,255,1) 50%)"
+                    //         : "linear-gradient(180deg, rgba(56,56,56,1) 50%, rgba(0,0,0,1) 50%)",
+                    backgroundImage: `url(${contactBg})`,
+                    backgroundPosition: "right",
+                    backgroundSize: "70% 100%",
+                    backgroundRepeat: "no-repeat",
+                    display: "flex",
+                    overflow: "auto",
+                    '@media (max-width: 600px)': {
+                        backgroundImage: `none`,
+                    },
+        }}
+        >
+ 
             <ContactForm/>
         </Stack>
     );
@@ -79,37 +53,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: "100%",
         display: "flex",
+        height: "100%",
         // justifyContent: "center",
         // alignItems: "center",
-        height: "90vh",
-        // background: theme.palette.primary.main,
-        // backgroundImage: `url(${clouds})`,
-        // backgroundPosition: "center",
-        // backgroundSize: "100% 100%",
-        // backgroundRepeat: "no-repeat",
-        // padding: "24px 3em",
-        // [theme.breakpoints.down("laptop")]: {
-        //     height: "475px",
-        //     padding: "24px 32px",
-        //     backgroundImage: `url(${clouds})`,
-        // },
-        // [theme.breakpoints.down("tablet")]: {
-        //     height: "fit-content",
-        //     padding: "24px 16px",
-        //     backgroundImage: `url(${clouds})`,
-        // },
     },
     contactForm: {
-      // place contact form in the middle of the page 
-      // display: "block",
-      width: "50%",
-      margin: "auto",
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      zIndex: 10,
-
+        // place contact form in the middle of the page
+        // display: "block",
+        width: "50%",
+        margin: "auto",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        zIndex: 10,
     },
     container: {
         // backgroundColor: currentMode === "light"? "#E9EBED" : "#383838",
@@ -119,7 +76,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         // flexDirection: "row",
         // alignItems: "center",
         // justifyContent: "space-between",
-        position: "relative",
+        // position: "relative",
         // marginTop: "80px",
         // [theme.breakpoints.down("laptop")]: {
         //     marginTop: "54px",
@@ -127,6 +84,23 @@ const useStyles = makeStyles((theme: Theme) => ({
         // [theme.breakpoints.down("tablet")]: {
         //     marginTop: "64px",
         // },
+        height: "110vh",
+        background: theme.palette.primary.main,
+        // backgroundImage: `url(${contactBg})`,
+        backgroundPosition: "right",
+        // backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+        // padding: "24px 3em",
+        [theme.breakpoints.down("laptop")]: {
+            height: "475px",
+            padding: "24px 32px",
+            backgroundImage: `none`,
+        },
+        [theme.breakpoints.down("tablet")]: {
+            height: "fit-content",
+            padding: "24px 16px",
+            backgroundImage: `none`,
+        },
     },
     lowerContainer: {
         // backgroundColor: "#fff",
@@ -172,7 +146,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     heroImage: {
-        '@media screen and (max-width: 1280px)': {
+        "@media screen and (max-width: 1280px)": {
             width: "50%",
         },
         width: "40%",
@@ -195,7 +169,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         // backgroundColor: "#d1d1d1",
         // backgroundImage: `url(${clouds})`,
         width: "100%",
-        opacity: .98,
+        opacity: 0.98,
         "& h1": {
             fontSize: "42px",
             fontWeight: "bold",
@@ -206,11 +180,8 @@ const useStyles = makeStyles((theme: Theme) => ({
             "@media screen and (max-width: 1024px)": {
                 fontSize: "36px",
                 lineHeight: "50px",
-
             },
-            "@media screen and (max-width: 375px)": {
-
-            },
+            "@media screen and (max-width: 375px)": {},
         },
         "& p": {
             // textAlign: "center",
@@ -221,21 +192,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 
             "@media screen and (max-width: 1024px)": {
                 fontSize: "12px",
-
             },
-            "@media screen and (max-width: 375px)": {
-
-            },
+            "@media screen and (max-width: 375px)": {},
         },
 
         "@media screen and (max-width: 1024px)": {
-            padding: "150px 1rem 70px 1rem",
-
+            // padding: "150px 1rem 70px 1rem",
         },
-        "@media screen and (max-width: 375px)": {
-
-        },
-    }
+        "@media screen and (max-width: 375px)": {},
+    },
 }));
 
-export default Hero;
+export default ContactMain;
