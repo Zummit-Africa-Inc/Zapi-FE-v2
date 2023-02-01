@@ -25,9 +25,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-// export interface  ContactFormProps {
 
-// }
 
 const ContactForm = () => {
     const classes = useStyles();
@@ -52,7 +50,7 @@ const ContactForm = () => {
                     px: 1,
                     py: 1,
                     "& > *:nth-child(1)": {
-                        order:2
+                        order: 2
                     },
                 },
             }}>
@@ -67,15 +65,6 @@ const ContactForm = () => {
                         px: 1,
                         py: 1,
                     },
-                    // background:
-                    //     currentMode === "light" ? " rgb(233,235,237) " : "#383838",
-                    // background:
-                    //     currentMode === "light"
-                    //         ? "linear-gradient(180deg, rgba(233,235,237,1) 50%, rgba(255,255,255,1) 50%)"
-                    //         : "linear-gradient(180deg, rgba(56,56,56,1) 50%, rgba(0,0,0,1) 50%)",
-                    // height: "90vh",
-
-                    // backgroundImage: `url(${contactBg})`,
                     backgroundPosition: "right",
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
@@ -84,13 +73,14 @@ const ContactForm = () => {
                     // width: "70%",
                     height: "70%",
                 }}>
-                {/* <img src={contactBg} alt="" className={classes.heroImage} /> */}
                 <Box
                     className={classes.headerContent}
-                    sx={{    '@media screen and (max-width: 375px)': {
-                        gap: "1rem",
-                    }, }}
-                    >
+                    sx={{
+                        '@media screen and (max-width: 375px)': {
+                            gap: "1rem",
+                        },
+                    }}
+                >
                     <Box className={classes.header}>
                         <Box>
                             <Typography
@@ -154,57 +144,6 @@ const ContactForm = () => {
                     </Box>
                 </Box>
 
-                {/* <ContactForm/>  */}
-                {/* <Box
-                    className={classes.lowerContainer}
-                //  sx={{ backgroundColor: currentMode === "light" ? "#fff" : "#121212" }}
-                >
-                    <Box className={classes.header}>
-                        <Box>
-                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                                <LocalPhoneOutlinedIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <Typography
-                                    sx={{
-                                        color: currentMode === "light" ? "#081F4A" : "#D3D7DA",
-                                    }}
-                                    component="p">
-                                    08012345678
-                                </Typography>
-                            </Stack>
-                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
-                                <EmailOutlinedIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <Typography
-                                    sx={{
-                                        color: currentMode === "light" ? "#081F4A" : "#D3D7DA",
-                                    }}
-                                    component="p">
-                                    support@zapi.ai
-                                </Typography>
-                            </Stack>
-                            <Stack direction="row" spacing={2} alignItems="center" mt={3}>
-                                <TwitterIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <InstagramIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <YouTubeIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                            </Stack>
-                        </Box>
-                    </Box>
-                </Box> */}
-                {/* <img src={contactBg} alt="" className={classes.heroImage} />  */}
             </Box>
 
             <Paper
@@ -680,17 +619,8 @@ export default ContactForm;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         docContainer: {
-            // height: "70vh",
-            // width: "50%",
-            // display: "flex",
-            // justifyContent: "center",
-            // alignItems: "center",
             margin: "auto",
-            // position: "sticky",
             top: "20%",
-            // left: "30%",
-            // transform: "translate(-50%, -50%)",
-            // zIndex: 10,
         },
         iconStyle: {
             transform: "rotate(45deg)",
@@ -703,21 +633,15 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         header: {
             display: "flex",
-            // flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
-            // padding: "6rem 1rem 6rem 6rem",
-            // backgroundColor: "#d1d1d1",
-            // backgroundImage: `url(${clouds})`,
             width: "100%",
             opacity: 0.98,
             "& h1": {
                 fontSize: "42px",
                 fontWeight: "bold",
-                // textAlign: "center",
-                // color: "#3E4245",
                 lineHeight: "60px",
-    
+
                 "@media screen and (max-width: 1024px)": {
                     fontSize: "36px",
                     lineHeight: "50px",
@@ -725,20 +649,17 @@ const useStyles = makeStyles((theme: Theme) =>
                 "@media screen and (max-width: 375px)": {},
             },
             "& p": {
-                // textAlign: "center",
                 fontSize: "18px",
-                // color: "#3E4245",
                 lineHeight: "20px",
                 width: "55%",
-    
+
                 "@media screen and (max-width: 1024px)": {
                     fontSize: "12px",
                 },
                 "@media screen and (max-width: 375px)": {},
             },
-    
+
             "@media screen and (max-width: 1024px)": {
-                // padding: "150px 1rem 70px 1rem",
             },
             "@media screen and (max-width: 375px)": {},
         },
@@ -748,12 +669,11 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: "center",
             alignItems: "center",
             gap: "10rem",
-      
+
         },
         [theme.breakpoints.down("tablet")]: {
-            // nth child of root
             "& > *:nth-child(2)": {
-                order:3
+                order: 3
             },
         },
     })

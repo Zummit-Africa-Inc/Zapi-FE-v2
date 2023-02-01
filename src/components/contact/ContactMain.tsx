@@ -25,26 +25,26 @@ const ContactMain: React.FC = () => {
 
     return (
         <Stack className={classes.root}
-        sx={{
-                    //          background:
-                    //     currentMode === "light" ? " rgb(233,235,237) " : "#383838",
-                    // background:
-                    //     currentMode === "light"
-                    //         ? "linear-gradient(180deg, rgba(233,235,237,1) 50%, rgba(255,255,255,1) 50%)"
-                    //         : "linear-gradient(180deg, rgba(56,56,56,1) 50%, rgba(0,0,0,1) 50%)",
-                    backgroundImage: `url(${contactBg})`,
-                    backgroundPosition: "right",
-                    backgroundSize: "70% 100%",
-                    backgroundRepeat: "no-repeat",
-                    display: "flex",
-                    overflow: "auto",
-                    '@media (max-width: 600px)': {
-                        backgroundImage: `none`,
-                    },
-        }}
+            sx={{
+                //          background:
+                //     currentMode === "light" ? " rgb(233,235,237) " : "#383838",
+                // background:
+                //     currentMode === "light"
+                //         ? "linear-gradient(180deg, rgba(233,235,237,1) 50%, rgba(255,255,255,1) 50%)"
+                //         : "linear-gradient(180deg, rgba(56,56,56,1) 50%, rgba(0,0,0,1) 50%)",
+                backgroundImage: `url(${contactBg})`,
+                backgroundPosition: "right",
+                backgroundSize: "70% 100%",
+                backgroundRepeat: "no-repeat",
+                display: "flex",
+                overflow: "auto",
+                '@media (max-width: 600px)': {
+                    backgroundImage: `none`,
+                },
+            }}
         >
- 
-            <ContactForm/>
+
+            <ContactForm />
         </Stack>
     );
 };
@@ -69,28 +69,11 @@ const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 10,
     },
     container: {
-        // backgroundColor: currentMode === "light"? "#E9EBED" : "#383838",
         minHeight: "498px",
-        // width: "100%",
-        // display: "flex",
-        // flexDirection: "row",
-        // alignItems: "center",
-        // justifyContent: "space-between",
-        // position: "relative",
-        // marginTop: "80px",
-        // [theme.breakpoints.down("laptop")]: {
-        //     marginTop: "54px",
-        // },
-        // [theme.breakpoints.down("tablet")]: {
-        //     marginTop: "64px",
-        // },
         height: "110vh",
         background: theme.palette.primary.main,
-        // backgroundImage: `url(${contactBg})`,
         backgroundPosition: "right",
-        // backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",
-        // padding: "24px 3em",
         [theme.breakpoints.down("laptop")]: {
             height: "475px",
             padding: "24px 32px",
@@ -103,10 +86,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     lowerContainer: {
-        // backgroundColor: "#fff",
         width: "100%",
         minHeight: "50vh",
-        // height: '50vh',
     },
     heroText: {
         width: "656px",
@@ -117,8 +98,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         alignItems: "flex-start",
         [theme.breakpoints.down("laptop")]: {
             width: "100%",
-            // alignItems: "center",
-            // textAlign: "center",
         },
         "& h1": {
             fontWeight: 600,
@@ -150,7 +129,6 @@ const useStyles = makeStyles((theme: Theme) => ({
             width: "50%",
         },
         width: "40%",
-        // height: "50%",
         display: "block",
         position: "absolute",
         objectFit: "contain",
@@ -162,19 +140,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     header: {
         display: "flex",
-        // flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
         padding: "6rem 1rem 6rem 6rem",
-        // backgroundColor: "#d1d1d1",
-        // backgroundImage: `url(${clouds})`,
         width: "100%",
         opacity: 0.98,
         "& h1": {
             fontSize: "42px",
             fontWeight: "bold",
-            // textAlign: "center",
-            // color: "#3E4245",
             lineHeight: "60px",
 
             "@media screen and (max-width: 1024px)": {
@@ -184,9 +157,7 @@ const useStyles = makeStyles((theme: Theme) => ({
             "@media screen and (max-width: 375px)": {},
         },
         "& p": {
-            // textAlign: "center",
             fontSize: "18px",
-            // color: "#3E4245",
             lineHeight: "20px",
             width: "55%",
 
@@ -197,7 +168,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
 
         "@media screen and (max-width: 1024px)": {
-            // padding: "150px 1rem 70px 1rem",
         },
         "@media screen and (max-width: 375px)": {},
     },
