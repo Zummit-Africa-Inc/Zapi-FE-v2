@@ -28,15 +28,14 @@ import {
 } from '../../assets/images';
 
 
-function a11yProps(index: number, currentMode: string) {
+function a11yProps(index: number) {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
-    sx: {color: currentMode === 'light' ? "#060607" : "#ffffff"}
   };
 }
 
-export default function Help() {
+function Help() {
     const { currentMode } = useAppContext();
     const CustomTab = styled(Tab)({
         "&.MuiTab-root": {
@@ -45,7 +44,6 @@ export default function Help() {
             justifyContent: "flex-start",
             alignItems: "center",
             gap: ".3rem",
-            // paddingLeft: "35px",
             fontSize: "13px",
             textAlign: "left",
             color: currentMode === 'light' ? '#00000099' : '#BEC2C8' + ' !important',
@@ -103,16 +101,15 @@ export default function Help() {
     >
       <Tabs
         orientation="vertical"
-        variant="scrollable"
-        indicatorColor="primary"
+        variant='scrollable'
         value={tab}
         onChange={handleTabChange}
         aria-label="Vertical tabs example"
         sx={{ 
             borderRight: "1px solid #d1d1d1", 
-            width: "70%",
+            width: "50%",
             maxWidth: "270px",
-            overflowX: "scroll",
+            color: currentMode === 'light' ? "#060607" : "#ffffff",
             "@media screen and (max-width: 1024px)": {
                 maxWidth: "250px",
             },
@@ -121,44 +118,43 @@ export default function Help() {
             },
         }}
       >
-        <Typography component="h2" px={0} pt={2} sx={{
+        <Typography component="h2" py={1} sx={{
             color: currentMode === 'light' ? "#060607" : "#ffffff",
             fontWeight: "600",
             fontSize: "18px",
         }}>
             Access API
         </Typography>
-        <Tab label="Overview" {...a11yProps(1, currentMode)} />
-        <Tab label="Sign-Up" {...a11yProps(2, currentMode)} />
-        <Tab label="Subscribe" {...a11yProps(3, currentMode)} />
-        <Tab label="Access Token" {...a11yProps(4, currentMode)} />
-        <Tab label="Send Requests" {...a11yProps(5, currentMode)} />
-        <Typography component="h2" px={0} pt={2} sx={{
+        <CustomTab label="Overview" {...a11yProps(1)} />
+        <CustomTab label="Sign-Up" {...a11yProps(2)} />
+        <CustomTab label="Subscribe" {...a11yProps(3)} />
+        <CustomTab label="Access Token" {...a11yProps(4)} />
+        <CustomTab label="Send Requests" {...a11yProps(5)} />
+        <Typography component="h2" py={1} sx={{
             color: currentMode === 'light' ? "#060607" : "#ffffff",
             fontWeight: "600",
             fontSize: "18px",
         }}>
             Upload API
         </Typography>
-        <Tab label="Pre-requisite" {...a11yProps(7, currentMode)} />
-        <Tab label="Updating API" {...a11yProps(8, currentMode)} />
-        <Tab label="Endpoints" {...a11yProps(9, currentMode)} />
-        <Tab label="Gateway" {...a11yProps(10, currentMode)} />
-        <Tab label="Analytics" {...a11yProps(11, currentMode)} />
-        <Typography component="h2" px={0} pt={2} sx={{
+        <CustomTab label="Pre-requisite" {...a11yProps(7)} />
+        <CustomTab label="Updating API" {...a11yProps(8)} />
+        <CustomTab label="Endpoints" {...a11yProps(9)} />
+        <CustomTab label="Gateway" {...a11yProps(10)} />
+        <CustomTab label="Analytics" {...a11yProps(11)} />
+        <Typography component="h2" py={1} sx={{
             color: currentMode === 'light' ? "#060607" : "#ffffff",
             fontWeight: "600",
             fontSize: "18px",
         }}>
             Testing
         </Typography>
-        <Tab label="Tests" {...a11yProps(13, currentMode)} />
+        <CustomTab label="Tests" {...a11yProps(13)} />
       </Tabs>
 
       <Box sx={{
             display: "fixed",
             width: "100%",
-            // height: "450px",
             overflowX: "scroll",
             overflowY: "unset",
             "& h1": {
@@ -534,7 +530,6 @@ export default function Help() {
                 />
             </TabPanel>
         </Box>
-
     </Box>
   );
 }
@@ -599,3 +594,5 @@ const useStyles = makeStyles({
     }
 
 });
+
+export default Help;
