@@ -35,26 +35,33 @@ const ContactForm = () => {
         <Box
             className={classes.root}
             sx={{
-                width: "80%",
-                display: "flex",
-                justifyContent: "space-around",
+                width: "90%",
+                // display: "flex",
+                // justifyContent: "space-around",
+                display:"grid",
+                gridTemplateColumns: "2fr 2fr 7fr",
+                gridTemplateRows: "1fr 6fr 6fr",
+                gridTemplateAreas: `". . ."
+                "grid-1 . grid3"
+                "grid2 . grid3"`,
                 paddingLeft: "4rem",
                 paddingTop: "4rem",
                 paddingBottom: "4rem",
                 alignItems: "center",
-                "@media (max-width: 600px)": {
+                "@media (max-width: 900px)": {
+                    display:"flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
                     backgroundImage: "none !important",
-                    px: 1,
-                    py: 1,
-                    "& > *:nth-child(1)": {
+                    // px: 1,
+                    // py: 1,
+                    "& > *:nth-child(2)": {
                         order: 2
                     },
                 },
             }}>
-            <Box
+            {/* <Box
                 className={classes.container}
                 sx={{
                     "@media (max-width: 600px)": {
@@ -71,17 +78,22 @@ const ContactForm = () => {
                     // padding: "24px 3em",
                     display: "flex",
                     // width: "70%",
-                    height: "70%",
-                }}>
-                <Box
+                    // height: "70%",
+                }}> */}
+                {/* <Box
                     className={classes.headerContent}
                     sx={{
                         '@media screen and (max-width: 375px)': {
                             gap: "1rem",
                         },
                     }}
-                >
-                    <Box className={classes.header}>
+                > */}
+                    <Box sx={{ gridArea: 'grid-1',
+                 "@media (max-width: 900px)": {
+                    pb:3   
+                 }
+                }}
+                    className={classes.header}>
                         <Box>
                             <Typography
                                 // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
@@ -98,9 +110,25 @@ const ContactForm = () => {
                             </Typography>
                         </Box>
                     </Box>
-                    <Box className={classes.header}>
-                        <Box>
-                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
+                    <Box sx={{ gridArea: 'grid2',
+                 "@media (max-width: 900px)": {
+                    display:"flex",
+                    flexDirection:'row',
+                    justifyContent:"space-around"
+
+                }    
+                }}
+                    className={classes.header}>
+                        <Box
+                        sx={{ 
+                            "@media (max-width: 900px)": {
+                                display:"flex",
+                                flexDirection:'row',
+            
+                            }  
+                         }}
+                        >
+                            <Stack className={classes.iconStack}  direction="row" spacing={2} alignItems="center" mb={3}>
                                 <LocalPhoneOutlinedIcon
                                     sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
                                     fontSize="large"
@@ -113,7 +141,7 @@ const ContactForm = () => {
                                     08012345678
                                 </Typography>
                             </Stack>
-                            <Stack direction="row" spacing={2} alignItems="center" mb={3}>
+                            <Stack className={classes.iconStack}  direction="row" spacing={2} alignItems="center" mb={3}>
                                 <EmailOutlinedIcon
                                     sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
                                     fontSize="large"
@@ -126,7 +154,7 @@ const ContactForm = () => {
                                     support@zapi.ai
                                 </Typography>
                             </Stack>
-                            <Stack direction="row" spacing={2} alignItems="center" mt={3}>
+                            <Stack className={classes.iconStack} direction="row" spacing={2} alignItems="center" mt={3}>
                                 <TwitterIcon
                                     sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
                                     fontSize="large"
@@ -142,20 +170,22 @@ const ContactForm = () => {
                             </Stack>
                         </Box>
                     </Box>
-                </Box>
+                {/* </Box> */}
 
-            </Box>
+            {/* </Box> */}
 
             <Paper
                 elevation={3}
                 variant="outlined"
                 className={classes.docContainer}
                 sx={{
+                    gridArea: 'grid3', 
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
                     borderRadius: "12px",
                     backgroundColor: "#fff",
+                    width: "100%",
                     "@media (max-width: 600px)": {
                         width: "100%",
                         left: 0,
@@ -676,5 +706,11 @@ const useStyles = makeStyles((theme: Theme) =>
                 order: 3
             },
         },
+        iconStack: {
+            "@media (max-width: 900px)": {
+                marginTop:"0 !important",
+                marginBottom:"0 !important",
+        }
+    }
     })
 );

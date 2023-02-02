@@ -26,15 +26,9 @@ const ContactMain: React.FC = () => {
     return (
         <Stack className={classes.root}
             sx={{
-                //          background:
-                //     currentMode === "light" ? " rgb(233,235,237) " : "#383838",
-                // background:
-                //     currentMode === "light"
-                //         ? "linear-gradient(180deg, rgba(233,235,237,1) 50%, rgba(255,255,255,1) 50%)"
-                //         : "linear-gradient(180deg, rgba(56,56,56,1) 50%, rgba(0,0,0,1) 50%)",
                 backgroundImage: `url(${contactBg})`,
                 backgroundPosition: "right",
-                backgroundSize: "70% 100%",
+                backgroundSize: "65% 100%",
                 backgroundRepeat: "no-repeat",
                 display: "flex",
                 overflow: "auto",
@@ -53,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: "100%",
         display: "flex",
-        height: "100%",
+        // height: "100%",
         // justifyContent: "center",
         // alignItems: "center",
     },
