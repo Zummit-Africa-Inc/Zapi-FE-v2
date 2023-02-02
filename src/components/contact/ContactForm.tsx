@@ -26,7 +26,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 
-
 const ContactForm = () => {
     const classes = useStyles();
     const { currentMode } = useAppContext();
@@ -38,7 +37,7 @@ const ContactForm = () => {
                 width: "90%",
                 // display: "flex",
                 // justifyContent: "space-around",
-                display:"grid",
+                display: "grid",
                 gridTemplateColumns: "2fr 2fr 7fr",
                 gridTemplateRows: "1fr 6fr 6fr",
                 gridTemplateAreas: `". . ."
@@ -49,7 +48,11 @@ const ContactForm = () => {
                 paddingBottom: "4rem",
                 alignItems: "center",
                 "@media (max-width: 900px)": {
-                    display:"flex",
+                    width: "100%",
+                    paddingLeft: "1rem",
+                    paddingTop: "2rem",
+                    paddingRight:"1rem",
+                    display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
@@ -57,7 +60,7 @@ const ContactForm = () => {
                     // px: 1,
                     // py: 1,
                     "& > *:nth-child(2)": {
-                        order: 2
+                        order: 2,
                     },
                 },
             }}>
@@ -80,7 +83,7 @@ const ContactForm = () => {
                     // width: "70%",
                     // height: "70%",
                 }}> */}
-                {/* <Box
+            {/* <Box
                     className={classes.headerContent}
                     sx={{
                         '@media screen and (max-width: 375px)': {
@@ -88,89 +91,113 @@ const ContactForm = () => {
                         },
                     }}
                 > */}
-                    <Box sx={{ gridArea: 'grid-1',
-                 "@media (max-width: 900px)": {
-                    pb:3   
-                 }
+            <Box
+                sx={{
+                    gridArea: "grid-1",
+                    "@media (max-width: 900px)": {
+                        pb: 3,
+                    },
                 }}
-                    className={classes.header}>
-                        <Box>
-                            <Typography
-                                // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
-                                color={currentMode === "light" ? "#3E4245" : "#F5F5F5"}
-                                component="h1">
-                                Contact Us
-                            </Typography>
-                            <Typography
-                                // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
-                                color={currentMode === "light" ? "#3E4245" : "#D3D7DA"}
-                                component="p">
-                                We welcome your message, please reach out to us through one of
-                                the contact methods listed.
-                            </Typography>
-                        </Box>
-                    </Box>
-                    <Box sx={{ gridArea: 'grid2',
-                 "@media (max-width: 900px)": {
-                    display:"flex",
-                    flexDirection:'row',
-                    justifyContent:"space-around"
+                className={classes.header}>
+                <Box>
+                    <Typography
+                        // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
+                        color={currentMode === "light" ? "#3E4245" : "#F5F5F5"}
+                        component="h1">
+                        Contact Us
+                    </Typography>
+                    <Typography
+                        // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
+                        color={currentMode === "light" ? "#3E4245" : "#D3D7DA"}
+                        component="p">
+                        We welcome your message, please reach out to us through one of the
+                        contact methods listed.
+                    </Typography>
+                </Box>
+            </Box>
+            <Box
+                sx={{
+                    gridArea: "grid2",
+                    "@media (max-width: 900px)": {
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-around",
+                    },
+                    "@media (max-width: 475px)": {
+                        pt:2,
+                        justifyContent: "flex-start",
+                    }
 
-                }    
                 }}
-                    className={classes.header}>
-                        <Box
-                        sx={{ 
-                            "@media (max-width: 900px)": {
-                                display:"flex",
-                                flexDirection:'row',
-            
-                            }  
-                         }}
-                        >
-                            <Stack className={classes.iconStack}  direction="row" spacing={2} alignItems="center" mb={3}>
-                                <LocalPhoneOutlinedIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <Typography
-                                    sx={{
-                                        color: currentMode === "light" ? "#081F4A" : "#D3D7DA",
-                                    }}
-                                    component="p">
-                                    08012345678
-                                </Typography>
-                            </Stack>
-                            <Stack className={classes.iconStack}  direction="row" spacing={2} alignItems="center" mb={3}>
-                                <EmailOutlinedIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <Typography
-                                    sx={{
-                                        color: currentMode === "light" ? "#081F4A" : "#D3D7DA",
-                                    }}
-                                    component="p">
-                                    support@zapi.ai
-                                </Typography>
-                            </Stack>
-                            <Stack className={classes.iconStack} direction="row" spacing={2} alignItems="center" mt={3}>
-                                <TwitterIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <InstagramIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                                <YouTubeIcon
-                                    sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
-                                    fontSize="large"
-                                />
-                            </Stack>
-                        </Box>
-                    </Box>
-                {/* </Box> */}
+                className={classes.header}>
+                <Box
+                    sx={{
+                        "@media (max-width: 900px)": {
+                            display: "flex",
+                            flexDirection: "row",
+                        },
+                        "@media (max-width: 475px)": {
+                            flexDirection:"column"
+                        }
+                    }}>
+                    <Stack
+                        className={classes.iconStack}
+                        direction="row"
+                        spacing={2}
+                        alignItems="center"
+                        mb={3}>
+                        <LocalPhoneOutlinedIcon
+                            sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
+                            fontSize="large"
+                        />
+                        <Typography
+                            sx={{
+                                color: currentMode === "light" ? "#081F4A" : "#D3D7DA",
+                            }}
+                            component="p">
+                            08012345678
+                        </Typography>
+                    </Stack>
+                    <Stack
+                        className={classes.iconStack}
+                        direction="row"
+                        spacing={2}
+                        alignItems="center"
+                        mb={3}>
+                        <EmailOutlinedIcon
+                            sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
+                            fontSize="large"
+                        />
+                        <Typography
+                            sx={{
+                                color: currentMode === "light" ? "#081F4A" : "#D3D7DA",
+                            }}
+                            component="p">
+                            support@zapi.ai
+                        </Typography>
+                    </Stack>
+                    <Stack
+                        className={classes.iconStack}
+                        direction="row"
+                        spacing={2}
+                        alignItems="center"
+                        mt={3}>
+                        <TwitterIcon
+                            sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
+                            fontSize="large"
+                        />
+                        <InstagramIcon
+                            sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
+                            fontSize="large"
+                        />
+                        <YouTubeIcon
+                            sx={{ color: currentMode === "light" ? "#081F4A" : "#fff" }}
+                            fontSize="large"
+                        />
+                    </Stack>
+                </Box>
+            </Box>
+            {/* </Box> */}
 
             {/* </Box> */}
 
@@ -179,7 +206,7 @@ const ContactForm = () => {
                 variant="outlined"
                 className={classes.docContainer}
                 sx={{
-                    gridArea: 'grid3', 
+                    gridArea: "grid3",
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
@@ -681,16 +708,17 @@ const useStyles = makeStyles((theme: Theme) =>
             "& p": {
                 fontSize: "18px",
                 lineHeight: "20px",
-                width: "55%",
+                // width: "55%",
 
                 "@media screen and (max-width: 1024px)": {
                     fontSize: "12px",
                 },
-                "@media screen and (max-width: 375px)": {},
+                "@media screen and (max-width: 475px)": {
+                    width: "55%",
+                },
             },
 
-            "@media screen and (max-width: 1024px)": {
-            },
+            "@media screen and (max-width: 1024px)": {},
             "@media screen and (max-width: 375px)": {},
         },
         headerContent: {
@@ -699,18 +727,17 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: "center",
             alignItems: "center",
             gap: "10rem",
-
         },
         [theme.breakpoints.down("tablet")]: {
             "& > *:nth-child(2)": {
-                order: 3
+                order: 3,
             },
         },
         iconStack: {
             "@media (max-width: 900px)": {
-                marginTop:"0 !important",
-                marginBottom:"0 !important",
-        }
-    }
+                marginTop: "0 !important",
+                marginBottom: "0 !important",
+            },
+        },
     })
 );
