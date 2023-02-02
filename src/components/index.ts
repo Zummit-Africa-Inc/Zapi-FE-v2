@@ -29,6 +29,7 @@ export { default as GettingStarted } from "./home/gettingStarted";
 export { default as APIMoreInfo } from "./api/APIMoreInfo";
 export { default as Endpoints } from "./api/Endpoints";
 export { default as Reviews } from "./api/Reviews";
+export { default as Discussions } from "./api/Discussions";
 
 // auth
 export { default as Auth } from "./auth/Auth";
