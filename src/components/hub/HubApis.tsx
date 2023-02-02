@@ -56,7 +56,7 @@ const HubApis = ({ apis }: IHubApis) => {
           <Box className={classes.apiContainer}>
               <Box className={classes.apis} component={"div"}>
             {apis?.map((api) => (
-              <ApiCard api={api} />
+              <ApiCard api={api} key={api.id} />
             ))}
             </Box>
           </Box>

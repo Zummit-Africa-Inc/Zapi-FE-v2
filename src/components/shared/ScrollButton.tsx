@@ -59,7 +59,7 @@ const ScrollButton = () => {
   );
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     scrollButton: {
       position: "fixed",
@@ -67,6 +67,17 @@ const useStyles = makeStyles(() =>
       right: "0",
       padding: "10px",
       zIndex: "999",
+      width:100,
+      height:100,
+      [theme.breakpoints.down("tablet")]: {
+        width:80,
+        height:80,
+      },
+      [theme.breakpoints.down("mobile")]: {
+        width:60,
+        height:60,
+      },
+      
     },
   })
 );
