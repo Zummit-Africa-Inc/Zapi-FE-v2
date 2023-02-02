@@ -13,7 +13,8 @@ const LINKS = [
   { name: "Home", to: "/" },
   { name: "API Hub", to: "/api-hub" },
   { name: "Pricing", to: "/pricing" },
-  { name: "Documentation", to: "/documentation" },
+  { name: "Help", to: "/documentation" },
+  { name: "Contact Us", to: "/contact" },
 ];
 
 const HamburgerMenu = () => {

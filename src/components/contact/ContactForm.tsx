@@ -19,7 +19,6 @@ import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useAppContext } from "../../contexts/AppProvider";
 import { AttachFile } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { contactBg } from "../../assets/images";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -32,14 +31,11 @@ const ContactForm = () => {
 
     return (
         <Box
-            className={classes.root}
             sx={{
                 width: "90%",
-                // display: "flex",
-                // justifyContent: "space-around",
                 display: "grid",
-                gridTemplateColumns: "2fr 2fr 7fr",
-                gridTemplateRows: "1fr 6fr 6fr",
+                gridTemplateColumns: "3fr 2fr 7fr",
+                gridTemplateRows: "1fr 4fr 7fr",
                 gridTemplateAreas: `". . ."
                 "grid-1 . grid3"
                 "grid2 . grid3"`,
@@ -51,46 +47,14 @@ const ContactForm = () => {
                     width: "100%",
                     paddingLeft: "1rem",
                     paddingTop: "2rem",
-                    paddingRight:"1rem",
+                    paddingRight: "1rem",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
                     backgroundImage: "none !important",
-                    // px: 1,
-                    // py: 1,
-                    "& > *:nth-child(2)": {
-                        order: 2,
-                    },
                 },
             }}>
-            {/* <Box
-                className={classes.container}
-                sx={{
-                    "@media (max-width: 600px)": {
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundImage: "none !important",
-                        px: 1,
-                        py: 1,
-                    },
-                    backgroundPosition: "right",
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    // padding: "24px 3em",
-                    display: "flex",
-                    // width: "70%",
-                    // height: "70%",
-                }}> */}
-            {/* <Box
-                    className={classes.headerContent}
-                    sx={{
-                        '@media screen and (max-width: 375px)': {
-                            gap: "1rem",
-                        },
-                    }}
-                > */}
             <Box
                 sx={{
                     gridArea: "grid-1",
@@ -101,13 +65,11 @@ const ContactForm = () => {
                 className={classes.header}>
                 <Box>
                     <Typography
-                        // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
                         color={currentMode === "light" ? "#3E4245" : "#F5F5F5"}
                         component="h1">
                         Contact Us
                     </Typography>
                     <Typography
-                        // sx={{ color: currentMode === "light"? "#3E4245" : "#fff" }}
                         color={currentMode === "light" ? "#3E4245" : "#D3D7DA"}
                         component="p">
                         We welcome your message, please reach out to us through one of the
@@ -124,7 +86,7 @@ const ContactForm = () => {
                         justifyContent: "space-around",
                     },
                     "@media (max-width: 475px)": {
-                        pt:2,
+                        pt: 2,
                         justifyContent: "flex-start",
                     }
 
@@ -133,11 +95,13 @@ const ContactForm = () => {
                 <Box
                     sx={{
                         "@media (max-width: 900px)": {
+                            pt: 3,
                             display: "flex",
                             flexDirection: "row",
+                            justifyContent: "space-around",
                         },
                         "@media (max-width: 475px)": {
-                            flexDirection:"column"
+                            flexDirection: "column"
                         }
                     }}>
                     <Stack
@@ -197,21 +161,17 @@ const ContactForm = () => {
                     </Stack>
                 </Box>
             </Box>
-            {/* </Box> */}
-
-            {/* </Box> */}
-
             <Paper
                 elevation={3}
-                variant="outlined"
                 className={classes.docContainer}
                 sx={{
+                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
                     gridArea: "grid3",
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
                     borderRadius: "12px",
-                    backgroundColor: "#fff",
+                    backgroundColor: currentMode === "light" ? "#fff" : "#1E1E1E",
                     width: "100%",
                     "@media (max-width: 600px)": {
                         width: "100%",
@@ -239,7 +199,7 @@ const ContactForm = () => {
                         }}>
                         <InputLabel
                             htmlFor="my-input"
-                            sx={{ color: "#222426", fontWeight: 600, fontSize: "18px" }}>
+                            sx={{ color: currentMode === "light" ? "#222426" : "#F5F5F5", fontWeight: 600, fontSize: "18px" }}>
                             First Name*
                         </InputLabel>
                         <TextField
@@ -248,6 +208,7 @@ const ContactForm = () => {
                             placeholder="Enter first name"
                             sx={{
                                 color: "#A8AEB5",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#A8AEB5",
                                 borderRadius: "4px",
@@ -272,7 +233,7 @@ const ContactForm = () => {
                         }}>
                         <InputLabel
                             htmlFor="my-input"
-                            sx={{ color: "#222426", fontWeight: 600, fontSize: "18px" }}>
+                            sx={{ color: currentMode === "light" ? "#222426" : "#F5F5F5", fontWeight: 600, fontSize: "18px" }}>
                             Last Name*
                         </InputLabel>
                         <TextField
@@ -281,6 +242,7 @@ const ContactForm = () => {
                             aria-describedby="my-helper-text"
                             sx={{
                                 color: "#A8AEB5",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#A8AEB5",
                                 borderRadius: "4px",
@@ -316,7 +278,7 @@ const ContactForm = () => {
                         }}>
                         <InputLabel
                             htmlFor="my-input"
-                            sx={{ color: "#222426", fontWeight: 600, fontSize: "18px" }}>
+                            sx={{ color: currentMode === "light" ? "#222426" : "#F5F5F5", fontWeight: 600, fontSize: "18px" }}>
                             Company's Name (Optional)
                         </InputLabel>
                         <TextField
@@ -325,6 +287,7 @@ const ContactForm = () => {
                             aria-describedby="my-helper-text"
                             sx={{
                                 color: "#A8AEB5",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#A8AEB5",
                                 borderRadius: "4px",
@@ -349,7 +312,7 @@ const ContactForm = () => {
                         }}>
                         <InputLabel
                             htmlFor="my-input"
-                            sx={{ color: "#222426", fontWeight: 600, fontSize: "18px" }}>
+                            sx={{ color: currentMode === "light" ? "#222426" : "#F5F5F5", fontWeight: 600, fontSize: "18px" }}>
                             Email Address*
                         </InputLabel>
                         <TextField
@@ -357,7 +320,8 @@ const ContactForm = () => {
                             id="my-input"
                             aria-describedby="my-helper-text"
                             sx={{
-                                color: "#A8AEB5",
+                                color: currentMode === "light" ? "#A8AEB5" : "#F5F5F5",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#A8AEB5",
                                 borderRadius: "4px",
@@ -383,7 +347,6 @@ const ContactForm = () => {
                     <FormControl
                         sx={{
                             width: "100%",
-                            // p: 2,
                             display: "flex",
                             flexDirection: "row",
                             color: "#333",
@@ -392,7 +355,7 @@ const ContactForm = () => {
                         <Checkbox sx={{ color: "#A8AEB5" }} />
                         <Box>
                             <Typography
-                                sx={{ color: "#3E4245", fontWeight: 400, fontSize: "14px" }}>
+                                sx={{ color: currentMode === "light" ? "#3E4245" : "#BEC2C8", fontWeight: 400, fontSize: "14px" }}>
                                 I would like to be contacted via phone
                             </Typography>
                         </Box>
@@ -406,7 +369,7 @@ const ContactForm = () => {
                         p: 0,
                     }}>
                     <Typography
-                        sx={{ color: "#060607", fontWeight: 600, fontSize: "18px", p: 0 }}>
+                        sx={{ color: currentMode === "light" ? "#060607" : "#BEC2C8", fontWeight: 600, fontSize: "18px", p: 0 }}>
                         What is your goal?
                     </Typography>
                     <Stack
@@ -417,6 +380,9 @@ const ContactForm = () => {
                             gap: 3,
                             flexWrap: "wrap",
                             p: 0,
+                            "@media (min-width: 1300px)": {
+                                flexWrap: "nowrap",
+                            },
                             "@media (max-width: 600px)": {
                                 flexDirection: "column",
                                 width: "90%",
@@ -424,154 +390,170 @@ const ContactForm = () => {
                         }}>
                         <Card
                             sx={{
-                                // maxWidth: "100%",
                                 p: 1,
                                 mt: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#D3D7DA",
                                 borderRadius: "8px",
+                                '@media (min-width: 1024px)': {
+                                    maxWidth: "20%",
+                                },
+                                display: "flex",
                             }}>
-                            <CardContent
+                            <Stack
                                 sx={{
                                     display: "flex",
                                     flexDirection: "row",
                                     alignItems: "center",
                                     pb: 0,
                                 }}>
-                                <Radio sx={{ color: "#A8AEB5" }} />
-                                <Box>
-                                    <Typography
-                                        sx={{
-                                            color: "#3E4245",
-                                            fontWeight: 600,
-                                            fontSize: "14px",
-                                        }}>
-                                        Partnership Inquiry
-                                    </Typography>
-                                </Box>
-                            </CardContent>
+                                <Radio sx={{ color: "#A8AEB5", p: 1 }} />
+                                <Typography
+                                    sx={{
+                                        color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
+                                        fontWeight: 600,
+                                        fontSize: "14px",
+                                    }}>
+                                    Partnership Inquiry
+                                </Typography>
+
+                            </Stack>
                         </Card>
                         <Card
                             sx={{
-                                // width: "18%",
                                 p: 1,
                                 mt: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#D3D7DA",
                                 borderRadius: "8px",
+                                '@media (min-width: 1024px)': {
+                                    maxWidth: "20%",
+                                },
+                                display: "flex",
                             }}>
-                            <CardContent
+                            <Stack
                                 sx={{
                                     display: "flex",
                                     flexDirection: "row",
                                     alignItems: "center",
                                     pb: 0,
                                 }}>
-                                <Radio sx={{ color: "#A8AEB5" }} />
-                                <Box>
-                                    <Typography
-                                        sx={{
-                                            color: "#3E4245",
-                                            fontWeight: 600,
-                                            fontSize: "14px",
-                                        }}>
-                                        Custom API Development
-                                    </Typography>
-                                </Box>
-                            </CardContent>
+                                <Radio sx={{ color: "#A8AEB5", p: 1 }} />
+
+                                <Typography
+                                    sx={{
+                                        color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
+                                        fontWeight: 600,
+                                        fontSize: "14px",
+                                    }}>
+                                    Custom API Development
+                                </Typography>
+
+                            </Stack>
+                        </Card>
+                        <Card
+                            sx={{
+                                p: 1,
+                                mt: 2,
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
+                                border: 1,
+                                borderColor: "#D3D7DA",
+                                borderRadius: "8px",
+                                '@media (min-width: 1024px)': {
+                                    maxWidth: "20%",
+                                },
+                                display: "flex",
+                            }}>
+                            <Stack
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                }}>
+                                <Radio sx={{ color: "#A8AEB5", p: 1 }} />
+
+                                <Typography
+                                    sx={{
+                                        color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
+                                        fontWeight: 600,
+                                        fontSize: "14px",
+                                    }}>
+                                    Custom Pricing
+                                </Typography>
+
+                            </Stack>
                         </Card>
                         <Card
                             sx={{
                                 // width: "18%",
                                 p: 1,
                                 mt: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#D3D7DA",
                                 borderRadius: "8px",
+                                '@media (min-width: 1024px)': {
+                                    maxWidth: "20%",
+                                },
+                                display: "flex",
                             }}>
-                            <CardContent
+                            <Stack
                                 sx={{
                                     display: "flex",
                                     flexDirection: "row",
                                     alignItems: "center",
                                 }}>
-                                <Radio sx={{ color: "#A8AEB5" }} />
-                                <Box>
-                                    <Typography
-                                        sx={{
-                                            color: "#3E4245",
-                                            fontWeight: 600,
-                                            fontSize: "14px",
-                                        }}>
-                                        Custom Pricing
-                                    </Typography>
-                                </Box>
-                            </CardContent>
+                                <Radio sx={{ color: "#A8AEB5", p: 1 }} />
+
+                                <Typography
+                                    sx={{
+                                        color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
+                                        fontWeight: 600,
+                                        fontSize: "14px",
+                                    }}>
+                                    Get Support
+                                </Typography>
+
+                            </Stack>
                         </Card>
                         <Card
                             sx={{
                                 // width: "18%",
                                 p: 1,
                                 mt: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                                 border: 1,
                                 borderColor: "#D3D7DA",
                                 borderRadius: "8px",
+                                '@media (min-width: 1024px)': {
+                                    maxWidth: "20%",
+                                },
+                                display: "flex",
                             }}>
-                            <CardContent
+                            <Stack
                                 sx={{
                                     display: "flex",
                                     flexDirection: "row",
                                     alignItems: "center",
                                 }}>
-                                <Radio sx={{ color: "#A8AEB5" }} />
-                                <Box>
-                                    <Typography
-                                        sx={{
-                                            color: "#3E4245",
-                                            fontWeight: 600,
-                                            fontSize: "14px",
-                                        }}>
-                                        Get Support
-                                    </Typography>
-                                </Box>
-                            </CardContent>
-                        </Card>
-                        <Card
-                            sx={{
-                                // width: "18%",
-                                p: 1,
-                                mt: 2,
-                                backgroundColor: "#fff",
-                                border: 1,
-                                borderColor: "#D3D7DA",
-                                borderRadius: "8px",
-                            }}>
-                            <CardContent
-                                sx={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                }}>
-                                <Radio sx={{ color: "#A8AEB5" }} />
-                                <Box>
-                                    <Typography
-                                        sx={{
-                                            color: "#3E4245",
-                                            fontWeight: 600,
-                                            fontSize: "14px",
-                                        }}>
-                                        Others
-                                    </Typography>
-                                </Box>
-                            </CardContent>
+                                <Radio sx={{ color: "#A8AEB5", p: 1 }} />
+
+                                <Typography
+                                    sx={{
+                                        color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
+                                        fontWeight: 600,
+                                        fontSize: "14px",
+                                    }}>
+                                    Others
+                                </Typography>
+
+                            </Stack>
                         </Card>
                     </Stack>
                     <Typography
-                        sx={{ color: "#060607", fontWeight: 600, fontSize: "18px", mt: 2 }}>
+                        sx={{ color: currentMode === "light" ? "#060607" : "#F5F5F5", fontWeight: 600, fontSize: "18px", mt: 2 }}>
                         Please give us more details about your request*
                     </Typography>
                     <TextField
@@ -604,35 +586,34 @@ const ContactForm = () => {
                         <Stack
                             sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
                             <Typography
-                                sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "16px" }}>
+                                sx={{ color: currentMode === "light" ? "#5A5F65" : "#BEC2C8", fontWeight: 400, fontSize: "16px" }}>
                                 Upload a file with details
                             </Typography>
                             <Typography
-                                sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "10px" }}>
+                                sx={{ color: currentMode === "light" ? "#5A5F65" : "#BEC2C8", fontWeight: 400, fontSize: "10px" }}>
                                 Pdf, doc, docx, jpg, png, avi, mp4, txt
                             </Typography>
                         </Stack>
                     </Stack>
                     <Typography
-                        sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "14px", mt: 2 }}>
+                        sx={{ color: currentMode === "light" ? "#5A5F65" : "#BEC2C8", fontWeight: 400, fontSize: "14px", mt: 2 }}>
                         *Please check the box before submitting
                     </Typography>
 
                     <FormControl
                         sx={{
                             width: "100%",
-                            // p: 2,
                             display: "flex",
                             flexDirection: "row",
-                            // color: "#333",
                             alignItems: "center",
                         }}>
                         <Checkbox sx={{ color: "#A8AEB5" }} />
                         <Box>
                             <Typography
-                                sx={{ color: "#5A5F65", fontWeight: 400, fontSize: "14px" }}>
+                                sx={{ color: currentMode === "light" ? "#5A5F65" : "#BEC2C8", fontWeight: 400, fontSize: "14px" }}>
                                 I agree to the zapi.ai{" "}
-                                <Link className={classes.link} to="#">
+                                <Link
+                                    className={classes.link} to="#">
                                     Privacy Policy
                                 </Link>
                             </Typography>
@@ -654,11 +635,11 @@ const ContactForm = () => {
                             mt: 1,
                             p: 1,
                             mb: 2,
-                            backgroundColor: "#081F4A",
-                            color: "#f2f5fa",
+                            backgroundColor: currentMode === "light" ? "#081F4A" : "#FFEA00",
+                            color: currentMode === "light" ? "#f2f5fa" : "#060607",
                             borderRadius: "4px",
                             "&:hover": {
-                                backgroundColor: "#081F4A",
+                                backgroundColor: "#B8CEF7",
                             },
                             textTransform: "none",
                             fontWeight: 600,
@@ -683,7 +664,7 @@ const useStyles = makeStyles((theme: Theme) =>
             transform: "rotate(45deg)",
         },
         link: {
-            color: "#081F4A",
+            color: theme.palette.primary.main,
             textDecoration: "underline",
             fontWeight: 400,
             fontSize: "16px",
@@ -708,12 +689,11 @@ const useStyles = makeStyles((theme: Theme) =>
             "& p": {
                 fontSize: "18px",
                 lineHeight: "20px",
-                // width: "55%",
 
                 "@media screen and (max-width: 1024px)": {
                     fontSize: "12px",
                 },
-                "@media screen and (max-width: 475px)": {
+                "@media screen and (max-width: 900px)": {
                     width: "55%",
                 },
             },
@@ -728,16 +708,16 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
             gap: "10rem",
         },
-        [theme.breakpoints.down("tablet")]: {
-            "& > *:nth-child(2)": {
-                order: 3,
-            },
-        },
+
         iconStack: {
             "@media (max-width: 900px)": {
                 marginTop: "0 !important",
                 marginBottom: "0 !important",
             },
+            '@media (max-width: 900px) and (min-width: 600px)': {
+                paddingRight: "4rem",
+            },
         },
+
     })
 );
