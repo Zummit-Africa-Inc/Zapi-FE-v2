@@ -129,7 +129,7 @@ const Reviews: React.FC<Props> = ({ reviews }) => {
         {reviews.length !== 0 ? (
           <>
             {reviews.map((review, index) => (
-              <Box className={classes.user_review}>
+              <Box className={classes.user_review} key={index}>
                 <AccountCircle />
 
                 <Box sx={{ width: "100%" }}>
