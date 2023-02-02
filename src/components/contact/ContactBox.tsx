@@ -2,6 +2,7 @@ import React from "react";
 import {
     Button,
     Radio,
+    RadioGroup,
     Stack,
     Theme,
     FormControl,
@@ -275,6 +276,10 @@ const ContactBox: React.FC = () => {
                             width: "90%",
                         },
                     }}>
+
+                    {/* TODO: Add radio group functionality */}
+                    {/* <RadioGroup> */}
+
                     <Card
                         sx={{
                             p: 0.5,
@@ -433,6 +438,7 @@ const ContactBox: React.FC = () => {
                             </Typography>
                         </Stack>
                     </Card>
+                    {/* </RadioGroup> */}
                 </Stack>
                 <Typography
                     sx={{
