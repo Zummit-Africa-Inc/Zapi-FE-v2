@@ -19,6 +19,7 @@ import {
   Terms,
   User,
   APIDesc,
+  Contact
 } from "./pages";
 import AuthRoutes from "./components/AuthRoutes";
 
@@ -35,6 +36,7 @@ export const Router: React.FC = () => {
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/free-trial" element={<FreeTrial />} />
       <Route path="/api/:id" element={<APIDesc />} />
+      <Route path="/contact" element={<Contact />} />
 
       <Route element={<AuthRoutes />}>
         <Route path="/developer/:id" element={<User />} />

@@ -15,6 +15,7 @@ import route from './route.png'
 import uploadendpoints from './uploadendpoints.png'
 import analytics from './analytics.png'
 import tests from './tests.png'
+import contactBg from './contactBg.png'
 export {
     zapiLogo,
     apihub,
@@ -33,4 +34,5 @@ export {
     uploadendpoints,
     analytics,
     tests,
+    contactBg
 }

@@ -16,6 +16,7 @@ const LINKS = [
   { name: "API Hub", to: "/api-hub" },
   { name: "Pricing", to: "/pricing" },
   { name: "Help", to: "/documentation" },
+  { name: "Contact Us", to: "/contact" },
 ];
 
 const Navbar = () => {
