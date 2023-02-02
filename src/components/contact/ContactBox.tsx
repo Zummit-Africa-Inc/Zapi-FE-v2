@@ -135,7 +135,7 @@ const ContactBox: React.FC = () => {
                     flexDirection: "row",
                     "@media (max-width: 600px)": {
                         flexDirection: "column",
-                        width: "90%",
+                        width: "100%",
                     },
                 }}>
                 <FormControl
@@ -277,7 +277,7 @@ const ContactBox: React.FC = () => {
                     }}>
                     <Card
                         sx={{
-                            p: 1,
+                            p: 0.5,
                             mt: 2,
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                             border: 1,
@@ -308,14 +308,14 @@ const ContactBox: React.FC = () => {
                     </Card>
                     <Card
                         sx={{
-                            p: 1,
+                            p: 0.5,
                             mt: 2,
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                             border: 1,
                             borderColor: "#D3D7DA",
                             borderRadius: "8px",
                             "@media (min-width: 1024px)": {
-                                maxWidth: "20%",
+                                maxWidth: "25%",
                             },
                             display: "flex",
                         }}>
@@ -340,7 +340,7 @@ const ContactBox: React.FC = () => {
                     </Card>
                     <Card
                         sx={{
-                            p: 1,
+                            p: 0.5,
                             mt: 2,
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                             border: 1,
@@ -372,7 +372,7 @@ const ContactBox: React.FC = () => {
                     <Card
                         sx={{
                             // width: "18%",
-                            p: 1,
+                            p: 0.5,
                             mt: 2,
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                             border: 1,
@@ -404,7 +404,7 @@ const ContactBox: React.FC = () => {
                     <Card
                         sx={{
                             // width: "18%",
-                            p: 1,
+                            p: 0.5,
                             mt: 2,
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
                             border: 1,

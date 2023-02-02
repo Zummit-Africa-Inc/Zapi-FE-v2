@@ -7,8 +7,6 @@ import {
 } from "@mui/material";
 import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useAppContext } from "../../contexts/AppProvider";
-import { AttachFile } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -44,9 +42,7 @@ const ContactForm: React.FC = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     backgroundImage: "none !important",
-                    '&nth-of-type(2)': {
-                        order:2
-                    }
+                
                 },
             }}>
             <Box
@@ -164,19 +160,6 @@ const ContactForm: React.FC = () => {
 export default ContactForm;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        docContainer: {
-            margin: "auto",
-            top: "20%",
-        },
-        iconStyle: {
-            transform: "rotate(45deg)",
-        },
-        link: {
-            color: theme.palette.primary.main,
-            textDecoration: "underline",
-            fontWeight: 400,
-            fontSize: "16px",
-        },
         header: {
             display: "flex",
             justifyContent: "flex-start",
