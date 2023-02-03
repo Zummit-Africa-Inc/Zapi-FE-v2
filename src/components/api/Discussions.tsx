@@ -6,6 +6,7 @@ import {
   Box,
   Accordion,
   Avatar,
+  Button,
   IconButton,
   TextareaAutosize,
   AccordionSummary,
@@ -14,10 +15,11 @@ import {
   Tab,
   Stack,
 } from "@mui/material";
-import { Button, Spinner } from "../../components";
+import { Spinner } from "../../components";
+import { quote } from "../../assets/svg";
+import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { RiAddFill } from "react-icons/ri";
-// import { discussionQuote } from "../../assets/svg";
 
 import Cookies from "universal-cookie";
 import { useAppContext } from "../../contexts/AppProvider";
@@ -67,12 +69,17 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
   const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
+  const [isAdding, setIsAdding] = useState<boolean>(false);
   const { loading, sendRequest } = useHttpRequest();
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
 
   //Discussion function
   const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const toggleAdding = () => {
+    setIsAdding((prev) => !prev);
+  };
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -321,7 +328,104 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
             direction="column"
             spacing={1}
             className={classes.discussion_comment}>
-            <>
+            <Box>
+
+              {/* Join Discussion */}
+              <Box>
+                  <Box sx={{ display: "flex", alignItems: "center", justifyContent:"flex-end" }}>
+                    <Box>
+                      <Button
+                        sx={{
+                          background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+                          color: "#BEC2C8",
+                          width: "200px",
+                          height: "2.5rem",
+                          borderColor: "#BEC2C8",
+                        }}
+                        onClick={toggleAdding}
+                        startIcon={isAdding ? <CloseIcon /> : <img src={quote} alt="zapi logo" />}
+                        style={{ background: isAdding ? "#fff" : "#fff", color: isAdding ? "#BEC2C8" : "#BEC2C8", borderColor: isAdding ? "#BEC2C8" : "#BEC2C8" }}
+                        >
+                        {isAdding ? "Cancel" : "Join Discussion"}
+                      </Button>
+                    </Box>
+                  </Box>
+                  {isAdding && (
+                <Box>
+                    <Box className={classes.form}>
+                      <TextareaAutosize
+                      aria-label="minimum height"
+                      maxRows={6}
+                      minRows={6}
+                      placeholder="Leave a Comment.."
+                      style={{
+                        width: "99%",
+                        height: "30%",
+                        marginTop: "5%",
+                        padding: "2%",
+                        fontSize: "1em",
+                        borderRadius: "10px",
+                        borderColor: "#BEC2C8",
+                        color: "#BEC2C8",
+                        background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+                        }}
+                        value={body}
+                        required
+                        onChange={(e) => setBody(e.target.value)}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        gap: "1rem",
+                        display: "flex",
+                        flexDirection: "row",
+                        marginLeft: "auto",
+                        justifyContent: "flex-end",
+                        alignItems: "flex-end",
+                      }}>
+                      <button
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          marginRight: "6px",
+                          padding: "12px 24px",
+                          gap: "16px",
+                          fontFamily: "inherit",
+                          height: "46px",
+                          cursor: "pointer",
+                          background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+                          color: "#929AA3",
+                          border: "1px solid #929AA3",
+                          borderRadius: "4px",
+                        }}>
+                        Cancel
+                      </button>
+                      <button
+                        style={{
+                          outline: "none",
+                          border: "none",
+                          display: "flex",
+                          marginRight: "6px",
+                          alignItems: "center",
+                          padding: "12px 24px",
+                          gap: "16px",
+                          height: "46px",
+                          fontFamily: "inherit",
+                          color: currentMode === "dark" ? "#060607" : "#F5F5F5",
+                          background: currentMode === "dark" ? "#FFEA00" : "#081F4A",
+                          borderRadius: "4px",
+                          textAlign: "center",
+                          cursor: "pointer",
+                        }}
+                        type="submit">
+                        {loading ? <Spinner /> : "Submit"}
+                      </button>
+                    </Box>
+                </Box>
+                )}
+              </Box>
+
               {discussions.map((discussions, index) => (
                 <Box
                   sx={{
@@ -346,7 +450,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                   </Box>
                 </Box>
               ))}
-            </>
+            </Box>
           </Stack>
         </AccordionDetails>
       </Accordion>
@@ -400,6 +504,28 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginBottom: "64px",
       width: "50%",
     },
+  },
+
+  joinDiscussion: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: "8px 16px",
+    gap: "16px",
+    width: "170px",
+    lineHeight: "46px",
+    // borderColor: "#071B85",
+    borderRadius: "8px",
+    cursor: "pointer",
+    color: "#FFFFFF",
+    border: " solid #071B85",
+    fontWeight: "500",
+    fontSize: "16px",
+    "@media screen and (max-width: 1024px)": {
+      marginBottom: "1rem",
+      width: "385px",
+    },
+    "@media screen and (max-width: 500px)": {},
   },
 
   form: {
