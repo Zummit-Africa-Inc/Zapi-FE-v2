@@ -13,12 +13,12 @@ import {
     Typography,
     Paper,
     Box,
+    FormControlLabel,
 } from "@mui/material";
 import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useAppContext } from "../../contexts/AppProvider";
 import { AttachFile } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
 
 const ContactBox: React.FC = () => {
     const classes = useStyles();
@@ -273,172 +273,142 @@ const ContactBox: React.FC = () => {
                         },
                         "@media (max-width: 600px)": {
                             flexDirection: "column",
-                            width: "90%",
+                            // width: "90%",
                         },
                     }}>
-
-                    {/* TODO: Add radio group functionality */}
-                    {/* <RadioGroup> */}
-
-                    <Card
-                        sx={{
-                            p: 0.5,
-                            mt: 2,
-                            backgroundColor: currentMode === "light" ? "#fff" : "#272727",
-                            border: 1,
-                            borderColor: "#D3D7DA",
-                            borderRadius: "8px",
-                            "@media (min-width: 1024px)": {
-                                maxWidth: "20%",
-                            },
-                            display: "flex",
-                        }}>
-                        <Stack
+                    <RadioGroup
+                        aria-labelledby="demo-controlled-radio-buttons-group"
+                        name="controlled-radio-buttons-group"
+                        sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 2}}
+                    //   value={value}
+                    //   onChange={handleChange}
+                    >
+                        <Card
                             sx={{
+                                p: 0.5,
+                                mt: 2,
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
+                                border: 1,
+                                borderColor: "#D3D7DA",
+                                borderRadius: "8px",
+                                maxWidth: "45%",
+                                "@media (min-width: 1024px)": {
+                                    maxWidth: "23%",
+                                },
                                 display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
-                                pb: 0,
                             }}>
-                            <Radio sx={{ color: "#A8AEB5", p: 1 }} />
-                            <Typography
+                            <FormControlLabel
                                 sx={{
                                     color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
                                     fontWeight: 600,
                                     fontSize: "14px",
-                                }}>
-                                Partnership Inquiry
-                            </Typography>
-                        </Stack>
-                    </Card>
-                    <Card
-                        sx={{
-                            p: 0.5,
-                            mt: 2,
-                            backgroundColor: currentMode === "light" ? "#fff" : "#272727",
-                            border: 1,
-                            borderColor: "#D3D7DA",
-                            borderRadius: "8px",
-                            "@media (min-width: 1024px)": {
-                                maxWidth: "25%",
-                            },
-                            display: "flex",
-                        }}>
-                        <Stack
+                                }}
+                                value="partnership"
+                                control={<Radio />}
+                                label="Partnership Inquiry"
+                            />
+                        </Card>
+                        <Card
                             sx={{
+                                p: 0.5,
+                                mt: 2,
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
+                                border: 1,
+                                borderColor: "#D3D7DA",
+                                borderRadius: "8px",
+                                maxWidth: "45%",
+                                "@media (min-width: 1024px)": {
+                                    maxWidth: "23%",
+                                },
                                 display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
-                                pb: 0,
                             }}>
-                            <Radio sx={{ color: "#A8AEB5", p: 1 }} />
-
-                            <Typography
+                            <FormControlLabel
                                 sx={{
                                     color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
                                     fontWeight: 600,
                                     fontSize: "14px",
-                                }}>
-                                Custom API Development
-                            </Typography>
-                        </Stack>
-                    </Card>
-                    <Card
-                        sx={{
-                            p: 0.5,
-                            mt: 2,
-                            backgroundColor: currentMode === "light" ? "#fff" : "#272727",
-                            border: 1,
-                            borderColor: "#D3D7DA",
-                            borderRadius: "8px",
-                            "@media (min-width: 1024px)": {
-                                maxWidth: "20%",
-                            },
-                            display: "flex",
-                        }}>
-                        <Stack
+                                }}
+                                value="customDevelopment"
+                                control={<Radio />}
+                                label="Custom API Development"
+                            />
+                        </Card>
+                        <Card
                             sx={{
+                                p: 0.5,
+                                mt: 2,
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
+                                border: 1,
+                                borderColor: "#D3D7DA",
+                                borderRadius: "8px",
+                                maxWidth: "45%",
+                                "@media (min-width: 1024px)": {
+                                    maxWidth: "23%",
+                                },
                                 display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
                             }}>
-                            <Radio sx={{ color: "#A8AEB5", p: 1 }} />
-
-                            <Typography
+                            <FormControlLabel
                                 sx={{
                                     color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
                                     fontWeight: 600,
                                     fontSize: "14px",
-                                }}>
-                                Custom Pricing
-                            </Typography>
-                        </Stack>
-                    </Card>
-                    <Card
-                        sx={{
-                            // width: "18%",
-                            p: 0.5,
-                            mt: 2,
-                            backgroundColor: currentMode === "light" ? "#fff" : "#272727",
-                            border: 1,
-                            borderColor: "#D3D7DA",
-                            borderRadius: "8px",
-                            "@media (min-width: 1024px)": {
-                                maxWidth: "20%",
-                            },
-                            display: "flex",
-                        }}>
-                        <Stack
+                                }}
+                                value="pricing"
+                                control={<Radio />}
+                                label="Custom Pricing"
+                            />
+                        </Card>
+                        <Card
                             sx={{
+                                p: 0.5,
+                                mt: 2,
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
+                                border: 1,
+                                borderColor: "#D3D7DA",
+                                borderRadius: "8px",
+                                maxWidth: "45%",
+                                "@media (min-width: 1024px)": {
+                                    maxWidth: "23%",
+                                },
                                 display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
                             }}>
-                            <Radio sx={{ color: "#A8AEB5", p: 1 }} />
-
-                            <Typography
+                            <FormControlLabel
                                 sx={{
                                     color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
                                     fontWeight: 600,
                                     fontSize: "14px",
-                                }}>
-                                Get Support
-                            </Typography>
-                        </Stack>
-                    </Card>
-                    <Card
-                        sx={{
-                            // width: "18%",
-                            p: 0.5,
-                            mt: 2,
-                            backgroundColor: currentMode === "light" ? "#fff" : "#272727",
-                            border: 1,
-                            borderColor: "#D3D7DA",
-                            borderRadius: "8px",
-                            "@media (min-width: 1024px)": {
-                                maxWidth: "20%",
-                            },
-                            display: "flex",
-                        }}>
-                        <Stack
+                                }}
+                                value="support"
+                                control={<Radio />}
+                                label="Get Support"
+                            />
+                        </Card>
+                        <Card
                             sx={{
+                                p: 0.5,
+                                mt: 2,
+                                backgroundColor: currentMode === "light" ? "#fff" : "#272727",
+                                border: 1,
+                                borderColor: "#D3D7DA",
+                                borderRadius: "8px",
+                                maxWidth: "45%",
+                                "@media (min-width: 1024px)": {
+                                    maxWidth: "23%",
+                                },
                                 display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
                             }}>
-                            <Radio sx={{ color: "#A8AEB5", p: 1 }} />
-
-                            <Typography
+                            <FormControlLabel
                                 sx={{
                                     color: currentMode === "light" ? "#3E4245" : "#F5F5F5",
                                     fontWeight: 600,
                                     fontSize: "14px",
-                                }}>
-                                Others
-                            </Typography>
-                        </Stack>
-                    </Card>
-                    {/* </RadioGroup> */}
+                                }}
+                                value="others"
+                                control={<Radio />}
+                                label="Others"
+                            />
+                        </Card>
+                    </RadioGroup>
                 </Stack>
                 <Typography
                     sx={{
@@ -576,6 +546,6 @@ const useStyles = makeStyles((theme: Theme) =>
             textDecoration: "underline",
             fontWeight: 400,
             fontSize: "16px",
-        }
+        },
     })
 );
