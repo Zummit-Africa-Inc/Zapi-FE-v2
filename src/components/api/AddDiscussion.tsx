@@ -131,31 +131,7 @@ const AddDiscussion: React.FC = () => {
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "15px",
-        padding: "0 108px",
-        lineHeight: "41px",
-        width: "100%",
-        "& h2": {
-          margin: "64px 0 32px 0",
-          fontWeight: "bold",
-          fontSize: "19px",
-          color: "#060607",
-        },
-    
-        "@media screen and (max-width: 900px)": {
-          padding: "44px 32px 24px 32px",
-    
-          "& h2": {
-            fontSize: "23px",
-          },
-        },
-    
-        "@media screen and (max-width: 428px)": {
-          padding: "20px 16px 24px 16px",
-          fontSize: "14px",
-        },
+       
       },
     
       add_discussion_button: {

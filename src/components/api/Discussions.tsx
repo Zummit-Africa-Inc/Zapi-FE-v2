@@ -239,7 +239,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                           color: "#BEC2C8",
                           width: "200px",
                           height: "2.5rem",
-                          borderColor: "#BEC2C8",
+                          border: "1px solid #BEC2C8"
                         }}
                         onClick={toggleAdding}
                         startIcon={isAdding ? <CloseIcon /> : <img src={quote} alt="zapi logo" />}
@@ -250,7 +250,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                     </Box>
                   </Box>
                   {isAdding && (
-                <Box>
+                  <Box>
                     <Box className={classes.form}>
                       <TextareaAutosize
                       aria-label="minimum height"
