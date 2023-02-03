@@ -304,7 +304,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="partnership"
-                                control={<Radio />}
+                                control={<Radio sx={{color: "#BEC2C8"}} />}
                                 label="Partnership Inquiry"
                             />
                         </Card>
@@ -329,7 +329,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="customDevelopment"
-                                control={<Radio />}
+                                control={<Radio sx={{color: "#BEC2C8"}} />}
                                 label="Custom API Development"
                             />
                         </Card>
@@ -354,7 +354,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="pricing"
-                                control={<Radio />}
+                                control={<Radio sx={{color: "#BEC2C8"}} />}
                                 label="Custom Pricing"
                             />
                         </Card>
@@ -379,7 +379,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="support"
-                                control={<Radio />}
+                                control={<Radio sx={{color: "#BEC2C8"}} />}
                                 label="Get Support"
                             />
                         </Card>
@@ -404,7 +404,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="others"
-                                control={<Radio />}
+                                control={<Radio sx={{color: "#BEC2C8"}} />}
                                 label="Others"
                             />
                         </Card>
