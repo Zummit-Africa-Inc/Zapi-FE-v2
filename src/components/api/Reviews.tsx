@@ -62,7 +62,7 @@ const Reviews: React.FC<Props> = ({ reviews }) => {
                 marginTop: "5%",
                 padding: "2%",
                 fontSize: "1em",
-                borderRadius: "1em",
+                borderRadius: "10px",
                 borderColor: "#BEC2C8",
                 color: "#BEC2C8",
                 background: currentMode === "dark" ? "#121212" : "#FFFFFF",

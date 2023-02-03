@@ -114,17 +114,20 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
 
         <Box className={classes.form}>
           <TextareaAutosize
-            aria-label="minimum height"
-            maxRows={6}
-            minRows={6}
-            placeholder="Start a Discussion here..."
-            style={{
-              width: "99%",
-              height: "30%",
-              marginTop: "5%",
-              padding: "2%",
-              fontSize: "1em",
-              background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+           aria-label="minimum height"
+           maxRows={6}
+           minRows={6}
+           placeholder="Start a Discussion here.."
+           style={{
+             width: "99%",
+             height: "30%",
+             marginTop: "5%",
+             padding: "2%",
+             fontSize: "1em",
+             borderRadius: "10px",
+             borderColor: "#BEC2C8",
+             color: "#BEC2C8",
+             background: currentMode === "dark" ? "#121212" : "#FFFFFF",
             }}
             value={body}
             required
