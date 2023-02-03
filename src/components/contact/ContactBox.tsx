@@ -260,7 +260,7 @@ const ContactBox: React.FC = () => {
                     }}>
                     What is your goal?
                 </Typography>
-                <Stack
+                <FormControl
                     sx={{
                         width: "100%",
                         display: "flex",
@@ -409,7 +409,7 @@ const ContactBox: React.FC = () => {
                             />
                         </Card>
                     </RadioGroup>
-                </Stack>
+                </FormControl>
                 <Typography
                     sx={{
                         color: currentMode === "light" ? "#060607" : "#F5F5F5",
