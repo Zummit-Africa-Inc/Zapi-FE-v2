@@ -317,5 +317,4 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.grey[100],
     },
   },
-
 }));
