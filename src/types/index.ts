@@ -192,3 +192,11 @@ export type TestResponse = {
   updatedOn?: string | Date | null;
   updatedBy?: string | null;
 };
+
+
+export type PricingValuesType = {
+  plan: string,
+  value: string,
+  features: Array<string>,
+  button_text: string,
+};

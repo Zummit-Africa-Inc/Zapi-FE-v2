@@ -6,6 +6,7 @@ import { useStyles } from "./HubCategories.styles";
 import CustomTypography from "../shared/CustomTypography";
 import { useAppContext } from "../../contexts/AppProvider";
 import CategoryButton from "../shared/Buttons/CategoriesButton";
+import { toast } from "react-toastify";
 
 interface IHubCategories {
   selectedCategoryId?: string;
@@ -19,7 +20,14 @@ const HubCategories = ({
   setSelectedCategoryId,
 }: IHubCategories) => {
   const { categories } = useAppSelector((store) => store.apis);
-  let category_id = localStorage.getItem("category") || categories[0].id;
+  
+  let category_id = localStorage.getItem("category") || "";
+
+  if(!category_id) {
+    try {
+      category_id = categories[0].id;
+    } catch(error) {}
+  }
   
   if(category_id.length > 0) {
     useEffect(() => {
