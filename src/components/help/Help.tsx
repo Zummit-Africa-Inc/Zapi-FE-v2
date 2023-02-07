@@ -35,6 +35,8 @@ function a11yProps(index: number) {
   };
 }
 
+
+
 function Help() {
     const { currentMode } = useAppContext();
     const CustomTab = styled(Tab)({
@@ -66,19 +68,35 @@ function Help() {
             "@media screen and (max-width: 1024px)": {
                 width: "20px",
             },
-            "@media screen and (max-width: 375px)": {
-
-            },
+            "@media screen and (max-width: 375px)": {},
         },
     });
 
+    const CustomLabel = styled(Tab)({
+        "&.MuiTab-root": {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            fontSize: "18px",
+            fontWeight: 600,
+            marginLeft: "-0.7em", 
+            color: currentMode === 'light' ? '#060607' + '!important' : '#F5F5F5' + ' !important',
+            "@media screen and (max-width: 1024px)": {
+                gap: "0",
+                fontSize: "12px",
+            },
+            "@media screen and (max-width: 375px)": {},
+        },
+    })
+
     ReactGA.send({ hitType: "pageview", page: "/documentation" });
     const [tab, setTab] = useState<number>(1);
-    const classes = useStyles();
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
   };
+
 
   return (
     <Box
@@ -113,42 +131,22 @@ function Help() {
             "@media screen and (max-width: 1024px)": {
                 maxWidth: "250px",
             },
-            "@media screen and (max-width: 375px)": {
-
-            },
+            "@media screen and (max-width: 375px)": {},
         }}
       >
-        <Typography component="h2" pt={2} sx={{
-            color: currentMode === 'light' ? "#060607" : "#ffffff",
-            fontWeight: "600",
-            fontSize: "18px",
-        }}>
-            Access API
-        </Typography>
+        <CustomLabel label='Access API' disabled/>
         <CustomTab label="Overview" {...a11yProps(1)} />
         <CustomTab label="Sign-Up" {...a11yProps(2)} />
         <CustomTab label="Subscribe" {...a11yProps(3)} />
         <CustomTab label="Access Token" {...a11yProps(4)} />
         <CustomTab label="Send Requests" {...a11yProps(5)} />
-        <Typography component="h2" pt={2} sx={{
-            color: currentMode === 'light' ? "#060607" : "#ffffff",
-            fontWeight: "600",
-            fontSize: "18px",
-        }}>
-            Upload API
-        </Typography>
+        <CustomLabel label='Upload API' disabled/>
         <CustomTab label="Pre-requisite" {...a11yProps(7)} />
         <CustomTab label="Updating API" {...a11yProps(8)} />
         <CustomTab label="Endpoints" {...a11yProps(9)} />
         <CustomTab label="Gateway" {...a11yProps(10)} />
         <CustomTab label="Analytics" {...a11yProps(11)} />
-        <Typography component="h2" pt={2} sx={{
-            color: currentMode === 'light' ? "#060607" : "#ffffff",
-            fontWeight: "600",
-            fontSize: "18px",
-        }}>
-            Testing
-        </Typography>
+        <CustomLabel label='Testing' disabled/>
         <CustomTab label="Tests" {...a11yProps(13)} />
       </Tabs>
 
