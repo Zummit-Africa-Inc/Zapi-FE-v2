@@ -46,7 +46,6 @@ const Hub = () => {
     if (selectedCategoryId) getApisByCategory();
   }, [selectedCategoryId]);
 
-  // if (loading) return <Loader />;
   return (
     <Stack>
       <Navbar />
