@@ -31,6 +31,7 @@ export { default as Endpoints } from "./api/Endpoints";
 export { default as Reviews } from "./api/Reviews";
 export { default as Rating } from "./api/Rating";
 export { default as Discussions } from "./api/Discussions";
+export { default as AddDiscussion } from "./api/AddDiscussion";
 
 // auth
 export { default as Auth } from "./auth/Auth";

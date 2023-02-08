@@ -20,6 +20,7 @@ export { default as dollars } from "./dollars.svg";
 export { default as pencil } from "./pencil.svg";
 export { default as secure } from "./secure.svg";
 export { default as stacks } from "./stacks.svg";
+export { default as quote } from "./quote.svg";
 export { default as zoom } from "./zoom.svg";
 export { default as marketIllustration } from "./marketIllustration.svg";
 export { default as LooperGroup } from "./LooperGroup.svg";
