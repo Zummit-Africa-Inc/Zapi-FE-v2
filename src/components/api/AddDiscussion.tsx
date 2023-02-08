@@ -145,9 +145,17 @@ const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: theme.palette.grey[500],
         border: `1px solid ${theme.shadows[1]}`,
         borderRadius: "4px",
+        "@media screen and (max-width: 978px)": {
+          marginBottom: "50px",
+          width: "25%",
+        },
         "@media screen and (max-width: 428px)": {
           marginBottom: "64px",
           width: "50%",
+        },
+        "@media screen and (max-width: 360px)": {
+          marginBottom: "64px",
+          width: "55%",
         },
       },
     
