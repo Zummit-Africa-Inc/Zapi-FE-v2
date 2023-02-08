@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
     Button,
     Radio,
@@ -23,6 +23,23 @@ import { Link } from "react-router-dom";
 const ContactBox: React.FC = () => {
     const classes = useStyles();
     const { currentMode } = useAppContext();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [org_name, setOrgName] = useState("");
+    const [phone_call, setPhoneCall] = useState(false);
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [goal, setGoal] = useState("");
+    const [file, setFile] = useState<File | null>(null);
+
+    const goalEnum = {
+        Partnership: "partnership",
+        Support: "support",
+        Pricing: "pricing",
+        Api: "api",
+        Other: "other",
+    };
+
     return (
         <Paper
             elevation={3}
@@ -279,7 +296,12 @@ const ContactBox: React.FC = () => {
                     <RadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
-                        sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 2}}
+                        sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            flexWrap: "wrap",
+                            gap: 2,
+                        }}
                     //   value={value}
                     //   onChange={handleChange}
                     >
@@ -304,7 +326,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="partnership"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Partnership Inquiry"
                             />
                         </Card>
@@ -329,7 +351,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="customDevelopment"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Custom API Development"
                             />
                         </Card>
@@ -354,7 +376,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="pricing"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Custom Pricing"
                             />
                         </Card>
@@ -379,7 +401,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="support"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Get Support"
                             />
                         </Card>
@@ -404,7 +426,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="others"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Others"
                             />
                         </Card>
