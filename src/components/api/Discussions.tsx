@@ -327,6 +327,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
 
               {discussions.map((discussions, index) => (
                 <Box
+                  key={index}
                   sx={{
                     background: currentMode === "dark" ? "#121212" : "#F5F5F5",
                     color: currentMode === "dark" ? "#F5F5F5" : "#121212",
@@ -459,3 +460,41 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: "3rem",
   },
 }));
+
+
+
+// Caching with react query
+// import { useQuery } from 'react-query'
+
+// const headers = { 'X-Zapi-Auth-Token': `Bearer ${cookies.get('accessToken')}` }
+
+// const fetchData = async (endpoint: string) => {
+//     try {
+//         const response = await fetch(endpoint, { headers })
+//         const data = await response.json()
+//         return data
+//     } catch (error) {
+//         throw error
+//     }
+// }
+
+// const MyComponent = () => {
+//     const { data, status } = useQuery(
+//         `data-${apiId}`,
+//         () => fetchData(`${core_url}/analytics/api/${apiId}`),
+//         {
+//             // cache time in milliseconds
+//             staleTime: 60 * 1000, 
+//             retry: false
+//         }
+//     )
+
+//     if (status === 'loading') return <div>Loading...</div>
+//     if (status === 'error') return <div>Error: {error.message}</div>
+
+//     return (
+//         <div>
+//             <p>Data: {JSON.stringify(data)}</p>
+//         </div>
+//     )
+// }
