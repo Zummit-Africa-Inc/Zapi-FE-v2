@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, FormEvent, useState, useEffect} from "react";
 import { styled, makeStyles } from "@mui/styles";
 import {
   Typography,
@@ -19,12 +19,25 @@ import { AddDiscussion, Spinner } from "../../components";
 import { quote } from "../../assets/svg";
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { RiAddFill } from "react-icons/ri";
+import { toast } from "react-toastify";
+import { useQuery } from 'react-query'
 
 import Cookies from "universal-cookie";
 import { useAppContext } from "../../contexts/AppProvider";
 import { APIType, DiscussionType } from "../../types";
-import { useHttpRequest } from "../../hooks";
+import {  
+  useAppDispatch, 
+  useFormInputs, 
+  useHttpRequest
+ } from "../../hooks";
+//import { Fallback } from "../Fallback";
+import { addDiscussion } from "../../redux/slices/apiSlice";
+
+
+const core_url = "VITE_CORE_URL";
+const initialState = {
+  body: "",
+};
 
 const CustomTabs = styled(Tabs)({
   "&.MuiTabs-root": {
@@ -67,19 +80,57 @@ interface Props {
 
 const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
-  const { currentMode } = useAppContext();
-  const [body, setBody] = useState<string>("");
+  const { inputs, bind, toggle } = useFormInputs(initialState);
+  const { currentMode, triggerRefresh } = useAppContext();
+  const { body } = inputs;
+  const [discussionBody, setDiscussionBody] = useState<string>("");
   const [isAdding, setIsAdding] = useState<boolean>(false);
-  const { loading, sendRequest } = useHttpRequest();
+  const {error, loading, sendRequest, clearError } = useHttpRequest();
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
-
-  //Discussion function
+  const profile_id = cookies.get("profileId");
+  const dispatch = useAppDispatch();
   const [expanded, setExpanded] = React.useState<string | false>(false);
+
+
+  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const api_id = JSON.parse(localStorage.getItem("api_id") || '');
+    if(!body) return toast.error('Please add a comment in the field')
+    const headers = {
+      'Content-Type': "application/json",
+      'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
+    }
+    const payload = { body, profile_id, api_id }
+    try {
+      // const data = await sendRequest(`/discussion/comment/${discussionId}/${cookies.get("profileId")}`, "post", core_url, payload, headers)
+      const data = await sendRequest(
+        `/discussion`,
+        "post",
+        core_url,
+        payload,
+        headers
+      );
+      console.log(data);
+      if (!data || data === null) return;
+      dispatch(addDiscussion(payload));
+      triggerRefresh();
+      const { message } = data;
+      toast.success(`${message}`);
+    } catch (err: any) {
+      console.log(err);
+    }
+    // dispatch(getApisDiscussion(id));
+  };
+    
+    useEffect(() => {
+    error && toast.error(`${error}`)
+    },[error])
 
   const toggleAdding = () => {
     setIsAdding((prev) => !prev);
   };
+
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -250,7 +301,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                     </Box>
                   </Box>
                   {isAdding && (
-                  <Box>
+                  <Box component="form" onSubmit={handleSubmit}>
                     <Box className={classes.form}>
                       <TextareaAutosize
                       aria-label="minimum height"
@@ -268,9 +319,11 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                         color: "#BEC2C8",
                         background: currentMode === "dark" ? "#121212" : "#FFFFFF",
                         }}
-                        value={body}
+                        name="body"
+                        {...bind}
                         required
-                        onChange={(e) => setBody(e.target.value)}
+                        // value={body}
+                        // onChange={(e) => setDiscussionBody(e.target.value)}
                       />
                     </Box>
                     <Box
@@ -282,7 +335,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                         justifyContent: "flex-end",
                         alignItems: "flex-end",
                       }}>
-                      <button
+                      <button onClick={toggleAdding}
                         style={{
                           display: "flex",
                           flexDirection: "row",
@@ -300,7 +353,8 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                         }}>
                         Cancel
                       </button>
-                      <button
+                      <button  
+                        // onClick={toggleAdding} 
                         style={{
                           outline: "none",
                           border: "none",
@@ -432,7 +486,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
     marginTop: "-10px",
     "@media screen and (max-width: 870px)": {
-      marginTop: "-40px",
+      marginTop: "20px",
       width: "100%",
     },
   },
