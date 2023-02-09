@@ -1,25 +1,37 @@
 import {
   Box,
   FormControl,
-  Grid,
   InputAdornment,
   OutlinedInput,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { RiSearch2Line } from "react-icons/ri";
+import debounce from 'lodash.debounce'
 
 import ApiCard from "./ApiCard";
 import ApiNotFound from "./ApiNotFound";
 import { ApiProps } from "../../interfaces";
 import { useStyles } from "./HubApis.styles";
 import CustomTypography from "../shared/CustomTypography";
+import { useState } from "react";
 
 interface IHubApis {
   apis: ApiProps[];
 }
 
+const getFilteredApis = (query : string, apis : ApiProps[]) => {
+  if (!query) {
+    return apis
+  } else return apis.filter((api : ApiProps) => api.name && api.name.toLowerCase() && api.name.toLowerCase().includes(query.toLocaleLowerCase()))
+}
+
 const HubApis = ({ apis }: IHubApis) => {
   const classes = useStyles({});
+  const [query, setQuery] = useState("")
+
+  const filteredApis = getFilteredApis(query, apis)
+  const updateQuery = (e : any) => setQuery(e?.target?.value)
+  const debounceChange = debounce(updateQuery, 200)
 
   return (
     <Box className={classes.hubApiContainer}>
@@ -43,6 +55,7 @@ const HubApis = ({ apis }: IHubApis) => {
                 }}
                 type="text"
                 placeholder="Search"
+                onChange={debounceChange}
                 startAdornment={
                   <InputAdornment position="start">
                     <IconButton edge="start">
@@ -55,7 +68,7 @@ const HubApis = ({ apis }: IHubApis) => {
           </Box>
           <Box className={classes.apiContainer}>
               <Box className={classes.apis} component={"div"}>
-            {apis?.map((api) => (
+            {filteredApis?.map((api : ApiProps) => (
               <ApiCard api={api} key={api.id} />
             ))}
             </Box>
