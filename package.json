@@ -31,6 +31,7 @@
     "@types/component-emitter": "^1.2.11",
     "@types/cors": "^2.8.13",
     "aws-amplify": "^5.0.7",
+    "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@types/googlemaps": "^3.43.3",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^18.11.17",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
