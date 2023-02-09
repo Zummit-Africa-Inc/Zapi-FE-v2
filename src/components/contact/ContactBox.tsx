@@ -38,6 +38,7 @@ const ContactBox: React.FC = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [goal, setGoal] = useState("");
+    const [checked, setChecked] = useState(false);
     const [file, setFile] = useState<File | null>(null);
 
     const goalEnum = {
@@ -50,7 +51,7 @@ const ContactBox: React.FC = () => {
 
     const handleGoalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGoal((event.target as HTMLInputElement).value);
-        console.log(goal);
+        // console.log(goal);
     };
 
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,14 +70,17 @@ const ContactBox: React.FC = () => {
         }
 
 
-        console.log(formData)
-
-        const response = await axios.post(`${vite_core_url}/api-doc`, formData, {
+        // console.log(formData)
+        if(!checked){
+        const response = await axios.post(`${vite_core_url}/contactUs/create`, formData, {
             headers: {
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "Application/json",
             },
         });
-        console.log(response);
+    }
+    // else show error message
+    
+        // console.log(response);
     };
 
 
@@ -559,7 +563,9 @@ const ContactBox: React.FC = () => {
                         flexDirection: "row",
                         alignItems: "center",
                     }}>
-                    <Checkbox sx={{ color: "#A8AEB5" }} />
+                    <Checkbox 
+                    value={checked}
+                    sx={{ color: "#A8AEB5" }} />
                     <Box>
                         <Typography
                             sx={{
