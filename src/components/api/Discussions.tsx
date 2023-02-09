@@ -120,7 +120,6 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
     } catch (err: any) {
       console.log(err);
     }
-    // dispatch(getApisDiscussion(id));
   };
     
     useEffect(() => {
