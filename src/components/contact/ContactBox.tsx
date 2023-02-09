@@ -19,8 +19,16 @@ import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useAppContext } from "../../contexts/AppProvider";
 import { AttachFile } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 const ContactBox: React.FC = () => {
+
+    const vite_identity_url = import.meta.env.VITE_IDENTITY_URL;
+    const vite_core_url = import.meta.env.VITE_CORE_URL;
+    const vite_socket_url = import.meta.env.VITE_SOCKET_URL;
+
+    // console.log(vite_core_url);
     const classes = useStyles();
     const { currentMode } = useAppContext();
     const [firstName, setFirstName] = useState("");
@@ -39,6 +47,38 @@ const ContactBox: React.FC = () => {
         Api: "api",
         Other: "other",
     };
+
+    const handleGoalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGoal((event.target as HTMLInputElement).value);
+        console.log(goal);
+    };
+
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPhoneCall(event.target.checked);
+    };
+
+    const sendContact = async () => {
+        const formData = {
+            firstname: firstName,
+            lastname: lastName,
+            org_name: org_name,
+            phone_call: phone_call,
+            email: email,
+            message: message,
+            goal: goal,
+        }
+
+
+        console.log(formData)
+
+        const response = await axios.post(`${vite_core_url}/api-doc`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+        console.log(response);
+    };
+
 
     return (
         <Paper
@@ -90,6 +130,8 @@ const ContactBox: React.FC = () => {
                         id="my-input"
                         aria-describedby="my-helper-text"
                         placeholder="Enter first name"
+                        onChange={(e) => setFirstName(e.target.value)}
+                        value={firstName}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -128,6 +170,8 @@ const ContactBox: React.FC = () => {
                         id="my-input"
                         placeholder="Enter last name"
                         aria-describedby="my-helper-text"
+                        onChange={(e) => setLastName(e.target.value)}
+                        value={lastName}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -177,6 +221,8 @@ const ContactBox: React.FC = () => {
                         placeholder="Enter company's name"
                         id="my-input"
                         aria-describedby="my-helper-text"
+                        onChange={(e) => setOrgName(e.target.value)}
+                        value={org_name}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -215,6 +261,8 @@ const ContactBox: React.FC = () => {
                         placeholder="Enter email address"
                         id="my-input"
                         aria-describedby="my-helper-text"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                         sx={{
                             color: currentMode === "light" ? "#A8AEB5" : "#F5F5F5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -248,7 +296,11 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                         alignItems: "center",
                     }}>
-                    <Checkbox sx={{ color: "#A8AEB5" }} />
+                    <Checkbox 
+                    onChange={handleCheck}
+                    checked={phone_call}
+                    sx={{ color: "#A8AEB5" }} 
+                    />
                     <Box>
                         <Typography
                             sx={{
@@ -302,8 +354,8 @@ const ContactBox: React.FC = () => {
                             flexWrap: "wrap",
                             gap: 2,
                         }}
-                    //   value={value}
-                    //   onChange={handleChange}
+                      value={goal}
+                      onChange={handleGoalChange}
                     >
                         <Card
                             sx={{
@@ -350,7 +402,7 @@ const ContactBox: React.FC = () => {
                                     fontWeight: 600,
                                     fontSize: "14px",
                                 }}
-                                value="customDevelopment"
+                                value="api"
                                 control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Custom API Development"
                             />
@@ -425,7 +477,7 @@ const ContactBox: React.FC = () => {
                                     fontWeight: 600,
                                     fontSize: "14px",
                                 }}
-                                value="others"
+                                value="other"
                                 control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Others"
                             />
@@ -445,8 +497,10 @@ const ContactBox: React.FC = () => {
                     id="outlined-multiline-static"
                     multiline
                     rows={4}
-                    defaultValue="Enter message here"
+                    placeholder="Enter message here"
+                    onChange={(e) => setMessage(e.target.value)}
                     variant="outlined"
+                    value={message}
                     sx={{
                         width: "100%",
                         color: "#A8AEB5",
@@ -530,6 +584,7 @@ const ContactBox: React.FC = () => {
                     mt: 2,
                 }}>
                 <Button
+                 onClick={sendContact}
                     sx={{
                         width: "40%",
                         marginLeft: "auto",
