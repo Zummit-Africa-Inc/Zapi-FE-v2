@@ -280,7 +280,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
             <Box>
 
               {/* Join Discussion */}
-              <Box>
+              <Box onClick={(e) => e.stopPropagation()}>
                   <Box sx={{ display: "flex", alignItems: "center", justifyContent:"flex-end" }}>
                     <Box>
                       <Button
