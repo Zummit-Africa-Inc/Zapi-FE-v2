@@ -15,6 +15,7 @@ import {
     Box,
     FormControlLabel,
 } from "@mui/material";
+import { toast } from "react-toastify";
 import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useAppContext } from "../../contexts/AppProvider";
 import { AttachFile } from "@mui/icons-material";
@@ -40,6 +41,11 @@ const ContactBox: React.FC = () => {
     const [goal, setGoal] = useState("");
     const [checked, setChecked] = useState(false);
     const [file, setFile] = useState<File | null>(null);
+    const [firstNameError, setFirstNameError] = useState(false);
+    const [lastNameError, setLastNameError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [messageError, setMessageError] = useState(false);
+    const [checkedError, setCheckedError] = useState(false);
 
     const goalEnum = {
         Partnership: "partnership",
@@ -69,16 +75,27 @@ const ContactBox: React.FC = () => {
             goal: goal,
         }
 
-
-        // console.log(formData)
+        if(!firstName){
+            setFirstNameError(true);
+        }
+        if(!lastName){
+            setLastNameError(true);
+        }
+        if(!email){
+            setEmailError(true);
+        }
+        if(!message){
+            setMessageError(true);
+        }
         if(!checked){
+            setCheckedError(true);
+        }
+
         const response = await axios.post(`${vite_core_url}/contactUs/create`, formData, {
             headers: {
                 "Content-Type": "Application/json",
             },
         });
-    }
-    // else show error message
     
         // console.log(response);
     };
@@ -136,6 +153,8 @@ const ContactBox: React.FC = () => {
                         placeholder="Enter first name"
                         onChange={(e) => setFirstName(e.target.value)}
                         value={firstName}
+                        required
+                        error={firstNameError}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -176,6 +195,8 @@ const ContactBox: React.FC = () => {
                         aria-describedby="my-helper-text"
                         onChange={(e) => setLastName(e.target.value)}
                         value={lastName}
+                        required
+                        error={lastNameError}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -267,6 +288,8 @@ const ContactBox: React.FC = () => {
                         aria-describedby="my-helper-text"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
+                        required
+                        error={emailError}
                         sx={{
                             color: currentMode === "light" ? "#A8AEB5" : "#F5F5F5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -505,6 +528,8 @@ const ContactBox: React.FC = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     variant="outlined"
                     value={message}
+                    required
+                    error={messageError}
                     sx={{
                         width: "100%",
                         color: "#A8AEB5",
@@ -565,6 +590,8 @@ const ContactBox: React.FC = () => {
                     }}>
                     <Checkbox 
                     value={checked}
+                    required
+                    onChange={(e) => setChecked(e.target.checked)}
                     sx={{ color: "#A8AEB5" }} />
                     <Box>
                         <Typography
