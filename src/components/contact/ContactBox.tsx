@@ -89,6 +89,8 @@ const ContactBox: React.FC = () => {
         }
         if(!checked){
             setCheckedError(true);
+            toast.error("Please agree to the zapi.ai Privacy Policy");
+            return
         }
 
         const response = await axios.post(`${vite_core_url}/contactUs/create`, formData, {
@@ -96,7 +98,26 @@ const ContactBox: React.FC = () => {
                 "Content-Type": "Application/json",
             },
         });
-    
+        if(response.status === 201){
+            toast.success(`${response.data.message}`);
+            
+            setFirstName("");
+            setLastName("");
+            setOrgName("");
+            setPhoneCall(false);
+            setEmail("");
+            setMessage("");
+            setGoal("");
+            setChecked(false);
+            setFirstNameError(false);
+            setLastNameError(false);
+            setEmailError(false);
+            setMessageError(false);
+            setCheckedError(false);
+        }
+        else{
+            toast.error(`${response.data.message}`);
+        }
         // console.log(response);
     };
 
@@ -589,7 +610,7 @@ const ContactBox: React.FC = () => {
                         alignItems: "center",
                     }}>
                     <Checkbox 
-                    value={checked}
+                    // value={checked}
                     required
                     onChange={(e) => setChecked(e.target.checked)}
                     sx={{ color: "#A8AEB5" }} />
