@@ -7,9 +7,10 @@ import HubApis from "../components/hub/HubApis";
 import { useAppSelector, useHttpRequest } from "../hooks";
 import HubCategories from "../components/hub/HubCategories";
 import Spinner from "../components/shared/Spinner";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-
-const core_url = "VITE_CORE_URL";
+const url = import.meta.env.VITE_CORE_URL;
 
 const Hub = () => {
   const classes = useStyles();
@@ -18,7 +19,6 @@ const Hub = () => {
   const [allApis, setAllApis] = useState<ApiProps[]>(apis);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>();
 
-  const { error, loading, sendRequest } = useHttpRequest();
   const { categories } = useAppSelector((store) => store.apis);
 
   useEffect(() => {
@@ -28,23 +28,26 @@ const Hub = () => {
     }
   }, [categories]);
 
-  const getApisByCategory = async () => {
-    const headers = { "Content-Type": "application/json" };
-    const payload = {};
-    try {
-      const data = await sendRequest(
-        `/categories/${selectedCategoryId}/apis`,
-        "get",
-        core_url,
-        payload,
-        headers
+  const fetchCategoryData = async () => {
+    if (selectedCategoryId) {
+      const result = await axios(
+        `${url}/categories/${selectedCategoryId}/apis`
       );
-      setAllApis(data);
-    } catch (error) {}
+      setAllApis(result.data);
+      return result.data;
+    } else {
+      return [];
+    }
   };
-  useEffect(() => {
-    if (selectedCategoryId) getApisByCategory();
-  }, [selectedCategoryId]);
+
+  const { isLoading, error } = useQuery({
+    queryKey: ["categoriesId", selectedCategoryId],
+    queryFn: () => fetchCategoryData(),
+  });
+
+  if (error) {
+    return <h1>Error Occurred</h1>;
+  }
 
   return (
     <Stack>
@@ -54,7 +57,7 @@ const Hub = () => {
           selectedCategoryId={selectedCategoryId}
           setSelectedCategoryId={setSelectedCategoryId}
         />
-       {loading ? <Spinner /> : <HubApis apis={allApis} />}
+        {isLoading ? <Spinner /> : <HubApis apis={allApis} />}
       </Stack>
       <Footer />
     </Stack>

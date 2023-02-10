@@ -13,6 +13,8 @@ import { store } from "./store/store";
 import Cookies from "universal-cookie";
 import App from "./App";
 import "./index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string;
 const vite_identity_url = import.meta.env.VITE_IDENTITY_URL;
@@ -20,6 +22,7 @@ const vite_core_url = import.meta.env.VITE_CORE_URL;
 const vite_socket_url = import.meta.env.VITE_SOCKET_URL;
 const cookies = new Cookies();
 const helmetContext = {};
+const queryClient = new QueryClient();
 
 Amplify.configure({
   API: {
@@ -52,16 +55,19 @@ Amplify.configure({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <GoogleOAuthProvider clientId={clientId}>
-          <HelmetProvider context={helmetContext}>
-            <AppProvider>
-              <App />
-            </AppProvider>
-          </HelmetProvider>
-        </GoogleOAuthProvider>
-      </Provider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Provider store={store}>
+          <GoogleOAuthProvider clientId={clientId}>
+            <HelmetProvider context={helmetContext}>
+              <AppProvider>
+                <App />
+                <ReactQueryDevtools initialIsOpen={false} />
+              </AppProvider>
+            </HelmetProvider>
+          </GoogleOAuthProvider>
+        </Provider>
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
