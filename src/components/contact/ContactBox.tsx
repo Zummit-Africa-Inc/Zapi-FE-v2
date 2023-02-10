@@ -25,11 +25,9 @@ import axios from "axios";
 
 const ContactBox: React.FC = () => {
 
-    const vite_identity_url = import.meta.env.VITE_IDENTITY_URL;
     const vite_core_url = import.meta.env.VITE_CORE_URL;
-    const vite_socket_url = import.meta.env.VITE_SOCKET_URL;
 
-    // console.log(vite_core_url);
+
     const classes = useStyles();
     const { currentMode } = useAppContext();
     const [firstName, setFirstName] = useState("");
@@ -57,7 +55,6 @@ const ContactBox: React.FC = () => {
 
     const handleGoalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGoal((event.target as HTMLInputElement).value);
-        // console.log(goal);
     };
 
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,50 +72,52 @@ const ContactBox: React.FC = () => {
             goal: goal,
         }
 
-        if(!firstName){
+        if (!firstName) {
             setFirstNameError(true);
         }
-        if(!lastName){
+        if (!lastName) {
             setLastNameError(true);
         }
-        if(!email){
+        if (!email) {
             setEmailError(true);
         }
-        if(!message){
+        if (!message) {
             setMessageError(true);
         }
-        if(!checked){
+        if (!checked) {
             setCheckedError(true);
             toast.error("Please agree to the zapi.ai Privacy Policy");
             return
         }
+        try {
+            const response = await axios.post(`${vite_core_url}/contactUs/create`, formData, {
+                headers: {
+                    "Content-Type": "Application/json",
+                },
+            });
+            if (response.status === 201) {
+                toast.success(`${response.data.message}`);
 
-        const response = await axios.post(`${vite_core_url}/contactUs/create`, formData, {
-            headers: {
-                "Content-Type": "Application/json",
-            },
-        });
-        if(response.status === 201){
-            toast.success(`${response.data.message}`);
-            
-            setFirstName("");
-            setLastName("");
-            setOrgName("");
-            setPhoneCall(false);
-            setEmail("");
-            setMessage("");
-            setGoal("");
-            setChecked(false);
-            setFirstNameError(false);
-            setLastNameError(false);
-            setEmailError(false);
-            setMessageError(false);
-            setCheckedError(false);
+                setFirstName("");
+                setLastName("");
+                setOrgName("");
+                setPhoneCall(false);
+                setEmail("");
+                setMessage("");
+                setGoal("");
+                setChecked(false);
+                setFirstNameError(false);
+                setLastNameError(false);
+                setEmailError(false);
+                setMessageError(false);
+                setCheckedError(false);
+            }
+            else {
+                toast.error(`${response.data.message}`);
+            }
+        } catch (error) {
+            toast.error(`${error}`);
         }
-        else{
-            toast.error(`${response.data.message}`);
-        }
-        // console.log(response);
     };
 
 
@@ -344,10 +343,10 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                         alignItems: "center",
                     }}>
-                    <Checkbox 
-                    onChange={handleCheck}
-                    checked={phone_call}
-                    sx={{ color: "#A8AEB5" }} 
+                    <Checkbox
+                        onChange={handleCheck}
+                        checked={phone_call}
+                        sx={{ color: "#A8AEB5" }}
                     />
                     <Box>
                         <Typography
@@ -402,8 +401,8 @@ const ContactBox: React.FC = () => {
                             flexWrap: "wrap",
                             gap: 2,
                         }}
-                      value={goal}
-                      onChange={handleGoalChange}
+                        value={goal}
+                        onChange={handleGoalChange}
                     >
                         <Card
                             sx={{
@@ -609,11 +608,11 @@ const ContactBox: React.FC = () => {
                         flexDirection: "row",
                         alignItems: "center",
                     }}>
-                    <Checkbox 
-                    // value={checked}
-                    required
-                    onChange={(e) => setChecked(e.target.checked)}
-                    sx={{ color: "#A8AEB5" }} />
+                    <Checkbox
+                        // value={checked}
+                        required
+                        onChange={(e) => setChecked(e.target.checked)}
+                        sx={{ color: "#A8AEB5" }} />
                     <Box>
                         <Typography
                             sx={{
@@ -638,7 +637,7 @@ const ContactBox: React.FC = () => {
                     mt: 2,
                 }}>
                 <Button
-                 onClick={sendContact}
+                    onClick={sendContact}
                     sx={{
                         width: "40%",
                         marginLeft: "auto",
