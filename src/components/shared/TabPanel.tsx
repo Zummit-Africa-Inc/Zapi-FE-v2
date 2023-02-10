@@ -1,29 +1,30 @@
 import React from "react";
-import { Box } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Box, Typography } from "@mui/material";
 
-interface Props {
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
   value: number;
-  index: number | string;
-  children: React.ReactNode;
-  className?: string;
 }
 
-const TabPanel: React.FC<Props> = ({ children, index, value, className }) => {
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Box
-      className={className}
-      style={{ width: "100%", height: "100%" }}
-      role="tab-panel"
+    <div
+      role="tabpanel"
       hidden={value !== index}
-      id={`simple-tab-${index}`}>
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
       {value === index && (
-        <Box style={{ width: "100%", height: "100%", padding: 0 }}>
+        <Box sx={{ p: 3 }}>
           {children}
         </Box>
       )}
-    </Box>
+    </div>
   );
-};
+}
 
-export default TabPanel;
+export default TabPanel

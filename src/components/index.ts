@@ -21,6 +21,7 @@ export { default as Features } from "./home/Features";
 export { default as Market } from "./home/Market";
 export { default as AiModels } from "./home/AiModels";
 export { default as Pricing } from "./home/Pricing";
+export { default as PricingCard } from "./home/PricingCard";
 export { default as Blog } from "./home/Blog";
 export { default as GettingStarted } from "./home/gettingStarted";
 
@@ -28,7 +29,9 @@ export { default as GettingStarted } from "./home/gettingStarted";
 export { default as APIMoreInfo } from "./api/APIMoreInfo";
 export { default as Endpoints } from "./api/Endpoints";
 export { default as Reviews } from "./api/Reviews";
+export { default as Rating } from "./api/Rating";
 export { default as Discussions } from "./api/Discussions";
+export { default as AddDiscussion } from "./api/AddDiscussion";
 
 // auth
 export { default as Auth } from "./auth/Auth";

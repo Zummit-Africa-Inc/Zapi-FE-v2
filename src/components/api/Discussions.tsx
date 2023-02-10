@@ -6,6 +6,7 @@ import {
   Box,
   Accordion,
   Avatar,
+  Button,
   IconButton,
   TextareaAutosize,
   AccordionSummary,
@@ -14,10 +15,11 @@ import {
   Tab,
   Stack,
 } from "@mui/material";
-import { Button, Spinner } from "../../components";
+import { AddDiscussion, Spinner } from "../../components";
+import { quote } from "../../assets/svg";
+import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { RiAddFill } from "react-icons/ri";
-// import { discussionQuote } from "../../assets/svg";
 
 import Cookies from "universal-cookie";
 import { useAppContext } from "../../contexts/AppProvider";
@@ -67,12 +69,17 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
   const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
+  const [isAdding, setIsAdding] = useState<boolean>(false);
   const { loading, sendRequest } = useHttpRequest();
   const cookies = new Cookies();
   const accessToken = cookies.get("accessToken");
 
   //Discussion function
   const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const toggleAdding = () => {
+    setIsAdding((prev) => !prev);
+  };
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -81,105 +88,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
 
   return (
     <Box className={classes.root}>
-      <Box
-        sx={{
-          display: "column",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-
-          "@media screen and (max-width: 428px)": {
-            flexDirection: "column",
-          },
-        }}>
-        <Box component="form" className={classes.add_button}>
-          <Box
-            sx={{
-              background: "unset",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              gap: "2px",
-              margin: "2px 20px 2px 3px",
-              fontSize: "16px",
-              fontFamily: "Lato",
-              color: "#929AA3",
-            }}>
-            <IconButton type="button" aria-label="search">
-              <RiAddFill style={{ color: "#929AA3", width: "20px" }} />
-            </IconButton>
-            <Typography>Add Discussion</Typography>
-          </Box>
-        </Box>
-
-        <Box className={classes.form}>
-          <TextareaAutosize
-            aria-label="minimum height"
-            maxRows={6}
-            minRows={6}
-            placeholder="Start a Discussion here..."
-            style={{
-              width: "99%",
-              height: "30%",
-              marginTop: "5%",
-              padding: "2%",
-              fontSize: "1em",
-              background: currentMode === "dark" ? "#121212" : "#FFFFFF",
-            }}
-            value={body}
-            required
-            onChange={(e) => setBody(e.target.value)}
-          />
-        </Box>
-        <Box
-          sx={{
-            gap: "1rem",
-            display: "flex",
-            flexDirection: "row",
-            marginLeft: "auto",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-          }}>
-          <button
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              marginRight: "6px",
-              padding: "12px 24px",
-              gap: "16px",
-              fontFamily: "inherit",
-              height: "46px",
-              cursor: "pointer",
-              background: currentMode === "dark" ? "#121212" : "#FFFFFF",
-              color: "#929AA3",
-              border: "1px solid #929AA3",
-              borderRadius: "4px",
-            }}>
-            Cancel
-          </button>
-          <button
-            style={{
-              outline: "none",
-              border: "none",
-              display: "flex",
-              marginRight: "6px",
-              alignItems: "center",
-              padding: "12px 24px",
-              gap: "16px",
-              height: "46px",
-              fontFamily: "inherit",
-              color: currentMode === "dark" ? "#060607" : "#F5F5F5",
-              background: currentMode === "dark" ? "#FFEA00" : "#081F4A",
-              borderRadius: "4px",
-              textAlign: "center",
-              cursor: "pointer",
-            }}
-            type="submit">
-            {loading ? <Spinner /> : "Submit"}
-          </button>
-        </Box>
-      </Box>
+      <AddDiscussion />
       <Accordion
         className={classes.accordion}
         expanded={expanded === "panel1"}
@@ -318,9 +227,107 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
             direction="column"
             spacing={1}
             className={classes.discussion_comment}>
-            <>
+            <Box>
+
+              {/* Join Discussion */}
+              <Box>
+                  <Box sx={{ display: "flex", alignItems: "center", justifyContent:"flex-end" }}>
+                    <Box>
+                      <Button
+                        sx={{
+                          background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+                          color: "#BEC2C8",
+                          width: "200px",
+                          height: "2.5rem",
+                          border: "1px solid #BEC2C8"
+                        }}
+                        onClick={toggleAdding}
+                        startIcon={isAdding ? <CloseIcon /> : <img src={quote} alt="zapi logo" />}
+                        style={{ background: isAdding ? "#fff" : "#fff", color: isAdding ? "#BEC2C8" : "#BEC2C8", borderColor: isAdding ? "#BEC2C8" : "#BEC2C8" }}
+                        >
+                        {isAdding ? "Cancel" : "Join Discussion"}
+                      </Button>
+                    </Box>
+                  </Box>
+                  {isAdding && (
+                  <Box>
+                    <Box className={classes.form}>
+                      <TextareaAutosize
+                      aria-label="minimum height"
+                      maxRows={6}
+                      minRows={6}
+                      placeholder="Leave a Comment.."
+                      style={{
+                        width: "99%",
+                        height: "30%",
+                        marginTop: "5%",
+                        padding: "2%",
+                        fontSize: "1em",
+                        borderRadius: "10px",
+                        borderColor: "#BEC2C8",
+                        color: "#BEC2C8",
+                        background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+                        }}
+                        value={body}
+                        required
+                        onChange={(e) => setBody(e.target.value)}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        gap: "1rem",
+                        display: "flex",
+                        flexDirection: "row",
+                        marginLeft: "auto",
+                        justifyContent: "flex-end",
+                        alignItems: "flex-end",
+                      }}>
+                      <button
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          marginRight: "6px",
+                          padding: "12px 24px",
+                          gap: "16px",
+                          fontFamily: "inherit",
+                          height: "46px",
+                          cursor: "pointer",
+                          background: currentMode === "dark" ? "#121212" : "#FFFFFF",
+                          color: "#929AA3",
+                          border: "1px solid #929AA3",
+                          borderRadius: "4px",
+                        }}>
+                        Cancel
+                      </button>
+                      <button
+                        style={{
+                          outline: "none",
+                          border: "none",
+                          display: "flex",
+                          marginRight: "6px",
+                          alignItems: "center",
+                          padding: "12px 24px",
+                          gap: "16px",
+                          height: "46px",
+                          fontFamily: "inherit",
+                          color: currentMode === "dark" ? "#060607" : "#F5F5F5",
+                          background: currentMode === "dark" ? "#FFEA00" : "#081F4A",
+                          borderRadius: "4px",
+                          textAlign: "center",
+                          cursor: "pointer",
+                        }}
+                        type="submit">
+                        {loading ? <Spinner /> : "Submit"}
+                      </button>
+                    </Box>
+                </Box>
+                )}
+              </Box>
+
               {discussions.map((discussions, index) => (
                 <Box
+                  key={index}
                   sx={{
                     background: currentMode === "dark" ? "#121212" : "#F5F5F5",
                     color: currentMode === "dark" ? "#F5F5F5" : "#121212",
@@ -343,7 +350,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
                   </Box>
                 </Box>
               ))}
-            </>
+            </Box>
           </Stack>
         </AccordionDetails>
       </Accordion>
@@ -399,6 +406,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 
+  joinDiscussion: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: "8px 16px",
+    gap: "16px",
+    width: "170px",
+    lineHeight: "46px",
+    // borderColor: "#071B85",
+    borderRadius: "8px",
+    cursor: "pointer",
+    color: "#FFFFFF",
+    border: " solid #071B85",
+    fontWeight: "500",
+    fontSize: "16px",
+    "@media screen and (max-width: 1024px)": {
+      marginBottom: "1rem",
+      width: "385px",
+    },
+    "@media screen and (max-width: 500px)": {},
+  },
+
   form: {
     width: "100%",
     marginTop: "-10px",
@@ -431,3 +460,41 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: "3rem",
   },
 }));
+
+
+
+// Caching with react query
+// import { useQuery } from 'react-query'
+
+// const headers = { 'X-Zapi-Auth-Token': `Bearer ${cookies.get('accessToken')}` }
+
+// const fetchData = async (endpoint: string) => {
+//     try {
+//         const response = await fetch(endpoint, { headers })
+//         const data = await response.json()
+//         return data
+//     } catch (error) {
+//         throw error
+//     }
+// }
+
+// const MyComponent = () => {
+//     const { data, status } = useQuery(
+//         `data-${apiId}`,
+//         () => fetchData(`${core_url}/analytics/api/${apiId}`),
+//         {
+//             // cache time in milliseconds
+//             staleTime: 60 * 1000, 
+//             retry: false
+//         }
+//     )
+
+//     if (status === 'loading') return <div>Loading...</div>
+//     if (status === 'error') return <div>Error: {error.message}</div>
+
+//     return (
+//         <div>
+//             <p>Data: {JSON.stringify(data)}</p>
+//         </div>
+//     )
+// }

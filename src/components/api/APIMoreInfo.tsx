@@ -14,6 +14,7 @@ import { getSubscribedApis } from "../../redux/slices/userSlice";
 import { getApis } from "../../redux/slices/apiSlice";
 import { useAppContext } from "../../contexts/AppProvider";
 import { APIType } from "../../types";
+import { Rating } from "../";
 
 const core_url = "VITE_CORE_URL";
 
@@ -95,6 +96,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 
   return (
 	<>
+	{isRatingOpen && <Rating apiId={api.id} onClose={() => setIsRatingOpen(false)} />}
 	  <Box className={classes.root}>
 		<Box
 		  sx={{
@@ -159,9 +161,9 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
             <Button
               endIcon={<StarBorderOutlined />}
               className={classes.rate_button}
-              onClick={
-                accessToken ? handleSubscription : () => handleClicked("login")
-              }>
+			  onClick={
+				accessToken ? () => setIsRatingOpen(true) : () => handleClicked("login")
+			}>
               Rate
             </Button>
             <Button

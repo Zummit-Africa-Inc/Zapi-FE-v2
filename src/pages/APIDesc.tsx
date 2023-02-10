@@ -7,13 +7,14 @@ import { toast } from "react-toastify";
 import { useHttpRequest } from "../hooks";
 
 import {
-  Navbar,
-  APIMoreInfo,
-  TabPanel,
-  Endpoints,
-  Footer,
-  Reviews,
-  Discussions,
+	Loader,
+	Navbar,
+	APIMoreInfo,
+	TabPanel,
+	Endpoints,
+	Footer,
+	Reviews,
+  	Discussions,
 } from "../components";
 
 import { APIType, DiscussionType, EndpointsType, ReviewType } from "../types";
@@ -127,6 +128,8 @@ const APIDesc = () => {
 	error && toast.error(`${error.message}`);
   }, [error]);
 
+  if (loading) return <Loader />;
+  
   return (
 	<>
 	  {api && endpoints && discussions && reviews && (

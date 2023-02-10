@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
+import { ChatRounded, AccountCircle, Add } from "@mui/icons-material";
+import Cookies from "universal-cookie";
 import {
   Typography,
   Theme,
@@ -8,8 +10,6 @@ import {
   Button,
   TextareaAutosize,
 } from "@mui/material";
-import { ChatRounded, AccountCircle } from "@mui/icons-material";
-import { Add } from "@mui/icons-material";
 
 import { ReviewType } from "../../types";
 import { useAppContext } from "../../contexts/AppProvider";
@@ -21,6 +21,8 @@ interface Props {
 
 const Reviews: React.FC<Props> = ({ reviews }) => {
   const classes = useStyles();
+  const cookies = new Cookies();
+  const accessToken = cookies.get("accessToken");
   const [body, setBody] = useState<string>("");
   const { currentMode } = useAppContext();
   const { loading, sendRequest } = useHttpRequest();
@@ -62,7 +64,7 @@ const Reviews: React.FC<Props> = ({ reviews }) => {
                 marginTop: "5%",
                 padding: "2%",
                 fontSize: "1em",
-                borderRadius: "1em",
+                borderRadius: "10px",
                 borderColor: "#BEC2C8",
                 color: "#BEC2C8",
                 background: currentMode === "dark" ? "#121212" : "#FFFFFF",
@@ -134,6 +136,7 @@ const Reviews: React.FC<Props> = ({ reviews }) => {
 
                 <Box sx={{ width: "100%" }}>
                   <Typography component="p" sx={{ marginBottom: "8px" }}>
+                    {/* {review.by.fullName || "User"} */}
                     {"User"}
                   </Typography>
                   <Typography component="p">
@@ -186,10 +189,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "41px",
     width: "100%",
     "& h2": {
-      margin: "63px 0",
-      fontWeight: "bold",
-      fontSize: "19px",
-      color: theme.palette.grey[100],
+        margin: "64px 0 32px 0",
+        fontWeight: "bold",
+        fontSize: "19px",
+        color: theme.palette.grey[100],
     },
 
     "@media screen and (max-width: 900px)": {
@@ -251,6 +254,41 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 
+  review_button: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-end",
+    border: `1px solid ${theme.shadows[9]}`,
+    color: theme.shadows[9],
+    borderRadius: "5px",
+    fontSize: "12px !important",
+    fontWeight: "bold !important",
+    width: "150px !important",
+    height: "2.4rem",
+  
+
+    "@media screen and (max-width: 900px)": {
+      fontSize: "10px",
+      width: "120px",
+      height: "2.2rem",
+  
+      "& svg": {
+      width: "17px",
+      },
+    },
+  
+    "@media screen and (max-width: 428px)": {
+      fontSize: "10px",
+      width: "120px",
+      height: "2.2rem",
+  
+      "& svg": {
+      width: "17px",
+      },
+    },
+  },
+
   user_review: {
     display: "flex",
     flexDirection: "row",
@@ -261,6 +299,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "0 0 25px",
     width: "100%",
 
+    "& img": {
+      backgroundColor: theme.palette.grey[100],
+      width: "48px",
+      height: "48px",
+    },
+    
     "& svg": {
       color: theme.palette.grey[100],
       width: "48px",
