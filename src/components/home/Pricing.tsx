@@ -68,8 +68,8 @@ const Pricing: React.FC = () => {
 				},
 			}}
 		>
-			{pricing_values.map((pricing) => (
-				<PricingCard pricing={pricing} />
+			{pricing_values.map((pricing, index) => (
+				<PricingCard pricing={pricing} key={index} />
 			))}
 		
 		</Box>
