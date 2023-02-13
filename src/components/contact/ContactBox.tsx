@@ -175,7 +175,7 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="first-name"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -184,7 +184,7 @@ const ContactBox: React.FC = () => {
                         First Name*
                     </InputLabel>
                     <TextField
-                        id="my-input"
+                        id="first-name"
                         aria-describedby="my-helper-text"
                         placeholder="Enter first name"
                         onChange={(e) => setFirstName(e.target.value)}
@@ -217,7 +217,7 @@ const ContactBox: React.FC = () => {
                         marginTop: 0,
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="last-name"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -226,9 +226,9 @@ const ContactBox: React.FC = () => {
                         Last Name*
                     </InputLabel>
                     <TextField
-                        id="my-input"
+                        id="last-name"
                         placeholder="Enter last name"
-                        aria-describedby="my-helper-text"
+                        aria-describedby="last-name-helper-text"
                         onChange={(e) => setLastName(e.target.value)}
                         value={lastName}
                         required
@@ -270,7 +270,7 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="org-name"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -280,8 +280,8 @@ const ContactBox: React.FC = () => {
                     </InputLabel>
                     <TextField
                         placeholder="Enter company's name"
-                        id="my-input"
-                        aria-describedby="my-helper-text"
+                        id="org-name"
+                        aria-describedby="org-name-helper-text"
                         onChange={(e) => setOrgName(e.target.value)}
                         value={org_name}
                         sx={{
@@ -310,7 +310,7 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="email"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -320,8 +320,8 @@ const ContactBox: React.FC = () => {
                     </InputLabel>
                     <TextField
                         placeholder="Enter email address"
-                        id="my-input"
-                        aria-describedby="my-helper-text"
+                        id="email"
+                        aria-describedby="email-helper-tex"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         required
