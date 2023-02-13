@@ -21,11 +21,12 @@ import { useAppContext } from "../../contexts/AppProvider";
 import { AttachFile } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useHttpRequest } from "../../hooks";
 
 
 const ContactBox: React.FC = () => {
 
-    const vite_core_url = import.meta.env.VITE_CORE_URL;
+    const url = "VITE_CORE_URL";
 
 
     const classes = useStyles();
@@ -44,6 +45,7 @@ const ContactBox: React.FC = () => {
     const [emailError, setEmailError] = useState(false);
     const [messageError, setMessageError] = useState(false);
     const [checkedError, setCheckedError] = useState(false);
+    const { error, loading, sendRequest } = useHttpRequest();
 
     const goalEnum = {
         Partnership: "partnership",
@@ -61,8 +63,12 @@ const ContactBox: React.FC = () => {
         setPhoneCall(event.target.checked);
     };
 
-    const sendContact = async () => {
-        const formData = {
+    const sendContactMessage = async () => {
+        const headers = {
+            "Content-Type": "application/json",
+        };
+
+        const payload = {
             firstname: firstName,
             lastname: lastName,
             org_name: org_name,
@@ -74,30 +80,40 @@ const ContactBox: React.FC = () => {
 
         if (!firstName) {
             setFirstNameError(true);
+            toast.error("Please fill the first name field");
         }
         if (!lastName) {
             setLastNameError(true);
+            toast.error("Please fill the last name field");
         }
         if (!email) {
             setEmailError(true);
+            toast.error("Please fill the email field");
         }
         if (!message) {
             setMessageError(true);
+            toast.error("Please fill the message field");
         }
         if (!checked) {
             setCheckedError(true);
             toast.error("Please agree to the zapi.ai Privacy Policy");
             return
         }
-        try {
-            const response = await axios.post(`${vite_core_url}/contactUs/create`, formData, {
-                headers: {
-                    "Content-Type": "Application/json",
-                },
-            });
-            if (response.status === 201) {
-                toast.success(`${response.data.message}`);
 
+        try {
+            const data = await sendRequest(
+                `/contactUs/create`,
+                "post",
+                url,
+                payload,
+                headers
+            );
+            const { success } = data;
+
+            if (!success || success === false) {
+                return;
+            } else {
+                toast.success(`Thanks, someone will attend to your request`);
                 setFirstName("");
                 setLastName("");
                 setOrgName("");
@@ -111,14 +127,14 @@ const ContactBox: React.FC = () => {
                 setEmailError(false);
                 setMessageError(false);
                 setCheckedError(false);
+
             }
-            else {
-                toast.error(`${response.data.message}`);
-            }
+
         } catch (error) {
             toast.error(`${error}`);
         }
     };
+
 
 
     return (
@@ -655,7 +671,7 @@ const ContactBox: React.FC = () => {
                     mt: 2,
                 }}>
                 <Button
-                    onClick={sendContact}
+                    onClick={sendContactMessage}
                     sx={{
                         width: "40%",
                         marginLeft: "auto",
