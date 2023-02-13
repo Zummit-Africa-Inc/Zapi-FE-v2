@@ -23,8 +23,8 @@ const PricingCard: React.FC<Props> = ({ pricing }) => {
 				</Box>
 				<Box className={classes.right}>
 					<>
-						{pricing.features.map((feature) => (
-							<Box className={classes.items}>
+						{pricing.features.map((feature, index) => (
+							<Box className={classes.items} key={index}>
 								<Check />
 								<Typography component="p">{feature}</Typography>
 							</Box>

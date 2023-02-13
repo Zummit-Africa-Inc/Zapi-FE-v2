@@ -39,7 +39,7 @@ const HubApis = ({ apis }: IHubApis) => {
               size="small">
               <OutlinedInput
                 style={{
-                  color: "grey"
+                  color: "grey",
                 }}
                 type="text"
                 placeholder="Search"
@@ -54,13 +54,12 @@ const HubApis = ({ apis }: IHubApis) => {
             </FormControl>
           </Box>
           <Box className={classes.apiContainer}>
-              <Box className={classes.apis} component={"div"}>
-            {apis?.map((api) => (
-              <ApiCard api={api} key={api.id} />
-            ))}
+            <Box className={classes.apis} component={"div"}>
+              {apis?.map((api) => (
+                <ApiCard api={api} key={api.id} />
+              ))}
             </Box>
           </Box>
-          
         </>
       )}
     </Box>
