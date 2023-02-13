@@ -182,11 +182,11 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: '#A8AEB5',
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
@@ -224,11 +224,11 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: '#A8AEB5',
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
@@ -275,11 +275,11 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: '#A8AEB5',
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
@@ -317,14 +317,15 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: '#A8AEB5',
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
+
                     />
                 </FormControl>
             </Stack>
@@ -556,7 +557,24 @@ const ContactBox: React.FC = () => {
                         border: 1,
                         borderColor: "#A8AEB5",
                         borderRadius: "4px",
+                        input: {
+                            color: '#A8AEB5',
+                            "&::placeholder": {
+                                color: "#A8AEB5",
+                                opacity: 1,
+                                fontWeight: 400,
+                            },
+                        },
                     }}
+                    inputProps={{
+                        style: {
+                            color: currentMode === "light" ? "#A8AEB5" : "#A8AEB5",
+                            opacity: 1,
+                            fontWeight: 400,
+                            fontSize: "18px",
+                        },
+                    }
+                    }
                 />
                 <Stack
                     sx={{
