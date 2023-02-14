@@ -40,6 +40,7 @@ export const AppProvider: React.FC<IChildren> = ({ children }) => {
     useState<Location>(initialLocation);
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>(initialDeviceInfo);
   const [deviceIP, setDeviceIP] = useState<string>("");
+  const [trigger, setTrigger] = useState<boolean>(false)
 
   const setMode = (mode: string) => {
     setCurrentMode(mode);
@@ -53,6 +54,9 @@ export const AppProvider: React.FC<IChildren> = ({ children }) => {
   const handleUnclicked = (clicked: string) => {
     setIsClicked({ ...initialState, [clicked]: false });
   };
+
+  const triggerRefresh = () => setTrigger(prev => !prev)
+
 
   const values = {
     activeMenu,
@@ -72,6 +76,8 @@ export const AppProvider: React.FC<IChildren> = ({ children }) => {
     setDeviceIP,
     currentMode,
     setMode,
+    trigger,
+    triggerRefresh
   };
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
