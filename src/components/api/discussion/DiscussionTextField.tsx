@@ -6,13 +6,18 @@ import {
   Box,
   IconButton,
   TextareaAutosize,
+  Button,
   Stack,
 } from "@mui/material";
 import { Spinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
 
-const DiscussionTextField: React.FC = () => {
+interface Props {
+  onClose: () => void;
+}
+
+const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const classes = useStyles();
   const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
@@ -51,24 +56,16 @@ const DiscussionTextField: React.FC = () => {
           justifyContent: "flex-end",
           alignItems: "flex-end",
         }}>
-        <button
+        <Button
+          variant={"outlined"}
+          className={classes.btnClose}
+          type="button"
+          onClick={() => onClose()}
           style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginRight: "6px",
-            padding: "12px 24px",
-            gap: "16px",
-            fontFamily: "inherit",
-            height: "46px",
-            cursor: "pointer",
             background: currentMode === "dark" ? "#121212" : "#FFFFFF",
-            color: "#929AA3",
-            border: "1px solid #929AA3",
-            borderRadius: "4px",
           }}>
           Cancel
-        </button>
+        </Button>
         <button
           style={{
             outline: "none",
@@ -102,6 +99,20 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "-40px",
       width: "100%",
     },
+  },
+  btnClose: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: "6px",
+    padding: "12px 24px",
+    gap: "16px",
+    fontFamily: "inherit",
+    height: "46px",
+    cursor: "pointer",
+    color: "#929AA3",
+    border: "1px solid #929AA3",
+    borderRadius: "4px",
   },
 }));
 

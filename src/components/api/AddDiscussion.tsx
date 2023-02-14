@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import {
-  Typography,
-  Theme,
-  Box,
-  IconButton,
-  TextareaAutosize,
-  Stack,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 import AddDiscussionButton from "./discussion/AddDiscussionButton";
 

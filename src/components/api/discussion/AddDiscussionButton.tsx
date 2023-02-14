@@ -3,15 +3,26 @@ import React, { useState } from "react";
 import { RiAddFill } from "react-icons/ri";
 import { makeStyles } from "@mui/styles";
 import DiscussionTextField from "./DiscussionTextField";
+import { useAppContext } from "../../../contexts/AppProvider";
+import Cookies from "universal-cookie";
 
 const AddDiscussionButton: React.FC = () => {
   const classes = useStyles();
   const [showTextField, setShowTextField] = useState(false);
+  const cookies = new Cookies();
+  const profileId = cookies.get("profileId");
+  const accessToken = cookies.get("accessToken");
+  const { handleClicked, currentMode } = useAppContext();
 
   return (
     <>
       <Box component="form" className={classes.add_discussion_button}>
         <Box
+          onClick={
+            accessToken
+              ? () => setShowTextField(true)
+              : () => handleClicked("login")
+          }
           sx={{
             background: "unset",
             display: "flex",
@@ -23,16 +34,15 @@ const AddDiscussionButton: React.FC = () => {
             fontFamily: "Lato",
             color: "#929AA3",
           }}>
-          <IconButton
-            type="button"
-            aria-label="search"
-            onClick={() => setShowTextField(!showTextField)}>
+          <IconButton type="button" aria-label="search">
             <RiAddFill style={{ color: "#929AA3", width: "20px" }} />
           </IconButton>
           <Typography>Add Discussion</Typography>
         </Box>
       </Box>
-      {showTextField && <DiscussionTextField />}
+      {showTextField && (
+        <DiscussionTextField onClose={() => setShowTextField(false)} />
+      )}
     </>
   );
 };
