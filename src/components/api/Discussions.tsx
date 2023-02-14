@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "14px",
     },
   },
+
 }));
 
 // Caching with react query

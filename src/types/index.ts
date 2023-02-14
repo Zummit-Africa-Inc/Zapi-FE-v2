@@ -83,7 +83,7 @@ export type ChildrenDiscussionType = {
   id?: string | undefined;
   apiId?: string;
   body: string;
-  // discussionId:
+  discussionId?: string;
   profileId?: string;
   discussions?: DiscussionType | null;
   createdOn?: Date | string;
