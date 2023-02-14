@@ -199,7 +199,9 @@ const ContactBox: React.FC = () => {
                             borderRadius: "4px",
                             mt: 3,
                             input: {
-                                color: '#A8AEB5',
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                                fontSize: "18px",
+                                fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
                                     opacity: 1,
@@ -241,7 +243,9 @@ const ContactBox: React.FC = () => {
                             borderRadius: "4px",
                             mt: 3,
                             input: {
-                                color: '#A8AEB5',
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                                fontSize: "18px",
+                                fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
                                     opacity: 1,
@@ -292,7 +296,9 @@ const ContactBox: React.FC = () => {
                             borderRadius: "4px",
                             mt: 3,
                             input: {
-                                color: '#A8AEB5',
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                                fontSize: "18px",
+                                fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
                                     opacity: 1,
@@ -334,7 +340,9 @@ const ContactBox: React.FC = () => {
                             borderRadius: "4px",
                             mt: 3,
                             input: {
-                                color: '#A8AEB5',
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                            fontSize: "18px",
+                            fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
                                     opacity: 1,
@@ -574,7 +582,9 @@ const ContactBox: React.FC = () => {
                         borderColor: "#A8AEB5",
                         borderRadius: "4px",
                         input: {
-                            color: '#A8AEB5',
+                            color: currentMode === "light" ? "#333" : "#A8AEB5",
+                            fontSize: "18px",
+                            fontWeight: 400,
                             "&::placeholder": {
                                 color: "#A8AEB5",
                                 opacity: 1,
@@ -584,7 +594,7 @@ const ContactBox: React.FC = () => {
                     }}
                     inputProps={{
                         style: {
-                            color: currentMode === "light" ? "#A8AEB5" : "#A8AEB5",
+                            color: currentMode === "light" ? "#333" : "#A8AEB5",
                             opacity: 1,
                             fontWeight: 400,
                             fontSize: "18px",

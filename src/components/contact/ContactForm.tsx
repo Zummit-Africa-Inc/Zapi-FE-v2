@@ -21,7 +21,7 @@ const ContactForm: React.FC = () => {
     return (
         <Box
             sx={{
-                width: "90%",
+                // width: "90%",
                 display: "grid",
                 gridTemplateColumns: "3fr 2fr 7fr",
                 gridTemplateRows: "1fr 4fr 7fr",
@@ -30,6 +30,7 @@ const ContactForm: React.FC = () => {
                 "grid2 . grid3"`,
                 paddingLeft: "4rem",
                 paddingTop: "4rem",
+                paddingRight: "4rem",
                 paddingBottom: "4rem",
                 alignItems: "center",
                 "@media (max-width: 900px)": {
