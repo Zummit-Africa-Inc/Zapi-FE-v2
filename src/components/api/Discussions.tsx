@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Theme, Box } from "@mui/material";
-import { AddDiscussion, Spinner } from "../../components";
 import { APIType, DiscussionType } from "../../types";
 import AccordionDiscussion from "./discussion/AccordionDiscussion";
+import AddDiscussionButton from "./discussion/AddDiscussionButton";
 
 interface Props {
   discussions: Array<DiscussionType>;
@@ -15,7 +15,20 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
 
   return (
     <Box className={classes.root}>
-      <AddDiscussion />
+      <Box>
+        <Box
+          sx={{
+            display: "column",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            "@media screen and (max-width: 428px)": {
+              flexDirection: "column",
+            },
+          }}>
+          <AddDiscussionButton />
+        </Box>
+      </Box>
       <AccordionDiscussion api={api} discussions={discussions} />
     </Box>
   );
@@ -51,7 +64,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "14px",
     },
   },
-
 }));
 
 // Caching with react query
