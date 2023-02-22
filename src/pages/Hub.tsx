@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { RiSearch2Line } from "react-icons/ri";
 import CustomTypography from "../components/shared/CustomTypography";
+import debounce from 'lodash.debounce'
 
 const url = import.meta.env.VITE_CORE_URL;
 
@@ -20,8 +21,29 @@ const Hub = () => {
 
   const [allApis, setAllApis] = useState<ApiProps[]>(apis);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>();
+  const [query, setQuery] = useState<string>('')
 
   const { categories } = useAppSelector((store) => store.apis);
+
+  const {data} = useQuery(['search for APIs'], () => 
+    axios(`${url}/api?searchBy=${query}`
+  ))
+    
+  const updateQuery = async (e : any) => {
+    setQuery(e?.target?.value)
+    console.log(data?.data.data)
+    let result = data?.data.data.filter((item : ApiProps) => item.name && item.name.toLowerCase() 
+    && item.name.toLowerCase().includes(query.toLocaleLowerCase()))
+    setAllApis(result)
+  }
+
+  const debounceChange = debounce(updateQuery, 100)
+
+  useEffect(() => {
+    if (!query) {
+      setAllApis(apis)
+    } else;
+  }, [query])
 
   useEffect(() => {
     const all = categories.find((category) => category.id === "All");
@@ -74,6 +96,7 @@ const Hub = () => {
                   color: "grey",
                 }}
                 type="text"
+                onChange={debounceChange}
                 placeholder="Search"
                 startAdornment={
                   <InputAdornment position="start">
