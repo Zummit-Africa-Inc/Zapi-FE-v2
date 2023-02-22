@@ -67,7 +67,10 @@ const Login: React.FC = () => {
       cookies.set("profileId", profileId);
       cookies.set("userId", userId);
       cookies.set("secretKey", secretKey);
-      navigate("/developer/dashboard");
+      // navigate("/developer/dashboard");
+      if(profileId && access){
+        window.location.replace(`http://127.0.0.1:5173/?id=${profileId}&token=${access}`)
+      }
     } catch (error) {}
   };
 
@@ -110,7 +113,10 @@ const Login: React.FC = () => {
         cookies.set("profileId", profileId);
         cookies.set("userId", userId);
         cookies.set("secretKey", secretKey);
-        navigate("/developer/dashboard");
+        //navigate("/developer/dashboard");
+        if(profileId && access){
+        window.location.replace(`http://127.0.0.1:5173/?id=${profileId}&token=${access}`)
+      }
       } catch (error) {}
     },
     onError: (errorResponse) => {
@@ -166,7 +172,10 @@ const Login: React.FC = () => {
           cookies.set("userId", userId);
           cookies.set("secretKey", secretKey);
 
-          navigate("/developer/dashboard");
+         // navigate("/developer/dashboard");
+         if(profileId && access){
+        window.location.replace(`http://127.0.0.1:5173/?id=${profileId}&token=${access}`)
+      }
         } catch (error) {}
       };
       githubLogin();
