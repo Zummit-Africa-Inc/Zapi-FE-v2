@@ -31,7 +31,6 @@ const Hub = () => {
     
   const updateQuery = async (e : any) => {
     setQuery(e?.target?.value)
-    console.log(data?.data.data)
     let result = data?.data.data.filter((item : ApiProps) => item.name && item.name.toLowerCase() 
     && item.name.toLowerCase().includes(query.toLocaleLowerCase()))
     setAllApis(result)
