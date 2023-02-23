@@ -10,6 +10,7 @@ export { default as heroMedium } from "./hero-tablet.svg";
 export { default as heroSmall } from "./hero-mobile.svg";
 export { default as heroIllustration } from "./hero-illustration.svg";
 export { default as ibm } from "./ibm.svg";
+export { default as dropArrow } from "./dropArrow.svg";
 export { default as microsoft } from "./microsoft.svg";
 export { default as zapi } from "./zapi.svg";
 export { default as cmLearningAPI } from "./cmLearningAPI.svg";

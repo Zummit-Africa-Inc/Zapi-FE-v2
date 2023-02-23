@@ -25,12 +25,16 @@ export { default as PricingCard } from "./home/PricingCard";
 export { default as Blog } from "./home/Blog";
 export { default as GettingStarted } from "./home/gettingStarted";
 
+// dev
+export { default as DevNavbar } from "./dev/DevNavbar"
+
 // api
 export { default as APIMoreInfo } from "./api/APIMoreInfo";
 export { default as Endpoints } from "./api/Endpoints";
 export { default as Reviews } from "./api/Reviews";
 export { default as Rating } from "./api/Rating";
 export { default as Discussions } from "./api/Discussions";
+
 // fallback
 export { default as Fallback } from "./Fallback";
 

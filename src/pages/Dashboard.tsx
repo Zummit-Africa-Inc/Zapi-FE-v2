@@ -1,7 +1,11 @@
 import React from "react";
+import { DevNavbar } from "../components";
 
-const Dashboard = () => {
-  return <div>Dashboard</div>;
+
+const Dashboard: React.FC = () => {
+  return <div>
+    <DevNavbar />
+    </div>;
 };
 
 export default Dashboard;
