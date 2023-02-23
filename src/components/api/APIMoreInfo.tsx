@@ -7,12 +7,9 @@ import {
   AlarmOutlined,
   GroupOutlined,
 } from "@mui/icons-material";
-import { useQuery } from "@tanstack/react-query";
 import Cookies from "universal-cookie";
-import { useAppDispatch, useAppSelector, useHttpRequest } from "../../hooks";
+import { useAppSelector, useHttpRequest } from "../../hooks";
 import { toast } from "react-toastify";
-import { getSubscribedApis } from "../../redux/slices/userSlice";
-import { getApis } from "../../redux/slices/apiSlice";
 import { useAppContext } from "../../contexts/AppProvider";
 import { APIType } from "../../types";
 import { Rating } from "../";
@@ -32,7 +29,6 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 	const profileId = cookies.get("profileId");
 	const accessToken = cookies.get("accessToken");
 	const classes = useStyles();
-	const dispatch = useAppDispatch();
 	const { handleClicked, currentMode } = useAppContext();
 
 
@@ -54,20 +50,19 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 				headers
 			);
 			if(result === undefined) return
-
-			result.data.forEach((data: any) => {
-				if (data.id === api.id) return setIsSubscribed(true);
-			});
 			
 			return result.data;
 		} catch (error: any) {}
 	};
 
-	const { isLoading/*, error*/ } = useQuery({
-		queryKey: ["profileId", profileId],
-		queryFn: () => fetchSubscription(),
-	});
-
+	useEffect(() => {
+		fetchSubscription()
+		.then(data => {
+			data.forEach((data: any) => {
+				if (data.id === api.id) return setIsSubscribed(true);
+			});
+		})
+	}, []);
 
 
   const handleSubscription = async () => {
@@ -107,8 +102,6 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 		toast.success(`${message}`);
 	  } catch (error) {}
 	}
-	dispatch(getApis());
-	dispatch(getSubscribedApis(profileId));
   };
 
   const saveCategory = (category: any) => {
