@@ -25,23 +25,34 @@ const Hub = () => {
 
   const { categories } = useAppSelector((store) => store.apis);
 
-  const {data} = useQuery(['search for APIs'], () => 
-    axios(`${url}/api?searchBy=${query}`
-  ))
+  const {data} = useQuery({
+    queryKey: ['search for APIs'],
+    queryFn : () =>  axios(`${url}/api?searchBy=${query}`)
+  });
     
   const updateQuery = async (e : any) => {
-    setQuery(e?.target?.value)
-    let result = data?.data.data.filter((item : ApiProps) => item.name && item.name.toLowerCase() 
+    setQuery(e?.target?.value) 
+    let result = await data?.data.data.filter((item : ApiProps) => item.name && item.name.toLowerCase() 
     && item.name.toLowerCase().includes(query.toLocaleLowerCase()))
     setAllApis(result)
   }
 
-  const debounceChange = debounce(updateQuery, 100)
+  const debounceChange = debounce(updateQuery, 300)
+
+  const select = async () => {
+    const result = await axios(`${url}/categories/${selectedCategoryId}/apis`);
+    setAllApis(result?.data)
+  }
 
   useEffect(() => {
-    if (!query) {
-      setAllApis(apis)
-    } else;
+    const searchData = async () => {
+      if (!query) {
+        if (selectedCategoryId) {
+          select()
+        } else setAllApis(apis)
+      } else;
+    }
+    searchData()
   }, [query])
 
   useEffect(() => {
