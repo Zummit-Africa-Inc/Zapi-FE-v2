@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
 import {
   Typography,
@@ -9,23 +9,79 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { Spinner } from "../../../components";
+import { Spinner, InputField } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { SyntheticEvent } from "react-toastify/dist/utils";
+import { DiscussionType } from "../../../types";
+import { useParams } from "react-router-dom";
+import { useAppSelector } from "../../../hooks";
 
+const url = import.meta.env.VITE_CORE_URL;
 interface Props {
   onClose: () => void;
 }
 
 const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const classes = useStyles();
+  const cookies = new Cookies();
   const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
   const { loading, sendRequest } = useHttpRequest();
+  const profileId = cookies.get("profileId");
+  const [apiId, setApiId] = useState<any>("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    setApiId(id);
+  }, [setApiId]);
+
+  const mutation: UseMutationResult<
+    DiscussionType,
+    Error,
+    DiscussionType,
+    Error
+  > = useMutation<DiscussionType, Error, DiscussionType, Error>(
+    ["postDiscussion"],
+    ({ body, title, apiId: api_id, profileId: profile_id }) =>
+      fetch(`${url}/discussion`, {
+        method: "POST",
+        body: JSON.stringify({
+          body,
+          title,
+          api_id,
+          profile_id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+        },
+      }).then((res) => res.json()),
+    {
+      onSuccess: (data) => {
+        console.log("Post successfully created!", data);
+      },
+    }
+  );
 
   return (
     <>
       <Box className={classes.form}>
+        <InputField
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e: any) => setTitle(e.target.value)}
+          placeholder="Enter Title"
+          style={{
+            background: currentMode === "dark" ? "#383838" : "#FFF",
+            color: currentMode === "dark" ? "#FFF" : "#000",
+          }}
+        />
         <TextareaAutosize
           aria-label="minimum height"
           maxRows={6}
@@ -66,7 +122,10 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
           }}>
           Cancel
         </Button>
-        <button
+        <Button
+          onClick={() => {
+            mutation.mutate({ body, title, apiId, profileId });
+          }}
           style={{
             outline: "none",
             border: "none",
@@ -84,8 +143,8 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
             cursor: "pointer",
           }}
           type="submit">
-          {loading ? <Spinner /> : "Submit"}
-        </button>
+          {mutation.isLoading ? <Spinner /> : "Submit"}
+        </Button>
       </Box>
     </>
   );
