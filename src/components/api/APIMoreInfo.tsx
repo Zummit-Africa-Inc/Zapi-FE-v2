@@ -9,6 +9,7 @@ import {
 } from "@mui/icons-material";
 import Cookies from "universal-cookie";
 import { useAppSelector, useHttpRequest } from "../../hooks";
+import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useAppContext } from "../../contexts/AppProvider";
 import { APIType } from "../../types";
@@ -19,6 +20,7 @@ const core_url = "VITE_CORE_URL";
 interface Props {
   api: APIType;
 }
+
 
 const APIMoreInfo: React.FC<Props> = ({ api }) => {
 	const { error, loading, sendRequest } = useHttpRequest();
@@ -49,68 +51,83 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 				{}, 
 				headers
 			);
-			if(result === undefined) return
-			
-			return result.data;
+
+			if(result.status === "200") return result.data;
 		} catch (error: any) {}
 	};
 
-	useEffect(() => {
-		fetchSubscription()
-		.then(data => {
-			data.forEach((data: any) => {
-				if (data.id === api.id) return setIsSubscribed(true);
-			});
-		})
-	}, []);
+	try {
+		const { data } = useQuery({
+			queryKey: ['userSubs', profileId],
+			queryFn: fetchSubscription,
+			staleTime: 60000,
+			cacheTime: 60000,
+		});
+
+		useEffect(() => {
+			if(data) {
+				data.forEach((result: any) => {
+					if(result.id === api.id) {
+						setIsSubscribed(true)
+						return;
+					}
+				});
+			}
+		}, [data]);
+		
+	} catch (error: any) {
+		toast.error(`${error.message}`)
+	}
+
+		
 
 
-  const handleSubscription = async () => {
-	const headers = {
-	  "Content-Type": "application/json",
-	  "X-Zapi-Auth-Token": `Bearer ${accessToken}`,
+	const handleSubscription = async () => {
+		const headers = {
+		"Content-Type": "application/json",
+		"X-Zapi-Auth-Token": `Bearer ${accessToken}`,
+		};
+
+		if (!isSubscribed) {
+		try {
+			const data = await sendRequest(
+			`/subscription/subscribe/${api.id}`,
+			"post",
+			core_url,
+			{ },
+			headers,
+			{ profileId },
+			);
+			if (!data || data === undefined) return;
+			const { message } = data;
+			toast.success(`${message}`);
+			setIsSubscribed(true);
+		} catch (error) {}
+		} else {
+		try {
+			const data = await sendRequest(
+			`/subscription/unsubscribe/${api.id}`,
+			"post",
+			core_url,
+			{ },
+			headers,
+			{ profileId },
+			);
+			if (!data || data == undefined) return;
+			const { message } = data;
+			setIsSubscribed(false);
+			toast.success(`${message}`);
+		} catch (error) {}
+		}
 	};
 
-	if (!isSubscribed) {
-	  try {
-		const data = await sendRequest(
-		  `/subscription/subscribe/${api.id}`,
-		  "post",
-		  core_url,
-		  { },
-		  headers,
-		  { profileId },
-		);
-		if (!data || data === undefined) return;
-		const { message } = data;
-		toast.success(`${message}`);
-		setIsSubscribed(true);
-	  } catch (error) {}
-	} else {
-	  try {
-		const data = await sendRequest(
-		  `/subscription/unsubscribe/${api.id}`,
-		  "post",
-		  core_url,
-		  { },
-		  headers,
-		  { profileId },
-		);
-		if (!data || data == undefined) return;
-		const { message } = data;
-		setIsSubscribed(false);
-		toast.success(`${message}`);
-	  } catch (error) {}
-	}
-  };
+	const saveCategory = (category: any) => {
+		localStorage.setItem("category", category);
+	};
 
-  const saveCategory = (category: any) => {
-	localStorage.setItem("category", category);
-  };
-
-  useEffect(() => {
-	error && toast.error(`${error}`);
-  }, [error]);
+	useEffect(() => {
+		error && toast.error(`${error}`);
+	}, [error]);
 
   return (
 	<>
