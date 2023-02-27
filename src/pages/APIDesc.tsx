@@ -5,6 +5,7 @@ import { makeStyles, styled } from "@mui/styles";
 import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
 import { useHttpRequest } from "../hooks";
+import { useQuery } from "@tanstack/react-query";
 
 import {
 	Loader,
@@ -46,82 +47,98 @@ const CustomTab = styled(Tab)({
 });
 
 const APIDesc = () => {
-  const { error, loading, sendRequest } = useHttpRequest();
-  const [tab, setTab] = useState<number>(0);
-  const [api, setApi] = useState<APIType | null>(null);
-  const [reviews, setReviews] = useState<Array<ReviewType> | null>(null);
-  const [endpoints, setEndpoints] = useState<Array<EndpointsType> | null>(null);
-  const [discussions, setDiscussions] = useState<Array<DiscussionType> | null>(
-	null
-  );
-  const cookies = new Cookies();
-  const classes = useStyles();
-  const { id } = useParams();
-  const getApiData = async (apiId: string | undefined) => {
-	if (!apiId) return;
+	const { error, loading, sendRequest } = useHttpRequest();
+	const [tab, setTab] = useState<number>(0);
+	const [api, setApi] = useState<APIType | null>(null);
+	const [reviews, setReviews] = useState<Array<ReviewType> | null>(null);
+	const [endpoints, setEndpoints] = useState<Array<EndpointsType> | null>(null);
+	const [discussions, setDiscussions] = useState<Array<DiscussionType> | null>(
+		null
+	);
+	const cookies = new Cookies();
+	const classes = useStyles();
+	const { id } = useParams();
+	
+  
 	const headers = {
-	  "Content-Type": "application/json",
-	  "X-Zapi-Auth_Token": `Bearer ${cookies.get("accessToken")}`,
+		'Content-Type': "application/json",
+		'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
+	}
+
+  	const fetchAPIDesc = async () => {
+		try {
+			const reviewData = await sendRequest(
+				`/api/reviews/${id}`,
+				"get",
+				core_url,
+				{},
+				headers
+			);
+
+			const apiData = await sendRequest(
+				`/api/findOne/${id}`,
+				"get",
+				core_url,
+				{},
+				headers
+			);
+			const endpointsData = await sendRequest(
+				`/endpoints/${id}`,
+				"get",
+				core_url,
+				{},
+				headers
+			);
+			const apiDiscussion = await sendRequest(
+				`/discussion/api/${id}`,
+				"get",
+				core_url,
+				{},
+				headers
+			);
+				
+			if (
+				reviewData === undefined ||
+				apiData === undefined ||
+				endpointsData === undefined ||
+				apiDiscussion === undefined
+			) {
+				window.location.href = "/api-hub";
+			}
+
+			return [ reviewData.data, apiData.data, endpointsData.data, apiDiscussion.data ]
+			
+			
+		} catch (error: any) {}
 	};
+	
+
 	try {
-	  const reviewData = await sendRequest(
-		`/api/reviews/${apiId}`,
-		"get",
-		core_url,
-		{},
-		headers
-	  );
-	  const apiData = await sendRequest(
-		`/api/findOne/${apiId}`,
-		"get",
-		core_url,
-		{},
-		headers
-	  );
-	  const endpointsData = await sendRequest(
-		`/endpoints/${apiId}`,
-		"get",
-		core_url,
-		{},
-		headers
-	  );
-	  const apiDiscussion = await sendRequest(
-		`/discussion/api/${apiId}`,
-		"get",
-		core_url,
-		{},
-		headers
-	  );
+		const { data } = useQuery({
+			queryKey: ['apidesc', id],
+			queryFn: fetchAPIDesc,
+			staleTime: 60000,
+			cacheTime: 60000,
+		});
 
-	  const [api, endpoints, discussions, reviews] = await Promise.all([
-		apiData,
-		endpointsData,
-		apiDiscussion,
-		reviewData,
-	  ]);
-	  if (
-		api === undefined ||
-		endpoints === undefined ||
-		discussions === undefined ||
-		reviews === undefined
-	  ) {
-		window.location.href = "/api-hub";
-	  }
-	  setApi(api.data);
-	  setReviews(reviews.data);
-	  setEndpoints(endpoints.data);
-	  setDiscussions(discussions.data);
-	} catch (error) {}
-  };
+		useEffect(() => {
+			if(data) {
+				setReviews(data[0]);
+				setApi(data[1]);
+				setEndpoints(data[2]);
+				setDiscussions(data[3]);
+			}
+		}, [data]);
+		
+	} catch (error: any) {
+		toast.error(`${error.message}`)
+	}
 
-  const memoizedApiCall = useMemo(() => getApiData(id), []);
+
 
   const handleTabChange = (e: ChangeEvent<unknown>, value: number) =>
 	setTab(value);
 
-  useEffect(() => {
-	memoizedApiCall;
-  }, []);
   localStorage.setItem("api_id", JSON.stringify(api?.id));
 
   useEffect(() => {
@@ -174,7 +191,7 @@ const APIDesc = () => {
               </TabPanel>
 
 			  <TabPanel value={tab} index={2}>
-				<Reviews reviews={reviews} />
+				<Reviews api={api} reviews={reviews} />
 			  </TabPanel>
 			</Box>
 		  </Box>

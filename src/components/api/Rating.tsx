@@ -23,6 +23,7 @@ const RatingComponent:React.FC<Props> = ({apiId, onClose}) => {
   const classes = useStyles();
   const cookies = new Cookies();
 
+
   const handleRating = async(e: FormEvent) => {
 	e.preventDefault()
 	if(!rating) return toast.error('Please add a rating')
@@ -31,13 +32,21 @@ const RatingComponent:React.FC<Props> = ({apiId, onClose}) => {
 	  'Content-Type': "application/json",
 	  'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
 	}
-	const payload = {rating, review}
+	const profileId = cookies.get("profileId");
+	const payload = {review, rating, reviewer: profileId}
 	try {
-	  const data = await sendRequest(`/api/rate-api/${cookies.get("profileId")}/${apiId}`, "post", core_url, payload, headers)
+	  const data = await sendRequest(
+		`/api/rate-api/${profileId}/${apiId}`, 
+		"post", 
+		core_url, 
+		payload, 
+		headers
+	)
 	  if(data === undefined) return
 	  toast.success(`${data.message}`)
 	} catch (error: any) {}
-	return () => onClose()
+	
+    return () => onClose();
   }
   
   useEffect(() => {
@@ -179,4 +188,3 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
 }));
-
