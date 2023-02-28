@@ -9,16 +9,14 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { Spinner, InputField } from "../../../components";
+import { Spinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import axios from "axios";
 import Cookies from "universal-cookie";
-import { SyntheticEvent } from "react-toastify/dist/utils";
 import { DiscussionType } from "../../../types";
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
+import { toast } from "react-toastify";
 
 const url = import.meta.env.VITE_CORE_URL;
 interface Props {
@@ -30,7 +28,6 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const cookies = new Cookies();
   const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
   const { loading, sendRequest } = useHttpRequest();
   const profileId = cookies.get("profileId");
   const [apiId, setApiId] = useState<any>("");
@@ -47,12 +44,11 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
     Error
   > = useMutation<DiscussionType, Error, DiscussionType, Error>(
     ["postDiscussion"],
-    ({ body, title, apiId: api_id, profileId: profile_id }) =>
+    ({ body, apiId: api_id, profileId: profile_id }) =>
       fetch(`${url}/discussion`, {
         method: "POST",
         body: JSON.stringify({
           body,
-          title,
           api_id,
           profile_id,
         }),
@@ -62,8 +58,9 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
         },
       }).then((res) => res.json()),
     {
-      onSuccess: (data) => {
-        console.log("Post successfully created!", data);
+      onSuccess: () => {
+        toast.success("post Successful!");
+        setBody("");
       },
     }
   );
@@ -71,17 +68,6 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   return (
     <>
       <Box className={classes.form}>
-        <InputField
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e: any) => setTitle(e.target.value)}
-          placeholder="Enter Title"
-          style={{
-            background: currentMode === "dark" ? "#383838" : "#FFF",
-            color: currentMode === "dark" ? "#FFF" : "#000",
-          }}
-        />
         <TextareaAutosize
           aria-label="minimum height"
           maxRows={6}
@@ -124,7 +110,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
         </Button>
         <Button
           onClick={() => {
-            mutation.mutate({ body, title, apiId, profileId });
+            mutation.mutate({ body, apiId, profileId });
           }}
           style={{
             outline: "none",

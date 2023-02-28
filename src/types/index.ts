@@ -69,7 +69,7 @@ export type UserProfileType = {
 
 export type DiscussionType = {
   id?: string | undefined;
-  title: string;
+  // title: string;
   apiId?: string;
   body: string;
   profileId?: string;
