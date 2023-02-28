@@ -1,24 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Box, Button, TextareaAutosize } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
+import { toast } from "react-toastify";
+import Cookies from "universal-cookie";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
 import { Spinner } from "../../../components";
 
 interface props {
+  apiId: string | undefined
   onClose: () => void;
 }
 
-const ReviewTextField: React.FC<props> = ({ onClose }) => {
+const core_url = "VITE_CORE_URL";
+
+const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
   const { currentMode } = useAppContext();
   const classes = useStyles();
-  const { loading, sendRequest } = useHttpRequest();
-  const [body, setBody] = useState<string>("");
+  const {error, loading, sendRequest} = useHttpRequest();
+  const [review, setReview] = useState<string>("");
+  const cookies = new Cookies();
+
+  const handleRating = async(e: FormEvent) => {
+    e.preventDefault()
+    if(!review) return toast.error('Please add a comment')
+    const headers = {
+      'Content-Type': "application/json",
+      'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
+    }
+    const profileId = cookies.get("profileId");
+    const payload = {review, rating: 5, reviewer: profileId};
+
+    try {
+      const data = await sendRequest(
+        `/api/rate-api/${profileId}/${apiId}`, 
+        "post", 
+        core_url, 
+        payload, 
+        headers
+      );
+      if(data === undefined) return
+      toast.success(`${data.message}`)
+    } catch (error: any) {}
+    
+    return () => onClose();
+  }
+  
+  useEffect(() => {
+    error && toast.error(`${error}`)
+  },[error])
+  
+
 
   return (
     <Box className="textareaandbutton">
-      <Box className={classes.form}>
+      <Box component="form" onSubmit={handleRating} className={classes.form}>
         <TextareaAutosize
           aria-label="minimum height"
           maxRows={6}
@@ -35,9 +72,9 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             color: "BEC2C8",
             background: currentMode === "dark" ? "#121212" : "#FFFFFF",
           }}
-          value={body}
+          value={review}
           required
-          onChange={(e) => setBody(e.target.value)}
+          onChange={(e) => setReview(e.target.value)}
         />
       </Box>
 
@@ -49,7 +86,8 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
           marginLeft: "auto",
           justifyContent: "flex-end",
           alignItems: "flex-end",
-        }}>
+        }}
+      >
         <Button
           variant={'outlined'}
           type="button"
@@ -60,7 +98,8 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
           }}>
           Cancel
         </Button>
-        <button
+
+        <Button
           style={{
             outline: "none",
             border: "none",
@@ -77,9 +116,11 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             textAlign: "center",
             cursor: "pointer",
           }}
-          type="submit">
+          type="submit"
+          onClick={handleRating}
+        >
           {loading ? <Spinner /> : "Submit"}
-        </button>
+        </Button>
       </Box>
     </Box>
   );

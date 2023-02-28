@@ -152,7 +152,7 @@ export type User = {
 export type ReviewType = {
   rating: number;
   review: string;
-  by: User;
+  createdBy: User;
 };
 
 export type SubscribedUser = {
