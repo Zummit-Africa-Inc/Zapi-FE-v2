@@ -206,7 +206,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "50%",
     padding: "4px",
   },
-  fullWidth: {
+  fullwidth: {
     width: "100%",
   },
 }));

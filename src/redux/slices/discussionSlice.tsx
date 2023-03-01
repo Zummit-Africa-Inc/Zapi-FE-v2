@@ -18,9 +18,7 @@ const initialState: DiscussionState = {
   error: null,
 };
 
-export const getDiscussions = createAsyncThunk(
-  "/getapidiscussions",
-  async (apiId: any, thunkAPI) => {
+export const getDiscussions = createAsyncThunk("/getapidiscussions", async (apiId: any, thunkAPI) => {
     const headers = {
       "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
     };

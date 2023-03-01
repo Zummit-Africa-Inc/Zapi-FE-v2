@@ -8,10 +8,9 @@ import {
   GroupOutlined,
 } from "@mui/icons-material";
 import Cookies from "universal-cookie";
-import { useAppDispatch, useAppSelector, useHttpRequest } from "../../hooks";
+import { useAppSelector, useHttpRequest } from "../../hooks";
+import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { getSubscribedApis } from "../../redux/slices/userSlice";
-import { getApis } from "../../redux/slices/apiSlice";
 import { useAppContext } from "../../contexts/AppProvider";
 import { APIType } from "../../types";
 import { Rating } from "../";
@@ -22,77 +21,113 @@ interface Props {
   api: APIType;
 }
 
+
 const APIMoreInfo: React.FC<Props> = ({ api }) => {
-  const { error, loading, sendRequest } = useHttpRequest();
-  const { categories } = useAppSelector((store) => store.apis);
-  const [isRatingOpen, setIsRatingOpen] = useState<boolean>(false);
-  // const { subscribedApis } = useAppSelector((store) => store.user);
-  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
-  const cookies = new Cookies();
-  const profileId = cookies.get("profileId");
-  const accessToken = cookies.get("accessToken");
-  const classes = useStyles();
-  const dispatch = useAppDispatch();
-  const { handleClicked, currentMode } = useAppContext();
+	const { error, loading, sendRequest } = useHttpRequest();
+	const { categories } = useAppSelector((store) => store.apis);
+	const [isRatingOpen, setIsRatingOpen] = useState<boolean>(false);
+	const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+	const cookies = new Cookies();
+	const profileId = cookies.get("profileId");
+	const accessToken = cookies.get("accessToken");
+	const classes = useStyles();
+	const { handleClicked, currentMode } = useAppContext();
 
-  const category = categories.find(
-	(category) => category.id === api.categoryId
-  );
 
-  // useEffect(() => {
-  //     subscribedApis.forEach((api: any) => {
-  //         if (api.apiId === api.id) return setIsSubscribed(true);
-  //     });
-  // }, []);
+	const category = categories.find(
+		(category) => category.id === api.categoryId
+	);
 
-  const handleSubscription = async () => {
 	const headers = {
-	  "Content-Type": "application/json",
-	  "X-Zapi-Auth-Token": `Bearer ${accessToken}`,
+		'Content-Type': "application/json",
+		'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
+	}
+  	const fetchSubscription = async () => {
+		try {
+			const result = await sendRequest(
+				`/subscription/user-subscriptions/${profileId}`, 
+				"get", 
+				core_url, 
+				{}, 
+				headers
+			);
+
+			if(result.status === "200") return result.data;
+		} catch (error: any) {}
 	};
 
-	if (!isSubscribed) {
-	  try {
-		const data = await sendRequest(
-		  `/subscription/subscribe/${api.id}`,
-		  "post",
-		  core_url,
-		  undefined,
-		  headers,
-		  { profileId }
-		);
-		if (!data || data === undefined) return;
-		const { message } = data;
-		toast.success(`${message}`);
-		setIsSubscribed(true);
-	  } catch (error) {}
-	} else {
-	  try {
-		const data = await sendRequest(
-		  `/subscription/unsubscribe/${api.id}`,
-		  "post",
-		  core_url,
-		  undefined,
-		  headers,
-		  { profileId }
-		);
-		if (!data || data == undefined) return;
-		const { message } = data;
-		setIsSubscribed(false);
-		toast.success(`${message}`);
-	  } catch (error) {}
+	try {
+		const { data } = useQuery({
+			queryKey: ['userSubs', profileId],
+			queryFn: fetchSubscription,
+			staleTime: 60000,
+			cacheTime: 60000,
+		});
+
+		useEffect(() => {
+			if(data) {
+				data.forEach((result: any) => {
+					if(result.id === api.id) {
+						setIsSubscribed(true)
+						return;
+					}
+				});
+			}
+		}, [data]);
+		
+	} catch (error: any) {
+		toast.error(`${error.message}`)
 	}
-	dispatch(getApis());
-	dispatch(getSubscribedApis(profileId));
-  };
 
-  const saveCategory = (category: any) => {
-	localStorage.setItem("category", category);
-  };
+		
 
-  useEffect(() => {
-	error && toast.error(`${error}`);
-  }, [error]);
+
+	const handleSubscription = async () => {
+		const headers = {
+		"Content-Type": "application/json",
+		"X-Zapi-Auth-Token": `Bearer ${accessToken}`,
+		};
+
+		if (!isSubscribed) {
+		try {
+			const data = await sendRequest(
+			`/subscription/subscribe/${api.id}`,
+			"post",
+			core_url,
+			{ },
+			headers,
+			{ profileId },
+			);
+			if (!data || data === undefined) return;
+			const { message } = data;
+			toast.success(`${message}`);
+			setIsSubscribed(true);
+		} catch (error) {}
+		} else {
+		try {
+			const data = await sendRequest(
+			`/subscription/unsubscribe/${api.id}`,
+			"post",
+			core_url,
+			{ },
+			headers,
+			{ profileId },
+			);
+			if (!data || data == undefined) return;
+			const { message } = data;
+			setIsSubscribed(false);
+			toast.success(`${message}`);
+		} catch (error) {}
+		}
+	};
+
+	const saveCategory = (category: any) => {
+		localStorage.setItem("category", category);
+	};
+
+	useEffect(() => {
+		error && toast.error(`${error}`);
+	}, [error]);
 
   return (
 	<>
@@ -167,12 +202,12 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
               Rate
             </Button>
             <Button
-              variant="contained"
-              className={classes.subscribe_button}
+              variant={!isSubscribed ? "contained" : "outlined"}
+              className={!isSubscribed ? classes.subscribe_button : classes.unsubscribe_button}
               onClick={
                 accessToken ? handleSubscription : () => handleClicked("login")
               }>
-              {"Subscribe"}
+			  	{isSubscribed ? "Unsubscribe" : "Subscribe"}
             </Button>
           </Stack>
         </Box>
@@ -373,30 +408,60 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
   },
 
-  subscribe_button: {
-	display: "flex",
-	flexDirection: "row",
-	alignItems: "center",
-	backgroundColor: theme.shadows[9],
-	border: "1px solid transparent",
-	color: theme.shadows[10],
-	borderRadius: "5px",
-	fontSize: "13px",
-	fontWeight: "bold !important",
-	textTransform: "capitalize",
-	minWidth: "130px !important",
-	height: "2.4rem",
+  	subscribe_button: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		backgroundColor: theme.shadows[9],
+		border: "1px solid transparent",
+		color: theme.shadows[10],
+		borderRadius: "5px",
+		fontSize: "13px",
+		fontWeight: "bold !important",
+		textTransform: "capitalize",
+		minWidth: "130px !important",
+		height: "2.4rem",
 
-	"@media screen and (max-width: 900px)": {
-	  fontSize: "11px",
-	  minWidth: "100px",
-	  height: "2.2rem",
+		"@media screen and (max-width: 900px)": {
+		fontSize: "11px",
+		minWidth: "100px",
+		height: "2.2rem",
+		},
+
+		"@media screen and (max-width: 428px)": {
+		fontSize: "11px",
+		minWidth: "100px",
+		height: "2.2rem",
+		},
+
 	},
 
-	"@media screen and (max-width: 428px)": {
-	  fontSize: "11px",
-	  minWidth: "100px",
-	  height: "2.2rem",
+	unsubscribe_button: {
+		background: "unset",
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		border: `1px solid ${theme.shadows[9]}`,
+		color: theme.shadows[9],
+		borderRadius: "5px",
+		fontSize: "13px",
+		fontWeight: "bold !important",
+		textTransform: "capitalize",
+		minWidth: "130px !important",
+		height: "2.4rem",
+
+		"@media screen and (max-width: 900px)": {
+			fontSize: "11px",
+			minWidth: "100px",
+			height: "2.2rem",
+		},
+
+		"@media screen and (max-width: 428px)": {
+			fontSize: "11px",
+			minWidth: "100px",
+			height: "2.2rem",
+		},
+	
 	},
-  },
+	
 }));

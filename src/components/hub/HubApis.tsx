@@ -27,32 +27,6 @@ const HubApis = ({ apis }: IHubApis) => {
         <ApiNotFound />
       ) : (
         <>
-          <Box className={classes.titleBarContainer}>
-            <CustomTypography
-              variant="h5"
-              className={classes.typography}
-              text="Select from the available APIs below"
-            />
-            <FormControl
-              className={classes.searchInput}
-              variant="outlined"
-              size="small">
-              <OutlinedInput
-                style={{
-                  color: "grey",
-                }}
-                type="text"
-                placeholder="Search"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <IconButton edge="start">
-                      <RiSearch2Line />
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          </Box>
           <Box className={classes.apiContainer}>
             <Box className={classes.apis} component={"div"}>
               {apis?.map((api) => (

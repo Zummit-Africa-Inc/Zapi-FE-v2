@@ -1,69 +1,36 @@
-import { useState, useEffect } from "react";
-import { Box, Button, TextareaAutosize } from "@mui/material";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { Theme } from "@mui/material";
-import { toast } from "react-toastify";
-import Cookies from "universal-cookie";
+import {
+  Typography,
+  Theme,
+  Box,
+  IconButton,
+  TextareaAutosize,
+  Button,
+  Stack,
+} from "@mui/material";
+import { Spinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
-import { Spinner, InputField } from "../../../components";
-import { useParams } from "react-router-dom";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { DiscussionType } from "../../../types";
 
-const url = import.meta.env.VITE_CORE_URL;
-
-interface props {
-  apiId: string | undefined
+interface Props {
   onClose: () => void;
 }
 
-const ReviewTextField: React.FC<props> = ({ onClose }) => {
-  const cookies = new Cookies();
-  const profileId = cookies.get("profileId")
-  const { id } = useParams()
-  const { currentMode } = useAppContext();
+const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const classes = useStyles();
-  const { loading, sendRequest } = useHttpRequest();
+  const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
-  const [apiId, setApiId] = useState<any>("");
- // const [title, setTitle ] = useState<string>("");
-
-  
-  useEffect(() => {
-    setApiId(id)
-  }, [setApiId])
-
-  const mutation: UseMutationResult<DiscussionType, Error, DiscussionType, Error> 
-  = useMutation<DiscussionType, Error, DiscussionType, Error>(({ body, apiId: api_id, profileId: profile_id }) =>
-  fetch(`${url}/review/${apiId}/${profileId}`, {
-    method: "POST",
-    body: JSON.stringify({
-      body,
-      api_id,
-      profile_id
-    }),
-    headers: {
-      "Content-Type": "application/json",
-      "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
-    },
-  }).then((res) => res.json()),
-{
-  onSuccess: (data) => {
-    console.log("Post successfully created!", data)
-    setBody("")
-  }
-}
-)
+  const { loading, sendRequest } = useHttpRequest();
 
   return (
-    <Box className="textareaandbutton">
-      <Box component="form" className={classes.form}>
+    <>
+      <Box className={classes.form}>
         <TextareaAutosize
           aria-label="minimum height"
           maxRows={6}
           minRows={6}
-          placeholder="Leave a Review"
+          placeholder="Start a Discussion here.."
           style={{
             width: "99%",
             height: "30%",
@@ -72,7 +39,7 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             fontSize: "1em",
             borderRadius: "10px",
             borderColor: "#BEC2C8",
-            color: "BEC2C8",
+            color: "#BEC2C8",
             background: currentMode === "dark" ? "#121212" : "#FFFFFF",
           }}
           value={body}
@@ -80,7 +47,6 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
           onChange={(e) => setBody(e.target.value)}
         />
       </Box>
-
       <Box
         sx={{
           gap: "1rem",
@@ -89,19 +55,18 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
           marginLeft: "auto",
           justifyContent: "flex-end",
           alignItems: "flex-end",
-        }}
-      >
+        }}>
         <Button
-          variant={'outlined'}
+          variant={"outlined"}
+          className={classes.btnClose}
           type="button"
           onClick={() => onClose()}
-          className={classes.btnclose}
-          sx={{
+          style={{
             background: currentMode === "dark" ? "#121212" : "#FFFFFF",
           }}>
           Cancel
         </Button>
-        <Button
+        <button
           style={{
             outline: "none",
             border: "none",
@@ -118,18 +83,13 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             textAlign: "center",
             cursor: "pointer",
           }}
-          onClick={() => {
-            mutation.mutate({ body, apiId, profileId })
-          }}
           type="submit">
           {loading ? <Spinner /> : "Submit"}
-        </Button>
+        </button>
       </Box>
-    </Box>
+    </>
   );
 };
-
-export default ReviewTextField;
 
 const useStyles = makeStyles((theme: Theme) => ({
   form: {
@@ -137,10 +97,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "-10px",
     "@media screen and (max-width: 870px)": {
       marginTop: "-40px",
-      width: "100%"
+      width: "100%",
     },
   },
-  btnclose: {
+  btnClose: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -153,6 +113,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: "#929AA3",
     border: "1px solid #929AA3",
     borderRadius: "4px",
-    borderColor: "#BEC2C8",
   },
 }));
+
+export default DiscussionTextField;

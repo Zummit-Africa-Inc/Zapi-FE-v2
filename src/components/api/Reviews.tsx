@@ -6,9 +6,11 @@ import { ReviewType } from "../../types";
 import UsersReview from "./Review/UsersReview";
 interface Props {
   reviews: Array<ReviewType>;
+  api: any;
 }
 
-const Reviews: React.FC<Props> = ({ reviews }) => {
+
+const Reviews: React.FC<Props> = ({ api, reviews }) => {
   const classes = useStyles();
 
   return (
@@ -16,7 +18,7 @@ const Reviews: React.FC<Props> = ({ reviews }) => {
       <Box className={classes.wrap}>
         <Typography component="h2">Reviews</Typography>
         <Box className={classes.textWrapper}>
-          <AddReview />
+          <AddReview api={api} />
         </Box>
       </Box>
       <UsersReview reviews={reviews} />

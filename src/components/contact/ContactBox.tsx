@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
     Button,
     Radio,
@@ -15,14 +15,128 @@ import {
     Box,
     FormControlLabel,
 } from "@mui/material";
+import { toast } from "react-toastify";
 import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useAppContext } from "../../contexts/AppProvider";
 import { AttachFile } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useHttpRequest } from "../../hooks";
+
 
 const ContactBox: React.FC = () => {
+
+    const url = "VITE_CORE_URL";
+
+
     const classes = useStyles();
     const { currentMode } = useAppContext();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [org_name, setOrgName] = useState("");
+    const [phone_call, setPhoneCall] = useState(false);
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [goal, setGoal] = useState("");
+    const [checked, setChecked] = useState(false);
+    const [file, setFile] = useState<File | null>(null);
+    const [firstNameError, setFirstNameError] = useState(false);
+    const [lastNameError, setLastNameError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [messageError, setMessageError] = useState(false);
+    const [checkedError, setCheckedError] = useState(false);
+    const { error, loading, sendRequest } = useHttpRequest();
+
+    const goalEnum = {
+        Partnership: "partnership",
+        Support: "support",
+        Pricing: "pricing",
+        Api: "api",
+        Other: "other",
+    };
+
+    const handleGoalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGoal((event.target as HTMLInputElement).value);
+    };
+
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPhoneCall(event.target.checked);
+    };
+
+    const sendContactMessage = async () => {
+        const headers = {
+            "Content-Type": "application/json",
+        };
+
+        const payload = {
+            firstname: firstName,
+            lastname: lastName,
+            org_name: org_name,
+            phone_call: phone_call,
+            email: email,
+            message: message,
+            goal: goal,
+        }
+
+        if (!firstName) {
+            setFirstNameError(true);
+            toast.error("Please fill the first name field");
+        }
+        if (!lastName) {
+            setLastNameError(true);
+            toast.error("Please fill the last name field");
+        }
+        if (!email) {
+            setEmailError(true);
+            toast.error("Please fill the email field");
+        }
+        if (!message) {
+            setMessageError(true);
+            toast.error("Please fill the message field");
+        }
+        if (!checked) {
+            setCheckedError(true);
+            toast.error("Please agree to the zapi.ai Privacy Policy");
+            return
+        }
+
+        try {
+            const data = await sendRequest(
+                `/contactUs/create`,
+                "post",
+                url,
+                payload,
+                headers
+            );
+            const { success } = data;
+
+            if (!success || success === false) {
+                return;
+            } else {
+                toast.success(`Thanks, someone will attend to your request`);
+                setFirstName("");
+                setLastName("");
+                setOrgName("");
+                setPhoneCall(false);
+                setEmail("");
+                setMessage("");
+                setGoal("");
+                setChecked(false);
+                setFirstNameError(false);
+                setLastNameError(false);
+                setEmailError(false);
+                setMessageError(false);
+                setCheckedError(false);
+
+            }
+
+        } catch (error) {
+            toast.error(`${error}`);
+        }
+    };
+
+
+
     return (
         <Paper
             elevation={3}
@@ -61,7 +175,7 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="first-name"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -70,9 +184,13 @@ const ContactBox: React.FC = () => {
                         First Name*
                     </InputLabel>
                     <TextField
-                        id="my-input"
+                        id="first-name"
                         aria-describedby="my-helper-text"
                         placeholder="Enter first name"
+                        onChange={(e) => setFirstName(e.target.value)}
+                        value={firstName}
+                        required
+                        error={firstNameError}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -80,11 +198,13 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                                fontSize: "18px",
+                                fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
@@ -99,7 +219,7 @@ const ContactBox: React.FC = () => {
                         marginTop: 0,
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="last-name"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -108,9 +228,13 @@ const ContactBox: React.FC = () => {
                         Last Name*
                     </InputLabel>
                     <TextField
-                        id="my-input"
+                        id="last-name"
                         placeholder="Enter last name"
-                        aria-describedby="my-helper-text"
+                        aria-describedby="last-name-helper-text"
+                        onChange={(e) => setLastName(e.target.value)}
+                        value={lastName}
+                        required
+                        error={lastNameError}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -118,11 +242,13 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                                fontSize: "18px",
+                                fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
@@ -148,7 +274,7 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="org-name"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -158,8 +284,10 @@ const ContactBox: React.FC = () => {
                     </InputLabel>
                     <TextField
                         placeholder="Enter company's name"
-                        id="my-input"
-                        aria-describedby="my-helper-text"
+                        id="org-name"
+                        aria-describedby="org-name-helper-text"
+                        onChange={(e) => setOrgName(e.target.value)}
+                        value={org_name}
                         sx={{
                             color: "#A8AEB5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -167,11 +295,13 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                                fontSize: "18px",
+                                fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
@@ -186,7 +316,7 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                     }}>
                     <InputLabel
-                        htmlFor="my-input"
+                        htmlFor="email"
                         sx={{
                             color: currentMode === "light" ? "#222426" : "#F5F5F5",
                             fontWeight: 600,
@@ -196,8 +326,12 @@ const ContactBox: React.FC = () => {
                     </InputLabel>
                     <TextField
                         placeholder="Enter email address"
-                        id="my-input"
-                        aria-describedby="my-helper-text"
+                        id="email"
+                        aria-describedby="email-helper-tex"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        required
+                        error={emailError}
                         sx={{
                             color: currentMode === "light" ? "#A8AEB5" : "#F5F5F5",
                             backgroundColor: currentMode === "light" ? "#fff" : "#272727",
@@ -205,14 +339,17 @@ const ContactBox: React.FC = () => {
                             borderColor: "#A8AEB5",
                             borderRadius: "4px",
                             mt: 3,
-                        }}
-                        inputProps={{
-                            sx: {
+                            input: {
+                                color: currentMode === "light" ? "#333" : "#A8AEB5",
+                            fontSize: "18px",
+                            fontWeight: 400,
                                 "&::placeholder": {
                                     color: "#A8AEB5",
+                                    opacity: 1,
                                 },
                             },
                         }}
+
                     />
                 </FormControl>
             </Stack>
@@ -231,7 +368,11 @@ const ContactBox: React.FC = () => {
                         color: "#333",
                         alignItems: "center",
                     }}>
-                    <Checkbox sx={{ color: "#A8AEB5" }} />
+                    <Checkbox
+                        onChange={handleCheck}
+                        checked={phone_call}
+                        sx={{ color: "#A8AEB5" }}
+                    />
                     <Box>
                         <Typography
                             sx={{
@@ -279,9 +420,14 @@ const ContactBox: React.FC = () => {
                     <RadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
-                        sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 2}}
-                    //   value={value}
-                    //   onChange={handleChange}
+                        sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            flexWrap: "wrap",
+                            gap: 2,
+                        }}
+                        value={goal}
+                        onChange={handleGoalChange}
                     >
                         <Card
                             sx={{
@@ -304,7 +450,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="partnership"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Partnership Inquiry"
                             />
                         </Card>
@@ -328,8 +474,8 @@ const ContactBox: React.FC = () => {
                                     fontWeight: 600,
                                     fontSize: "14px",
                                 }}
-                                value="customDevelopment"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                value="api"
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Custom API Development"
                             />
                         </Card>
@@ -354,7 +500,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="pricing"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Custom Pricing"
                             />
                         </Card>
@@ -379,7 +525,7 @@ const ContactBox: React.FC = () => {
                                     fontSize: "14px",
                                 }}
                                 value="support"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Get Support"
                             />
                         </Card>
@@ -403,8 +549,8 @@ const ContactBox: React.FC = () => {
                                     fontWeight: 600,
                                     fontSize: "14px",
                                 }}
-                                value="others"
-                                control={<Radio sx={{color: "#BEC2C8"}} />}
+                                value="other"
+                                control={<Radio sx={{ color: "#BEC2C8" }} />}
                                 label="Others"
                             />
                         </Card>
@@ -423,15 +569,38 @@ const ContactBox: React.FC = () => {
                     id="outlined-multiline-static"
                     multiline
                     rows={4}
-                    defaultValue="Enter message here"
+                    placeholder="Enter message here"
+                    onChange={(e) => setMessage(e.target.value)}
                     variant="outlined"
+                    value={message}
+                    required
+                    error={messageError}
                     sx={{
                         width: "100%",
                         color: "#A8AEB5",
                         border: 1,
                         borderColor: "#A8AEB5",
                         borderRadius: "4px",
+                        input: {
+                            color: currentMode === "light" ? "#333" : "#A8AEB5",
+                            fontSize: "18px",
+                            fontWeight: 400,
+                            "&::placeholder": {
+                                color: "#A8AEB5",
+                                opacity: 1,
+                                fontWeight: 400,
+                            },
+                        },
                     }}
+                    inputProps={{
+                        style: {
+                            color: currentMode === "light" ? "#333" : "#A8AEB5",
+                            opacity: 1,
+                            fontWeight: 400,
+                            fontSize: "18px",
+                        },
+                    }
+                    }
                 />
                 <Stack
                     sx={{
@@ -483,7 +652,11 @@ const ContactBox: React.FC = () => {
                         flexDirection: "row",
                         alignItems: "center",
                     }}>
-                    <Checkbox sx={{ color: "#A8AEB5" }} />
+                    <Checkbox
+                        // value={checked}
+                        required
+                        onChange={(e) => setChecked(e.target.checked)}
+                        sx={{ color: "#A8AEB5" }} />
                     <Box>
                         <Typography
                             sx={{
@@ -508,6 +681,7 @@ const ContactBox: React.FC = () => {
                     mt: 2,
                 }}>
                 <Button
+                    onClick={sendContactMessage}
                     sx={{
                         width: "40%",
                         marginLeft: "auto",
