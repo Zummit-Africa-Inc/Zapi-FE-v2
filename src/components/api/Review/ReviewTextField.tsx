@@ -1,20 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, TextareaAutosize } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
-import { Spinner } from "../../../components";
+import { Spinner, InputField } from "../../../components";
+import { useParams } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { DiscussionType } from "../../../types";
+
+const url = import.meta.env.VITE_CORE_URL;
 
 interface props {
   onClose: () => void;
 }
 
 const ReviewTextField: React.FC<props> = ({ onClose }) => {
+  const cookies = new Cookies();
+  const profileId = cookies.get("profileId")
+  const { id } = useParams()
   const { currentMode } = useAppContext();
   const classes = useStyles();
   const { loading, sendRequest } = useHttpRequest();
   const [body, setBody] = useState<string>("");
+  const [apiId, setApiId] = useState<any>("");
+ // const [title, setTitle ] = useState<string>("");
+
+  
+  useEffect(() => {
+    setApiId(id)
+  }, [setApiId])
+
+  const mutation: UseMutationResult<DiscussionType, Error, DiscussionType, Error> 
+  = useMutation<DiscussionType, Error, DiscussionType, Error>(({ body, apiId: api_id, profileId: profile_id }) =>
+  fetch(`${url}/review/${apiId}/${profileId}`, {
+    method: "POST",
+    body: JSON.stringify({
+      body,
+      api_id,
+      profile_id
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+    },
+  }).then((res) => res.json()),
+{
+  onSuccess: (data) => {
+    console.log("Post successfully created!", data)
+    setBody("")
+  }
+}
+)
 
   return (
     <Box className="textareaandbutton">
@@ -60,7 +98,7 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
           }}>
           Cancel
         </Button>
-        <button
+        <Button
           style={{
             outline: "none",
             border: "none",
@@ -77,9 +115,12 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             textAlign: "center",
             cursor: "pointer",
           }}
+          onClick={() => {
+            mutation.mutate({ body, apiId, profileId })
+          }}
           type="submit">
           {loading ? <Spinner /> : "Submit"}
-        </button>
+        </Button>
       </Box>
     </Box>
   );
@@ -93,7 +134,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "-10px",
     "@media screen and (max-width: 870px)": {
       marginTop: "-40px",
-      width: "100%",
+      width: "100%"
     },
   },
   btnclose: {

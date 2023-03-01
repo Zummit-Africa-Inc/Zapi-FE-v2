@@ -33,7 +33,7 @@ const Hub = () => {
       const result = await axios(
         `${url}/categories/${selectedCategoryId}/apis`
       );
-      setAllApis(result.data);
+      setAllApis(result.data.data);
       return result.data;
     } else {
       return [];
