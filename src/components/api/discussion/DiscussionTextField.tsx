@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Typography,
-  Theme,
-  Box,
-  IconButton,
-  TextareaAutosize,
-  Button,
-  Stack,
-} from "@mui/material";
+import { Theme, Box, TextareaAutosize, Button } from "@mui/material";
 import { Spinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
-import { useHttpRequest } from "../../../hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import Cookies from "universal-cookie";
 import { DiscussionType } from "../../../types";
@@ -28,7 +19,6 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const cookies = new Cookies();
   const { currentMode } = useAppContext();
   const [body, setBody] = useState<string>("");
-  const { loading, sendRequest } = useHttpRequest();
   const profileId = cookies.get("profileId");
   const [apiId, setApiId] = useState<any>("");
   const { id } = useParams();
