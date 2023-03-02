@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FormEvent } from "react";
 import { makeStyles } from "@mui/styles";
 import { Theme, Box, TextareaAutosize, Button } from "@mui/material";
 import { Spinner } from "../../../components";
@@ -8,8 +8,9 @@ import Cookies from "universal-cookie";
 import { DiscussionType } from "../../../types";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useHttpRequest } from "../../../hooks";
 
-const url = import.meta.env.VITE_CORE_URL;
+const url = "VITE_CORE_URL";
 interface Props {
   onClose: () => void;
 }
@@ -18,15 +19,35 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const classes = useStyles();
   const cookies = new Cookies();
   const { currentMode } = useAppContext();
+  const { sendRequest } = useHttpRequest();
   const [body, setBody] = useState<string>("");
-  const profileId = cookies.get("profileId");
-  const [apiId, setApiId] = useState<any>("");
+  const profile_id = cookies.get("profileId");
+  const [api_id, setApiId] = useState<any>("");
   const { id } = useParams();
 
   useEffect(() => {
     setApiId(id);
   }, [setApiId]);
 
+  const postDiscussion = async () => {
+    const headers = {
+      "Content-Type": "application/json",
+      "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+    };
+
+    const payload = { body, api_id, profile_id };
+    try {
+      const data = await sendRequest(
+        `/discussion`,
+        "post",
+        url,
+        payload,
+        headers
+      );
+      console.log(data);
+      return data;
+    } catch (error) {}
+  };
   const mutation: UseMutationResult<
     DiscussionType,
     Error,
@@ -34,19 +55,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
     Error
   > = useMutation<DiscussionType, Error, DiscussionType, Error>(
     ["postDiscussion"],
-    ({ body, apiId: api_id, profileId: profile_id }) =>
-      fetch(`${url}/discussion`, {
-        method: "POST",
-        body: JSON.stringify({
-          body,
-          api_id,
-          profile_id,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+    async () => await postDiscussion(),
     {
       onSuccess: () => {
         toast.success("post Successful!");
@@ -54,7 +63,6 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
       },
     }
   );
-
   return (
     <>
       <Box className={classes.form}>
@@ -100,7 +108,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
         </Button>
         <Button
           onClick={() => {
-            mutation.mutate({ body, apiId, profileId });
+            mutation.mutate({ body, api_id, profile_id });
           }}
           style={{
             outline: "none",
