@@ -44,7 +44,6 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
         payload,
         headers
       );
-      console.log(data);
       return data;
     } catch (error) {}
   };
