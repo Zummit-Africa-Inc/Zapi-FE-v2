@@ -17,6 +17,7 @@ import { useStyles } from "./styles/styles";
 const initialState = { email: "", password: "" };
 const url = "VITE_IDENTITY_URL";
 const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
+const IDENTITY_URL = import.meta.env.VITE_IDENTITY_URL;
 
 const Signin = () => {
   const {
@@ -37,7 +38,7 @@ const Signin = () => {
   const cookies = new Cookies();
   const classes = useStyles();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email || !EMAIL_REGEX.test(email))
       return toast.error("Invalid email address");
@@ -62,6 +63,12 @@ const Signin = () => {
         payload,
         headers
       );
+      // const res = await fetch(`${IDENTITY_URL}/auth/signin`,{
+      //   method: "POST",
+      //   headers,
+      //   body: JSON.stringify(payload)
+      // })
+      // const data = await res.json()
       if (!data || data === undefined) return;
       toast.success("Login Successful!");
       const { access, email, fullName, profileId, refresh, userId, secretKey } =
@@ -73,7 +80,7 @@ const Signin = () => {
       cookies.set("profileId", profileId);
       cookies.set("userId", userId);
       cookies.set("secretKey", secretKey);
-      navigate("/developer/dashboard");
+      navigate(`/developer/dashboard?id=${profileId}&token=${access}`);
     } catch (error) {}
     handleUnclicked("login");
   };
