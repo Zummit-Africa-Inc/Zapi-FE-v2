@@ -72,12 +72,11 @@ const discussionSlice = createSlice({
       );
     },
     editDiscussion: (state, action: PayloadAction<any>) => {
-      const { id, title, body, createdOn } = action.payload;
+      const { id, body, createdOn } = action.payload;
       const discussion = state.discussion.find(
         (discussion) => discussion?.id === id
       );
       if (discussion) {
-        discussion.title = title;
         discussion.body = body;
         discussion.createdOn = createdOn;
       }

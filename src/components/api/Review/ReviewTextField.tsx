@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Box, Button, TextareaAutosize } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
-import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
@@ -10,51 +9,70 @@ import { Spinner, InputField } from "../../../components";
 import { useParams } from "react-router-dom";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { DiscussionType } from "../../../types";
+import { toast } from "react-toastify";
 
-const url = import.meta.env.VITE_CORE_URL;
+const url = "VITE_CORE_URL";
 
 interface props {
-  apiId: string | undefined
+  apiId: string | undefined;
   onClose: () => void;
 }
 
 const ReviewTextField: React.FC<props> = ({ onClose }) => {
   const cookies = new Cookies();
-  const profileId = cookies.get("profileId")
-  const { id } = useParams()
+  const profile_id = cookies.get("profileId");
+  const { id } = useParams();
   const { currentMode } = useAppContext();
   const classes = useStyles();
   const { loading, sendRequest } = useHttpRequest();
   const [body, setBody] = useState<string>("");
-  const [apiId, setApiId] = useState<any>("");
- // const [title, setTitle ] = useState<string>("");
+  const [api_id, setApi_id] = useState<any>("");
+  // const [title, setTitle ] = useState<string>("");
 
-  
   useEffect(() => {
-    setApiId(id)
-  }, [setApiId])
+    setApi_id(id);
+  }, [setApi_id]);
 
-  const mutation: UseMutationResult<DiscussionType, Error, DiscussionType, Error> 
-  = useMutation<DiscussionType, Error, DiscussionType, Error>(({ body, apiId: api_id, profileId: profile_id }) =>
-  fetch(`${url}/review/${apiId}/${profileId}`, {
-    method: "POST",
-    body: JSON.stringify({
-      body,
-      api_id,
-      profile_id
-    }),
-    headers: {
+  const postReview = async () => {
+    const headers = {
       "Content-Type": "application/json",
       "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
-    },
-  }).then((res) => res.json()),
-{
-  onSuccess: (data) => {
-    console.log("Post successfully created!", data)
-    setBody("")
-  }
-}
-)
+    };
+    const payload = {
+      body,
+      api_id,
+      profile_id,
+    };
+    try {
+      const data = await sendRequest(
+        `/review/${api_id}/${profile_id}`,
+        "post",
+        url,
+        payload,
+        headers
+      );
+      return data;
+
+    } catch (error) {}
+  };
+
+  const mutation: UseMutationResult<
+    DiscussionType,
+    Error,
+    DiscussionType,
+    Error
+  > = useMutation<DiscussionType, Error, DiscussionType, Error>(
+    ["postReview"],
+    async () => await postReview(),
+
+    {
+      onSuccess: (data) => {
+        toast.success("Post successfully created!");
+        console.log(data)
+        setBody("");
+      },
+    }
+  );
 
   return (
     <Box className="textareaandbutton">
@@ -89,10 +107,9 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
           marginLeft: "auto",
           justifyContent: "flex-end",
           alignItems: "flex-end",
-        }}
-      >
+        }}>
         <Button
-          variant={'outlined'}
+          variant={"outlined"}
           type="button"
           onClick={() => onClose()}
           className={classes.btnclose}
@@ -119,7 +136,7 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             cursor: "pointer",
           }}
           onClick={() => {
-            mutation.mutate({ body, apiId, profileId })
+            mutation.mutate({ body, api_id, profile_id });
           }}
           type="submit">
           {loading ? <Spinner /> : "Submit"}
@@ -137,7 +154,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "-10px",
     "@media screen and (max-width: 870px)": {
       marginTop: "-40px",
-      width: "100%"
+      width: "100%",
     },
   },
   btnclose: {
