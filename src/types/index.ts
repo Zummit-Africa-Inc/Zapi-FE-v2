@@ -147,12 +147,19 @@ export type User = {
   profileId: string;
   fullName: string;
   picture?: string;
+ 
 };
 
 export type ReviewType = {
   rating: number;
   review: string;
   createdBy: User;
+};
+
+export type TypeReview = {
+  rating: number;
+  review: string;
+  profileId: string;
 };
 
 export type SubscribedUser = {

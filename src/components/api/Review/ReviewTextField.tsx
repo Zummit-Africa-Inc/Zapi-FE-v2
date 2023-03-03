@@ -8,7 +8,7 @@ import { useHttpRequest } from "../../../hooks";
 import { Spinner, InputField } from "../../../components";
 import { useParams } from "react-router-dom";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { DiscussionType } from "../../../types";
+import { ReviewType } from "../../../types";
 import { toast } from "react-toastify";
 
 const url = "VITE_CORE_URL";
@@ -18,34 +18,33 @@ interface props {
   onClose: () => void;
 }
 
-const ReviewTextField: React.FC<props> = ({ onClose }) => {
+const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
   const cookies = new Cookies();
-  const profile_id = cookies.get("profileId");
+  const profileId = cookies.get("profileId");
   const { id } = useParams();
   const { currentMode } = useAppContext();
   const classes = useStyles();
-  const { loading, sendRequest } = useHttpRequest();
-  const [body, setBody] = useState<string>("");
-  const [api_id, setApi_id] = useState<any>("");
+  const { error, loading, sendRequest } = useHttpRequest();
+  // const [apiId, setApiId] = useState<any>("");
+  const [rating, setRating] = useState<number>(0);
+  const [review, setReview] = useState<string>("");
+
+
   // const [title, setTitle ] = useState<string>("");
 
   useEffect(() => {
-    setApi_id(id);
-  }, [setApi_id]);
+    setRating(1);
+  }, [setRating]);
 
   const postReview = async () => {
     const headers = {
       "Content-Type": "application/json",
       "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
     };
-    const payload = {
-      body,
-      api_id,
-      profile_id,
-    };
+  const payload:ReviewType = { review, rating, createdBy: profileId}
     try {
       const data = await sendRequest(
-        `/review/${api_id}/${profile_id}`,
+        `/review/${apiId}/${profileId}`,
         "post",
         url,
         payload,
@@ -53,25 +52,35 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
       );
       return data;
 
-    } catch (error) {}
+    } catch (error:any) {
+      toast.error(`${error.message}`)
+    }
   };
 
   const mutation: UseMutationResult<
-    DiscussionType,
+    ReviewType,
     Error,
-    DiscussionType,
+    ReviewType,
     Error
-  > = useMutation<DiscussionType, Error, DiscussionType, Error>(
+  > = useMutation<ReviewType, Error, ReviewType, Error>(
     ["postReview"],
     async () => await postReview(),
 
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
+        if(!data){
+          return;
+        }
         toast.success("Post successfully created!");
-        setBody("");
+        setReview("");
       },
+      
     }
   );
+
+  useEffect(() => {
+		error && toast.error(`${error}`);
+	}, [error]);
 
   return (
     <Box className="textareaandbutton">
@@ -92,9 +101,9 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             color: "BEC2C8",
             background: currentMode === "dark" ? "#121212" : "#FFFFFF",
           }}
-          value={body}
+          value={review}
           required
-          onChange={(e) => setBody(e.target.value)}
+          onChange={(e) => setReview(e.target.value)}
         />
       </Box>
 
@@ -135,7 +144,7 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
             cursor: "pointer",
           }}
           onClick={() => {
-            mutation.mutate({ body, api_id, profile_id });
+            mutation.mutate({ review, rating, createdBy: profileId });
           }}
           type="submit">
           {loading ? <Spinner /> : "Submit"}
