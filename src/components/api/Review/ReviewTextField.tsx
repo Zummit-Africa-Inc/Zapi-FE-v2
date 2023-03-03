@@ -66,9 +66,8 @@ const ReviewTextField: React.FC<props> = ({ onClose }) => {
     async () => await postReview(),
 
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         toast.success("Post successfully created!");
-        console.log(data)
         setBody("");
       },
     }
