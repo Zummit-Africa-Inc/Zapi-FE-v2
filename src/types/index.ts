@@ -69,7 +69,7 @@ export type UserProfileType = {
 
 export type DiscussionType = {
   id?: string | undefined;
- // title: string;
+  // title: string;
   api_id?: string;
   body: string;
   profile_id?: string;
@@ -156,11 +156,6 @@ export type ReviewType = {
   createdBy: User;
 };
 
-export type TypeReview = {
-  rating: number;
-  review: string;
-  profileId: string;
-};
 
 export type SubscribedUser = {
   createdBy: string | null;

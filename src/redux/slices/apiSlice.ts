@@ -136,7 +136,7 @@ const apiSlice = createSlice({
       state.apis = state.apis.filter((apis) => apis?.id !== id);
     },
     addDiscussion: (state, action: PayloadAction<any>) => {
-      const { apiId, title, body } = action.payload;
+      const { apiId, body } = action.payload;
       const api = state.apis.find((api) => api?.id === apiId);
       let newDiscussion = { body };
       if (api) {
