@@ -7,6 +7,7 @@ import {
   IconButton,
   InputAdornment,
   OutlinedInput,
+  Button,
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { ApiProps } from "../interfaces";
@@ -15,13 +16,17 @@ import HubApis from "../components/hub/HubApis";
 import { useAppSelector, useHttpRequest } from "../hooks";
 import HubCategories from "../components/hub/HubCategories";
 import Spinner from "../components/shared/Spinner";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { RiSearch2Line } from "react-icons/ri";
 import CustomTypography from "../components/shared/CustomTypography";
 import debounce from "lodash.debounce";
+import { useInView } from "react-intersection-observer";
 
 const url = import.meta.env.VITE_CORE_URL;
+interface QueryKeyType {
+  pageParam: number;
+}
 
 const Hub = () => {
   const classes = useStyles();
@@ -30,6 +35,7 @@ const Hub = () => {
   const [allApis, setAllApis] = useState<ApiProps[]>(apis);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>();
   const [query, setQuery] = useState<string>("");
+  const { ref, inView } = useInView();
 
   const { categories } = useAppSelector((store) => store.apis);
 
@@ -74,27 +80,50 @@ const Hub = () => {
     }
   }, [categories]);
 
-  const fetchCategoryData = async () => {
+  const fetchCategoryData = async ({ pageParam = 1 }) => {
     if (selectedCategoryId) {
       const result = await axios(
-        `${url}/categories/${selectedCategoryId}/apis`
+        `${url}/categories/${selectedCategoryId}/apis?page=${pageParam}`
       );
+      console.log(result);
       setAllApis(result.data.data);
       return result;
     } else {
       return [];
     }
   };
-
-  const { isLoading, error } = useQuery({
-    queryKey: ["categoriesId", selectedCategoryId],
-    queryFn: () => fetchCategoryData(),
-  });
+  // console.log(selectedCategoryId);
+  const {
+    isLoading,
+    error,
+    data: pagination,
+    isFetching,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+    fetchNextPage,
+    fetchPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+  } = useInfiniteQuery<any>(
+    ["categoriesId", selectedCategoryId],
+    fetchCategoryData,
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.page < lastPage.totalPages) return lastPage + 1;
+        return false;
+      },
+    }
+  );
+  console.log(pagination);
 
   if (error) {
     return <h1>Error Occurred</h1>;
   }
-
+  // useEffect(() => {
+  //   if (inView) {
+  //     fetchNextPage();
+  //   }
+  // }, [inView]);
   return (
     <Stack>
       <Navbar />
@@ -131,6 +160,8 @@ const Hub = () => {
           </FormControl>
         </Box>
         {isLoading ? <Spinner /> : <HubApis apis={allApis} />}
+        {isFetching && <p>Loading ...</p>}
+        {/* {hasNextPage && <Button onClick={fetchNextPage}>Load More</Button>} */}
       </Stack>
       <Footer />
     </Stack>
