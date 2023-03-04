@@ -24,9 +24,6 @@ import debounce from "lodash.debounce";
 import { useInView } from "react-intersection-observer";
 
 const url = import.meta.env.VITE_CORE_URL;
-interface QueryKeyType {
-  pageParam: number;
-}
 
 const Hub = () => {
   const classes = useStyles();
@@ -85,25 +82,20 @@ const Hub = () => {
       const result = await axios(
         `${url}/categories/${selectedCategoryId}/apis?page=${pageParam}`
       );
-      console.log(result);
       setAllApis(result.data.data);
       return result;
     } else {
       return [];
     }
   };
-  // console.log(selectedCategoryId);
+
   const {
     isLoading,
     error,
-    data: pagination,
     isFetching,
     isFetchingNextPage,
-    isFetchingPreviousPage,
     fetchNextPage,
-    fetchPreviousPage,
     hasNextPage,
-    hasPreviousPage,
   } = useInfiniteQuery<any>(
     ["categoriesId", selectedCategoryId],
     fetchCategoryData,
@@ -114,16 +106,17 @@ const Hub = () => {
       },
     }
   );
-  console.log(pagination);
 
   if (error) {
     return <h1>Error Occurred</h1>;
   }
-  // useEffect(() => {
-  //   if (inView) {
-  //     fetchNextPage();
-  //   }
-  // }, [inView]);
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
+
   return (
     <Stack>
       <Navbar />
@@ -160,8 +153,18 @@ const Hub = () => {
           </FormControl>
         </Box>
         {isLoading ? <Spinner /> : <HubApis apis={allApis} />}
-        {isFetching && <p>Loading ...</p>}
-        {/* {hasNextPage && <Button onClick={fetchNextPage}>Load More</Button>} */}
+        <Stack>
+          <Button disabled={!hasNextPage || isFetchingNextPage}>
+            {isFetchingNextPage
+              ? "Loading more..."
+              : hasNextPage
+              ? "Load Newer"
+              : "Nothing more to load"}
+          </Button>
+        </Stack>
+        <Stack>
+          {isFetching && !isFetchingNextPage ? "Background Updating..." : null}
+        </Stack>
       </Stack>
       <Footer />
     </Stack>
