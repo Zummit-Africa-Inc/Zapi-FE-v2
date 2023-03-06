@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 
 import { useHttpRequest } from "../../hooks";
-import { Spinner } from "../../components";
+import { ButtonSpinner } from "../../components";
 
 import { StarRounded, StarOutlineRounded } from "@mui/icons-material";
 
@@ -86,7 +86,7 @@ const RatingComponent:React.FC<Props> = ({apiId, onClose}) => {
 			  Cancel
 			</Button>
 			<Button variant={'contained'} type="submit" className={classes.submit}>
-			  {loading ? <Spinner /> : "Submit"}
+			  {loading ? <ButtonSpinner /> : "Submit"}
 			</Button>
 		  </Box>
 		</Box>
