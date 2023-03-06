@@ -43,7 +43,7 @@ const RatingComponent:React.FC<Props> = ({apiId, onClose}) => {
 		headers
 	)
 	  if(data === undefined) return
-	  toast.success(`${data.message}`)
+	  toast.success("Rating Added Successfully!");
 	} catch (error: any) {}
 	
     return () => onClose();

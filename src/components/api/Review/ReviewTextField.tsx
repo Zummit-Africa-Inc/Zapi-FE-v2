@@ -71,7 +71,7 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
         if(!data){
           return;
         }
-        toast.success("Post successfully created!");
+        toast.success("Review Added Successfully!");
         setReview("");
       },
       
