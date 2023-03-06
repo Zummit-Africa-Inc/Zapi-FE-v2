@@ -108,7 +108,7 @@ const Navbar = () => {
         ) : (
           <Stack direction="row" alignItems="center" spacing="24px">
             <Button
-              label="Help"
+              label="Dashboard"
               variant="outlineLogin"
               size="small"
               to="/developer/dashboard"
