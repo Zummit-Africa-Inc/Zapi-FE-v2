@@ -5,7 +5,7 @@ import { Theme } from "@mui/material";
 import Cookies from "universal-cookie";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
-import { Spinner, InputField } from "../../../components";
+import { InputField, ButtonSpinner } from "../../../components";
 import { useParams } from "react-router-dom";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { ReviewType } from "../../../types";
@@ -147,7 +147,7 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
             mutation.mutate({ review, rating, createdBy: profileId });
           }}
           type="submit">
-          {loading ? <Spinner /> : "Submit"}
+          {loading ? <ButtonSpinner /> : "Submit"}
         </Button>
       </Box>
     </Box>

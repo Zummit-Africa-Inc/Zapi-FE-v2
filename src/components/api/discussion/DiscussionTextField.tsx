@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FormEvent } from "react";
 import { makeStyles } from "@mui/styles";
 import { Theme, Box, TextareaAutosize, Button } from "@mui/material";
-import { Spinner } from "../../../components";
+import { ButtonSpinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import Cookies from "universal-cookie";
@@ -57,7 +57,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
     async () => await postDiscussion(),
     {
       onSuccess: () => {
-        toast.success("post Successful!");
+        toast.success("Discussion Added Successfully!");
         setBody("");
       },
     }
@@ -126,7 +126,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
             cursor: "pointer",
           }}
           type="submit">
-          {mutation.isLoading ? <Spinner /> : "Submit"}
+          {mutation.isLoading ? <ButtonSpinner /> : "Submit"}
         </Button>
       </Box>
     </>

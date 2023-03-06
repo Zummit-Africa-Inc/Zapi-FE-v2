@@ -20,7 +20,7 @@ import { useHttpRequest } from "../../../hooks";
 import { quote } from "../../../assets/svg";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Spinner } from "../../../components";
+import { ButtonSpinner } from "../../../components";
 
 interface Props {
   discussions: Array<DiscussionType>;
@@ -327,7 +327,7 @@ const AccordionDiscussion: React.FC<Props> = ({ api, discussions }) => {
                         cursor: "pointer",
                       }}
                       type="submit">
-                      {loading ? <Spinner /> : "Submit"}
+                      {loading ? <ButtonSpinner /> : "Submit"}
                     </button>
                   </Box>
                 </Box>
