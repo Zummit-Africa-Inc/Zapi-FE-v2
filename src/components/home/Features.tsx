@@ -23,7 +23,7 @@ const features = [
   },
   {
     icons: dollars,
-    title: "Monietization",
+    title: "Monetization",
     text: "All data processed are secure via two-factor authentication of API checkouts, fraud detection, and threat protection.",
   },
   {

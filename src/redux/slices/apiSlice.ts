@@ -136,9 +136,9 @@ const apiSlice = createSlice({
       state.apis = state.apis.filter((apis) => apis?.id !== id);
     },
     addDiscussion: (state, action: PayloadAction<any>) => {
-      const { apiId, title, body } = action.payload;
+      const { apiId, body } = action.payload;
       const api = state.apis.find((api) => api?.id === apiId);
-      let newDiscussion = { title, body };
+      let newDiscussion = { body };
       if (api) {
         api.discussions?.unshift(newDiscussion);
       }
@@ -153,14 +153,13 @@ const apiSlice = createSlice({
       }
     },
     editDiscussion: (state, action: PayloadAction<any>) => {
-      const { apiId, id, title, body } = action.payload;
+      const { apiId, id, body } = action.payload;
       const api = state.apis.find((api) => api?.id === apiId);
       if (api) {
         let discussion = api.discussions?.find(
           (discussion) => discussion?.id === id
         );
         if (discussion) {
-          discussion.title = title;
           discussion.body = body;
         }
       }

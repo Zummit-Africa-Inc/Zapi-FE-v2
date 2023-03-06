@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
@@ -6,18 +6,19 @@ import { Theme } from "@mui/material";
 import { useAppContext } from "../../../contexts/AppProvider";
 import ReviewTextField from "./ReviewTextField";
 import Cookies from "universal-cookie";
-import { useState } from "react";
 
 
+interface Props {
+  api: any;
+}
 
+const AddReview: React.FC<Props> = ({ api }) => {
+const classes = useStyles();
+const [showForm, setShowForm] = useState(false); 
+const cookies = new Cookies();
+const accessToken = cookies.get("accessToken");
+const { handleClicked, currentMode } = useAppContext();
 
-  const AddReview: React.FC = () => {
-  const classes = useStyles();
-  const [showForm, setShowForm] = useState(false); 
-  const cookies = new Cookies();
-  const accessToken = cookies.get("accessToken");
-  const { handleClicked, currentMode } = useAppContext();
- 
 
   return (
     <>
@@ -43,7 +44,7 @@ import { useState } from "react";
           <Add /> <Typography sx={{ fontSize: "14px" }}>Add Review</Typography>
         </Button>
       </Box>
-      {showForm && (<ReviewTextField onClose={() => setShowForm(false)}/>) }
+      {showForm && (<ReviewTextField apiId={api.id}  onClose={() => setShowForm(false)}/>) }
     </>
   );
 };

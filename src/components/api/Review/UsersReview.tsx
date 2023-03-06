@@ -13,6 +13,7 @@ const UsersReview: React.FC<Props> = ({ reviews }) => {
   const classes = useStyles();
   const { currentMode } = useAppContext();
 
+
   return (
     <Stack direction="column" spacing={1} sx={{ marginTop: "3rem" }}>
       {reviews.length !== 0 ? (
@@ -23,7 +24,7 @@ const UsersReview: React.FC<Props> = ({ reviews }) => {
 
               <Box sx={{ width: "100%" }}>
                 <Typography component="p" sx={{ marginBottom: "8px" }}>
-                  {/* {review.by.fullName || "User"} */}
+                  {/* {review.createdBy || "User"} */}
                   {"User"}
                 </Typography>
                 <Typography component="p">
