@@ -147,6 +147,7 @@ export type User = {
   profileId: string;
   fullName: string;
   picture?: string;
+ 
 };
 
 export type ReviewType = {
@@ -154,6 +155,7 @@ export type ReviewType = {
   review: string;
   createdBy: User;
 };
+
 
 export type SubscribedUser = {
   createdBy: string | null;

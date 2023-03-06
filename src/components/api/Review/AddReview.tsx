@@ -44,7 +44,7 @@ const { handleClicked, currentMode } = useAppContext();
           <Add /> <Typography sx={{ fontSize: "14px" }}>Add Review</Typography>
         </Button>
       </Box>
-      {showForm && (<ReviewTextField apiId={api.id} onClose={() => setShowForm(false)}/>) }
+      {showForm && (<ReviewTextField apiId={api.id}  onClose={() => setShowForm(false)}/>) }
     </>
   );
 };

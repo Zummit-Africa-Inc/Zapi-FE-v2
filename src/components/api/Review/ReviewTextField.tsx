@@ -1,61 +1,90 @@
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, TextareaAutosize } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
-import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
-import { Spinner } from "../../../components";
+import { Spinner, InputField } from "../../../components";
+import { useParams } from "react-router-dom";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { ReviewType } from "../../../types";
+import { toast } from "react-toastify";
+
+const url = "VITE_CORE_URL";
 
 interface props {
-  apiId: string | undefined
+  apiId: string | undefined;
   onClose: () => void;
 }
 
-const core_url = "VITE_CORE_URL";
-
 const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
+  const cookies = new Cookies();
+  const profileId = cookies.get("profileId");
+  const { id } = useParams();
   const { currentMode } = useAppContext();
   const classes = useStyles();
-  const {error, loading, sendRequest} = useHttpRequest();
+  const { error, loading, sendRequest } = useHttpRequest();
+  // const [apiId, setApiId] = useState<any>("");
+  const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState<string>("");
-  const cookies = new Cookies();
 
-  const handleRating = async(e: FormEvent) => {
-    e.preventDefault()
-    if(!review) return toast.error('Please add a comment')
+
+  // const [title, setTitle ] = useState<string>("");
+
+  useEffect(() => {
+    setRating(1);
+  }, [setRating]);
+
+  const postReview = async () => {
     const headers = {
-      'Content-Type': "application/json",
-      'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
-    }
-    const profileId = cookies.get("profileId");
-    const payload = {review, rating: 5, reviewer: profileId};
-
+      "Content-Type": "application/json",
+      "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+    };
+  const payload:ReviewType = { review, rating, createdBy: profileId}
     try {
       const data = await sendRequest(
-        `/api/rate-api/${profileId}/${apiId}`, 
-        "post", 
-        core_url, 
-        payload, 
+        `/review/${apiId}/${profileId}`,
+        "post",
+        url,
+        payload,
         headers
       );
-      if(data === undefined) return
-      toast.success(`${data.message}`)
-    } catch (error: any) {}
-    
-    return () => onClose();
-  }
-  
-  useEffect(() => {
-    error && toast.error(`${error}`)
-  },[error])
-  
+      return data;
 
+    } catch (error:any) {
+      toast.error(`${error.message}`)
+    }
+  };
+
+  const mutation: UseMutationResult<
+    ReviewType,
+    Error,
+    ReviewType,
+    Error
+  > = useMutation<ReviewType, Error, ReviewType, Error>(
+    ["postReview"],
+    async () => await postReview(),
+
+    {
+      onSuccess: (data) => {
+        if(!data){
+          return;
+        }
+        toast.success("Post successfully created!");
+        setReview("");
+      },
+      
+    }
+  );
+
+  useEffect(() => {
+		error && toast.error(`${error}`);
+	}, [error]);
 
   return (
     <Box className="textareaandbutton">
-      <Box component="form" onSubmit={handleRating} className={classes.form}>
+      <Box component="form" className={classes.form}>
         <TextareaAutosize
           aria-label="minimum height"
           maxRows={6}
@@ -86,10 +115,9 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
           marginLeft: "auto",
           justifyContent: "flex-end",
           alignItems: "flex-end",
-        }}
-      >
+        }}>
         <Button
-          variant={'outlined'}
+          variant={"outlined"}
           type="button"
           onClick={() => onClose()}
           className={classes.btnclose}
@@ -98,7 +126,6 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
           }}>
           Cancel
         </Button>
-
         <Button
           style={{
             outline: "none",
@@ -116,9 +143,10 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
             textAlign: "center",
             cursor: "pointer",
           }}
-          type="submit"
-          onClick={handleRating}
-        >
+          onClick={() => {
+            mutation.mutate({ review, rating, createdBy: profileId });
+          }}
+          type="submit">
           {loading ? <Spinner /> : "Submit"}
         </Button>
       </Box>
