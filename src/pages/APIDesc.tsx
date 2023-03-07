@@ -58,6 +58,7 @@ const APIDesc = () => {
 	const cookies = new Cookies();
 	const classes = useStyles();
 	const { id } = useParams();
+	const profileId = cookies.get("profileId");
 	
   
 	const headers = {
@@ -117,6 +118,8 @@ const APIDesc = () => {
 		const { data } = useQuery({
 			queryKey: ['apidesc', id],
 			queryFn: fetchAPIDesc,
+			refetchOnWindowFocus: false,
+			retry: false,
 			staleTime: 60000,
 			cacheTime: 60000,
 		});
@@ -127,6 +130,17 @@ const APIDesc = () => {
 				setApi(data[1]);
 				setEndpoints(data[2]);
 				setDiscussions(data[3]);
+
+				// localStorage.setItem("isRated", "");
+				// if(reviews) {
+				// 	reviews.forEach((result: any) => {
+				// 	if(result.profile_id === profileId) {
+				// 		localStorage.setItem("isRated", "1");
+				// 		return;
+				// 	}
+				// 	});
+				// }
+
 			}
 		}, [data]);
 		
