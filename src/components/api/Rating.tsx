@@ -29,21 +29,32 @@ const RatingComponent:React.FC<Props> = ({apiId, onClose}) => {
 	if(!rating) return toast.error('Please add a rating')
 	if(!review) return toast.error('Please add a comment')
 	const headers = {
-	  'Content-Type': "application/json",
-	  'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
+	'Content-Type': "application/json",
+	'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
 	}
 	const profileId = cookies.get("profileId");
 	const payload = {review, rating, reviewer: profileId}
+	
 	try {
-	  const data = await sendRequest(
-		`/api/rate-api/${profileId}/${apiId}`, 
-		"post", 
-		core_url, 
-		payload, 
-		headers
-	)
-	  if(data === undefined) return
-	  toast.success(`${data.message}`)
+		const data = await sendRequest(
+			`/api/rate-api/${profileId}/${apiId}`, 
+			"post", 
+			core_url, 
+			payload, 
+			headers
+		)
+			
+		setRating(0);
+		setReview("");
+		
+		if(data === undefined) return;
+
+		if(data.message.toLowerCase() == "ok") {
+			toast.success("Rating Sent Successfully!")
+		} else {
+			toast.success(`${data.message}`)
+		}
+
 	} catch (error: any) {}
 	
     return () => onClose();
