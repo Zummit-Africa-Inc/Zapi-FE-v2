@@ -7,7 +7,11 @@ import { useAppContext } from "../../../contexts/AppProvider";
 import { useHttpRequest } from "../../../hooks";
 import { Spinner, InputField } from "../../../components";
 import { useParams } from "react-router-dom";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+  useMutation,
+  UseMutationResult,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { ReviewType } from "../../../types";
 import { toast } from "react-toastify";
 
@@ -28,7 +32,7 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
   // const [apiId, setApiId] = useState<any>("");
   const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState<string>("");
-
+  const queryClient = useQueryClient();
 
   // const [title, setTitle ] = useState<string>("");
 
@@ -41,7 +45,7 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
       "Content-Type": "application/json",
       "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
     };
-  const payload:ReviewType = { review, rating, createdBy: profileId}
+    const payload: ReviewType = { review, rating, createdBy: profileId };
     try {
       const data = await sendRequest(
         `/review/${apiId}/${profileId}`,
@@ -51,36 +55,21 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
         headers
       );
       return data;
-
-    } catch (error:any) {
-      toast.error(`${error.message}`)
+    } catch (error: any) {
+      toast.error(`${error.message}`);
     }
   };
 
-  const mutation: UseMutationResult<
-    ReviewType,
-    Error,
-    ReviewType,
-    Error
-  > = useMutation<ReviewType, Error, ReviewType, Error>(
-    ["postReview"],
-    async () => await postReview(),
-
-    {
-      onSuccess: (data) => {
-        if(!data){
-          return;
-        }
-        toast.success("Post successfully created!");
-        setReview("");
-      },
-      
-    }
-  );
+  const mutations = useMutation({
+    mutationFn: postReview,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+    },
+  });
 
   useEffect(() => {
-		error && toast.error(`${error}`);
-	}, [error]);
+    error && toast.error(`${error}`);
+  }, [error]);
 
   return (
     <Box className="textareaandbutton">
@@ -144,7 +133,7 @@ const ReviewTextField: React.FC<props> = ({ apiId, onClose }) => {
             cursor: "pointer",
           }}
           onClick={() => {
-            mutation.mutate({ review, rating, createdBy: profileId });
+            mutations.mutate();
           }}
           type="submit">
           {loading ? <Spinner /> : "Submit"}
