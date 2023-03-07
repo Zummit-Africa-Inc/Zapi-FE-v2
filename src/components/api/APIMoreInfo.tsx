@@ -12,6 +12,7 @@ import { useAppSelector, useHttpRequest } from "../../hooks";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useAppContext } from "../../contexts/AppProvider";
+import { Spinner } from "../../components";
 import { APIType } from "../../types";
 import { Rating } from "../";
 
@@ -33,7 +34,6 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 	const classes = useStyles();
 	const { handleClicked, currentMode } = useAppContext();
 
-
 	const category = categories.find(
 		(category) => category.id === api.categoryId
 	);
@@ -42,6 +42,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 		'Content-Type': "application/json",
 		'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
 	}
+
   	const fetchSubscription = async () => {
 		try {
 			const result = await sendRequest(
@@ -55,11 +56,13 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 			if(result.status === "200") return result.data;
 		} catch (error: any) {}
 	};
-
+	
 	try {
 		const { data } = useQuery({
 			queryKey: ['userSubs', profileId],
 			queryFn: fetchSubscription,
+			refetchOnWindowFocus: false,
+			retry: false,
 			staleTime: 60000,
 			cacheTime: 60000,
 		});
@@ -84,34 +87,34 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 
 	const handleSubscription = async () => {
 		const headers = {
-		"Content-Type": "application/json",
-		"X-Zapi-Auth-Token": `Bearer ${accessToken}`,
+			"Content-Type": "application/json",
+			"X-Zapi-Auth-Token": `Bearer ${accessToken}`,
 		};
 
 		if (!isSubscribed) {
-		try {
-			const data = await sendRequest(
-			`/subscription/subscribe/${api.id}`,
-			"post",
-			core_url,
-			{ },
-			headers,
-			{ profileId },
-			);
-			if (!data || data === undefined) return;
-			const { message } = data;
-			toast.success(`${message}`);
-			setIsSubscribed(true);
-		} catch (error) {}
+			try {
+				const data = await sendRequest(
+					`/subscription/subscribe/${api.id}`,
+					"post",
+					core_url,
+					{ },
+					headers,
+					{ profileId },
+				);
+				if (!data || data === undefined) return;
+				const { message } = data;
+				toast.success(`${message}`);
+				setIsSubscribed(true);
+			} catch (error) {}
 		} else {
 		try {
 			const data = await sendRequest(
-			`/subscription/unsubscribe/${api.id}`,
-			"post",
-			core_url,
-			{ },
-			headers,
-			{ profileId },
+				`/subscription/unsubscribe/${api.id}`,
+				"post",
+				core_url,
+				{ },
+				headers,
+				{ profileId },
 			);
 			if (!data || data == undefined) return;
 			const { message } = data;
@@ -128,6 +131,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 	useEffect(() => {
 		error && toast.error(`${error}`);
 	}, [error]);
+
 
   return (
 	<>
@@ -194,11 +198,14 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
             justifyContent={"end"}
             alignItems={"center"}>
             <Button
-              endIcon={<StarBorderOutlined />}
-              className={classes.rate_button}
-			  onClick={
-				accessToken ? () => setIsRatingOpen(true) : () => handleClicked("login")
-			}>
+				endIcon={<StarBorderOutlined />}
+				className={classes.rate_button}
+				onClick={ accessToken ? () => setIsRatingOpen(true) : () => handleClicked("login")}
+				// disabled={localStorage.getItem("isRated") == "1"}
+				// sx={{
+				// 	opacity: (localStorage.getItem("isRated") == "1") ? .5 : 1
+				// }}
+			>
               Rate
             </Button>
             <Button
@@ -207,7 +214,13 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
               onClick={
                 accessToken ? handleSubscription : () => handleClicked("login")
               }>
-			  	{isSubscribed ? "Unsubscribe" : "Subscribe"}
+				{loading ? 
+					<Spinner />
+				: 
+					<>
+						{isSubscribed ? "Unsubscribe" : "Subscribe"}
+					</>
+				}
             </Button>
           </Stack>
         </Box>
