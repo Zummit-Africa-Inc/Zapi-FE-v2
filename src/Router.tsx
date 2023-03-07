@@ -37,14 +37,15 @@ export const Router: React.FC = () => {
       <Route path="/free-trial" element={<FreeTrial />} />
       <Route path="/api/:id" element={<APIDesc />} />
       <Route path="/contact" element={<Contact />} />
-      <Route  element={<AuthRoutes />}>
-      <Route path="/developer/:id" element={<User />} />
-      <Route path="/developer/dashboard" element={<Dashboard />} />
-      <Route path="/developer/api/:id" element={<Dashboard />} />
-      <Route path="/developer/configuration" element={<Dashboard />} />
-      <Route path="/developer/notifications" element={<Notifications />} />
-      <Route path="/developer/discussions" element={<Discussions />} />
-      <Route path="/developer/login-history" element={<LoginHistory />} />
+
+      <Route element={<AuthRoutes />}>
+        <Route path="/developer/:id" element={<User />} />
+        <Route path="/developer/dashboard" element={<Dashboard />} />
+        <Route path="/developer/api/:id" element={<Dashboard />} />
+        <Route path="/developer/configuration" element={<Dashboard />} />
+        <Route path="/developer/notifications" element={<Notifications />} />
+        <Route path="/developer/discussions" element={<Discussions />} />
+        <Route path="/developer/login-history" element={<LoginHistory />} />
       </Route>
     </Routes>
   );
