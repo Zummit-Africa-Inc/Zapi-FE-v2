@@ -4,14 +4,51 @@ import { Theme, Box } from "@mui/material";
 import { APIType, DiscussionType } from "../../types";
 import AccordionDiscussion from "./discussion/AccordionDiscussion";
 import AddDiscussionButton from "./discussion/AddDiscussionButton";
+import { useHttpRequest } from "../../hooks";
+import Cookies from "universal-cookie";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../shared/Spinner";
 
 interface Props {
   discussions: Array<DiscussionType>;
   api: APIType;
 }
 
+const url = import.meta.env.VITE_CORE_URL;
+
 const Discussions: React.FC<Props> = ({ api, discussions }) => {
   const classes = useStyles();
+  const cookies = new Cookies();
+  const { error: lop, loading, sendRequest } = useHttpRequest();
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+  };
+
+  const fetchAPIDiscussion = async () => {
+    try {
+      const response = await fetch(`${url}/discussion/api/${api.id}`, {
+        headers,
+      });
+      const data = await response.json();
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["discussions"],
+    queryFn: fetchAPIDiscussion,
+  });
+
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <Box className={classes.root}>
@@ -29,7 +66,7 @@ const Discussions: React.FC<Props> = ({ api, discussions }) => {
           <AddDiscussionButton />
         </Box>
       </Box>
-      <AccordionDiscussion api={api} discussions={discussions} />
+      <AccordionDiscussion api={api} discussions={data} />
     </Box>
   );
 };

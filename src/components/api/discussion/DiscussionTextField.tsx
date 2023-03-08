@@ -1,9 +1,13 @@
 import React, { useEffect, useState, FormEvent } from "react";
 import { makeStyles } from "@mui/styles";
 import { Theme, Box, TextareaAutosize, Button } from "@mui/material";
-import { Spinner } from "../../../components";
+import { ButtonSpinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+  useMutation,
+  UseMutationResult,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Cookies from "universal-cookie";
 import { DiscussionType } from "../../../types";
 import { useParams } from "react-router-dom";
@@ -24,6 +28,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const profile_id = cookies.get("profileId");
   const [api_id, setApiId] = useState<any>("");
   const { id } = useParams();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     setApiId(id);
@@ -45,23 +50,17 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
         headers
       );
       return data;
-    } catch (error) {}
-  };
-  const mutation: UseMutationResult<
-    DiscussionType,
-    Error,
-    DiscussionType,
-    Error
-  > = useMutation<DiscussionType, Error, DiscussionType, Error>(
-    ["postDiscussion"],
-    async () => await postDiscussion(),
-    {
-      onSuccess: () => {
-        toast.success("post Successful!");
-        setBody("");
-      },
+    } catch (error: any) {
+      toast.error(`${error.message}`);
     }
-  );
+  };
+  const mutation = useMutation({
+    mutationFn: postDiscussion,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({ queryKey: ["discussions"] });
+      setBody("");
+    },
+  });
   return (
     <>
       <Box className={classes.form}>
@@ -107,7 +106,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
         </Button>
         <Button
           onClick={() => {
-            mutation.mutate({ body, api_id, profile_id });
+            mutation.mutate();
           }}
           style={{
             outline: "none",
@@ -126,7 +125,7 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
             cursor: "pointer",
           }}
           type="submit">
-          {mutation.isLoading ? <Spinner /> : "Submit"}
+          {mutation.isLoading ? <ButtonSpinner /> : "Submit"}
         </Button>
       </Box>
     </>
