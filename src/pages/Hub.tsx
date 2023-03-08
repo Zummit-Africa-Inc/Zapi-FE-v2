@@ -56,7 +56,7 @@ const Hub = () => {
 
   const select = async () => {
     const result = await axios(`${url}/categories/${selectedCategoryId}/apis`);
-    setAllApis(result?.data);
+    setAllApis(result?.data.data);
   };
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const Hub = () => {
         `${url}/categories/${selectedCategoryId}/apis?page=${pageParam}`
       );
       setAllApis(result.data.data);
-      return result;
+      return result.data.data;
     } else {
       return [];
     }
