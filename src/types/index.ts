@@ -73,8 +73,8 @@ export type DiscussionType = {
   api_id?: string;
   body: string;
   profile_id?: string;
-  createdOn?: Date | string;
-  childrenDiscussion?: Array<ChildrenDiscussionType | null>;
+  createdOn: Date | string;
+  comments?: Array<ChildrenDiscussionType | null>;
   // picture: object | string | null
   // fullName: string
 };
@@ -147,7 +147,6 @@ export type User = {
   profileId: string;
   fullName: string;
   picture?: string;
- 
 };
 
 export type ReviewType = {
@@ -155,7 +154,6 @@ export type ReviewType = {
   review: string;
   createdBy: User;
 };
-
 
 export type SubscribedUser = {
   createdBy: string | null;
@@ -195,10 +193,9 @@ export type TestResponse = {
   updatedBy?: string | null;
 };
 
-
 export type PricingValuesType = {
-  plan: string,
-  value: string,
-  features: Array<string>,
-  button_text: string,
+  plan: string;
+  value: string;
+  features: Array<string>;
+  button_text: string;
 };
