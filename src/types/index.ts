@@ -73,8 +73,9 @@ export type DiscussionType = {
   api_id?: string;
   body: string;
   profile_id?: string;
-  createdOn?: Date | string;
+  createdOn: Date | string;
   childrenDiscussion?: Array<ChildrenDiscussionType | null>;
+  comments?: Array<ChildrenDiscussionType | null>;
   // picture: object | string | null
   // fullName: string
 };
