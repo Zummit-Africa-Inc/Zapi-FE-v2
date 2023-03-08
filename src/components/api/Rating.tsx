@@ -51,6 +51,7 @@ const RatingComponent:React.FC<Props> = ({apiId, onClose}) => {
 
 		if(data.message.toLowerCase() == "ok") {
 			toast.success("Rating Sent Successfully!")
+			localStorage.setItem("isRated", "1");
 		} else {
 			toast.success(`${data.message}`)
 		}
@@ -199,3 +200,4 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
 }));
+
