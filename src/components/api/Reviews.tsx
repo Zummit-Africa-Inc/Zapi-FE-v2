@@ -9,15 +9,15 @@ import Cookies from "universal-cookie";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../shared/Spinner";
 interface Props {
-  reviews: Array<ReviewType>;
   api: APIType;
 }
 const url = import.meta.env.VITE_CORE_URL;
 
-const Reviews_dup: React.FC<Props> = ({ api, reviews }) => {
+const Reviews_dup: React.FC<Props> = ({ api }) => {
   const cookies = new Cookies();
   const classes = useStyles();
   const { error: lop, loading, sendRequest } = useHttpRequest();
+  const profileId = cookies.get("profileId");
   const headers = {
     "Content-Type": "application/json",
     "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
@@ -36,6 +36,16 @@ const Reviews_dup: React.FC<Props> = ({ api, reviews }) => {
     queryKey: ["reviews"],
     queryFn: fetchAPIReviews,
   });
+	
+  localStorage.setItem("isRated", "");
+  if(data) {
+    data.forEach((result: any) => {
+      if(result.profile_id === profileId) {
+        localStorage.setItem("isRated", "1");
+        return;
+      }
+    });
+  }
 
   if (isLoading) {
     return (
