@@ -8,14 +8,14 @@ import { useHttpRequest } from "../hooks";
 import { useQuery } from "@tanstack/react-query";
 
 import {
-	Loader,
-	Navbar,
-	APIMoreInfo,
-	TabPanel,
-	Endpoints,
-	Footer,
-	Reviews,
-  	Discussions,
+  Loader,
+  Navbar,
+  APIMoreInfo,
+  TabPanel,
+  Endpoints,
+  Footer,
+  Reviews,
+  Discussions,
 } from "../components";
 
 import { APIType, DiscussionType, EndpointsType, ReviewType } from "../types";
@@ -24,199 +24,190 @@ const core_url = "VITE_CORE_URL";
 
 const CustomTabs = styled(Tabs)({
   "&.MuiTabs-root": {
-	width: "auto",
-	fontSize: 500,
+    width: "auto",
+    fontSize: 500,
   },
   "& .MuiTabs-indicator": {
-	display: "none",
+    display: "none",
   },
 });
 
 const CustomTab = styled(Tab)({
   "&.MuiTab-root": {
-	display: "flex",
-	flexDirection: "column",
-	alignItems: "flex-start",
-	fontWeight: "normal",
-	fontSize: "14px",
-	color: "#5574AF",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    fontWeight: "normal",
+    fontSize: "14px",
+    color: "#5574AF",
   },
   "&.Mui-selected": {
-	backgroundColor: "#B8CEF7",
+    backgroundColor: "#B8CEF7",
   },
 });
 
 const APIDesc = () => {
-	const { error, loading, sendRequest } = useHttpRequest();
-	const [tab, setTab] = useState<number>(0);
-	const [api, setApi] = useState<APIType | null>(null);
-	const [reviews, setReviews] = useState<Array<ReviewType> | null>(null);
-	const [endpoints, setEndpoints] = useState<Array<EndpointsType> | null>(null);
-	const [discussions, setDiscussions] = useState<Array<DiscussionType> | null>(
-		null
-	);
-	const cookies = new Cookies();
-	const classes = useStyles();
-	const { id } = useParams();
-	
-  
-	const headers = {
-		'Content-Type': "application/json",
-		'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
-	}
+  const { error, loading, sendRequest } = useHttpRequest();
+  const [tab, setTab] = useState<number>(0);
+  const [api, setApi] = useState<APIType | null>(null);
+  const [endpoints, setEndpoints] = useState<Array<EndpointsType> | null>(null);
+  const [discussions, setDiscussions] = useState<Array<DiscussionType> | null>(
+    null
+  );
+  const cookies = new Cookies();
+  const classes = useStyles();
+  const { id } = useParams();
+  const profileId = cookies.get("profileId");
 
-  	const fetchAPIDesc = async () => {
-		try {
-			const reviewData = await sendRequest(
-				`/api/reviews/${id}`,
-				"get",
-				core_url,
-				{},
-				headers
-			);
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+  };
 
-			const apiData = await sendRequest(
-				`/api/findOne/${id}`,
-				"get",
-				core_url,
-				{},
-				headers
-			);
-			const endpointsData = await sendRequest(
-				`/endpoints/${id}`,
-				"get",
-				core_url,
-				{},
-				headers
-			);
-			const apiDiscussion = await sendRequest(
-				`/discussion/api/${id}`,
-				"get",
-				core_url,
-				{},
-				headers
-			);
-				
-			if (
-				reviewData === undefined ||
-				apiData === undefined ||
-				endpointsData === undefined ||
-				apiDiscussion === undefined
-			) {
-				window.location.href = "/api-hub";
-			}
+  const fetchAPIDesc = async () => {
+    try {
+      const apiData = await sendRequest(
+        `/api/findOne/${id}`,
+        "get",
+        core_url,
+        {},
+        headers
+      );
+      const endpointsData = await sendRequest(
+        `/endpoints/${id}`,
+        "get",
+        core_url,
+        {},
+        headers
+      );
+      const apiDiscussion = await sendRequest(
+        `/discussion/api/${id}`,
+        "get",
+        core_url,
+        {},
+        headers
+      );
 
-			return [ reviewData.data, apiData.data, endpointsData.data, apiDiscussion.data ]
-			
-			
-		} catch (error: any) {}
-	};
-	
+      if (
+        apiData === undefined ||
+        endpointsData === undefined ||
+        apiDiscussion === undefined
+      ) {
+        window.location.href = "/api-hub";
+      }
 
-	try {
-		const { data } = useQuery({
-			queryKey: ['apidesc', id],
-			queryFn: fetchAPIDesc,
-			staleTime: 60000,
-			cacheTime: 60000,
-		});
+      return [apiData.data, endpointsData.data, apiDiscussion.data];
+    } catch (error: any) {}
+  };
 
-		useEffect(() => {
-			if(data) {
-				setReviews(data[0]);
-				setApi(data[1]);
-				setEndpoints(data[2]);
-				setDiscussions(data[3]);
-			}
-		}, [data]);
-		
-	} catch (error: any) {
-		toast.error(`${error.message}`)
-	}
+  try {
+    const { data } = useQuery({
+      queryKey: ["apidesc", id],
+      queryFn: fetchAPIDesc,
+      refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: 60000,
+      cacheTime: 60000,
+    });
 
+    useEffect(() => {
+      if (data) {
+        setApi(data[0]);
+        setEndpoints(data[1]);
+        setDiscussions(data[2]);
 
+        // localStorage.setItem("isRated", "");
+        // if(reviews) {
+        // 	reviews.forEach((result: any) => {
+        // 	if(result.profile_id === profileId) {
+        // 		localStorage.setItem("isRated", "1");
+        // 		return;
+        // 	}
+        // 	});
+        // }
+      }
+    }, [data]);
+  } catch (error: any) {
+    toast.error(`${error.message}`);
+  }
 
   const handleTabChange = (e: ChangeEvent<unknown>, value: number) =>
-	setTab(value);
+    setTab(value);
 
   localStorage.setItem("api_id", JSON.stringify(api?.id));
 
   useEffect(() => {
-	error && toast.error(`${error.message}`);
+    error && toast.error(`${error.message}`);
   }, [error]);
 
   if (loading) return <Loader />;
-  
+
   return (
-	<>
-	  {api && endpoints && discussions && reviews && (
-		<Stack direction="column">
-		  <Navbar />
+    <>
+      {api && endpoints && discussions && (
+        <Stack direction="column">
+          <Navbar />
 
-		  <APIMoreInfo api={api} />
+          <APIMoreInfo api={api} />
 
-		  <Box className={classes.root}>
-			<CustomTabs
-			  value={tab}
-			  onChange={handleTabChange}
-			  sx={{
-				display: "flex",
-				flexDirection: "column",
-				marginBottom: "15px",
-				padding: "0 108px",
-				lineHeight: "41px",
-				width: "100%",
+          <Box className={classes.root}>
+            <CustomTabs
+              value={tab}
+              onChange={handleTabChange}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                marginBottom: "15px",
+                padding: "0 108px",
+                lineHeight: "41px",
+                width: "100%",
 
-				"@media screen and (max-width: 900px)": {
-				  padding: "44px 32px 0 32px",
-				},
+                "@media screen and (max-width: 900px)": {
+                  padding: "44px 32px 0 32px",
+                },
 
-				"@media screen and (max-width: 428px)": {
-				  padding: "20px 16px 0 16px",
-				  fontSize: "14px",
-				},
-			  }}>
-			  <CustomTab label="Endpoints" />
-			  <CustomTab label="Discussions" />
-			  <CustomTab label="Reviews" />
-			</CustomTabs>
+                "@media screen and (max-width: 428px)": {
+                  padding: "20px 16px 0 16px",
+                  fontSize: "14px",
+                },
+              }}>
+              <CustomTab label="Endpoints" />
+              <CustomTab label="Discussions" />
+              <CustomTab label="Reviews" />
+            </CustomTabs>
 
-			<Box>
-			  <TabPanel value={tab} index={0}>
-				<Endpoints api={api} endpoints={endpoints} />
-			  </TabPanel>
+            <Box>
+              <TabPanel value={tab} index={0}>
+                <Endpoints api={api} endpoints={endpoints} />
+              </TabPanel>
 
               <TabPanel value={tab} index={1}>
                 <Discussions api={api} discussions={discussions} />
               </TabPanel>
 
-			  <TabPanel value={tab} index={2}>
-				<Reviews api={api} reviews={reviews} />
-			  </TabPanel>
-			</Box>
-		  </Box>
+              <TabPanel value={tab} index={2}>
+                <Reviews api={api} reviews={[]} />
+              </TabPanel>
+            </Box>
+          </Box>
 
-		  <Footer />
-		</Stack>
-	  )}
-	</>
+          <Footer />
+        </Stack>
+      )}
+    </>
   );
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		"& .MuiTab-root": {
-			color: theme.shadows[8],
-		},
-		"& .Mui-selected": {
-			backgroundColor: theme.shadows[6],
-			color: theme.shadows[7],
-		},
-		
-	},
-	
-	
+  root: {
+    "& .MuiTab-root": {
+      color: theme.shadows[8],
+    },
+    "& .Mui-selected": {
+      backgroundColor: theme.shadows[6],
+      color: theme.shadows[7],
+    },
+  },
 }));
-
 
 export default APIDesc;

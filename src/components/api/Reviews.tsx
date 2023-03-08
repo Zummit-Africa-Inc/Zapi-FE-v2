@@ -2,16 +2,48 @@ import React, { useEffect, useState } from "react";
 import { styled, makeStyles } from "@mui/styles";
 import { Typography, Theme, Box } from "@mui/material";
 import AddReview from "./Review/AddReview";
-import { ReviewType } from "../../types";
+import { APIType, ReviewType } from "../../types";
 import UsersReview from "./Review/UsersReview";
+import { useHttpRequest } from "../../hooks";
+import Cookies from "universal-cookie";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../shared/Spinner";
 interface Props {
   reviews: Array<ReviewType>;
-  api: any;
+  api: APIType;
 }
+const url = import.meta.env.VITE_CORE_URL;
 
-
-const Reviews: React.FC<Props> = ({ api, reviews }) => {
+const Reviews_dup: React.FC<Props> = ({ api, reviews }) => {
+  const cookies = new Cookies();
   const classes = useStyles();
+  const { error: lop, loading, sendRequest } = useHttpRequest();
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+  };
+
+  const fetchAPIReviews = async () => {
+    try {
+      const response = await fetch(`${url}/api/reviews/${api.id}`, { headers });
+      const data = await response.json();
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: fetchAPIReviews,
+  });
+
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <Box className={classes.root}>
@@ -21,12 +53,12 @@ const Reviews: React.FC<Props> = ({ api, reviews }) => {
           <AddReview api={api} />
         </Box>
       </Box>
-      <UsersReview reviews={reviews} />
+      <UsersReview reviews={data} />
     </Box>
   );
 };
 
-export default Reviews;
+export default Reviews_dup;
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
