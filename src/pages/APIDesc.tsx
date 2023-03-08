@@ -130,20 +130,19 @@ const APIDesc = () => {
 				setApi(data[1]);
 				setEndpoints(data[2]);
 				setDiscussions(data[3]);
-
-				// localStorage.setItem("isRated", "");
-				// if(reviews) {
-				// 	reviews.forEach((result: any) => {
-				// 	if(result.profile_id === profileId) {
-				// 		localStorage.setItem("isRated", "1");
-				// 		return;
-				// 	}
-				// 	});
-				// }
-
 			}
 		}, [data]);
 		
+		localStorage.setItem("isRated", "");
+		if(reviews) {
+			reviews.forEach((result: any) => {
+				if(result.profile_id === profileId) {
+					localStorage.setItem("isRated", "1");
+					return;
+				}
+			});
+		}
+
 	} catch (error: any) {
 		toast.error(`${error.message}`)
 	}
