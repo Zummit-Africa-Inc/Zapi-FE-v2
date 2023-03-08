@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
-import { Typography, Stack, Theme, Box, Tooltip, Button } from "@mui/material";
+import { Typography, Stack, Theme, Box, Tooltip, Button, CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import {
   StarBorderOutlined,
@@ -12,7 +12,6 @@ import { useAppSelector, useHttpRequest } from "../../hooks";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useAppContext } from "../../contexts/AppProvider";
-import { Spinner } from "../../components";
 import { APIType } from "../../types";
 import { Rating } from "../";
 
@@ -38,49 +37,54 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 		(category) => category.id === api.categoryId
 	);
 
-	const headers = {
-		'Content-Type': "application/json",
-		'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
-	}
-
-  	const fetchSubscription = async () => {
-		try {
-			const result = await sendRequest(
-				`/subscription/user-subscriptions/${profileId}`, 
-				"get", 
-				core_url, 
-				{}, 
-				headers
-			);
-
-			if(result.status === "200") return result.data;
-		} catch (error: any) {}
-	};
 	
-	try {
-		const { data } = useQuery({
-			queryKey: ['userSubs', profileId],
-			queryFn: fetchSubscription,
-			refetchOnWindowFocus: false,
-			retry: false,
-			staleTime: 60000,
-			cacheTime: 60000,
-		});
+	if(accessToken && profileId) {
+			
+		const headers = {
+			'Content-Type': "application/json",
+			'X-Zapi-Auth-Token': `Bearer ${cookies.get("accessToken")}`
+		}
 
-		useEffect(() => {
-			if(data) {
-				data.forEach((result: any) => {
-					if(result.id === api.id) {
-						setIsSubscribed(true)
-						return;
-					}
-				});
-			}
-		}, [data]);
+		const fetchSubscription = async () => {
+			try {
+				const result = await sendRequest(
+					`/subscription/user-subscriptions/${profileId}`, 
+					"get", 
+					core_url, 
+					{}, 
+					headers
+				);
+
+				if(result.status === "200") return result.data;
+			} catch (error: any) {}
+		};
 		
-	} catch (error: any) {
-		toast.error(`${error.message}`)
+		try {
+			const { data } = useQuery({
+				queryKey: ['userSubs', profileId],
+				queryFn: fetchSubscription,
+				refetchOnWindowFocus: false,
+				retry: false,
+				staleTime: 60000,
+				cacheTime: 60000,
+			});
+
+			useEffect(() => {
+				if(data) {
+					data.forEach((result: any) => {
+						if(result.id === api.id) {
+							setIsSubscribed(true)
+							return;
+						}
+					});
+				}
+			}, [data]);
+			
+		} catch (error: any) {
+			toast.error(`${error.message}`)
+		}
 	}
+		
 
 		
 
@@ -131,6 +135,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
 	useEffect(() => {
 		error && toast.error(`${error}`);
 	}, [error]);
+
 
 
   return (
@@ -196,26 +201,29 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
             direction="row"
             spacing={3}
             justifyContent={"end"}
-            alignItems={"center"}>
+            alignItems={"center"}
+			>
+			
             <Button
 				endIcon={<StarBorderOutlined />}
 				className={classes.rate_button}
 				onClick={ accessToken ? () => setIsRatingOpen(true) : () => handleClicked("login")}
-				// disabled={localStorage.getItem("isRated") == "1"}
-				// sx={{
-				// 	opacity: (localStorage.getItem("isRated") == "1") ? .5 : 1
-				// }}
+				disabled={(localStorage.getItem("isRated") == "1")}
+				sx={{
+					opacity: (localStorage.getItem("isRated") == "1") ? .5 : 1
+				}}
 			>
-              Rate
+            	Rate
             </Button>
+
+
             <Button
-              variant={!isSubscribed ? "contained" : "outlined"}
-              className={!isSubscribed ? classes.subscribe_button : classes.unsubscribe_button}
-              onClick={
-                accessToken ? handleSubscription : () => handleClicked("login")
-              }>
+				variant={!isSubscribed ? "contained" : "outlined"}
+				className={!isSubscribed ? classes.subscribe_button : classes.unsubscribe_button}
+				onClick={ accessToken ? handleSubscription : () => handleClicked("login")
+            }>
 				{loading ? 
-					<Spinner />
+			  		<CircularProgress size={25} thickness={4} color="inherit" />
 				: 
 					<>
 						{isSubscribed ? "Unsubscribe" : "Subscribe"}
@@ -435,16 +443,21 @@ const useStyles = makeStyles((theme: Theme) => ({
 		minWidth: "130px !important",
 		height: "2.4rem",
 
+		// "& svg": {
+		// 	fontSize: "13px",
+		// 	width: "130px !important",
+		// },
+
 		"@media screen and (max-width: 900px)": {
-		fontSize: "11px",
-		minWidth: "100px",
-		height: "2.2rem",
+			fontSize: "11px",
+			minWidth: "100px",
+			height: "2.2rem",
 		},
 
 		"@media screen and (max-width: 428px)": {
-		fontSize: "11px",
-		minWidth: "100px",
-		height: "2.2rem",
+			fontSize: "11px",
+			minWidth: "100px",
+			height: "2.2rem",
 		},
 
 	},

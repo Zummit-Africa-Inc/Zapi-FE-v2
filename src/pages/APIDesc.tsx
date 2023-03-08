@@ -57,7 +57,6 @@ const APIDesc = () => {
   const cookies = new Cookies();
   const classes = useStyles();
   const { id } = useParams();
-  const profileId = cookies.get("profileId");
 
   const headers = {
     "Content-Type": "application/json",
@@ -115,16 +114,6 @@ const APIDesc = () => {
         setApi(data[0]);
         setEndpoints(data[1]);
         setDiscussions(data[2]);
-
-        // localStorage.setItem("isRated", "");
-        // if(reviews) {
-        // 	reviews.forEach((result: any) => {
-        // 	if(result.profile_id === profileId) {
-        // 		localStorage.setItem("isRated", "1");
-        // 		return;
-        // 	}
-        // 	});
-        // }
       }
     }, [data]);
   } catch (error: any) {
@@ -186,7 +175,7 @@ const APIDesc = () => {
               </TabPanel>
 
               <TabPanel value={tab} index={2}>
-                <Reviews api={api} reviews={[]} />
+                <Reviews api={api} />
               </TabPanel>
             </Box>
           </Box>
