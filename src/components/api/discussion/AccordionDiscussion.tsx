@@ -203,7 +203,9 @@ const AccordionDiscussion: React.FC<Props> = ({ api, discussions }) => {
               marginLeft: "3.1rem",
             },
           }}>
-          <Typography component="p">{discussions.length} Comments</Typography>
+          <Typography component="p">
+            {discussions && discussions.length} Comments
+          </Typography>
         </Box>
       </AccordionSummary>
       <AccordionDetails
@@ -333,32 +335,36 @@ const AccordionDiscussion: React.FC<Props> = ({ api, discussions }) => {
                 </Box>
               )}
             </Box>
-
-            {discussions.map((discussions, index) => (
-              <Box
-                key={index}
-                sx={{
-                  background: currentMode === "dark" ? "#121212" : "#F5F5F5",
-                  color: currentMode === "dark" ? "#F5F5F5" : "#121212",
-                }}
-                className={classes.discussion_comment}>
-                <Avatar
-                  sx={{ marginLeft: "2rem", marginRight: "1rem" }}
-                  src="/broken-image.jpg"
-                />
-                <Box sx={{ width: "100%" }}>
-                  <Typography component="p" sx={{ marginBottom: "8px" }}>
-                    {"User"}
-                  </Typography>
-                  <Typography
-                    sx={{ width: "100%", height: "100%" }}
-                    component="p">
-                    {discussions.body ||
-                      "Lorem ipsum dolor sit amet consectetur. Vel"}
-                  </Typography>
-                </Box>
-              </Box>
-            ))}
+            {discussions && discussions.length !== 0 ? (
+              <>
+                {discussions.map((discussions, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      background:
+                        currentMode === "dark" ? "#121212" : "#F5F5F5",
+                      color: currentMode === "dark" ? "#F5F5F5" : "#121212",
+                    }}
+                    className={classes.discussion_comment}>
+                    <Avatar
+                      sx={{ marginLeft: "2rem", marginRight: "1rem" }}
+                      src="/broken-image.jpg"
+                    />
+                    <Box sx={{ width: "100%" }}>
+                      <Typography component="p" sx={{ marginBottom: "8px" }}>
+                        {"User"}
+                      </Typography>
+                      <Typography
+                        sx={{ width: "100%", height: "100%" }}
+                        component="p">
+                        {discussions.body ||
+                          "Lorem ipsum dolor sit amet consectetur. Vel"}
+                      </Typography>
+                    </Box>
+                  </Box>
+                ))}
+              </>
+            ) : null}
           </Box>
         </Stack>
       </AccordionDetails>
