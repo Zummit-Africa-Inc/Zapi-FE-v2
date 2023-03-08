@@ -13,10 +13,9 @@ const UsersReview: React.FC<Props> = ({ reviews }) => {
   const classes = useStyles();
   const { currentMode } = useAppContext();
 
-
   return (
     <Stack direction="column" spacing={1} sx={{ marginTop: "3rem" }}>
-      {reviews.length !== 0 ? (
+      {reviews && reviews.length !== 0 ? (
         <>
           {reviews.map((review, index) => (
             <Box className={classes.user_review} key={index}>
