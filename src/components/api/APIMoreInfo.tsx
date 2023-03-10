@@ -57,9 +57,9 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
   };
 
   try {
-    const { data } = useQuery({
+    const { data } = useQuery<any>({
       queryKey: ["userSubs", profileId],
-      queryFn: fetchSubscription,
+      queryFn: async () => fetchSubscription,
       refetchOnWindowFocus: false,
       retry: false,
       staleTime: 60000,
@@ -67,7 +67,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
     });
 
     useEffect(() => {
-      if (data) {
+      if (data && Array.isArray(data)) {
         data.forEach((result: any) => {
           if (result.id === api.id) {
             setIsSubscribed(true);
@@ -75,7 +75,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
           }
         });
       }
-    }, [data]);
+    }, [api.id]);
   } catch (error: any) {
     toast.error(`${error.message}`);
   }
@@ -203,7 +203,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
               onClick={
                 accessToken
                   ? () => setIsRatingOpen(true)
-                  : handleClicked("login")
+                  : () => handleClicked("login")
               }
               // disabled={localStorage.getItem("isRated") == "1"}
               // sx={{
@@ -220,7 +220,7 @@ const APIMoreInfo: React.FC<Props> = ({ api }) => {
                   : classes.unsubscribe_button
               }
               onClick={
-                accessToken ? handleSubscription : handleClicked("login")
+                accessToken ? handleSubscription : () => handleClicked("login")
               }>
               {loading ? (
                 <Spinner />
