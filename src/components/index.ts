@@ -11,6 +11,7 @@ export { default as Modal } from "./shared/Modal";
 export { default as Navbar } from "./shared/Navbar";
 export { default as Paper } from "./shared/Paper";
 export { default as Spinner } from "./shared/Spinner";
+export { default as SpinnerAlt } from "./shared/SpinnerAlt";
 export { default as TabPanel } from "./shared/TabPanel";
 
 // home

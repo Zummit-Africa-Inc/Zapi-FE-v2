@@ -1,18 +1,18 @@
-import React, { FormEvent, useEffect } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { makeStyles } from "@mui/styles";
+import { Box, Typography } from "@mui/material";
 import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
 
-import { useAppDispatch, useFormInputs, useHttpRequest } from "../../hooks";
+import { useAppDispatch, useAppSelector, useFormInputs, useHttpRequest } from "../../hooks";
+import { Button, InputField, SpinnerAlt } from "../../components";
 import { GithubIcon, GoogleIcon } from "../../assets/icons";
 import { useAppContext } from "../../contexts/AppProvider";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils";
-import { Button, InputField, Spinner } from "../../components";
 import { login } from "../../store/slices/auth";
 import { useStyles } from "./styles/styles";
+import Modal from "./Modal";
 
 const initialState = { email: "", password: "" };
 const url = "VITE_IDENTITY_URL";
@@ -28,10 +28,12 @@ const Signin = () => {
     handleUnclicked,
     handleClicked,
   } = useAppContext();
-  const { error, loading, sendRequest } = useHttpRequest();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { error, loading, sendRequest } = useHttpRequest();
+  const { isLoggedIn } = useAppSelector(store => store.auth)
   const headers = { "Content-Type": "application/json" };
   const { inputs, bind } = useFormInputs(initialState);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { email, password } = inputs;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -67,22 +69,21 @@ const Signin = () => {
       //   method: "POST",
       //   headers,
       //   body: JSON.stringify(payload)
-      // })
+      // });
       // const data = await res.json()
       if (!data || data === undefined) return;
       toast.success("Login Successful!");
       const { access, email, fullName, profileId, refresh, userId, secretKey } =
         data.data;
-      const user = { email, fullName, profileId, secretKey };
-      dispatch(login(user));
+        const user = { email, fullName, profileId, secretKey };
+        dispatch(login(user));
       cookies.set("accessToken", access);
       cookies.set("refreshToken", refresh);
       cookies.set("profileId", profileId);
       cookies.set("userId", userId);
       cookies.set("secretKey", secretKey);
-      navigate(`/developer/dashboard?id=${profileId}&token=${access}`);
     } catch (error) {}
-    handleUnclicked("login");
+    // handleUnclicked("login");
   };
 
   const googleAuth = useGoogleLogin({
@@ -124,9 +125,7 @@ const Signin = () => {
         cookies.set("profileId", profileId);
         cookies.set("userId", userId);
         cookies.set("secretKey", secretKey);
-        navigate("/developer/dashboard");
       } catch (error) {}
-      handleUnclicked("login");
     },
     onError: (errorResponse) => {
       toast.error("Login Failed, try to login with your email.");
@@ -180,11 +179,9 @@ const Signin = () => {
           cookies.set("profileId", profileId);
           cookies.set("userId", userId);
           cookies.set("secretKey", secretKey);
-          navigate("/developer/dashboard");
         } catch (error) {}
       };
       githubLogin();
-      handleUnclicked("login");
     }, []);
   }
 
@@ -192,12 +189,25 @@ const Signin = () => {
     handleUnclicked("login");
     handleClicked("forgotPassword");
   };
+  
+  const redirect = () => {
+    navigate(`/developer/dashboard?id=${cookies.get("profileId")}&token=${cookies.get("accessToken")}`)
+    handleUnclicked("login");
+  };
 
   useEffect(() => {
     error && toast.error(`${error}`);
   }, [error]);
 
   return (
+    <>
+    {isLoggedIn && (
+      <Modal
+        message="Do you want remain on the hub or redirect to the dashboard?"
+        onClose={() => handleUnclicked("login")}
+        onConfirm={() => redirect()}
+      />
+    )}
     <Box className={classes.container}>
       <form onSubmit={handleSubmit} className={classes.form}>
         <InputField
@@ -228,7 +238,7 @@ const Signin = () => {
           </div>
         </Box>
         <Button
-          label={loading ? <Spinner /> : "Sign In"}
+          label={loading ? <SpinnerAlt size="small" thickness="thin" /> : "Sign In"}
           size="large"
           type="submit"
           variant="primary"
@@ -264,6 +274,7 @@ const Signin = () => {
         />
       </Box>
     </Box>
+    </>
   );
 };
 

@@ -88,6 +88,16 @@ export const darkTheme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          transition: "all 500ms linear ease-in-out",
+          "&:active": {
+            scale: 0.98,
+          }
+        }
+      }
+    }
   },
   
   shadows: [
