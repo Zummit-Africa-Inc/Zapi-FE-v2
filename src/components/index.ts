@@ -3,6 +3,7 @@ export { default as AuthNavbar } from "./shared/AuthNavbar";
 export { default as AuthLayout } from "./shared/AuthLayout";
 export { default as Backdrop } from "./shared/Backdrop";
 export { default as Button } from "./shared/Buttons/Button";
+export { default as ButtonSpinner } from "./shared/Buttons/ButtonSpinner";
 export { default as Footer } from "./shared/Footer";
 export { default as HamburgerMenu } from "./shared/HamburgerMenu";
 export { default as InputField } from "./shared/InputField";

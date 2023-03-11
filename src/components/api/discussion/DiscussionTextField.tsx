@@ -1,28 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, FormEvent } from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Typography,
-  Theme,
-  Box,
-  IconButton,
-  TextareaAutosize,
-  Button,
-  Stack,
-} from "@mui/material";
-import { Spinner } from "../../../components";
+import { Theme, Box, TextareaAutosize, Button } from "@mui/material";
+import { ButtonSpinner } from "../../../components";
 import { useAppContext } from "../../../contexts/AppProvider";
+import {
+  useMutation,
+  UseMutationResult,
+  useQueryClient,
+} from "@tanstack/react-query";
+import Cookies from "universal-cookie";
+import { DiscussionType } from "../../../types";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useHttpRequest } from "../../../hooks";
 
+const url = "VITE_CORE_URL";
 interface Props {
   onClose: () => void;
 }
 
 const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
   const classes = useStyles();
+  const cookies = new Cookies();
   const { currentMode } = useAppContext();
+  const { sendRequest } = useHttpRequest();
   const [body, setBody] = useState<string>("");
-  const { loading, sendRequest } = useHttpRequest();
+  const profile_id = cookies.get("profileId");
+  const [api_id, setApiId] = useState<any>("");
+  const { id } = useParams();
+  const queryClient = useQueryClient();
 
+  useEffect(() => {
+    setApiId(id);
+  }, [setApiId]);
+
+  const postDiscussion = async () => {
+    const headers = {
+      "Content-Type": "application/json",
+      "X-Zapi-Auth-Token": `Bearer ${cookies.get("accessToken")}`,
+    };
+
+    const payload = { body, api_id, profile_id };
+    try {
+      const data = await sendRequest(
+        `/discussion`,
+        "post",
+        url,
+        payload,
+        headers
+      );
+      return data;
+    } catch (error: any) {
+      toast.error(`${error.message}`);
+    }
+  };
+  const mutation = useMutation({
+    mutationFn: postDiscussion,
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({ queryKey: ["discussions"] });
+      setBody("");
+    },
+  });
   return (
     <>
       <Box className={classes.form}>
@@ -66,7 +104,10 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
           }}>
           Cancel
         </Button>
-        <button
+        <Button
+          onClick={() => {
+            mutation.mutate();
+          }}
           style={{
             outline: "none",
             border: "none",
@@ -84,8 +125,8 @@ const DiscussionTextField: React.FC<Props> = ({ onClose }) => {
             cursor: "pointer",
           }}
           type="submit">
-          {loading ? <Spinner /> : "Submit"}
-        </button>
+          {mutation.isLoading ? <ButtonSpinner /> : "Submit"}
+        </Button>
       </Box>
     </>
   );

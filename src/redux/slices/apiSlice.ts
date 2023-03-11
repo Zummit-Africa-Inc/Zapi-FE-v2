@@ -135,14 +135,14 @@ const apiSlice = createSlice({
       const id = action.payload;
       state.apis = state.apis.filter((apis) => apis?.id !== id);
     },
-    addDiscussion: (state, action: PayloadAction<any>) => {
-      const { apiId, title, body } = action.payload;
-      const api = state.apis.find((api) => api?.id === apiId);
-      let newDiscussion = { title, body };
-      if (api) {
-        api.discussions?.unshift(newDiscussion);
-      }
-    },
+    // addDiscussion: (state, action: PayloadAction<any>) => {
+    //   const { apiId, body } = action.payload;
+    //   const api = state.apis.find((api) => api?.id === apiId);
+    //   let newDiscussion = { body };
+    //   if (api) {
+    //     api.discussions?.unshift(newDiscussion);
+    //   }
+    // },
     removeDiscussion: (state, action: PayloadAction<any>) => {
       const { apiId, id } = action.payload;
       const api = state.apis.find((api) => api?.id === apiId);
@@ -153,14 +153,13 @@ const apiSlice = createSlice({
       }
     },
     editDiscussion: (state, action: PayloadAction<any>) => {
-      const { apiId, id, title, body } = action.payload;
+      const { apiId, id, body } = action.payload;
       const api = state.apis.find((api) => api?.id === apiId);
       if (api) {
         let discussion = api.discussions?.find(
           (discussion) => discussion?.id === id
         );
         if (discussion) {
-          discussion.title = title;
           discussion.body = body;
         }
       }
@@ -295,7 +294,7 @@ const apiSlice = createSlice({
 export const {
   addApi,
   removeApi,
-  addDiscussion,
+  // addDiscussion,
   addChildrenDiscussion,
   editDiscussion,
   editChildrenDiscussion,

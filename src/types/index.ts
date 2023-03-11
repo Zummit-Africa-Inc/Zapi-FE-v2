@@ -69,12 +69,13 @@ export type UserProfileType = {
 
 export type DiscussionType = {
   id?: string | undefined;
-  title: string;
-  apiId?: string;
+  // title: string;
+  api_id?: string;
   body: string;
-  profileId?: string;
-  createdOn?: Date | string;
+  profile_id?: string;
+  createdOn: Date | string;
   childrenDiscussion?: Array<ChildrenDiscussionType | null>;
+  comments?: Array<ChildrenDiscussionType | null>;
   // picture: object | string | null
   // fullName: string
 };
@@ -147,6 +148,7 @@ export type User = {
   profileId: string;
   fullName: string;
   picture?: string;
+ 
 };
 
 export type ReviewType = {
@@ -154,6 +156,7 @@ export type ReviewType = {
   review: string;
   createdBy: User;
 };
+
 
 export type SubscribedUser = {
   createdBy: string | null;
