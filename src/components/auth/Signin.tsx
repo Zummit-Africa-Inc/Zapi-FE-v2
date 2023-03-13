@@ -70,7 +70,7 @@ const Signin = () => {
       //   headers,
       //   body: JSON.stringify(payload)
       // });
-      // const data = await res.json()
+      // const data = await res.json();
       if (!data || data === undefined) return;
       toast.success("Login Successful!");
       const { access, email, fullName, profileId, refresh, userId, secretKey } =
@@ -82,8 +82,7 @@ const Signin = () => {
       cookies.set("profileId", profileId);
       cookies.set("userId", userId);
       cookies.set("secretKey", secretKey);
-    } catch (error) {}
-    // handleUnclicked("login");
+    } catch (error) {};
   };
 
   const googleAuth = useGoogleLogin({
@@ -125,7 +124,7 @@ const Signin = () => {
         cookies.set("profileId", profileId);
         cookies.set("userId", userId);
         cookies.set("secretKey", secretKey);
-      } catch (error) {}
+      } catch (error) {};
     },
     onError: (errorResponse) => {
       toast.error("Login Failed, try to login with your email.");
@@ -179,7 +178,7 @@ const Signin = () => {
           cookies.set("profileId", profileId);
           cookies.set("userId", userId);
           cookies.set("secretKey", secretKey);
-        } catch (error) {}
+        } catch (error) {};
       };
       githubLogin();
     }, []);
@@ -191,7 +190,7 @@ const Signin = () => {
   };
   
   const redirect = () => {
-    navigate(`/developer/dashboard?id=${cookies.get("profileId")}&token=${cookies.get("accessToken")}`)
+    navigate("/developer/dashboard")
     handleUnclicked("login");
   };
 
