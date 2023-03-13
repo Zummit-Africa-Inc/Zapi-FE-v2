@@ -11,7 +11,7 @@ import {
   Button,
   InputField,
   Paper,
-  Spinner,
+  SpinnerAlt,
 } from "../../components";
 import { useAppDispatch, useFormInputs, useHttpRequest } from "../../hooks";
 import { EMAIL_REGEX, MATCH_CHECKER, PASSWORD_REGEX } from "../../utils";
@@ -220,7 +220,7 @@ const Signup = () => {
           }}
         />
         <Button
-          label={loading ? <Spinner /> : "Sign Up"}
+          label={loading ? <SpinnerAlt size="small" thickness="thin" /> : "Sign Up"}
           size="large"
           type="submit"
           variant="primary"

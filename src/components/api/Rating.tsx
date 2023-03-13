@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 
 import { useHttpRequest } from "../../hooks";
-import { ButtonSpinner } from "../../components";
+import { SpinnerAlt } from "../../components";
 
 import { StarRounded, StarOutlineRounded } from "@mui/icons-material";
 
@@ -70,56 +70,44 @@ const RatingComponent: React.FC<Props> = ({ apiId, onClose }) => {
   }, [error]);
 
   return (
-    <Box className={classes.backdrop} onClick={() => onClose()}>
-      <Box
-        className={classes.container}
-        onClick={(e: MouseEvent) => e.stopPropagation()}>
-        <Typography component="h2">Rate API</Typography>
-        <Box component="form" onSubmit={handleRating} className={classes.form}>
-          <Box className={classes.control}>
-            <Rating
-              emptyIcon={<StarOutlineRounded className={classes.emptyIcon} />}
-              icon={<StarRounded />}
-              precision={1}
-              defaultValue={1}
-              size={"medium"}
-              value={rating}
-              onChange={(e: SyntheticEvent, value: number | null) =>
-                setRating(value)
-              }
-            />
-          </Box>
-
-          <Box
-            component="textarea"
-            rows={3}
-            placeholder="Leave a comment"
-            value={review}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setReview(e.target.value)
-            }
-            className={classes.textarea}
-          />
-
-          <Box className={classes.button_container}>
-            <Button
-              variant={"outlined"}
-              type="button"
-              onClick={() => onClose()}
-              className={classes.cancel}>
-              Cancel
-            </Button>
-            <Button
-              variant={"contained"}
-              type="submit"
-              className={classes.submit}>
-              {loading ? <ButtonSpinner /> : "Submit"}
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
-  );
+	<Box className={classes.backdrop} onClick={() => onClose()}>
+	  <Box className={classes.container} onClick={(e: MouseEvent) => e.stopPropagation()}>
+		<Typography component="h2">
+		  Rate API
+		</Typography>
+		<Box component="form" onSubmit={handleRating} className={classes.form}>
+		  <Box className={classes.control}>
+			<Rating 
+				emptyIcon={<StarOutlineRounded className={classes.emptyIcon} />} 
+				icon={<StarRounded/>} 
+				precision={1} 
+				defaultValue={1}
+				size={'medium'}
+				value={rating} 
+				onChange={(e: SyntheticEvent, value: number | null) => setRating(value)} 
+			/>
+		  </Box>
+		  <Box 
+			component="textarea" 
+			rows={3} 
+			placeholder="Leave a comment" 
+			value={review} 
+			onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setReview(e.target.value)} 
+			className={classes.textarea} 
+		  />
+		  
+		  <Box className={classes.button_container}>
+			<Button variant={'outlined'} type="button" onClick={() => onClose()} className={classes.cancel}>
+			  Cancel
+			</Button>
+			<Button variant={'contained'} type="submit" className={classes.submit}>
+			  {loading ? <SpinnerAlt size="small" thickness="thin" /> : "Submit"}
+			</Button>
+		  </Box>
+		</Box>
+	  </Box>
+	</Box>
+  )
 };
 
 export default RatingComponent;
